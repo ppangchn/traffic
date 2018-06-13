@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
-import App from './allProject'
+import App from './components/allProject/allProject'
 import Folder from './components/allProject/Folder'
 import {
     BrowserRouter as Router,

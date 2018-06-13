@@ -16,30 +16,54 @@ const Container = styled.div`
 `
 
 const FolderClose = Folder.extend`
-    width : 30 px;
-    height : 30px;
+    width : 25 px;
+    height : 25px;
     color : white;
+    &:hover ${FolderClose} {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        transition-duration: 300ms;
+    }
+    display: inline-block;
+    cursor: pointer;
+    margin: 15px;
+    line-height: 84px;
+    border-radius: 25%
+    position: relative;
+  }
 `
 const FolderWhite = FolderOpen.extend`
-    width : 30 px;
-    height : 30px;
+    width : 25 px;
+    height : 25px;
     color : white;
+    &:hover ${FolderWhite} {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        transition-duration: 300ms;
+    }
+    display: inline-block;
+    cursor: pointer;
+    margin: 15px;
+    line-height: 84px;
+    border-radius: 25%
+    position: relative;
+}
 `
 class Header extends Component {
     constructor() {
         super();
         this.state = {folder : <FolderClose />}
     }
-    changeFolderIcon() {
-        this.setState({folder : <FolderWhite />})
+    async changeFolderIcon() {
+        console.log('clickkkk');
+        await this.setState({folder : <FolderWhite />})
     }
     render() {
         return (
             <Container>
                <div>
-                   <link to="/folder" onClick={() => {this.changeFolderIcon}}>
-                   </link>
-                   <a >{this.state.folder}</a>
+                   <a href="/folder" onClick={this.changeFolderIcon}>
+                   {this.state.folder}
+                   <FolderWhite />
+                   </a>
                </div>
             </Container>
         );
