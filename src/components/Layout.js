@@ -2,8 +2,8 @@ import styled from 'styled-components'
 
 const Layout = styled.div`
   background-color : #eaf9fe;
-  width : 1920 px;
-  height : 1365px;
+  width : 710 px;
+  height : 1381px;
   -webkit-background-size: cover;
   background-size: cover;
   padding 0;

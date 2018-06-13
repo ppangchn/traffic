@@ -52,19 +52,16 @@ class Header extends Component {
         super();
         this.state = {folder : <FolderClose />}
     }
-    async changeFolderIcon() {
-        console.log('clickkkk');
-        await this.setState({folder : <FolderWhite />})
+    changeFolderIcon = () => {
+        this.setState({folder : <FolderWhite />})
     }
     render() {
         return (
             <Container>
-               <div>
                    <a href="/folder" onClick={this.changeFolderIcon}>
                    {this.state.folder}
                    <FolderWhite />
                    </a>
-               </div>
             </Container>
         );
     }
