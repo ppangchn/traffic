@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-import Header from '../Header'
 import Layout from '../Layout'
 
-class App extends Component {
+class Overall extends Component {
+  constructor() {
+      super()
+  }
   render() {
     return (
       <Layout>
-        <Header/>
+        Hello
       </Layout>
     );
   }
 }
 
-export default App;
+export default Overall;
