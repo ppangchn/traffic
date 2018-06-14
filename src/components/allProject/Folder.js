@@ -2,7 +2,6 @@ import React,{Component} from 'react'
 import Layout from '../Layout'
 import Project from '../projectOverview/Project'
 import Timeline from '../projectOverview/Timeline'
-//เรียก function ใน layout และส่งขึันไป
 class Folder extends Component {
     constructor() {
         super();
@@ -10,19 +9,18 @@ class Folder extends Component {
     // href=/projectoverview
     render() {
         return(
-            <Layout>
-                {/* <Timeline /> */}
-                <Project />
+            <Layout class="container">
+                <div class="row">
+                    <div class="col-4">
+                        <Project /> 
+                    </div>
+                    <div class="col-8">
+                        <Timeline />
+                    </div>
+                </div>
                 <a href="/">folder back</a>
-            </Layout>
+        </Layout>
         );
     }
 }
-// const Folder = ({ setLink}) => {
-//     console.log(this.props)
-//     setLink();
-//     return (
-//         <div></div>
-//     )
-// }
 export default Folder;

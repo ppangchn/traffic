@@ -1,7 +1,9 @@
 import React,{Component} from 'react'
 import styled from 'styled-components';
 
-const Line = styled.div`
+const Container = styled.div`
+    display : grid;
+    grid-template-columns: auto auto auto;
 `
 
 class Timeline extends Component {
@@ -10,7 +12,13 @@ class Timeline extends Component {
     }
     render() {
         return (
-            <Line></Line>
+            <Container class="row">
+  <div class="col">col</div>
+  <div class="col">col</div>
+  <div class="w-100"></div>
+  <div class="col">col</div>
+  <div class="col">col</div>
+</Container>
         );
     }
 }
