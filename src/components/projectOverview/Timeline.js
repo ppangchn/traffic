@@ -1,10 +1,8 @@
 import React,{Component} from 'react'
 import styled from 'styled-components';
-
-const Container = styled.div`
-    display : grid;
-    grid-template-columns: auto auto auto;
-`
+import { Container ,Row, Col, Progress } from 'reactstrap';
+import {Settings} from 'styled-icons/feather/Settings'
+import './Timeline.css'
 
 class Timeline extends Component {
     constructor() {
@@ -12,13 +10,37 @@ class Timeline extends Component {
     }
     render() {
         return (
-            <Container class="row">
-  <div class="col">col</div>
-  <div class="col">col</div>
-  <div class="w-100"></div>
-  <div class="col">col</div>
-  <div class="col">col</div>
-</Container>
+          <div class="timeline">
+          {/* pang pang pang pang pang pang panpang pang panpang pang panpang pang panpang pang panpang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang 
+          pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang 
+          pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang 
+          pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang 
+          pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang 
+          pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang 
+          pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang 
+          pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang 
+          pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang 
+          pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang 
+          pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang 
+          pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang 
+          pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang 
+          pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang 
+          pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang 
+          pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang 
+          pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang 
+          pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang 
+          pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang 
+          pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang 
+          pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang 
+          pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang 
+          pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang 
+          pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang 
+          pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang 
+          pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang 
+          pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang 
+          pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang  */}
+          </div>
+          
         );
     }
 }

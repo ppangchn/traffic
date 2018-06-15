@@ -1,6 +1,8 @@
 import React,{Component} from 'react'
 import styled from 'styled-components';
 import {FolderOpen} from 'styled-icons/fa-regular/FolderOpen'
+import { Progress } from 'reactstrap';
+
 
 const Container = styled.div`
     display : flex;
@@ -54,32 +56,31 @@ const Pm = styled.div`
     margin-right : 5px
 `
 
-const Percent = styled.div`
-    border-radius: 10px;
-    background-color : #e8e8e8
-    font-size : 10px;
-    display:inline-block;
-    width : 250px
-    height : 12px
-    margin-top : 10px
-    margin-left : 20px
-    padding: 5px;
-    position : absolute
-`
-const PercentIndiv = styled.div`
-    border-radius: 10px;
-    background-color : red
-    font-size : 10px;
-    display:inline-block;
-    width : 200px
-    margin-top : 10px
-    margin-left : 20px
-    padding: 5px;
-    position : absolute
-`
+// const Percent = styled.div`
+//     border-radius: 10px;
+//     background-color : #e8e8e8
+//     font-size : 10px;
+//     display:inline-block;
+//     width : 250px
+//     height : 12px
+//     margin-top : 10px
+//     margin-left : 20px
+//     padding: 5px;
+
+// `
+// const PercentIndiv = styled.div`
+//     border-radius: 10px;
+//     background-color : red
+//     font-size : 10px;
+//     display:inline-block;
+//     width : 200px
+//     margin-top : 10px
+//     margin-left : 20px
+//     padding: 5px;
+// `
 class Project extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {project : [{name : 'K my Funds', pm : ['pang']},{name : 'After Klass', pm : ['b','c']}]} //arrayofjson
     }
     render() {
@@ -92,13 +93,15 @@ class Project extends Component {
                         <div>
                             <Item>
                             <Projectname>{project.name}&ensp;{project.pm.map((pm) => { return (<Pm>{pm}</Pm>)})}</Projectname>
-                            <Percent></Percent>
-                            <PercentIndiv>&ensp;50%</PercentIndiv>
+                            {/* <Percent></Percent>
+                            <PercentIndiv>&ensp;50%</PercentIndiv> */}
+                            <Progress animated color="success" value="10" />
                             </Item>
                               
                         </div>
                         
                         )})}
+                        <a href="/">folder back</a>
                 </ItemContainer>
             </Container>
         );

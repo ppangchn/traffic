@@ -1,4 +1,4 @@
-import React,{Component} from 'react'
+import React,{Component,PureComponent} from 'react'
 import styled from 'styled-components'
 import {Folder} from 'styled-icons/fa-regular/Folder'
 import {FolderOpen} from 'styled-icons/fa-solid/FolderOpen';
@@ -7,6 +7,10 @@ import {Person} from 'styled-icons/material/Person'
 import {Settings} from 'styled-icons/feather/Settings'
 import {Gear} from 'styled-icons/octicons/Gear'
 import {ClipboardList} from 'styled-icons/fa-solid/ClipboardList'
+import {Navbar,NavbarBrand,NavLink} from 'reactstrap'
+import {Link} from 'react-router-dom';
+import './Header.css'
+// import { Container, Row, Col } from 'reactstrap';
 
 const Container = styled.div`
     background-color: #5bc2e1
@@ -64,11 +68,8 @@ const PersonReg = PersonOutline.extend`
         top : -1px
     }
     display: inline-block;
-    cursor: pointer;
-    margin: 15px;
     line-height: 84px;
     border-radius: 25%
-    position: relative;
 `
 
 const PersonSolid = Person.extend`
@@ -96,12 +97,27 @@ const SettingReg = Settings.extend`
     }
     display: inline-block;
     cursor: pointer;
+    border-radius: 25%
+    margin: 15px;
+    left : 10rem;
+`
+const SettingSolid = Gear.extend`
+    width : 1.5rem;
+    height : 1.5rem;
+    color : white;
+    &:hover ${SettingReg} {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        transition-duration: 300ms;
+    }
+    display: inline-block;
+    cursor: pointer;
     margin: 15px;
     line-height: 84px;
     border-radius: 25%
     position: relative;
-    left : 64rem;
+    
 `
+
 const ClipboardListz = ClipboardList.extend`
     width : 1.5rem;
     height : 1.5rem;
@@ -123,24 +139,38 @@ class Header extends Component {
         console.log('pang')
         this.state = {folder : <FolderClose />, person : <PersonReg />,setting : <SettingReg />}
     }
-    changeFolderIcon = () => {
-        this.setState({folder : <FolderWhite />})
+    changeFolderIcon() {
+        if (window.location.pathname === "/folder") {
+            this.setState({folder : <FolderWhite />})
+        }
+        else this.setState({folder : <FolderClose />})
     }
+        
     changePersonIcon = () => {
         this.setState({person : <PersonSolid />})
+    }
+    changeSettingIcon = () => {
+        this.setState({setting : <SettingSolid />})
     }
     render() {
         return (
             <Container>
-                    <ClipboardListz />
-                   <a href="/folder" onClick={this.changeFolderIcon}>
+                    <Navbar>
+                        <NavLink href="/folder" onClick={() => this.changeFolderIcon()} activeClassName="active">{this.state.folder}</NavLink>
+                        <NavLink  href="/person" onClick={() => this.changePersonIcon()} activeClassName="active">{this.state.person}</NavLink>
+                        <NavLink  href="/setting" onClick={() => this.changeSettingIcon()} activeClassName="active" class="setting">{this.state.setting}</NavLink>
+                    </Navbar>
+                {/* <ClipboardListz />
+                   <a href="/folder" onClick={() => this.changeFolderIcon()}>
                         {this.state.folder}
                    </a>
-                   <a href="/person" onClick={this.changePersonIcon}>
+                   <a href="/person" onClick={() => this.changePersonIcon()}>
                         {this.state.person}
                    </a>
-                   {/* <a href="/setting"></a> */}
-                   {this.state.setting}
+                   <a href="/setting" onClick={() => this.changeSettingIcon()}>
+                        {this.state.setting}
+                   </a> */}
+                   
             </Container>
         );
     }
