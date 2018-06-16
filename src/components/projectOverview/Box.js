@@ -9,7 +9,7 @@ class Box extends Component {
     }
     render() {
         return (
-          <div className="box">
+          <div className="boxz">
           <Timeline />
           </div>
         );

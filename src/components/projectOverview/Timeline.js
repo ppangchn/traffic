@@ -10,7 +10,7 @@ class Timeline extends Component {
     }
     render() {
         return (
-          <div class="timeline">
+          <div className="timeline">
           {/* pang pang pang pang pang pang panpang pang panpang pang panpang pang panpang pang panpang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang 
           pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang 
           pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang pang 

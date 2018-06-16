@@ -1,5 +1,6 @@
-.box {
+.boxz {
     overflow: scroll;
     max-height: '30px';
+    width: '100vw';
 }
 

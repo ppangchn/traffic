@@ -6,10 +6,13 @@ import {PersonOutline} from 'styled-icons/material/PersonOutline'
 import {Person} from 'styled-icons/material/Person'
 import {Settings} from 'styled-icons/feather/Settings'
 import {Gear} from 'styled-icons/octicons/Gear'
-import {ClipboardList} from 'styled-icons/fa-solid/ClipboardList'
-import {Navbar,NavbarBrand,NavLink} from 'reactstrap'
-import {Link} from 'react-router-dom';
+import {ListAlt} from 'styled-icons/fa-regular/ListAlt'
+import {ListAlt as ListSolid} from 'styled-icons/fa-solid/ListAlt'
+import {Navbar,NavbarBrand,NavLink,Nav,NavItem} from 'reactstrap'
+import {AddCircleOutline} from 'styled-icons/material/AddCircleOutline'
+import {AddCircle} from 'styled-icons/material/AddCircle'
 import './Header.css'
+import { Add } from 'styled-icons/material';
 // import { Container, Row, Col } from 'reactstrap';
 
 const Container = styled.div`
@@ -35,7 +38,6 @@ const FolderClose = Folder.extend`
     }
     display: inline-block;
     cursor: pointer;
-    margin: 15px;
     line-height: 84px;
     border-radius: 25%
     position: relative;
@@ -50,7 +52,6 @@ const FolderWhite = FolderOpen.extend`
     }
     display: inline-block;
     cursor: pointer;
-    margin: 15px;
     line-height: 84px;
     border-radius: 25%
     position: relative;
@@ -68,7 +69,6 @@ const PersonReg = PersonOutline.extend`
         top : -1px
     }
     display: inline-block;
-    line-height: 84px;
     border-radius: 25%
 `
 
@@ -79,13 +79,10 @@ const PersonSolid = Person.extend`
     &:hover ${PersonSolid} {
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
         transition-duration: 300ms;
+        
     }
     display: inline-block;
-    cursor: pointer;
-    margin: 15px;
-    line-height: 84px;
     border-radius: 25%
-    position: relative;
 `
 const SettingReg = Settings.extend`
     width : 1.5rem;
@@ -94,12 +91,11 @@ const SettingReg = Settings.extend`
     &:hover ${SettingReg} {
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
         transition-duration: 300ms;
+        top : -1px
     }
     display: inline-block;
     cursor: pointer;
     border-radius: 25%
-    margin: 15px;
-    left : 10rem;
 `
 const SettingSolid = Gear.extend`
     width : 1.5rem;
@@ -111,39 +107,81 @@ const SettingSolid = Gear.extend`
     }
     display: inline-block;
     cursor: pointer;
-    margin: 15px;
     line-height: 84px;
     border-radius: 25%
     position: relative;
     
 `
 
-const ClipboardListz = ClipboardList.extend`
+const ListAltReg = ListAlt.extend`
     width : 1.5rem;
     height : 1.5rem;
     color : white;
-    &:hover ${ClipboardListz} {
+    &:hover ${ListAltReg} {
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
         transition-duration: 300ms;
     }
     display: inline-block;
     cursor: pointer;
-    margin: 15px;
     line-height: 84px;
     border-radius: 25%
     position: relative;
 `
+
+const ListAltSolidz = ListSolid.extend`
+    width : 1.5rem;
+    height : 1.5rem;
+    color : white;
+    &:hover ${ListAltSolidz} {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        transition-duration: 300ms;
+    }
+    display: inline-block;
+    cursor: pointer;
+    line-height: 84px;
+    border-radius: 25%
+    position: relative;
+`
+const AddReg = AddCircleOutline.extend`
+    width : 1.5rem;
+    height : 1.5rem;
+    color : white;
+    &:hover ${AddReg} {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        transition-duration: 300ms;
+    }
+    display: inline-block;
+    cursor: pointer;
+    line-height: 84px;
+    border-radius: 25%
+    position: relative;
+`
+const AddSolid = AddCircle.extend`
+    width : 1.5rem;
+    height : 1.5rem;
+    color : white;
+    &:hover ${AddSolid} {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        transition-duration: 300ms;
+    }
+    display: inline-block;
+    cursor: pointer;
+    line-height: 84px;
+    border-radius: 25%
+    position: relative;
+`
+
 class Header extends Component {
     constructor() {
         super();
         console.log('pang')
-        this.state = {folder : <FolderClose />, person : <PersonReg />,setting : <SettingReg />}
+        this.state = {folder : <FolderClose />, person : <PersonReg />,setting : <SettingReg />, list : <ListAltReg />,add : <AddReg />}
     }
     changeFolderIcon() {
-        if (window.location.pathname === "/folder") {
+        // if (window.location.pathname === "/folder") {
             this.setState({folder : <FolderWhite />})
-        }
-        else this.setState({folder : <FolderClose />})
+        // }
+        // else this.setState({folder : <FolderClose />})
     }
         
     changePersonIcon = () => {
@@ -152,24 +190,24 @@ class Header extends Component {
     changeSettingIcon = () => {
         this.setState({setting : <SettingSolid />})
     }
+    changeListIcon() {
+        this.setState({list : <ListAltSolidz />})
+    }
+    changeAddIcon() {
+        this.setState({add : <AddSolid />})
+    }
     render() {
         return (
             <Container>
                     <Navbar>
+                    <NavLink href="/" onClick={() => this.changeListIcon()} activeClassName="active">{this.state.list}</NavLink>
                         <NavLink href="/folder" onClick={() => this.changeFolderIcon()} activeClassName="active">{this.state.folder}</NavLink>
                         <NavLink  href="/person" onClick={() => this.changePersonIcon()} activeClassName="active">{this.state.person}</NavLink>
-                        <NavLink  href="/setting" onClick={() => this.changeSettingIcon()} activeClassName="active" class="setting">{this.state.setting}</NavLink>
+                        <Navbar className="ml-auto">
+                            <NavLink  href="/addproject" onClick={() => this.changeAddIcon()} activeClassName="active">{this.state.add}</NavLink>
+                            <NavLink  href="/setting" onClick={() => this.changeSettingIcon()} activeClassName="active">{this.state.setting}</NavLink>
+                            </Navbar>   
                     </Navbar>
-                {/* <ClipboardListz />
-                   <a href="/folder" onClick={() => this.changeFolderIcon()}>
-                        {this.state.folder}
-                   </a>
-                   <a href="/person" onClick={() => this.changePersonIcon()}>
-                        {this.state.person}
-                   </a>
-                   <a href="/setting" onClick={() => this.changeSettingIcon()}>
-                        {this.state.setting}
-                   </a> */}
                    
             </Container>
         );

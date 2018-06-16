@@ -2,7 +2,7 @@ import React,{Component} from 'react'
 import styled from 'styled-components';
 import {FolderOpen} from 'styled-icons/fa-regular/FolderOpen'
 import { Progress } from 'reactstrap';
-
+import './Project.css'
 
 const Container = styled.div`
     display : flex;
@@ -94,7 +94,7 @@ class Project extends Component {
                             <Item>
                             <Projectname>{project.name}&ensp;{project.pm.map((pm) => { return (<Pm>{pm}</Pm>)})}</Projectname>
                             {/* <Percent></Percent>
-                            <PercentIndiv>&ensp;50%</PercentIndiv> */}
+                            <PercentIndiv>&ensp;50%</PercentIndiv> */}<br></br>
                             <Progress animated color="success" value="10" />
                             </Item>
                               
