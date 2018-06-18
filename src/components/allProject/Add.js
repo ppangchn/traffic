@@ -1,17 +1,19 @@
 import React,{Component} from 'react'
 import Layout from '../Layout'
+import AddProject from '../addProject/AddProject'
 
-class addProject extends Component {
+class Add extends Component {
     constructor() {
         super();
     }
     render() {
         return (
             <Layout>
-                <a href="/">addProject Back</a>
+                <a href="/">Add Back</a>
+                <AddProject />   
             </Layout>
         );
     }
 }
 
-export default addProject;
+export default Add;
