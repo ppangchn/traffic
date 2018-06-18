@@ -1,5 +1,5 @@
 import React,{Component}from 'react'
-import { Container, Row, Col } from 'reactstrap';
+// import { Container, Row, Col } from 'reactstrap';
 import Header from './components/Header'
 import Overall from './components/allProject/Overall'
 import Folder from './components/allProject/Folder'
@@ -10,15 +10,21 @@ import {
     Route
     } from 'react-router-dom'
 import Main from './components/Main'
+import styled from 'styled-components'
 
+const Container = styled.div`
+    width:100%;
+    height:100%;
+
+`
 class App extends Component {
     //exact path : /projectoverview
     render() {
         return(
-            <div>
+            <Container>
                 <Header />
                 <Main/>
-            </div>
+            </Container>
         //     <Container>     
         // <Row>
         //   <Col><Header /></Col>

@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import Layout from '../Layout'
 import Project from '../projectOverview/Project'
-import Box from '../projectOverview/Box'
+import Timeline from '../projectOverview/Timeline'
 //เรียก function ใน layout และส่งขึันไป
 class Folder extends Component {
     constructor() {
@@ -12,7 +12,7 @@ class Folder extends Component {
         return(
             <Layout>
                 <Project />
-                <Box />
+                <Timeline />
             </Layout>
         );
     }

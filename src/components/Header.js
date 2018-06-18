@@ -11,8 +11,8 @@ import {ListAlt as ListSolid} from 'styled-icons/fa-solid/ListAlt'
 import {Navbar,NavbarBrand,NavLink,Nav,NavItem} from 'reactstrap'
 import {AddCircleOutline} from 'styled-icons/material/AddCircleOutline'
 import {AddCircle} from 'styled-icons/material/AddCircle'
+import AddProject from './addProject/AddProject'
 import './Header.css'
-import { Add } from 'styled-icons/material';
 // import { Container, Row, Col } from 'reactstrap';
 
 const Container = styled.div`
@@ -204,7 +204,7 @@ class Header extends Component {
                         <NavLink href="/folder" onClick={() => this.changeFolderIcon()} activeClassName="active">{this.state.folder}</NavLink>
                         <NavLink  href="/person" onClick={() => this.changePersonIcon()} activeClassName="active">{this.state.person}</NavLink>
                         <Navbar className="ml-auto">
-                            <NavLink  href="/add" onClick={() => this.changeAddIcon()} activeClassName="active">{this.state.add}</NavLink>
+                            <NavLink  href="/add" onClick={() => {this.changeAddIcon()}} activeClassName="active">{this.state.add}</NavLink>
                             <NavLink  href="/setting" onClick={() => this.changeSettingIcon()} activeClassName="active">{this.state.setting}</NavLink>
                             </Navbar>   
                     </Navbar>

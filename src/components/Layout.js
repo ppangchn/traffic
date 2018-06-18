@@ -10,8 +10,6 @@ const Container = styled.div`
     background-color : #eaf9fe;
     flex-direction: row;
     display: flex;
-    height: 33rem
-    max-width: 78rem;
 `
 class Layout extends Component {
     constructor(props) {
