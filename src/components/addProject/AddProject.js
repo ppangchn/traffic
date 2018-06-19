@@ -88,15 +88,18 @@ class AddProject extends Component {
         this.setState({choseweight:w})
     }
     sendData() {
-        let data = {name: this.state.projectname,color:this.state.checkedcolor,pm:this.state.pm,weight:this.state.choseweight}
-        axios.post('/project', data)
-          .then(function (response) {
-            console.log(response);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+        if (this.state.projectname) {
+            let data = {name: this.state.projectname,color:this.state.checkedcolor,pm:this.state.pm,weight:this.state.choseweight}
+            axios.post('/project', data)
+                .then(function (response) {
+                console.log(response);
+            })
+                .catch(function (error) {
+                console.log(error);
+            });
         console.log('send!');
+        }
+        else console.log('cant send')
       }
     render() {
         return (
