@@ -11,6 +11,10 @@ import {ListAlt as ListSolid} from 'styled-icons/fa-solid/ListAlt'
 import {Navbar,NavbarBrand,NavLink,Nav,NavItem} from 'reactstrap'
 import {AddCircleOutline} from 'styled-icons/material/AddCircleOutline'
 import {AddCircle} from 'styled-icons/material/AddCircle'
+
+import {
+    Link
+      } from 'react-router-dom'
 import AddProject from './addProject/AddProject'
 import './Header.css'
 // import { Container, Row, Col } from 'reactstrap';
@@ -171,6 +175,7 @@ const AddSolid = AddCircle.extend`
     position: relative;
 `
 
+
 class Header extends Component {
     constructor() {
         super();
@@ -200,12 +205,12 @@ class Header extends Component {
         return (
             <Container>
                     <Navbar>
-                    <NavLink href="/" onClick={() => this.changeListIcon()} activeClassName="active">{this.state.list}</NavLink>
-                        <NavLink href="/project" onClick={() => this.changeFolderIcon()} activeClassName="active">{this.state.folder}</NavLink>
-                        <NavLink  href="/person" onClick={() => this.changePersonIcon()} activeClassName="active">{this.state.person}</NavLink>
+                    <Link to='/'><NavLink onClick={() => this.changeListIcon()} activeClassName="active">{this.state.list}</NavLink></Link>
+                        <Link to='/project'><NavLink onClick={() => this.changeFolderIcon()} activeClassName="active">{this.state.folder}</NavLink></Link>
+                        <Link to='/person'><NavLink  onClick={() => this.changePersonIcon()} activeClassName="active">{this.state.person}</NavLink></Link>
                         <Navbar className="ml-auto">
-                            <NavLink  href="/addproject" onClick={() => {this.changeAddIcon()}} activeClassName="active">{this.state.add}</NavLink>
-                            <NavLink  href="/setting" onClick={() => this.changeSettingIcon()} activeClassName="active">{this.state.setting}</NavLink>
+                        <Link to='/addproject'><NavLink onClick={() => {this.changeAddIcon()}} activeClassName="active">{this.state.add}</NavLink></Link>
+                        <Link to='/setting'><NavLink  onClick={() => this.changeSettingIcon()} activeClassName="active">{this.state.setting}</NavLink></Link>
                             </Navbar>   
                     </Navbar>
                    

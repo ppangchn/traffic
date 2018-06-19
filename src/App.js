@@ -22,8 +22,13 @@ class App extends Component {
     render() {
         return(
             <Container>
+
+                <Router basename={'/traffic-app/build'}>
+                <div>
                 <Header />
                 <Main/>
+                </div>
+                </Router>
             </Container>
         //     <Container>     
         // <Row>

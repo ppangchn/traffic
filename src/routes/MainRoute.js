@@ -17,13 +17,11 @@ class MainRoute extends Component {
     render() {
         return (
             <div>
-                <BrowserRouter basename="/traffic-app/build">
-                <Router><Route exact path="/" component={Overall}/></Router> 
-                <Router><Route path="/project" component={Project}/></Router>
-                <Router><Route path="/person" component={Person}/></Router>
-                <Router><Route path="/addproject" component={AddProject}/></Router>
-                <Router><Route path="/setting" component={Setting}/></Router>
-                </BrowserRouter>
+                    <Route path="/" component={Overall}/>
+                    <Route path="/project" component={Project}/>
+                    <Route path="/person" component={Person}/>
+                    <Route path="/addproject" component={AddProject}/>
+                    <Route path="/setting" component={Setting}/>
             </div>
         );
     }
