@@ -15,13 +15,14 @@ class ColorButton extends Component {
         this.state={checkedpic:null,checked:false}
     }
     setChecked() {
-        console.log(this.props.unchecked)
+        console.log(`unchekcked:${this.props.unchecked}`)
         if (this.state.checked || this.props.unchecked) {
             console.log('UNCHECKED!');
             this.props.setCheckedColor(null);
             this.setState({checkedpic:null , checked:false})
         }
         else if (!this.state.checked) {
+            console.log('CHECKED!');
             this.props.setCheckedColor(this.props.color);
             this.setState({checkedpic:<Checkz />,checked:true})
         }

@@ -2,8 +2,9 @@ import React,{Component} from 'react'
 import styled from 'styled-components';
 import {FolderOpen} from 'styled-icons/fa-regular/FolderOpen'
 import { Progress } from 'reactstrap';
-import './Project.css'
+import './Sidebar.css'
 import { AlignCenter } from 'styled-icons/fa-solid';
+import axios from 'axios';
 
 const Container = styled.div`
     display : flex;
@@ -25,9 +26,8 @@ const FolderIcon = FolderOpen.extend`
 `
 
 const Head = styled.div`
-    margin-top : 15px
+    padding-top : 10px
     font-size : 20px
-    margin-bottom : 15px;
 `
 const HeadContainer = styled.div`
     width : 300px
@@ -45,7 +45,8 @@ const ItemContainer = styled.div`
 `
 const Projectname = styled.div`
     margin-left: 20px;
-    line-height: 4px;
+    padding-top: 15px;
+    padding-bottom: 5px;
 `
 const Pm = styled.div`
     border: 2px solid #5bc2e1;
@@ -55,8 +56,7 @@ const Pm = styled.div`
     width: 25%;
     height: 15px;
     text-align: center;
-    margin-top: 15px;
-    margin-right: 5px;
+    line-height: 1;
 `
 const ProgressContainer = styled.div`
     width: 250px;
@@ -84,23 +84,30 @@ const ProgressContainer = styled.div`
 //     margin-left : 20px
 //     padding: 5px;
 // `
-class Project extends Component {
+class Sidebar extends Component {
     constructor(props) {
         super(props);
-        this.state = {project : [{name : 'K my Funds', pm : ['pang']}, {name : 'After Klass', pm : ['b','c']},{name : 'After Klass', pm : ['b','c']},{name : 'After Klass', pm : ['b','c']}]} //arrayofjson
+        this.state = {projects : []}
     }
+    componentDidMount() {
+        axios.get(`http://dev.pirsquare.net:3013/traffic-api/project`)
+          .then( res => {
+            const { data } = res
+            console.log('Data', data)
+            this.setState({ projects: data });
+          })
+      }
+
     render() {
         return (
             <Container>
                 <HeadContainer><Head><FolderIcon />&emsp;Project</Head></HeadContainer>
                 <ItemContainer>
-                {this.state.project.map((project) => {
+                {this.state.projects.map((project) => {
                         return (
                         <div>
                             <Item>
-                            <Projectname>{project.name}&ensp;{project.pm.map((pm) => { return (<Pm><br />{pm}</Pm>)})}</Projectname>
-                            {/* <Percent></Percent>
-                            <PercentIndiv>&ensp;50%</PercentIndiv> */}<br></br>
+                            <Projectname>{project.name}&ensp;{project.ProjectsManagement.map((pm) => { return (<Pm>{pm.Users.name}</Pm>)})}</Projectname>
                             <ProgressContainer><Progress animated color="success" value="10"/></ProgressContainer>
                             </Item>
                               
@@ -113,4 +120,4 @@ class Project extends Component {
     }
 }
 
-export default Project;
+export default Sidebar;

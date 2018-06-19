@@ -201,10 +201,10 @@ class Header extends Component {
             <Container>
                     <Navbar>
                     <NavLink href="/" onClick={() => this.changeListIcon()} activeClassName="active">{this.state.list}</NavLink>
-                        <NavLink href="/folder" onClick={() => this.changeFolderIcon()} activeClassName="active">{this.state.folder}</NavLink>
+                        <NavLink href="/project" onClick={() => this.changeFolderIcon()} activeClassName="active">{this.state.folder}</NavLink>
                         <NavLink  href="/person" onClick={() => this.changePersonIcon()} activeClassName="active">{this.state.person}</NavLink>
                         <Navbar className="ml-auto">
-                            <NavLink  href="/add" onClick={() => {this.changeAddIcon()}} activeClassName="active">{this.state.add}</NavLink>
+                            <NavLink  href="/addproject" onClick={() => {this.changeAddIcon()}} activeClassName="active">{this.state.add}</NavLink>
                             <NavLink  href="/setting" onClick={() => this.changeSettingIcon()} activeClassName="active">{this.state.setting}</NavLink>
                             </Navbar>   
                     </Navbar>

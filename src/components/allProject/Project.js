@@ -1,9 +1,9 @@
 import React,{Component} from 'react'
 import Layout from '../Layout'
-import Project from '../projectOverview/Project'
+import Sidebar from '../projectOverview/Sidebar'
 import Timeline from '../projectOverview/Timeline'
 //เรียก function ใน layout และส่งขึันไป
-class Folder extends Component {
+class Project extends Component {
     constructor() {
         super();
     }
@@ -11,7 +11,7 @@ class Folder extends Component {
     render() {
         return(
             <Layout>
-                <Project />
+                <Sidebar/>
                 <Timeline />
             </Layout>
         );
@@ -24,4 +24,4 @@ class Folder extends Component {
 //         <div></div>
 //     )
 // }
-export default Folder;
+export default Project;

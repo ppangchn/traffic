@@ -2,7 +2,7 @@ import React,{Component}from 'react'
 // import { Container, Row, Col } from 'reactstrap';
 import Header from './components/Header'
 import Overall from './components/allProject/Overall'
-import Folder from './components/allProject/Folder'
+import Project from './components/allProject/Project'
 import Person from './components/allProject/Person'
 import Setting from './components/allProject/Setting'
 import {
