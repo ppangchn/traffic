@@ -17,7 +17,7 @@ class MainRoute extends Component {
     render() {
         return (
             <div>
-                <Router><Route exact path="/" component={Overall}/></Router> 
+                <Router basename={'/traffic-app/build'}><Route exact path="/" component={Overall}/></Router> 
                 <Router><Route path="/project" component={Project}/></Router>
                 <Router><Route path="/person" component={Person}/></Router>
                 <Router><Route path="/addproject" component={AddProject}/></Router>
