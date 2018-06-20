@@ -13,6 +13,10 @@ import './AddProject.css'
 import Select from 'react-select'
 import 'react-select/dist/react-select.css'
 import axios from 'axios'
+import {
+  Link
+    } from 'react-router-dom'
+import { LinkedCameraDimensions } from 'styled-icons/material/LinkedCamera';
 
 // var abcElements = document.querySelectorAll('.abc');
 
@@ -37,42 +41,18 @@ class AddProject extends Component {
 				'#D50000','#F44336','#FF5252','#E65100','#FF6D00','#F57F17','#F9A825','#FFCC80','#FFC400','#FDD835','#FFF176','#CCFF90',
         '#B2FF59','#76FF03','#00E676','#00C853','#1DE9B6','#69F0AE','#4DB6AC','#81D4FA','#29B6F6','#2196F3','#2979FF','#00E5FF',
         '#18FFFF','#82B1FF','#7B1FA2','#D500F9','#EC407A','#F48FB1'
-			],
+      ],
+      data: {
+        name: '',
+        color: '',
+        pm: [],
+        weight: {}
+      },
 			projectname: '',
 			checkedcolor: '',
 			pm: [],
-			unchecked: [
-				false,
-				false,
-				false,
-				false,
-				false,
-				false,
-				false,
-				false,
-				false,
-				false,
-				false,
-				false,
-				false,
-				false,
-				false,
-				false,
-				false,
-				false,
-				false,
-				false,
-				false,
-				false,
-				false,
-				false,
-				false,
-				false,
-				false,
-				false,
-				false,
-				false
-			],
+      unchecked: false,
+      prevcolor : '',
 			search: '',
 			weights: [
 				{ value: 0, label: 0 },
@@ -82,11 +62,9 @@ class AddProject extends Component {
 				{ value: 100, label: 100 }
 			],
 			choseweight: '',
-			rtl: false,
-			stayOpen: false,
-			disabled: false,
-			removeSelected: true,
-			invalid: false
+      invalid: false,
+      oncesave:true,
+      oncesetcolor : false
 		}
 		this.toggle = this.toggle.bind(this)
 		this.toggledrop = this.toggledrop.bind(this)
@@ -95,31 +73,32 @@ class AddProject extends Component {
 		this.handleSelectChange = this.handleSelectChange.bind(this)
 	}
 	toggle() {
-		if (this.state.projectname) {
-			this.setState({ open: !this.state.open, invalid: false })
-			console.log(this.state.open)
-		} else {
-			this.setState({ invalid: true })
-		}
-	}
+			this.setState({ open: !this.state.open})
+  }
+  toggleSave() {
+    if (this.state.projectname) this.setState({ open: !this.state.open})
+  }
 	toggledrop() {
 		this.setState({
 			dropdownOpen: !this.state.dropdownOpen
 		})
 	}
-	setCheckColor(c) {
-		this.setUnchecked()
-		this.setState({ checkedcolor: c })
-		console.log(this.state.checkedcolor)
+	setCheckColor = c => {
+    console.log(c)
+    this.setState({ checkedcolor: c })
+    // this.setUnChecked();
 	}
-	setUnchecked() {
-		this.state.color.map(c => {
-			let tmp = this.state.unchecked[this.state.color.indexOf(c)]
-			if (this.state.checkedcolor === c) {
-				this.setState({ tmp: true })
-			} else this.setState({ tmp: false })
-		})
-	}
+	// setUnChecked() {
+  //   let {unchecked} = this.state;
+	// 	this.state.color.map(c => {
+	// 		let tmp = this.state.checked[this.state.color.indexOf(c)]
+	// 		if (this.state.checkedcolor === c) {
+  //       unchecked = true;
+        
+  //     } else unchecked = false;
+  //   })
+  //   this.setState({unchecked})
+	// }
 	handleInputChange(e) {
 		const target = e.target
 		const value = target.type === 'checkbox' ? target.checked : target.value
@@ -127,8 +106,7 @@ class AddProject extends Component {
 		this.setState({
 			[name]: value //เอาค่าในตัวแปร name
 		})
-		console.log(this.state.projectname)
-		if (this.state.projectname) this.setState({ invalid: false })
+		if (this.state.oncesave && e) this.setState({ invalid: false,oncesave:false })
 	}
 	handleChange = selectedOption => {
 		this.setState({ choseweight: selectedOption })
@@ -138,22 +116,24 @@ class AddProject extends Component {
 		}
 	}
 	handleSelectChange(value) {
-    console.log(value.type);
-		console.log("You've selected:", value)
-		this.setState({ pm: value })
+    console.log("You've selected:",value.split(','))
+    const pm = value.split(',')
+   this.setState({ pm })
 	}
 	clear() {
-		this.setState({ listpm: [], projectname: '', color: '' })
+    this.setState({ listpm: [], projectname: '', color: '' })
 	}
 	setWeight(w) {
 		this.setState({ choseweight: w })
 	}
 	sendData() {
+    console.log(this.state.pm)
+    this.setState({oncesave:true});
 		if (this.state.projectname) {
 			let data = {
 				name: this.state.projectname,
 				color: this.state.checkedcolor,
-				ProjectsManagement: this.state.pm,
+				pm: this.state.pm,
 				weight: this.state.choseweight.value
       }
 			axios
@@ -165,23 +145,29 @@ class AddProject extends Component {
 					console.log(error)
 				})
 			console.log('send!')
-		} else console.log('cant send')
-	}
+    }
+    else this.setState({invalid:true})
+  }
+  // componentDidMount() {
+  //   console.log('87!');
+  //   this.setChecked();
+  // }
 	render() {
+    const { onClose } = this.props
 		return (
 			<div style={{ position: 'absolute' }}>
+      {/* {console.log('invalid',this.state.invalid)} */}
 				<Modal
 					isOpen={this.state.open}
-					toggle={this.toggle}
+					toggle={onClose}
 					onExit={() => this.clear()}
 				>
-					<ModalHeader toggle={this.toggle}>New Project</ModalHeader>
+					<ModalHeader toggle={onClose}>New Project</ModalHeader>
 					<ModalBody>
 						<Container>
 							<Row>
 								<Col>
 									Project name
-									{console.log(this.state.projectname)}
 									<Input
 										name="projectname"
 										invalid={this.state.invalid}
@@ -208,15 +194,15 @@ class AddProject extends Component {
 							<Row>
 								<Col>Project color</Col>
 							</Row>
-							{() => this.setUnchecked()}
+							{/* {() => this.setChecked()} */}
 							<Row className="pd10">
 								{this.state.color.map(c => {
 									return (
 										<Col className="pd5" md={1} sm={1} xs={2}>
 											<ColorButton
 												color={c}
-												setCheckedColor={e => this.setCheckColor(e)}
-												// unchecked={() => this.state.unchecked[this.state.color.indexOf(c)]}
+                        setCheckedColor={this.setCheckColor}
+                        checkedColor={this.state.checkedcolor}
 											/>
 										</Col>
 									)
@@ -239,16 +225,18 @@ class AddProject extends Component {
 							</Row>
 							<Row>
 								<Col>
-									<Button
+									{/* <Link to={this.state.invalid ? '/': null}> */}
+                  <Button
 										color="primary"
 										size="lg"
 										block
 										onClick={() => {
-											this.toggle(), this.sendData()
+											this.sendData(),this.toggleSave();
 										}}
 									>
 										Save
 									</Button>
+                  {/* </Link> */}
 								</Col>
 							</Row>
 						</Container>

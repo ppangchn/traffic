@@ -12,30 +12,17 @@ const Checkz = Check.extend`
 class ColorButton extends Component {
     constructor(props) {
         super(props);
-        this.state={checkedpic:null,checked:false}
-    }
-    setChecked() {
-        console.log(`unchekcked:${this.props.unchecked}`)
-        if (this.state.checked || this.props.unchecked) {
-            console.log('UNCHECKED!');
-            this.props.setCheckedColor(null);
-            this.setState({checkedpic:null , checked:false})
-        }
-        else if (!this.state.checked) {
-            console.log('CHECKED!');
-            this.props.setCheckedColor(this.props.color);
-            this.setState({checkedpic:<Checkz />,checked:true})
-        }
-        console.log(this.props.color)
+        
     }
     render() {
+        const { color, setCheckedColor, checkedColor } = this.props
         return(
             <div>
                 {/* <lable className="container">
                 <input type="checkbox" />
                 <span class="checkmark" onClick={()=> this.setChecked()}>{this.state.checked}</span>
                 </lable> */}
-             <div className="shape" onClick={() => {this.setChecked()}} style={{backgroundColor: this.props.color}}>{this.state.checkedpic}</div>
+             <div className="shape" onClick={e => setCheckedColor(color)} style={{backgroundColor: color}}>{checkedColor == color && <Checkz />}</div>
              {/* <div className="check"></div> */}
             </div>
 
