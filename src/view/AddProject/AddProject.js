@@ -27,13 +27,7 @@ class AddProject extends Component {
     this.state = {
       open: true,
       dropdownOpen: false,
-      listpm: [
-        { value: 'ant', label: 'ant' },
-        { value: 'aume', label: 'aume' },
-        { value: 'pang', label: 'pang' },
-        { value: 'ping', label: 'ping' },
-        { value: 'pop', label: 'pop' }
-      ],
+      listpm: [],
       color: [
         '#D50000',
         '#F44336',
@@ -123,9 +117,10 @@ class AddProject extends Component {
     }
   }
   handleSelectChange(value) {
-    console.log("You've selected:", value.split(','))
-    const pm = value.split(',')
-    this.setState({ pm })
+		const pm = value.split(',').map((e)=> {return parseInt(e)})
+		console.log("You've selected:", pm)
+		this.setState({pm})
+		// console.log(this.state.pm);
   }
   clear() {
     this.setState({ listpm: [], projectname: '', color: '' })
@@ -140,7 +135,7 @@ class AddProject extends Component {
       let data = {
         name: this.state.projectname,
         color: this.state.checkedcolor,
-        pm: this.state.pm,
+        ProjectsManagement: this.state.pm,
         weight: this.state.choseweight.value
       }
       axios
@@ -160,8 +155,10 @@ class AddProject extends Component {
       .then(res => {
         const { data } = res
         console.log('Data', data)
-        this.setState({ projects: data })
-      })
+        data.map((data) =>{
+					this.state.listpm.push({value: data.Users.id , label: data.Users.name})
+				})
+			})
   }
   render() {
     const { onClose } = this.props
