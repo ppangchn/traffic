@@ -181,9 +181,9 @@ class AddProject extends Component {
 				color: this.state.checkedcolor,
 				pm: this.state.pm,
 				weight: this.state.choseweight
-			}
+      }
 			axios
-				.post('http://dev.pirsquare.net:3013/traffic-api/project', data)
+				.post('http://dev.pirsquare.net:3013/traffic-api/project', {data: JSON.stringify(data)})
 				.then(function(response) {
 					console.log(response)
 				})
