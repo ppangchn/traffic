@@ -8,7 +8,7 @@ import {
 	Input,
 	FormFeedback
 } from 'reactstrap'
-import ColorButton from './ColorButton'
+import ColorButton from './components/ColorButton'
 import './AddProject.css'
 import Select from 'react-select'
 import 'react-select/dist/react-select.css'
@@ -16,7 +16,6 @@ import axios from 'axios'
 import {
   Link
     } from 'react-router-dom'
-import { LinkedCameraDimensions } from 'styled-icons/material/LinkedCamera';
 
 // var abcElements = document.querySelectorAll('.abc');
 

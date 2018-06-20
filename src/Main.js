@@ -1,28 +1,27 @@
 import React,{Component} from 'react'
 import styled from 'styled-components'
-// import { Container ,Row, Col } from 'reactstrap';
-import {
-    BrowserRouter as Router,
-    Route
-    } from 'react-router-dom'
-import './Layout.css'
+import MainRoute from './routes/MainRoute'
+
 const Container = styled.div`
     background-color : #eaf9fe;
+    -webkit-background-size: cover;
+    background-size: cover;
     flex-direction: row;
     display: flex;
+    height : 34rem
 `
-class Layout extends Component {
+class Main extends Component {
     constructor(props) {
         super(props);
     }
     render() {
         return (
             <Container>
-                {this.props.children}
+                <MainRoute />
             </Container>
         );
     }
     
 }
-export default Layout
+export default Main
 

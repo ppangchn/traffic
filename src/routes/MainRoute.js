@@ -1,9 +1,9 @@
 import React,{Component} from 'react'
-import Overall from '../components/allProject/Overall'
-import Project from '../components/allProject/Project'
-import Person from '../components/allProject/Person'
-import Setting from '../components/allProject/Setting'
-import AddProject from '../components/addProject/AddProject'
+import Overview from '../view/Overview/Overview'
+import ViewbyProject from '../view/ViewbyProject/ViewbyProject'
+import ViewbyPerson from '../view/ViewbyPerson/ViewbyPerson'
+import Setting from '../view/Setting/Setting'
+import AddProject from '../view/AddProject/AddProject'
 // import { Container ,Row, Col } from 'reactstrap';
 
 import {
@@ -17,9 +17,9 @@ class MainRoute extends Component {
     render() {
         return (
             <div>
-                    <Route path="/" component={Overall}/>
-                    <Route path="/project" component={Project}/>
-                    <Route path="/person" component={Person}/>
+                    <Route path="/" component={Overview}/>
+                    <Route path="/project" component={ViewbyProject}/>
+                    <Route path="/person" component={ViewbyPerson}/>
                     <Route path="/addproject" component={AddProject}/>
                     <Route path="/setting" component={Setting}/>
             </div>

@@ -1,8 +1,6 @@
 import React,{Component} from 'react'
 import {Check} from 'styled-icons/material/Check';
-import { Container ,Row, Col, Progress } from 'reactstrap';
 import './ColorButton.css'
-import AddProject from './AddProject'
 const Checkz = Check.extend`
     position: absolute;
     bottom: 1.5px; !important;

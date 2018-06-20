@@ -1,8 +1,7 @@
 import React,{Component} from 'react'
-import Layout from '../Layout'
-import Sidebar from '../projectOverview/Sidebar'
-import Timeline from '../projectOverview/Timeline'
-//เรียก function ใน layout และส่งขึันไป
+import Layout from '../components/Layout'
+import Sidebar from './components/Sidebar'
+import Timeline from './components/Timeline'
 class Project extends Component {
     constructor() {
         super();

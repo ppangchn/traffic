@@ -1,4 +1,4 @@
-import React, { Component, PureComponent } from 'react'
+import React, { Component,} from 'react'
 import styled from 'styled-components'
 import { Folder } from 'styled-icons/fa-regular/Folder'
 import { FolderOpen } from 'styled-icons/fa-solid/FolderOpen'
@@ -8,14 +8,12 @@ import { Settings } from 'styled-icons/feather/Settings'
 import { Gear } from 'styled-icons/octicons/Gear'
 import { ListAlt } from 'styled-icons/fa-regular/ListAlt'
 import { ListAlt as ListSolid } from 'styled-icons/fa-solid/ListAlt'
-import { Navbar, NavbarBrand, NavLink, Nav, NavItem } from 'reactstrap'
+import { Navbar, NavLink } from 'reactstrap'
 import { AddCircleOutline } from 'styled-icons/material/AddCircleOutline'
 import { AddCircle } from 'styled-icons/material/AddCircle'
-
 import { Link } from 'react-router-dom'
-import AddProject from './addProject/AddProject'
+import AddProject from '../AddProject/AddProject'
 import './Header.css'
-// import { Container, Row, Col } from 'reactstrap';
 
 const Container = styled.div`
     background-color: #5bc2e1

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Layout from '../Layout'
+import Layout from '../components/Layout'
 
-class Overall extends Component {
+class Overview extends Component {
   constructor() {
       super()
   }
@@ -13,4 +13,4 @@ class Overall extends Component {
   }
 }
 
-export default Overall;
+export default Overview;
