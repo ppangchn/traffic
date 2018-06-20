@@ -8,7 +8,6 @@ class Overall extends Component {
   render() {
     return (
       <Layout>
-        hello
       </Layout>
     );
   }

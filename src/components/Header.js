@@ -180,37 +180,44 @@ class Header extends Component {
     constructor() {
         super();
         console.log('pang')
-        this.state = {folder : <FolderClose />, person : <PersonReg />,setting : <SettingReg />, list : <ListAltReg />,add : <AddReg />}
+        this.state = {folder : <FolderClose />, person : <PersonReg />,setting : <SettingReg />, list : <ListAltReg />,add : <AddReg />,
+                      icondefault: {folder : <FolderClose />, person : <PersonReg />,setting : <SettingReg />, list : <ListAltReg />,add : <AddReg />}}
     }
     changeFolderIcon() {
-        // if (window.location.pathname === "/folder") {
-            this.setState({folder : <FolderWhite />})
-        // }
-        // else this.setState({folder : <FolderClose />})
+        this.clear();
+        this.setState({folder : <FolderWhite />})
     }
         
-    changePersonIcon = () => {
+    changePersonIcon() {
+        this.clear();
         this.setState({person : <PersonSolid />})
     }
-    changeSettingIcon = () => {
+    changeSettingIcon() {
+        this.clear();
         this.setState({setting : <SettingSolid />})
     }
     changeListIcon() {
+        this.clear();
         this.setState({list : <ListAltSolidz />})
     }
     changeAddIcon() {
+        this.clear();
         this.setState({add : <AddSolid />})
+    }
+    clear() {
+        let def = this.state.icondefault;
+        this.setState({folder: def.folder,person : def.person,setting : def.setting, list : def.list,add : def.add})
     }
     render() {
         return (
             <Container>
                     <Navbar>
-                    <Link to='/'><NavLink onClick={() => this.changeListIcon()} activeClassName="active">{this.state.list}</NavLink></Link>
-                        <Link to='/project'><NavLink onClick={() => this.changeFolderIcon()} activeClassName="active">{this.state.folder}</NavLink></Link>
-                        <Link to='/person'><NavLink  onClick={() => this.changePersonIcon()} activeClassName="active">{this.state.person}</NavLink></Link>
+                    <Link to='/'><NavLink onClick={() => {this.changeListIcon()}} activeClassName="active">{this.state.list}</NavLink></Link>
+                        <Link to='/project'><NavLink onClick={() => {this.changeFolderIcon()}} activeClassName="active">{this.state.folder}</NavLink></Link>
+                        <Link to='/person'><NavLink  onClick={() => {this.changePersonIcon()}} activeClassName="active">{this.state.person}</NavLink></Link>
                         <Navbar className="ml-auto">
                         <Link to='/addproject'><NavLink onClick={() => {this.changeAddIcon()}} activeClassName="active">{this.state.add}</NavLink></Link>
-                        <Link to='/setting'><NavLink  onClick={() => this.changeSettingIcon()} activeClassName="active">{this.state.setting}</NavLink></Link>
+                        <Link to='/setting'><NavLink  onClick={() => {this.changeSettingIcon()}} activeClassName="active">{this.state.setting}</NavLink></Link>
                             </Navbar>   
                     </Navbar>
                    
