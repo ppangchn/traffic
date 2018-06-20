@@ -183,7 +183,7 @@ class AddProject extends Component {
 				weight: this.state.choseweight
 			}
 			axios
-				.post('/traffic-api/project', data)
+				.post('http://dev.pirsquare.net:3013/traffic-api/project', data)
 				.then(function(response) {
 					console.log(response)
 				})
