@@ -34,36 +34,9 @@ class AddProject extends Component {
 				{ value: 'pop', label: 'pop' }
 			],
 			color: [
-				'#D50000',
-				'#F44336',
-				'#FF5252',
-				'#E65100',
-				'#FF6D00',
-				'#F57F17',
-				'#F9A825',
-				'#FFCC80',
-				'#FFC400',
-				'#FDD835',
-				'#FFF176',
-				'#CCFF90',
-				'#B2FF59',
-				'#76FF03',
-				'#00E676',
-				'#00C853',
-				'#1DE9B6',
-				'#69F0AE',
-				'#4DB6AC',
-				'#81D4FA',
-				'#29B6F6',
-				'#2196F3',
-				'#2979FF',
-				'#00E5FF',
-				'#18FFFF',
-				'#82B1FF',
-				'#7B1FA2',
-				'#D500F9',
-				'#EC407A',
-				'#F48FB1'
+				'#D50000','#F44336','#FF5252','#E65100','#FF6D00','#F57F17','#F9A825','#FFCC80','#FFC400','#FDD835','#FFF176','#CCFF90',
+        '#B2FF59','#76FF03','#00E676','#00C853','#1DE9B6','#69F0AE','#4DB6AC','#81D4FA','#29B6F6','#2196F3','#2979FF','#00E5FF',
+        '#18FFFF','#82B1FF','#7B1FA2','#D500F9','#EC407A','#F48FB1'
 			],
 			projectname: '',
 			checkedcolor: '',
@@ -165,6 +138,7 @@ class AddProject extends Component {
 		}
 	}
 	handleSelectChange(value) {
+    console.log(value.type);
 		console.log("You've selected:", value)
 		this.setState({ pm: value })
 	}
@@ -183,7 +157,7 @@ class AddProject extends Component {
 				weight: this.state.choseweight.value
       }
 			axios
-				.post('http://dev.pirsquare.net:3013/traffic-api/project', {data: JSON.stringify(data)})
+				.post('http://dev.pirsquare.net:3013/traffic-api/project', data)
 				.then(function(response) {
 					console.log(response)
 				})
