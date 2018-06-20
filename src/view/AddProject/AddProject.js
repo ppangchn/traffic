@@ -141,7 +141,8 @@ class AddProject extends Component {
       axios
         .put('http://dev.pirsquare.net:3013/traffic-api/project', data)
         .then(function(response) {
-          console.log(response)
+					console.log(response)
+					window.location.reload()
         })
         .catch(function(error) {
           console.log(error)

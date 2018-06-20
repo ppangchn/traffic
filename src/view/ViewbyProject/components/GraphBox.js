@@ -27,7 +27,8 @@ class Timeline extends Component {
         return (
           <div className="timeline">
             <Container>
-
+              <Row><Col></Col></Row>
+              
           </Container>
           </div>
           
