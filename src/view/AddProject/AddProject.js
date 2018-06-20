@@ -135,11 +135,11 @@ class AddProject extends Component {
       let data = {
         name: this.state.projectname,
         color: this.state.checkedcolor,
-        ProjectsManagement: this.state.pm,
+        ProjectsManagement: this.state.pm.map((data) => { return {Users: data} }),
         weight: this.state.choseweight.value
       }
       axios
-        .post('http://dev.pirsquare.net:3013/traffic-api/project', data)
+        .put('http://dev.pirsquare.net:3013/traffic-api/project', data)
         .then(function(response) {
           console.log(response)
         })
@@ -151,17 +151,17 @@ class AddProject extends Component {
   }
   componentDidMount() {
     axios
-      .get(`http://dev.pirsquare.net:3013/traffic-api/management`)
+      .get(`http://dev.pirsquare.net:3013/traffic-api/users/findPM`)
       .then(res => {
         const { data } = res
         console.log('Data', data)
         data.map((data) =>{
-					this.state.listpm.push({value: data.Users.id , label: data.Users.name})
+					this.state.listpm.push({value: data.id , label: data.name})
 				})
 			})
   }
   render() {
-    const { onClose } = this.props
+		const { onClose } = this.props
     return (
       <div style={{ position: 'absolute' }}>
         {/* {console.log('invalid',this.state.invalid)} */}
@@ -214,7 +214,7 @@ class AddProject extends Component {
                       />
                     </Col>
                   )
-                })}
+								})}
               </Row>
               <Row>
                 <Col>Project Weight</Col>

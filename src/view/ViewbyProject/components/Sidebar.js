@@ -92,7 +92,7 @@ class Sidebar extends Component {
         axios.get(`http://dev.pirsquare.net:3013/traffic-api/project`)
           .then( res => {
             const { data } = res
-            console.log('Data', data)
+            console.log('Data Project', data)
             this.setState({ projects: data });
           })
       }
@@ -107,7 +107,7 @@ class Sidebar extends Component {
                         <div>
                             <Item>
                             <Projectname>{project.name}&ensp;{project.ProjectsManagement.map((pm) => { return (<Pm>{pm.Users.name}</Pm>)})}</Projectname>
-                            <ProgressContainer><Progress animated color="success" value="10"/></ProgressContainer>
+                            <ProgressContainer><Progress  animated color={project.color.substring(1)} value="10"/></ProgressContainer>
                             </Item>
                               
                         </div>
