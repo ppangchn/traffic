@@ -179,8 +179,8 @@ class AddProject extends Component {
 			let data = {
 				name: this.state.projectname,
 				color: this.state.checkedcolor,
-				pm: this.state.pm,
-				weight: this.state.choseweight
+				ProjectsManagement: this.state.pm.map((e)=>{return e}) ,
+				weight: this.state.choseweight.value
       }
 			axios
 				.post('http://dev.pirsquare.net:3013/traffic-api/project', {data: JSON.stringify(data)})
