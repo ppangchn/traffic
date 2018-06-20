@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import {FolderOpen} from 'styled-icons/fa-regular/FolderOpen'
 import { Progress } from 'reactstrap';
 import './Sidebar.css'
-import { AlignCenter } from 'styled-icons/fa-solid';
 import axios from 'axios';
 
 const Container = styled.div`
