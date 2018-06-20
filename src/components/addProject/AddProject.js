@@ -176,11 +176,10 @@ class AddProject extends Component {
 	}
 	sendData() {
 		if (this.state.projectname) {
-      let pm = this.state.pm.map((e)=>{return e})
 			let data = {
 				name: this.state.projectname,
 				color: this.state.checkedcolor,
-				ProjectsManagement: pm,
+				ProjectsManagement: this.state.pm,
 				weight: this.state.choseweight.value
       }
 			axios
