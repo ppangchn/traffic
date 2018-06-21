@@ -13,11 +13,8 @@ class MainRoute extends Component {
     render() {
         return (
             <div>
-                    <Route path="/" component={Overview}/>
                     <Route path="/project" component={ViewbyProject}/>
                     <Route path="/person" component={ViewbyPerson}/>
-                    <Route path="/addproject" component={AddProject}/>
-                    <Route path="/setting" component={Setting}/>
             </div>
         );
     }

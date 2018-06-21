@@ -55,7 +55,7 @@ class AddProject extends Component {
         '#00E5FF',
         '#18FFFF',
         '#82B1FF',
-        '#7B1FA2',
+        '#EA80FC',
         '#D500F9',
         '#EC407A',
         '#F48FB1'
@@ -152,7 +152,7 @@ class AddProject extends Component {
   }
   componentDidMount() {
     axios
-      .get(`http://dev.pirsquare.net:3013/traffic-api/users/findPM`)
+      .get(`http://dev.pirsquare.net:3013/traffic-api/users/`)
       .then(res => {
         const { data } = res
         console.log('Data', data)

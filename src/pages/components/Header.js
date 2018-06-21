@@ -46,10 +46,6 @@ const FolderWhite = FolderOpen.extend`
     width : 1.5rem;
     height : 1.5rem;
     color : white;
-    &:hover ${FolderWhite} {
-        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-        transition-duration: 300ms;
-    }
     display: inline-block;
     cursor: pointer;
     line-height: 84px;
@@ -77,11 +73,6 @@ const PersonSolid = Person.extend`
   width: 1.5rem;
   height: 1.5rem;
   color: white;
-  &:hover ${PersonSolid} {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2),
-      0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    transition-duration: 300ms;
-  }
   display: inline-block;
   border-radius: 25%;
 `
@@ -103,10 +94,6 @@ const SettingSolid = Gear.extend`
     width : 1.5rem;
     height : 1.5rem;
     color : white;
-    &:hover ${SettingReg} {
-        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-        transition-duration: 300ms;
-    }
     display: inline-block;
     cursor: pointer;
     line-height: 84px;
@@ -134,10 +121,6 @@ const ListAltSolidz = ListSolid.extend`
     width : 1.5rem;
     height : 1.5rem;
     color : white;
-    &:hover ${ListAltSolidz} {
-        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-        transition-duration: 300ms;
-    }
     display: inline-block;
     cursor: pointer;
     line-height: 84px;
@@ -162,10 +145,6 @@ const AddSolid = AddCircle.extend`
     width : 1.5rem;
     height : 1.5rem;
     color : white;
-    &:hover ${AddSolid} {
-        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-        transition-duration: 300ms;
-    }
     display: inline-block;
     cursor: pointer;
     line-height: 84px;

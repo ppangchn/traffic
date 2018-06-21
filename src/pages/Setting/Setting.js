@@ -8,7 +8,6 @@ class Person extends Component {
     render() {
         return (
             <Layout>
-                <a href="/">Person Back</a>
             </Layout>
         );
     }
