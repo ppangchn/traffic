@@ -105,7 +105,7 @@ class PersonTimeline extends Component {
           maxZoom="9676800000"
           timeSteps={{ day: 7 }}
           // subHeaderLabelFormats={defaultSubHeaderLabelFormats}
-          // minResizeWidth="0"
+          minResizeWidth="60"
         />
       </GraphBox>
     )

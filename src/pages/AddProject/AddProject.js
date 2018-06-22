@@ -10,9 +10,12 @@ import {
 } from 'reactstrap'
 import ColorButton from './components/ColorButton'
 import './AddProject.css'
+import SelectPm from './components/SelectPm'
 import Select from 'react-select'
 import 'react-select/dist/react-select.css'
 import axios from 'axios'
+import Slider from 'react-rangeslider'
+import 'react-rangeslider/lib/index.css'
 import { Link } from 'react-router-dom'
 
 // var abcElements = document.querySelectorAll('.abc');
@@ -60,30 +63,33 @@ class AddProject extends Component {
         '#EC407A',
         '#F48FB1'
       ],
-      data: {
-        name: '',
-        color: '',
-        ProjectsManagement: [],
-        weight: {}
-      },
       projectname: '',
       checkedcolor: '',
-      pm: [],
-      weights: [
-        { value: 0, label: 0 },
-        { value: 25, label: 25 },
-        { value: 50, label: 50 },
-        { value: 75, label: 75 },
-        { value: 100, label: 100 }
+      pm: [
+        {
+          value: null,
+          label: '',
+          weight: 0
+        }
       ],
-      choseweight: '',
-      invalid: false
+      filteredPM: [],
+      weights: [
+        { value: 0, label: '0 point' },
+        { value: 25, label: '25 point' },
+        { value: 50, label: '50 point' },
+        { value: 75, label: '75 point' },
+        { value: 100, label: '100 point' }
+      ],
+      choseweight: 0,
+      invalid: false,
+      listmember: [],
+      member: []
     }
     this.toggle = this.toggle.bind(this)
     this.toggledrop = this.toggledrop.bind(this)
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    this.handleSelectChange = this.handleSelectChange.bind(this)
+    this.handleSelectChangeMember = this.handleSelectChangeMember.bind(this)
   }
   toggle() {
     this.setState({ open: !this.state.open })
@@ -116,17 +122,62 @@ class AddProject extends Component {
       console.log(`Selected: ${selectedOption.label}`)
     }
   }
-  handleSelectChange(value) {
-		const pm = value.split(',').map((e)=> {return parseInt(e)})
-		console.log("You've selected:", pm)
-		this.setState({pm})
-		// console.log(this.state.pm);
+  setPm = (index, data) => {
+    let pm = this.state.pm.map(i => i)
+    pm[index] = data
+    this.setState({
+      pm
+    })
+    this.filterPM()
+  }
+  deletePm = index => {
+    let pm = this.state.pm.filter((pm, i) => {
+      return i !== index
+    })
+    this.setState({
+      pm
+    })
+  }
+  filterPM = () => {
+    let pm = this.state.pm.map(i => i)
+    let filteredPM = []
+    pm.forEach(pm => {
+      if (pm.value) {
+        let isDuplicate = false
+        filteredPM.forEach(pm2 => {
+          if (pm.value === pm2.value) isDuplicate = true
+        })
+        if (!isDuplicate) filteredPM.push(pm)
+      }
+    })
+    this.setState({
+      filteredPM
+    })
+  }
+  handleSelectChangeMember(value) {
+    const member = value.split(',').map(e => {
+      return parseInt(e)
+    })
+    console.log("You've selected:", member)
+    this.setState({ member })
+    // console.log(this.state.pm);
   }
   clear() {
     this.setState({ listpm: [], projectname: '', color: '' })
   }
-  setWeight(w) {
-    this.setState({ choseweight: w })
+  addPM() {
+    let pm = this.state.pm.map(i => i)
+    pm.push({
+      value: null,
+      label: '',
+      weight: 0
+    })
+    this.setState({ pm })
+  }
+  slideChange = value => {
+    this.setState({
+      choseweight: value
+    })
   }
   sendData() {
     console.log(this.state.pm)
@@ -135,14 +186,21 @@ class AddProject extends Component {
       let data = {
         name: this.state.projectname,
         color: this.state.checkedcolor,
-        ProjectsManagement: this.state.pm.map((data) => { return {Users: data} }),
+        projectManagement: this.state.filteredPM.map(data => {
+          return {
+            users: {
+              id: data.value
+            },
+            weight: data.weight
+          }
+        }),
         weight: this.state.choseweight.value
       }
       axios
         .put('http://dev.pirsquare.net:3013/traffic-api/project', data)
         .then(function(response) {
-					console.log(response)
-					window.location.reload()
+          console.log(response)
+          window.location.reload()
         })
         .catch(function(error) {
           console.log(error)
@@ -151,22 +209,41 @@ class AddProject extends Component {
     } else this.setState({ invalid: true })
   }
   componentDidMount() {
+    const listmember = this.state.listmember.map(i => i)
     axios
-      .get(`http://dev.pirsquare.net:3013/traffic-api/users/`)
+      .get(`http://dev.pirsquare.net:3013/traffic-api/users/pd`)
       .then(res => {
         const { data } = res
         console.log('Data', data)
-        data.map((data) =>{
-					this.state.listpm.push({value: data.id , label: data.name})
-				})
-			})
+        data.map(data => {
+          listmember.push({ value: data.id, label: data.name })
+        })
+        this.setState({ listmember })
+      })
+
+    axios
+      .get(`http://dev.pirsquare.net:3013/traffic-api/users/pm`)
+      .then(res => {
+        const { data } = res
+        console.log('Data', data)
+        let listpm = []
+        data.map(data => {
+          // if (this.props.pm.indexOf(data.name)===-1)
+          listpm.push({ value: data.id, label: data.name })
+        })
+        this.setState({ listpm })
+      })
   }
   render() {
-		const { onClose } = this.props
+    const { onClose } = this.props
+    console.log('SELECTED PM FINAL', this.state.filteredPM)
+
     return (
       <div style={{ position: 'absolute' }}>
         {/* {console.log('invalid',this.state.invalid)} */}
         <Modal
+        className="sizemodal"
+          size="5"
           isOpen={this.state.open}
           toggle={onClose}
           onExit={() => this.clear()}
@@ -179,25 +256,26 @@ class AddProject extends Component {
                   Project name
                   <Input
                     name="projectname"
+                    style={{ backgroundColor: '#f1f1f1' }}
                     invalid={this.state.invalid}
                     placeholder="Type your project name"
                     onChange={this.handleInputChange}
                   />
                   <FormFeedback tooltip>Can't send empty name!</FormFeedback>
                 </Col>
-                <Col>
-                  Project Manager<br />
-                  <Select
-                    closeOnSelect={!this.state.stayOpen}
-                    multi={true}
-                    joinValues={true}
-                    disabled={this.state.disabled}
-                    onChange={this.handleSelectChange}
-                    options={this.state.listpm}
-                    placeholder="Select PM(s)"
-                    simpleValue
-                    value={this.state.pm}
+                <Col xs="4">
+                  Project Weight<br />
+                  <Slider
+                    min={0}
+                    max={100}
+                    step={25}
+                    onChange={this.slideChange}
+                    value={this.state.choseweight}
+                    tooltip={false}
                   />
+                </Col>
+                <Col xs="2">
+                  <div className="weight">{this.state.choseweight} %</div>
                 </Col>
               </Row>
               <Row>
@@ -215,22 +293,55 @@ class AddProject extends Component {
                       />
                     </Col>
                   )
-								})}
+                })}
               </Row>
+              Project PM<br />
+              {this.state.pm.map((pm, index) => (
+                <SelectPm
+                  id={index} //start at 0
+                  listpm={this.state.listpm}
+                  setPm={this.setPm}
+                  delete={this.deletePm}
+                />
+              ))}
+              <Button
+                outline
+                size="sm"
+                color="secondary"
+                onClick={() => this.addPM()}
+              >
+                +Add manager
+              </Button>
+              {/* <Select
+                    style={{backgroundColor: '#f1f1f1'}}
+                    closeOnSelect={!this.state.stayOpen}
+                    multi={true}
+                    joinValues={true}
+                    disabled={this.state.disabled}
+                    onChange={this.handleSelectChangePm}
+                    options={this.state.listpm}
+                    placeholder="Select PM(s)"
+                    simpleValue
+                    value={this.state.pm}
+                  /> */}
               <Row>
-                <Col>Project Weight</Col>
                 <Col>
+                  Member
                   <Select
-                    // name="choseweight"
-                    placeholder="Select Weight..."
-                    value={this.state.choseweight}
-                    onChange={this.handleChange}
-                    options={this.state.weights}
+                    style={{ backgroundColor: '#f1f1f1' }}
+                    closeOnSelect={!this.state.stayOpen}
+                    multi={true}
+                    joinValues={true}
+                    disabled={this.state.disabled}
+                    onChange={this.handleSelectChangeMember}
+                    options={this.state.listmember}
+                    placeholder="Select Member(s)"
+                    simpleValue
+                    value={this.state.member}
+                    pageSize="1"
                   />
+                  <br />
                 </Col>
-              </Row>
-              <Row>
-                <Col>Member</Col>
               </Row>
               <Row>
                 <Col>

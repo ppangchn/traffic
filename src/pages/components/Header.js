@@ -10,7 +10,6 @@ import { ListAlt } from 'styled-icons/fa-regular/ListAlt'
 import { ListAlt as ListSolid } from 'styled-icons/fa-solid/ListAlt'
 import { Navbar, NavLink } from 'reactstrap'
 import { AddCircleOutline } from 'styled-icons/material/AddCircleOutline'
-import { AddCircle } from 'styled-icons/material/AddCircle'
 import { Link } from 'react-router-dom'
 import AddProject from '../AddProject/AddProject'
 import './Header.css'
@@ -42,7 +41,7 @@ const FolderClose = Folder.extend`
     border-radius: 25%
     position: relative;
 `
-const FolderWhite = FolderOpen.extend`
+const FolderSolid = FolderOpen.extend`
     width : 1.5rem;
     height : 1.5rem;
     color : white;
@@ -141,17 +140,6 @@ const AddReg = AddCircleOutline.extend`
     border-radius: 25%
     position: relative;
 `
-const AddSolid = AddCircle.extend`
-    width : 1.5rem;
-    height : 1.5rem;
-    color : white;
-    display: inline-block;
-    cursor: pointer;
-    line-height: 84px;
-    border-radius: 25%
-    position: relative;
-`
-
 class Header extends Component {
   constructor() {
     super()
@@ -174,7 +162,7 @@ class Header extends Component {
   }
   changeFolderIcon() {
     this.clear()
-    this.setState({ folder: <FolderWhite /> })
+    this.setState({ folder: <FolderSolid /> })
   }
 
   changePersonIcon() {
@@ -188,11 +176,6 @@ class Header extends Component {
   changeListIcon() {
     this.clear()
     this.setState({ list: <ListAltSolidz /> })
-  }
-  changeAddIcon() {
-    this.clear()
-    this.setState({ add: <AddSolid /> })
-    this.clear()
   }
   clear() {
     let def = this.state.icondefault
@@ -208,6 +191,14 @@ class Header extends Component {
     this.setState({
       toggleAddModal: state
     })
+  }
+  componentDidMount() {
+    console.log(window.location.pathname);
+    if (window.location.pathname=="/traffic-app/build/person")  this.setState({ person: <PersonSolid /> })
+    if (window.location.pathname=="/traffic-app/build/project")  this.setState({ folder: <FolderSolid /> })
+    if (window.location.pathname=="/traffic-app/build/setting")  this.setState({ setting: <SettingSolid /> })
+    if (window.location.pathname=="/traffic-app/build/")  this.setState({ list: <ListAltSolidz /> })
+    
   }
   render() {
     const { toggleAddModal } = this.state
@@ -247,9 +238,6 @@ class Header extends Component {
           <Navbar className="ml-auto">
             <a onClick={e => this.toggleAddModal(true)}>
               <NavLink
-                onClick={() => {
-                  this.changeAddIcon()
-                }}
                 activeClassName="active"
               >
                 {this.state.add}

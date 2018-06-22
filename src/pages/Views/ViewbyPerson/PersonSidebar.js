@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { Container, Row, Col } from 'reactstrap'
 import Sidebar from '../components/Sidebar'
 import axios from 'axios'
 import '../ViewbyProject/ProjectSidebar.css'
@@ -25,7 +24,7 @@ const HeadContainer = styled.div`
     padding-top: 5px;
     padding-bottom: 14px;
 `
-const Projectname = styled.div`
+const User = styled.div`
   margin-left: 20px;
   padding-top: 15px;
   padding-right: 25px;
@@ -43,13 +42,13 @@ const Weight = styled.div`
 class PersonSidebar extends Component {
   constructor() {
     super()
-    this.state = { projects: [] }
+    this.state = { users: [] }
   }
   componentDidMount() {
-    axios.get(`http://dev.pirsquare.net:3013/traffic-api/project`).then(res => {
+    axios.get(`http://dev.pirsquare.net:3013/traffic-api/users`).then(res => {
       const { data } = res
       console.log('Data Project', data)
-      this.setState({ projects: data })
+      this.setState({ users: data })
     })
   }
   render() {
@@ -60,15 +59,14 @@ class PersonSidebar extends Component {
             &emsp;Name
           </Head>
         </HeadContainer>
-        {this.state.projects.map(project => {
+        {this.state.users.map(user => {
           return (
             <div>
               <Item>
-                <Projectname>
-                  {project.name}&ensp;
+                <User>
+                  {user.name}&ensp;
                   <div></div>
-                </Projectname>
-
+                </User>
               </Item>
             </div>
           )

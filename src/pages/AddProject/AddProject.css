@@ -21,3 +21,19 @@
     border: 0px; 
     padding: 0px 1em;
 }
+.weight {
+    border: 1px solid #a0a0a0;
+    border-radius: 5px;
+    color: #a0a0a0;
+    top: 37px;
+    width: 62px;
+    text-align: center;
+    margin-top: 37px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.sizemodal {
+    max-width: none !important;
+    width: 50% !important;
+}

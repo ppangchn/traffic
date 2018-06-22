@@ -88,7 +88,7 @@ class ProjectSidebar extends Component {
             <div>
               <Item>
                 <Projectname>
-                  {project.name}&ensp;
+                  {project.name} {project.weight}&ensp;
                   <div style={{}}>
                     {project.projectManagement.map(pm => {
                       return <Pm>{pm.users.name}</Pm>
