@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Layout from '/Users/chanissat./Desktop/traffic/src/pages/components/Layout'
+import Layout from '../../components/Layout'
 import ProjectSideBar from './ProjectSidebar'
 import ProjectTimeline from './ProjectTimeline'
 

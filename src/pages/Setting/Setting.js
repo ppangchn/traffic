@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import Layout from '../components/Layout'
 
-class Person extends Component {
+class Setting extends Component {
     constructor() {
         super();
     }
@@ -13,4 +13,4 @@ class Person extends Component {
     }
 }
 
-export default Person;
+export default Setting;

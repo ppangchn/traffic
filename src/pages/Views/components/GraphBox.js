@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import './GraphBox.css'
-import '/Users/chanissat./Desktop/traffic/node_modules/react-calendar-timeline/lib/Timeline.css'
+import 'react-calendar-timeline/lib/Timeline.css'
 import Timeline from 'react-calendar-timeline/lib'
 import moment from 'moment'
 import '../ViewbyProject/ProjectSidebar.css'
