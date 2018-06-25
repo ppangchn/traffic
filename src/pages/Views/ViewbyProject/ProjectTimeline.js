@@ -102,7 +102,7 @@ class ProjectTimeline extends Component {
           defaultTimeStart={moment()}
           defaultTimeEnd={moment().add(4, 'month')}
           sidebarWidth="0"
-          lineHeight="80"
+          lineHeight="100"
           stickyHeader="false"
           minZoom="9676800000" //4 month
           maxZoom="9676800000"
