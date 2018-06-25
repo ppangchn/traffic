@@ -9,10 +9,14 @@ class ViewbyProject extends Component {
   }
   render() {
     return (
-        <Layout>
-          <ProjectSideBar/>
-          <ProjectTimeline/>
-        </Layout>
+      <Layout>
+        <div className="col-xs-4">
+          <ProjectSideBar />
+        </div>
+        <div className="col-xs-4">
+          <ProjectTimeline />
+        </div>
+      </Layout>
     )
   }
 }

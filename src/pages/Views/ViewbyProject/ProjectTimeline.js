@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import '../components/GraphBox.css'
 import '../components/TimelineStyle.css'
-import Timeline from 'react-calendar-timeline/lib'
+import Timeline from '../../components/react-calendar-timeline/lib'
 import moment from 'moment'
-import { defaultSubHeaderLabelFormats } from 'react-calendar-timeline/lib'
+import { defaultSubHeaderLabelFormats } from '../../components/react-calendar-timeline/lib'
 import { CloudLightning } from 'styled-icons/feather'
 import '../ViewbyProject/ProjectSidebar.css'
 import GraphBox from '../components/GraphBox'
@@ -97,12 +97,12 @@ class ProjectTimeline extends Component {
         <Timeline
           groups={this.state.groups}
           items={this.state.items}
-          defaultTimeStart={moment()}
-          defaultTimeEnd={moment().endOf('Week')}
+          visibleTimeStart={moment().add(7*8,'day')}
+          visibleTimeEnd={moment().add(14*8,'day')}
           sidebarWidth="0"
           lineHeight="100"
           stickyHeader="false"
-          minZoom={8 * 86400e3} //4 month
+          minZoom="2592000000" //4 month
           maxZoom="9676800000"
           timeSteps={{day: 7}}
           // onZoom

@@ -7,8 +7,8 @@ import { Progress } from 'reactstrap'
 import axios from 'axios'
 import './ProjectSidebar.css'
 const Item = styled.div`
-    width : 300px
-    height : 100px
+    width : 18.75rem;
+    height : 6.25rem;
     background-color : #ffffff;
     font-family : Verdana
     border-bottom : 0.5px solid #dfdfdf;
@@ -26,8 +26,8 @@ const Head = styled.div`
     font-size : 20px
 `
 const HeadContainer = styled.div`
-    width : 300px
-    height : 60px
+    width : 18.75rem;
+    height : 3.75rem;
     background-color : #ffffff;
     font-family : Verdana
     border-bottom : 0.5px solid #dfdfdf;

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import './GraphBox.css'
-import 'react-calendar-timeline/lib/Timeline.css'
-import Timeline from 'react-calendar-timeline/lib'
+import '../../components/react-calendar-timeline/lib/Timeline.css'
+import Timeline from '../../components/react-calendar-timeline/lib'
 import moment from 'moment'
 import '../ViewbyProject/ProjectSidebar.css'
 class GraphBox extends Component {
