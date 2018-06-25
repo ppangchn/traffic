@@ -5,7 +5,7 @@ import './Select.css'
 import { X } from 'styled-icons/octicons/X'
 import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css'
-
+import '../AddProject.css'
 const Exit = X.extend`
   color: #a0a0a0;
   width: 1rem;
@@ -67,6 +67,7 @@ class SelectPm extends Component {
         <Col xs="4" style={{ bottom: '10px' }}>
           <div style={{ marginTop: '20px' }}>
             <Slider
+            className="slider"
               min={0}
               max={100}
               step={25}

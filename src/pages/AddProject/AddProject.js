@@ -16,6 +16,7 @@ import 'react-select/dist/react-select.css'
 import axios from 'axios'
 import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css'
+import './AddProject.css'
 // var abcElements = document.querySelectorAll('.abc');
 
 // // Set their ids
@@ -264,6 +265,7 @@ class AddProject extends Component {
                   Project Weight
                   <div style={{ marginTop: '20px' }}>
                     <Slider
+                      className="slider"
                       min={0}
                       max={100}
                       step={25}
