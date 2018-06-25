@@ -36,22 +36,22 @@ const testitems = [
 ]
 console.log('testgroups', testgroups)
 console.log('testitems', testitems)
-// defaultSubHeaderLabelFormats ==
-//   {
-//     yearShort: 'YY',
-//     yearLong: 'YYYY',
-//     monthShort: 'MM',
-//     monthMedium: 'MMM',
-//     monthLong: 'MMMM',
-//     dayShort: 'Do',
-//     dayMedium: 'Do',
-//     dayMediumLong: 'Do',
-//     dayLong: 'dddd, Do',
-//     hourShort: 'HH',
-//     hourLong: 'HH:00',
-//     minuteShort: 'mm',
-//     minuteLong: 'HH:mm'
-//   }
+defaultSubHeaderLabelFormats ==
+  {
+    yearShort: 'YY',
+    yearLong: 'YYYY',
+    monthShort: 'MM',
+    monthMedium: 'MMM',
+    monthLong: 'MMMM',
+    dayShort: 'Do',
+    dayMedium: 'Do',
+    dayMediumLong: 'Do',
+    dayLong: 'dddd, Do',
+    hourShort: 'HH',
+    hourLong: 'HH:00',
+    minuteShort: 'mm',
+    minuteLong: 'HH:mm'
+  }
 class ProjectTimeline extends Component {
   constructor() {
     super()
@@ -73,7 +73,7 @@ class ProjectTimeline extends Component {
           items.push({
             id: count,
             group: data.id,
-            title: data.name + '-timeline',
+            title: data.name,
             start_time: start,
             end_time: end,
             canMove: false,
@@ -99,13 +99,15 @@ class ProjectTimeline extends Component {
           groups={this.state.groups}
           items={this.state.items}
           defaultTimeStart={moment()}
-          defaultTimeEnd={moment().add(4, 'month')}
+          defaultTimeEnd={moment().endOf('Week')}
           sidebarWidth="0"
           lineHeight="100"
           stickyHeader="false"
-          minZoom="9676800000" //4 month
+          minZoom={8 * 86400e3} //4 month
           maxZoom="9676800000"
-          timeSteps={{ day: 7 }}
+          // timeSteps={{day: 7}}
+          // onZoom
+          // timeSteps={moment().startOf('iosWeek')}
           // subHeaderLabelFormats={defaultSubHeaderLabelFormats}
           // minResizeWidth="0"
         />

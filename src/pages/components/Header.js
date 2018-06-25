@@ -157,7 +157,8 @@ class Header extends Component {
         list: <ListAltReg />,
         add: <AddReg />
       },
-      toggleAddModal: false
+      toggleAddModal: false,
+      // saved: true
     }
   }
   changeFolderIcon() {
@@ -189,9 +190,13 @@ class Header extends Component {
   }
   toggleAddModal = (state) => {
     this.setState({
-      toggleAddModal: state
+      toggleAddModal: state,
+      // saved: state
     })
   }
+  // isSaved(e) {
+  //   this.setState({saved: e})
+  // }
   componentDidMount() {
     console.log(window.location.pathname);
     if (window.location.pathname=="/traffic-app/build/person")  this.setState({ person: <PersonSolid /> })
@@ -201,7 +206,7 @@ class Header extends Component {
     
   }
   render() {
-    const { toggleAddModal } = this.state
+    const { toggleAddModal,saved } = this.state
     return (
       <Container>
         <Navbar>
@@ -255,7 +260,7 @@ class Header extends Component {
             </Link>
           </Navbar>
         </Navbar>
-        {toggleAddModal && <AddProject onClose={() => this.toggleAddModal(false)} />}
+        {(toggleAddModal) && <AddProject isSaved={(e) => this.isSaved(e)} onClose={() => this.toggleAddModal(false)} />}
       </Container>
     )
   }

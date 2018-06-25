@@ -17,11 +17,8 @@ import axios from 'axios'
 import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css'
 import './AddProject.css'
-// var abcElements = document.querySelectorAll('.abc');
-
-// // Set their ids
-// for (var i = 0; i < abcElements.length; i++)
-//     abcElements[i].id = 'abc-' + i;
+import { Link } from 'react-router-dom'
+import ViewbyPerson from '../Views/ViewbyPerson/ViewbyPerson'
 
 class AddProject extends Component {
   constructor(props) {
@@ -124,10 +121,14 @@ class AddProject extends Component {
   setPm = (index, data) => {
     let pm = this.state.pm.map(i => i)
     pm[index] = data
-    this.setState({
-      pm
-    })
-    this.filterPM()
+    this.setState(
+      {
+        pm
+      },
+      () => {
+        this.filterPM()
+      }
+    )
   }
   deletePm = index => {
     let pm = this.state.pm.filter((pm, i) => {
@@ -149,9 +150,14 @@ class AddProject extends Component {
         if (!isDuplicate) filteredPM.push(pm)
       }
     })
-    this.setState({
-      filteredPM
-    })
+    this.setState(
+      {
+        filteredPM
+      },
+      () => {
+        console.log('SELECTED PM FINAL', this.state.filteredPM)
+      }
+    )
   }
   handleSelectChangeMember(value) {
     const member = value.split(',').map(e => {
@@ -179,8 +185,6 @@ class AddProject extends Component {
     })
   }
   sendData() {
-    console.log(this.state.pm)
-    this.setState({ oncesave: true })
     if (this.state.projectname) {
       let data = {
         name: this.state.projectname,
@@ -193,13 +197,13 @@ class AddProject extends Component {
             weight: data.weight
           }
         }),
-        weight: this.state.choseweight
+        weight: this.state.choseweight,
+        member: this.state.memeber
       }
       axios
         .put('http://dev.pirsquare.net:3013/traffic-api/project', data)
         .then(function(response) {
           console.log(response)
-          window.location.reload()
         })
         .catch(function(error) {
           console.log(error)
@@ -235,7 +239,6 @@ class AddProject extends Component {
   }
   render() {
     const { onClose } = this.props
-    console.log('SELECTED PM FINAL', this.state.filteredPM)
 
     return (
       <Container>
@@ -345,16 +348,19 @@ class AddProject extends Component {
               </Row>
               <Row>
                 <Col>
-                  <Button
-                    color="primary"
-                    size="lg"
-                    block
-                    onClick={() => {
-                      this.sendData(), this.toggleSave()
-                    }}
-                  >
-                    Save
-                  </Button>
+                  <Link to="/person">
+                    <Button
+                      color="primary"
+                      size="lg"
+                      block
+                      onClick={() => {
+                        this.sendData(), this.toggleSave()
+                        // ,this.props.isSaved(true)
+                      }}
+                    >
+                      Save
+                    </Button>
+                  </Link>
                 </Col>
               </Row>
             </Container>
