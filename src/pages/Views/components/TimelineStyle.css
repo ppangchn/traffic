@@ -24,6 +24,7 @@
   font-size: 12px;
   cursor: pointer;
   color: black !important;
+  border: none !important;
   background: #2196f3;
   border-radius: 5px;
   z-index: 80; }
