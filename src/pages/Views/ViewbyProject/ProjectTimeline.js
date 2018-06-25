@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import '../components/GraphBox.css'
 // import Timeline from './Timeline'
-import 'react-calendar-timeline/lib/Timeline.css'
+import '../components/Timeline.css'
 import Timeline from 'react-calendar-timeline/lib'
 import moment from 'moment'
 import { defaultSubHeaderLabelFormats } from 'react-calendar-timeline/lib'
@@ -80,7 +80,6 @@ class ProjectTimeline extends Component {
             canResize: false,
             canChangeGroup: false,
             className: 'bg-' + data.color.substring(1)
-
           })
           count++
         })
@@ -95,8 +94,8 @@ class ProjectTimeline extends Component {
     // console.log('items', this.state.items)
     return (
       <GraphBox>
+        {console.log(moment())}
         <Timeline
-          style={{ background: '#eaf9fe' }}
           groups={this.state.groups}
           items={this.state.items}
           defaultTimeStart={moment()}

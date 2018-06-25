@@ -67,7 +67,7 @@ class SelectPm extends Component {
         <Col xs="4" style={{ bottom: '10px' }}>
           <div style={{ marginTop: '20px' }}>
             <Slider
-            className="slider"
+              className="slider"
               min={0}
               max={100}
               step={25}
@@ -82,9 +82,7 @@ class SelectPm extends Component {
         <Col>
           {this.props.id > 0 && (
             // <Button size="sm" color="danger" onClick={this.delete}>delete</Button>
-            <a>
-              <Exit onClick={this.delete} />
-            </a>
+            <Exit onClick={this.delete} />
           )}
         </Col>
       </Row>

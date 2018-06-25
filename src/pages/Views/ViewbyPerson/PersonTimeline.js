@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import '../components/GraphBox.css'
-import 'react-calendar-timeline/lib/Timeline.css'
+import '../components/Timeline.css'
 import Timeline from 'react-calendar-timeline/lib'
 import moment from 'moment'
 import '../ViewbyProject/ProjectSidebar.css'
@@ -73,8 +73,8 @@ class PersonTimeline extends Component {
             title: data.name,
             start_time: start,
             end_time: end,
-            canMove: false,
-            canResize: false,
+            canMove: true,
+            canResize: true,
             canChangeGroup: false,
             className: 'bg-' + data.color.substring(1)
 
