@@ -104,7 +104,7 @@ class ProjectTimeline extends Component {
           stickyHeader="false"
           minZoom={8 * 86400e3} //4 month
           maxZoom="9676800000"
-          // timeSteps={{day: 7}}
+          timeSteps={{day: 7}}
           // onZoom
           // timeSteps={moment().startOf('iosWeek')}
           // subHeaderLabelFormats={defaultSubHeaderLabelFormats}
