@@ -8,7 +8,7 @@ import axios from 'axios'
 import './ProjectSidebar.css'
 const Item = styled.div`
     width : 300px
-    height : 80px
+    height : 100px
     background-color : #ffffff;
     font-family : Verdana
     border-bottom : 0.5px solid #dfdfdf;
@@ -44,12 +44,11 @@ const Projectname = styled.div`
   align-items: center;
 `
 const Pm = styled.div`
-  border: 2px solid #5bc2e1;
+  border: 2px solid #c6c6c6;
   border-radius: 10px;
   font-size: 10px;
   display: inline-block;
   text-align: center;
-  float: right;
   padding-left: 5px;
   padding-right: 5px;
   margin-right: 2px;
@@ -89,19 +88,19 @@ class ProjectSidebar extends Component {
               <Item>
                 <Projectname>
                   {project.name} {project.weight}&ensp;
-                  <div style={{}}>
+                </Projectname>
+                <ProgressContainer>
+                  <Progress
+                    color={project.color.substring(1)}
+                    value="10"
+                    style={{borderRadius: '8px'}}
+                  />
+                </ProgressContainer>
+                <div style={{marginLeft: '20px'}}>
                     {project.projectManagement.map(pm => {
                       return <Pm>{pm.users.name}</Pm>
                     })}
                   </div>
-                </Projectname>
-                <ProgressContainer>
-                  <Progress
-                    animated
-                    color={project.color.substring(1)}
-                    value="10"
-                  />
-                </ProgressContainer>
               </Item>
             </div>
           )

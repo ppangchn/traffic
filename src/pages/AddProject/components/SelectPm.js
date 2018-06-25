@@ -1,11 +1,19 @@
 import React, { Component } from 'react'
 import { Container, Row, Col } from 'reactstrap'
-import Slider from 'react-rangeslider'
 import Select from 'react-select'
-import axios from 'axios'
 import './Select.css'
-import { Button } from 'reactstrap'
+import { X } from 'styled-icons/octicons/X'
+import Slider from 'rc-slider'
+import 'rc-slider/assets/index.css'
 
+const Exit = X.extend`
+  color: #a0a0a0;
+  width: 1rem;
+  height: 1rem;
+  &:hover ${Exit} {
+    color: red;
+  }
+`
 class SelectPm extends Component {
   constructor(props) {
     super(props)
@@ -46,32 +54,38 @@ class SelectPm extends Component {
   render() {
     return (
       <Row>
-        <Col xs="5">
+        <Col xs="4">
           <Select
             optionClassName="drop"
             style={{ backgroundColor: '#f1f1f1' }}
-            placeholder="Select PM(s)..."
+            placeholder="Select PM(s)"
             value={this.state.pm}
             onChange={this.handleChange}
             options={this.props.listpm}
           />
         </Col>
-        <Col xs="3" style={{ bottom: '10px' }}>
-          <Slider
-            min={0}
-            max={100}
-            step={25}
-            onChange={this.slideChange}
-            value={this.state.choseweight}
-            tooltip={false}
-          />
+        <Col xs="4" style={{ bottom: '10px' }}>
+          <div style={{ marginTop: '20px' }}>
+            <Slider
+              min={0}
+              max={100}
+              step={25}
+              onChange={this.slideChange}
+              value={this.state.choseweight}
+            />
+          </div>
         </Col>
         <Col style={{ bottom: '35px' }}>
           <div className="weightpm">{this.state.choseweight} %</div>
         </Col>
-        <Col>{this.props.id > 0 && (
-            <Button color="danger" onClick={this.delete}>ลบ</Button>
-          )}</Col>
+        <Col>
+          {this.props.id > 0 && (
+            // <Button size="sm" color="danger" onClick={this.delete}>delete</Button>
+            <a>
+              <Exit onClick={this.delete} />
+            </a>
+          )}
+        </Col>
       </Row>
     )
   }

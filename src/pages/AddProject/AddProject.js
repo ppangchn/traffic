@@ -14,10 +14,8 @@ import SelectPm from './components/SelectPm'
 import Select from 'react-select'
 import 'react-select/dist/react-select.css'
 import axios from 'axios'
-import Slider from 'react-rangeslider'
-import 'react-rangeslider/lib/index.css'
-import { Link } from 'react-router-dom'
-
+import Slider from 'rc-slider'
+import 'rc-slider/assets/index.css'
 // var abcElements = document.querySelectorAll('.abc');
 
 // // Set their ids
@@ -194,7 +192,7 @@ class AddProject extends Component {
             weight: data.weight
           }
         }),
-        weight: this.state.choseweight.value
+        weight: this.state.choseweight
       }
       axios
         .put('http://dev.pirsquare.net:3013/traffic-api/project', data)
@@ -239,10 +237,9 @@ class AddProject extends Component {
     console.log('SELECTED PM FINAL', this.state.filteredPM)
 
     return (
-      <div style={{ position: 'absolute' }}>
+      <Container>
         {/* {console.log('invalid',this.state.invalid)} */}
         <Modal
-        className="sizemodal"
           size="5"
           isOpen={this.state.open}
           toggle={onClose}
@@ -264,15 +261,16 @@ class AddProject extends Component {
                   <FormFeedback tooltip>Can't send empty name!</FormFeedback>
                 </Col>
                 <Col xs="4">
-                  Project Weight<br />
-                  <Slider
-                    min={0}
-                    max={100}
-                    step={25}
-                    onChange={this.slideChange}
-                    value={this.state.choseweight}
-                    tooltip={false}
-                  />
+                  Project Weight
+                  <div style={{ marginTop: '20px' }}>
+                    <Slider
+                      min={0}
+                      max={100}
+                      step={25}
+                      onChange={this.slideChange}
+                      value={this.state.choseweight}
+                    />
+                  </div>
                 </Col>
                 <Col xs="2">
                   <div className="weight">{this.state.choseweight} %</div>
@@ -295,7 +293,7 @@ class AddProject extends Component {
                   )
                 })}
               </Row>
-              Project PM<br />
+              Project PM&emsp;&emsp;&emsp;&emsp;&emsp;Manager weight<br />
               {this.state.pm.map((pm, index) => (
                 <SelectPm
                   id={index} //start at 0
@@ -360,7 +358,7 @@ class AddProject extends Component {
             </Container>
           </ModalBody>
         </Modal>
-      </div>
+      </Container>
     )
   }
 }
