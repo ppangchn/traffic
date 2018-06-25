@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import '../components/GraphBox.css'
-import '../components/Timeline.css'
 import Timeline from 'react-calendar-timeline/lib'
 import moment from 'moment'
 import '../ViewbyProject/ProjectSidebar.css'
 import GraphBox from '../components/GraphBox'
+import '../components/TimelineStyle.css'
 const testgroups = [{ id: 10, title: 'group 1' }, { id: 20, title: 'group 2' }]
 
 const testitems = [
