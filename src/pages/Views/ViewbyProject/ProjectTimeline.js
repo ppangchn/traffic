@@ -97,7 +97,7 @@ class ProjectTimeline extends Component {
         <Timeline
           groups={this.state.groups}
           items={this.state.items}
-          visibleTimeStart={moment().add(7*8,'day')}
+          visibleTimeStart={moment().add(7*7,'day')}
           visibleTimeEnd={moment().add(14*8,'day')}
           sidebarWidth="0"
           lineHeight="100"

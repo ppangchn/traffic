@@ -241,7 +241,7 @@ class AddProject extends Component {
     const { onClose } = this.props
 
     return (
-      <Container>
+      <Container style={{minWidth: '414px', minHeight: '736px'}}>
         {/* {console.log('invalid',this.state.invalid)} */}
         <Modal
           size="5"
