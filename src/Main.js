@@ -8,7 +8,7 @@ const Container = styled.div`
     background-size: cover;
     flex-direction: row;
     display: flex;
-    height : 34rem
+    height : 33.8rem
 `
 class Main extends Component {
     constructor(props) {

@@ -1,5 +1,7 @@
 .graphbox { 
     border-left : 0.5px solid #dfdfdf;
-    overflow-x: hidden;
-    width: 965px;
+    display: flex;
+    flex-direction: column;
+    width: 61.25rem;
+    overflow: auto;
 }

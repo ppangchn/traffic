@@ -260,7 +260,7 @@ class Header extends Component {
             </Link>
           </Navbar>
         </Navbar>
-        {(toggleAddModal) && <AddProject isSaved={(e) => this.isSaved(e)} onClose={() => this.toggleAddModal(false)} />}
+        {(toggleAddModal) && <AddProject onClose={() => this.toggleAddModal(false)} />}
       </Container>
     )
   }

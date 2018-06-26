@@ -348,7 +348,7 @@ class AddProject extends Component {
               </Row>
               <Row>
                 <Col>
-                  <Link to="/person">
+                  {/* <Link to="/person"> */}
                     <Button
                       color="primary"
                       size="lg"
@@ -360,7 +360,7 @@ class AddProject extends Component {
                     >
                       Save
                     </Button>
-                  </Link>
+                  {/* </Link> */}
                 </Col>
               </Row>
             </Container>

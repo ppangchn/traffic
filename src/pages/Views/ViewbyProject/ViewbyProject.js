@@ -13,7 +13,7 @@ class ViewbyProject extends Component {
         <div className="col-xs-4">
           <ProjectSideBar />
         </div>
-        <div className="col-xs-4">
+        <div style={{overflow: 'auto'}}>
           <ProjectTimeline />
         </div>
       </Layout>
