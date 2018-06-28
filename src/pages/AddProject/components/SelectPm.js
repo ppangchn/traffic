@@ -53,7 +53,7 @@ class SelectPm extends Component {
   }
   render() {
     return (
-      <Row>
+      <Row style={{height: '7vh'}}>
         <Col xs="4">
           <Select
             optionClassName="drop"
@@ -62,6 +62,7 @@ class SelectPm extends Component {
             value={this.state.pm}
             onChange={this.handleChange}
             options={this.props.listpm}
+            trimFilter
           />
         </Col>
         <Col xs="4" style={{ bottom: '10px' }}>

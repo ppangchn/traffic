@@ -1,0 +1,10 @@
+@font-face {
+  font-family: 'Prompt'; /*a name to be used later*/
+  src: url('https://fonts.google.com/specimen/Prompt'); /*URL to font*/
+}
+
+body
+   {
+    font-family: 'Prompt' !important;
+}
+  

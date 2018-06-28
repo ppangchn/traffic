@@ -107,6 +107,7 @@ class AddProject extends Component {
     this.setState({
       [name]: value //เอาค่าในตัวแปร name
     })
+    if (name.length > 0) this.setState({ invalid: false })
   }
   handleChange = selectedOption => {
     this.setState({ choseweight: selectedOption })
@@ -157,7 +158,7 @@ class AddProject extends Component {
     )
   }
   handleSelectChangeMember(value) {
-    const member = value.split(',').map((e) => {
+    const member = value.split(',').map(e => {
       return parseInt(e)
     })
     console.log("You've selected:", member)
@@ -165,7 +166,7 @@ class AddProject extends Component {
     // console.log(this.state.pm);
   }
   clear() {
-    this.setState({ listpm: [], projectname: '', color: '' })
+    this.setState({ listpm: [], projectname: '', color: '', invalidpm: '' })
   }
   addPM() {
     let pm = this.state.pm.map(i => i)
@@ -182,7 +183,7 @@ class AddProject extends Component {
     })
   }
   sendData() {
-    if (this.state.projectname) {
+    if (this.state.projectname && this.state.filteredPM.length !== 0) {
       let data = {
         name: this.state.projectname,
         color: this.state.checkedcolor,
@@ -206,7 +207,12 @@ class AddProject extends Component {
           console.log(error)
         })
       console.log('send!')
-    } else this.setState({ invalid: true })
+    } else {
+      if (this.state.projectname.length === 0) this.setState({ invalid: true })
+      if (this.state.filteredPM.length === 0) {
+        this.setState({ invalidpm: 'Please select at least one pm.' })
+      }
+    }
   }
   componentDidMount() {
     const listmember = this.state.listmember.map(i => i)
@@ -215,9 +221,7 @@ class AddProject extends Component {
       .then(res => {
         const { data } = res
         console.log('Data', data)
-        data.map(data => 
-          listmember.push({ value: data.id, label: data.name })
-        )
+        data.map(data => listmember.push({ value: data.id, label: data.name }))
         this.setState({ listmember })
       })
 
@@ -241,7 +245,7 @@ class AddProject extends Component {
       <Container>
         {/* {console.log('invalid',this.state.invalid)} */}
         <Modal
-          style={{fontSize: "1rem"}}
+          style={{ fontSize: '1rem' }}
           size="5"
           isOpen={this.state.open}
           toggle={onClose}
@@ -254,7 +258,7 @@ class AddProject extends Component {
                 <Col>
                   Project name
                   <Input
-                    style={{fontSize: "8px !important"}}
+                    style={{ fontSize: '8px !important' }}
                     name="projectname"
                     style={{ backgroundColor: '#f1f1f1' }}
                     invalid={this.state.invalid}
@@ -276,7 +280,7 @@ class AddProject extends Component {
                     />
                   </div>
                 </Col>
-                <Col xs="2" style={{marginRight: '10px'}}>
+                <Col xs="2" style={{ marginRight: '10px' }}>
                   <div className="weight">{this.state.choseweight} %</div>
                 </Col>
               </Row>
@@ -298,8 +302,12 @@ class AddProject extends Component {
                 })}
               </Row>
               <Row>
-                <Col xs="4" md="4">Project PM</Col>
-                <Col   xs="5" md="4">Manager weight</Col>
+                <Col xs="4" md="4">
+                  Project PM
+                </Col>
+                <Col xs="5" md="5">
+                  Manager weight
+                </Col>
               </Row>
               {this.state.pm.map((pm, index) => (
                 <SelectPm
@@ -309,7 +317,17 @@ class AddProject extends Component {
                   delete={this.deletePm}
                 />
               ))}
-
+              <Row>
+                <Col
+                  style={{
+                    color: '#da3849',
+                    fontSize: '80%',
+                    marginBottom: '10px'
+                  }}
+                >
+                  {this.state.invalidpm}
+                </Col>
+              </Row>
               <Row>
                 <Col style={{ marginBottom: '0.625rem' }}>
                   <Button
@@ -322,25 +340,6 @@ class AddProject extends Component {
                   </Button>
                 </Col>
               </Row>
-              {/* <Row>
-                <Col>
-                  Member
-                  <Select
-                    style={{ backgroundColor: '#f1f1f1' }}
-                    closeOnSelect={!this.state.stayOpen}
-                    multi={true}
-                    joinValues={true}
-                    disabled={this.state.disabled}
-                    onChange={this.handleSelectChangeMember}
-                    options={this.state.listmember}
-                    placeholder="Select Member(s)"
-                    simpleValue
-                    value={this.state.member}
-                    pageSize="1"
-                  />
-                  <br />
-                </Col>
-              </Row> */}
               <Row>
                 <Col>
                   {/* <Link to="/person"> */}

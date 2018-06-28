@@ -8,7 +8,8 @@ const Container = styled.div`
     background-size: cover;
     flex-direction: row;
     display: flex;
-    height: 100vh;
+    min-height: 100vh;
+
 `
 class Main extends Component {
     render() {

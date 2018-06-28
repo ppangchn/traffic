@@ -13,7 +13,7 @@ class Sidebar extends Component {
 
   render() {
     return (
-      <Container className="col col-md-3 col-xs-3">
+      <Container className="col col-md-3 col-xs-3 px-0">
         {this.props.children}
       </Container>
     )

@@ -4,21 +4,16 @@ import Sidebar from '../components/Sidebar'
 import axios from 'axios'
 import './PersonSidebar.css'
 const Item = styled.div`
-    // width : 300px
-    // height : 80px
     background-color : #ffffff;
-    font-family : Verdana
     border-bottom : 0.5px solid #dfdfdf;
     display: flex;
     flex-direction: column;
 `
-
 const Head = styled.div`
   padding-top: 10px;
 `
 const HeadContainer = styled.div`
     background-color : #ffffff;
-    font-family : Verdana
     border-bottom : 0.5px solid #dfdfdf;
     padding-top: 5px;
     padding-bottom: 14px;

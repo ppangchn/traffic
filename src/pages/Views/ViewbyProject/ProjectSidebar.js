@@ -10,7 +10,6 @@ import { Link } from 'react-router-dom'
 import EachProject from '../EachProject/EachProject'
 const Item = styled.div`
     background-color : #ffffff;
-    font-family : Verdana
     border-bottom : 0.5px solid #dfdfdf;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
@@ -28,17 +27,9 @@ const Head = styled.div`
 `
 const HeadContainer = styled.div`
     background-color : #ffffff;
-    font-family : Verdana
     border-bottom : 0.5px solid #dfdfdf;
     padding-top: 5px;
     padding-bottom: 11px;
-`
-const Projectname = styled.div`
-  margin-top: 15px;
-  margin-bottom: 5px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 `
 const Pm = styled.div`
   display: inline-block;
@@ -75,7 +66,7 @@ class ProjectSidebar extends Component {
           return (
             <div>
               <Item className="projectitem">
-                <Projectname className="projectname">
+                <div className="projectname">
                   <Link
                     className={"linkprojectname-"+project.color.substring(1)}
                     // style={{color: 'black'}}
@@ -84,7 +75,7 @@ class ProjectSidebar extends Component {
                     {project.name}
                   </Link>{' '}
                   {project.weight}&ensp;
-                </Projectname>
+                </div>
                 <div className="progresscontainer">
                   <Progress
                     color={project.color.substring(1)}

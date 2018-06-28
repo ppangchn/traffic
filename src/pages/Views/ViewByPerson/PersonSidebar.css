@@ -25,7 +25,7 @@
     border-radius: 2px;
   }
 }
-@media (min-width: 576px) and (max-width: 767.98px) { 
+@media (min-width: 576px) and (max-width: 767.98px) {
   .personhead {
     font-size: 15px;
     padding-left: 10px;
@@ -36,7 +36,31 @@
     width: 30px;
     border-radius: 2px;
   }
-  
+
+  .personitem {
+    padding-bottom: 4.45rem;
+    padding-left: 30px;
+    padding-top: 10px;
+  }
+  .personname {
+    padding-top: 15px;
+    padding-right: 25px;
+    padding-bottom: 5px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .personhead {
+    font-size: 15px;
+    padding-left: 10px;
+  }
+  .persontag {
+    font-size: 10px;
+    margin-right: 5px;
+    width: 30px;
+    border-radius: 2px;
+  }
+
   .personitem {
     padding-bottom: 4.45rem;
     padding-left: 30px;
@@ -47,24 +71,16 @@
     padding-right: 25px;
     padding-bottom: 5px;
   }
- }
-
-@media  (max-width: 991.98px) { 
-
- }
-
-@media (max-width: 1199.98px) { 
-
- }
+}
 @media (min-width: 1200px) {
   .personhead {
     font-size: 20px;
     padding-left: 10px;
   }
   .personitem {
-    padding-bottom: 4.45rem;
+    padding-bottom: 70.5px;
     padding-left: 30px;
-    margin-top: 10px;
+    padding-top: 10px;
   }
   .persontag {
     font-size: 10px;

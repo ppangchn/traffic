@@ -69,13 +69,13 @@ class PersonTimeline extends Component {
           items.push({
             id: count,
             group: data.id,
-            title: timeline.name,
+            title: timeline.project.name,
             start_time: start,
             end_time: end,
             canMove: true,
             canResize: true,
             canChangeGroup: false,
-            className: 'bg-' + String(timeline.color).substring(1)
+            className: 'bg-' + String(timeline.project.color).substring(1)
           })
           count++
         })
@@ -87,21 +87,19 @@ class PersonTimeline extends Component {
     })
   }
   render() {
-    // console.log('groups', this.state.groups)
-    // console.log('items', this.state.items)
     return (
       <GraphBox>
         <Timeline
           groups={this.state.groups}
           items={this.state.items}
-          visibleTimeStart={moment().add(7 * 7, 'day')}
-          visibleTimeEnd={moment().add(14 * 8, 'day')}
+          visibleTimeStart={moment().add(7*7,'day')}
+          visibleTimeEnd={moment().add(14*8,'day')}
           sidebarWidth="0"
-          lineHeight="115"
+          lineHeight="148"
           stickyHeader="false"
           minZoom="2592000000" //4 month
           maxZoom="9676800000"
-          timeSteps={{ day: 7 }}
+          timeSteps={{day: 7}}
         />
       </GraphBox>
     )

@@ -55,6 +55,9 @@ class ProjectTimeline extends Component {
     super()
     this.state = { groups: [], items: [] }
   }
+  onCanvasClick(groupId, time, e) {
+    console.log('click!');
+  }
   componentDidMount = () => {
     let items = this.state.items.map(i => i)
     let groups = this.state.groups.map(i => i)
@@ -98,11 +101,12 @@ class ProjectTimeline extends Component {
           visibleTimeStart={moment().add(7*7,'day')}
           visibleTimeEnd={moment().add(14*8,'day')}
           sidebarWidth="0"
-          lineHeight="115"
+          lineHeight="109"
           stickyHeader="false"
           minZoom="2592000000" //4 month
           maxZoom="9676800000"
           timeSteps={{day: 7}}
+          
           // onZoom
           // timeSteps={moment().startOf('iosWeek')}
           // subHeaderLabelFormats={defaultSubHeaderLabelFormats}

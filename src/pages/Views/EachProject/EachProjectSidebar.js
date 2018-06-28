@@ -13,43 +13,16 @@ import {
 import { TriangleUp } from 'styled-icons/octicons/TriangleUp'
 import { MoreHoriz } from 'styled-icons/material/MoreHoriz'
 import './EachProjectSidebar.css'
-const Item = styled.div`
-    width : 300px
-    height : 80px
-    background-color : #ffffff;
-    font-family : Verdana
-    border-bottom : 0.5px solid #dfdfdf;
-`
-const Projectname = styled.div`
-  margin-left: 15px;
-  margin-top: 15px;
-  margin-bottom: 5px;
-  display: flex;
-  font-size: 1.5rem;
-  justify-content: space-between;
-  align-items: center;
-`
+import { Link } from 'react-router-dom'
 const Head = styled.div`
     padding-top : 10px
     font-size : 20px
 `
 const HeadContainer = styled.div`
-    width : 300px
-    height : 60px
-    background-color : #ffffff;
-    font-family : Verdana
-    border-bottom : 0.5px solid #dfdfdf;
-    padding-top: 5px;
-    padding-bottom: 14px;
-`
-const User = styled.div`
-  margin-left: 20px;
-  padding-top: 15px;
-  padding-right: 25px;
-  padding-bottom: 5px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  background-color: #ffffff;
+  border-bottom: 0.5px solid #dfdfdf;
+  padding-top: 5px;
+  padding-bottom: 14px;
 `
 const ProgressContainer = styled.div`
   margin-left: 15px;
@@ -100,9 +73,9 @@ class EachProjectSidebar extends Component {
         <HeadContainer>
           <Head>&emsp;Name</Head>
         </HeadContainer>
-        <Item>
+        <div className="eachprojecthead">
           {' '}
-          <Projectname>
+          <div className="eachprojectname">
             {project.name}
             <ButtonDropdown
               className="btn-secondary"
@@ -122,14 +95,18 @@ class EachProjectSidebar extends Component {
                     borderRadius: '0.2rem 0.2rem 0 0'
                   }}
                 >
-                <div style={{position:'absolute' ,zIndex: '1',left:'4rem'}}><WhiteTriangle /></div>
-                 <div>Edit Project</div> 
-                </DropdownItem>
-                <DropdownItem
-                  className="dropdownitem"
-                  style={{ borderBottom: '1px solid #5bc2e1' }}
-                >
-                  Edit Member
+                  {/* <div
+                    style={{
+                      position: 'absolute',
+                      zIndex: '1',
+                      left: '4.27rem',
+                      bottom: '72px'
+                    }}
+                  >
+                    <WhiteTriangle />
+                  </div>
+                  <div className="bottomtriangle">_</div> */}
+                  <div>Edit Project</div>
                 </DropdownItem>
                 <DropdownItem
                   className="dropdowndeleteitem"
@@ -142,7 +119,7 @@ class EachProjectSidebar extends Component {
                 </DropdownItem>
               </DropdownMenu>
             </ButtonDropdown>
-          </Projectname>
+          </div>
           <ProgressContainer>
             <Progress
               color={String(project.color).substring(1)}
@@ -150,20 +127,19 @@ class EachProjectSidebar extends Component {
               style={{ borderRadius: '8px' }}
             />
           </ProgressContainer>
-        </Item>
-
-        {timeline.map(timeline => {
-          return (
-            <div>
-              <Item>
-                <User>
-                  {timeline.users.name}&ensp;
-                  <div />
-                </User>
-              </Item>
-            </div>
-          )
-        })}
+        </div>
+          {timeline.map(timeline => {
+            return (
+              <div className="eachprojectitem">
+                <div className="membername">{timeline.users.name}</div>
+                <div style={{ display: 'flex', flexDirection: 'row' }}>
+                  <div className="membertag">{timeline.users.roles.name}</div>
+                  <div className="membertag">{timeline.users.tags}</div>
+                </div>
+              </div>
+            )
+          })}
+        <Link to="/project">back</Link>
       </Sidebar>
     )
   }

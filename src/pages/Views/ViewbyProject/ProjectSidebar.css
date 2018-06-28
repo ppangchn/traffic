@@ -119,94 +119,94 @@
 }
 
 .linkprojectname-D50000 {
-  color: black
+  color: black;
 }
 .linkprojectname-F44336 {
-  color: black
+  color: black;
 }
 .linkprojectname-FF5252 {
-  color: black
+  color: black;
 }
 .linkprojectname-E65100 {
-  color: black
+  color: black;
 }
 .linkprojectname-FF6D00 {
-  color: black
+  color: black;
 }
 .linkprojectname-F57F17 {
-  color: black
+  color: black;
 }
 .linkprojectname-F9A825 {
-  color: black
+  color: black;
 }
 .linkprojectname-FFCC80 {
-  color: black
+  color: black;
 }
 .linkprojectname-FFC400 {
-  color: black
+  color: black;
 }
 .linkprojectname-FDD835 {
-  color: black
+  color: black;
 }
 .linkprojectname-FFF176 {
-  color: black
+  color: black;
 }
 .linkprojectname-CCFF90 {
-  color: black
+  color: black;
 }
 .linkprojectname-B2FF59 {
-  color: black
+  color: black;
 }
 .linkprojectname-76FF03 {
-  color: black
+  color: black;
 }
 .linkprojectname-00E676 {
-  color: black
+  color: black;
 }
 .linkprojectname-00C853 {
-  color: black
+  color: black;
 }
 .linkprojectname-1DE9B6 {
-  color: black
+  color: black;
 }
 .linkprojectname-69F0AE {
-  color: black
+  color: black;
 }
 .linkprojectname-4DB6AC {
-  color: black
+  color: black;
 }
 .linkprojectname-81D4FA {
-  color: black
+  color: black;
 }
 .linkprojectname-29B6F6 {
-  color: black
+  color: black;
 }
 .linkprojectname-2196F3 {
-  color: black
+  color: black;
 }
 .linkprojectname-2979FF {
-  color: black
+  color: black;
 }
 .linkprojectname-00E5FF {
-  color: black
+  color: black;
 }
 .linkprojectname-18FFFF {
-  color: black
+  color: black;
 }
 .linkprojectname-82B1FF {
-  color: black
+  color: black;
 }
 .linkprojectname-EA80FC {
-  color: black
+  color: black;
 }
 .linkprojectname-D500F9 {
-  color: black
+  color: black;
 }
 .linkprojectname-EC407A {
-  color: black
+  color: black;
 }
 .linkprojectname-F48FB1 {
-  color: black
+  color: black;
 }
 .linkprojectname-D50000:hover {
   color: #d50000;
@@ -390,7 +390,11 @@
 }
 /* Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) { font-size: 10px } */
-
+.projectname {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 @media (max-width: 575.98px) {
   .projecthead {
     font-size: 15px;
@@ -408,31 +412,100 @@
   .progresscontainer {
     margin-left: 1px;
     margin-right: 1px;
-    width: 100px
+    width: 100px;
   }
   .progress {
     height: 5px !important;
   }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .projecthead {
+    font-size: 15px;
+  }
   .projectitem {
     padding-bottom: 5px;
-  }
-}
-/* @media (max-width: 991.98px) { 
-  .head {
-    font-size: 10px;
+    padding-left: 18px;
   }
   .pmname {
-    font-size: 10px;
+    font-size: 5px;
+    border: 0.5px solid #c6c6c6;
+    border-radius: 5px;
+    margin-right: 2px;
+    padding: 1px 2px 1px 2px;
   }
   .projectname {
     font-size: 10px;
   }
- } */
-
+  .progresscontainer {
+    margin-left: 1px;
+    margin-right: 1px;
+    width: 100px;
+  }
+  .progress {
+    height: 5px !important;
+  }
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .projecthead {
+    font-size: 18px;
+    padding-bottom: 17px;
+  }
+  .projectitem {
+    padding-bottom: 44px;
+    padding-left: 18px;
+  }
+  .pmname {
+    font-size: 7px;
+    border: 0.5px solid #c6c6c6;
+    border-radius: 8px;
+    margin-right: 2px;
+    padding: 0.5px 2px 1px 2px;
+  }
+  .projectname {
+    font-size: 15px;
+  }
+  .progresscontainer {
+    margin-left: 1px;
+    margin-right: 1px;
+    width: 100px;
+  }
+  .progress {
+    height: 5px !important;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .projecthead {
+    font-size: 15px;
+  }
+  .projectitem {
+    padding-bottom: 5px;
+    padding-left: 18px;
+  }
+  .pmname {
+    font-size: 5px;
+    border: 0.5px solid #c6c6c6;
+    border-radius: 5px;
+    margin-right: 2px;
+    padding: 1px 2px 1px 2px;
+  }
+  .projectname {
+    font-size: 10px;
+  }
+  .progresscontainer {
+    margin-left: 1px;
+    margin-right: 1px;
+    width: 100px;
+  }
+  .progress {
+    height: 5px !important;
+  }
+}
 @media (min-width: 1200px) {
   .projecthead {
     font-size: 20px;
     padding-left: 10px;
+    padding-bottom: 12px;
   }
   .pmcontainer {
     margin-left: 15px;
@@ -446,6 +519,7 @@
     margin-right: 2px;
   }
   .projectname {
+    padding-top: 15px;
     margin-left: 15px;
     font-size: 15px;
   }
@@ -454,9 +528,14 @@
     margin-right: 10px;
   }
   .projectitem {
-    padding-bottom: 2.05rem;
+    padding-bottom: 31.5px
   }
 }
+
+/* Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) { font-size: 10px }
+
+@media (max-width: 575.98px) { ... } */
 /* // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) and (max-width: 767.98px) { ... }
 
