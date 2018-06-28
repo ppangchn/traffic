@@ -57,7 +57,7 @@ class SelectPm extends Component {
         <Col xs="4">
           <Select
             optionClassName="drop"
-            style={{ backgroundColor: '#f1f1f1' }}
+            style={{ backgroundColor: '#f1f1f1' , fontSize: '0.875rem'}}
             placeholder="Select PM(s)"
             value={this.state.pm}
             onChange={this.handleChange}
@@ -79,7 +79,7 @@ class SelectPm extends Component {
         <Col style={{ bottom: '35px' }}>
           <div className="weightpm">{this.state.choseweight} %</div>
         </Col>
-        <Col>
+        <Col style={{width: '1rem'}}>
           {this.props.id > 0 && (
             // <Button size="sm" color="danger" onClick={this.delete}>delete</Button>
             <Exit onClick={this.delete} />

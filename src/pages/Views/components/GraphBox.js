@@ -4,17 +4,15 @@ import './GraphBox.css'
 import '../../components/react-calendar-timeline/lib/Timeline.css'
 import Timeline from '../../components/react-calendar-timeline/lib'
 import moment from 'moment'
-import '../ViewbyProject/ProjectSidebar.css'
+import '../ViewByProject/ProjectSidebar.css'
 class GraphBox extends Component {
-  constructor() {
-    super()
-  }
+
 
   render() {
     // console.log('groups', this.state.groups)
     // console.log('items', this.state.items)
     return (
-      <div className="graphbox">
+      <div className="graphbox col col-sm-9 px-0" style={{overflowX: 'scroll'}}>
       {this.props.children}
       </div>
     )

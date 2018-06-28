@@ -1,7 +1,6 @@
 .graphbox { 
     border-left : 0.5px solid #dfdfdf;
-    display: flex;
-    flex-direction: column;
-    width: 61.25rem;
-    overflow: auto;
+    padding-left: 0px !important;
+    /* display: flex; */
+    /* width: 50rem; */
 }

@@ -3,22 +3,17 @@ import styled from 'styled-components'
 
 
 const Container = styled.div`
-  display: flex;
-  flex-direction: column;
   background-color: white;
-  height: 33.8rem;
-  
+  height: 100vh;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
 `
 
 class Sidebar extends Component {
-  constructor(props) {
-    super(props)
-    // this.state={border: ''}
-  }
-AddBorder() {}
+
   render() {
     return (
-      <Container>
+      <Container className="col col-md-3 col-xs-3">
         {this.props.children}
       </Container>
     )

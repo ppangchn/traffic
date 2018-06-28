@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Layout from '../components/Layout'
 
 class Overview extends Component {
   constructor() {
@@ -7,8 +6,7 @@ class Overview extends Component {
   }
   render() {
     return (
-      <Layout>
-      </Layout>
+      <div></div>
     );
   }
 }

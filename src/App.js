@@ -20,7 +20,7 @@ class App extends Component {
                         <Main/>
                     </div>
                 </Router>
-            </Container>  
+            </Container>
         );
     }
 }

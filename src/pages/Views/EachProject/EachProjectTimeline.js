@@ -32,9 +32,9 @@ import GraphBox from '../components/GraphBox'
 //     end_time: moment().add(3, 'hour')
 //   }
 // ]
-//console.log('testgroups', testgroups)
-//console.log('testitems', testitems)
-// defaultSubHeaderLabelFormats ==
+// console.log('testgroups', testgroups)
+// console.log('testitems', testitems)
+// defaultSubHeaderLabelFormats ===
 //   {
 //     yearShort: 'YY',
 //     yearLong: 'YYYY',
@@ -50,7 +50,7 @@ import GraphBox from '../components/GraphBox'
 //     minuteShort: 'mm',
 //     minuteLong: 'HH:mm'
 //   }
-class ProjectTimeline extends Component {
+class EachProjectTimeline extends Component {
   constructor() {
     super()
     this.state = { groups: [], items: [] }
@@ -62,7 +62,7 @@ class ProjectTimeline extends Component {
       .get(`http://dev.pirsquare.net:3013/traffic-api/project/timeline`)
       .then(res => {
         const { data } = res // = res.data
-        //console.log('Data Timeline', data)
+        // console.log('Data Timeline', data)
         let count = 1
         data.forEach(data => {
           groups.push({ id: data.id, title: data.name })
@@ -88,8 +88,8 @@ class ProjectTimeline extends Component {
       })
   }
   render() {
-    // //console.log('groups', this.state.groups)
-    // //console.log('items', this.state.items)
+    // console.log('groups', this.state.groups)
+    // console.log('items', this.state.items)
     return (
       <GraphBox>
         <Timeline
@@ -113,4 +113,4 @@ class ProjectTimeline extends Component {
   }
 }
 
-export default ProjectTimeline
+export default EachProjectTimeline

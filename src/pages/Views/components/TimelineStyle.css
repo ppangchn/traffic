@@ -1,5 +1,7 @@
 .react-calendar-timeline * {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  /* width: 60.25rem; */
+}
 
 .react-calendar-timeline .rct-outer {
   display: block;

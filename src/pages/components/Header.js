@@ -143,7 +143,7 @@ const AddReg = AddCircleOutline.extend`
 class Header extends Component {
   constructor() {
     super()
-    console.log('pang')
+    // console.log('pang')
     this.state = {
       folder: <FolderClose />,
       person: <PersonReg />,
@@ -241,13 +241,12 @@ class Header extends Component {
             </NavLink>
           </Link>
           <Navbar className="ml-auto">
-            <a onClick={e => this.toggleAddModal(true)}>
               <NavLink
+              onClick={e => this.toggleAddModal(true)}
                 activeClassName="active"
               >
                 {this.state.add}
               </NavLink>
-            </a>
             <Link to="/setting">
               <NavLink
                 onClick={() => {

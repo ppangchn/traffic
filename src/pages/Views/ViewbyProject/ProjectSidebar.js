@@ -6,59 +6,46 @@ import { FolderOpen } from 'styled-icons/fa-regular/FolderOpen'
 import { Progress } from 'reactstrap'
 import axios from 'axios'
 import './ProjectSidebar.css'
+import { Link } from 'react-router-dom'
+import EachProject from '../EachProject/EachProject'
 const Item = styled.div`
-    width : 18.75rem;
-    height : 6.25rem;
     background-color : #ffffff;
     font-family : Verdana
     border-bottom : 0.5px solid #dfdfdf;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
 `
 const FolderIcon = FolderOpen.extend`
-    width : 25px;
-    height : 25px;
-    color : #5bc2e1;
-    margin-bottom : 5px
-    margin-left : 20px
+  width: 10%;
+  height: 10%;
+  color: #5bc2e1;
+  margin-bottom: 0.1875rem;
+  margin-left: 20px;
 `
 
 const Head = styled.div`
-    padding-top : 10px
-    font-size : 20px
+    padding-top : 0.625rem
 `
 const HeadContainer = styled.div`
-    width : 18.75rem;
-    height : 3.75rem;
     background-color : #ffffff;
     font-family : Verdana
     border-bottom : 0.5px solid #dfdfdf;
     padding-top: 5px;
-    padding-bottom: 14px;
+    padding-bottom: 11px;
 `
 const Projectname = styled.div`
-  margin-left: 20px;
-  padding-top: 15px;
-  padding-right: 25px;
-  padding-bottom: 5px;
+  margin-top: 15px;
+  margin-bottom: 5px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 `
 const Pm = styled.div`
-  border: 2px solid #c6c6c6;
-  border-radius: 10px;
-  font-size: 10px;
   display: inline-block;
   text-align: center;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin-right: 2px;
-`
-const ProgressContainer = styled.div`
-  width: 250px;
-  margin-left: 22px;
 `
 const Weight = styled.div`
-    font-size: 10px
+    font-size: 0.625rem
     color: #5bc2e1
     display: flex;
 `
@@ -77,30 +64,39 @@ class ProjectSidebar extends Component {
   render() {
     return (
       <Sidebar>
-        <HeadContainer>
+        <HeadContainer className="projecthead">
           <Head>
             <FolderIcon />&emsp;Project
           </Head>
         </HeadContainer>
         {this.state.projects.map(project => {
+          // console.log(project.color.substring(1))
+          // console.log("IDDDDD",project.id)
           return (
             <div>
-              <Item>
-                <Projectname>
-                  {project.name} {project.weight}&ensp;
+              <Item className="projectitem">
+                <Projectname className="projectname">
+                  <Link
+                    className={"linkprojectname-"+project.color.substring(1)}
+                    // style={{color: 'black'}}
+                    to={`/project/${project.id}`}
+                  >
+                    {project.name}
+                  </Link>{' '}
+                  {project.weight}&ensp;
                 </Projectname>
-                <ProgressContainer>
+                <div className="progresscontainer">
                   <Progress
                     color={project.color.substring(1)}
                     value="10"
-                    style={{borderRadius: '8px'}}
+                    style={{ borderRadius: '8px' }}
                   />
-                </ProgressContainer>
-                <div style={{marginLeft: '20px'}}>
-                    {project.projectManagement.map(pm => {
-                      return <Pm>{pm.users.name}</Pm>
-                    })}
-                  </div>
+                </div>
+                <div className="pmcontainer">
+                  {project.projectManagement.map(pm => {
+                    return <Pm className="pmname">{pm.user.name}</Pm>
+                  })}
+                </div>
               </Item>
             </div>
           )

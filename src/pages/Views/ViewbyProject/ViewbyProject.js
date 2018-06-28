@@ -1,22 +1,20 @@
 import React, { Component } from 'react'
-import Layout from '../../components/Layout'
 import ProjectSideBar from './ProjectSidebar'
 import ProjectTimeline from './ProjectTimeline'
+import styled from 'styled-components'
 
-class ViewbyProject extends Component {
-  constructor() {
-    super()
-  }
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+`
+class ViewByProject extends Component {
   render() {
     return (
-      <Layout>
-        <div className="col-xs-4">
+      
+      <Container>
           <ProjectSideBar />
-        </div>
-        <div style={{overflow: 'auto'}}>
           <ProjectTimeline />
-        </div>
-      </Layout>
+      </Container>
     )
   }
 }
@@ -27,4 +25,4 @@ class ViewbyProject extends Component {
 //         <div></div>
 //     )
 // }
-export default ViewbyProject
+export default ViewByProject

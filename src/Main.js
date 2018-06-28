@@ -8,12 +8,9 @@ const Container = styled.div`
     background-size: cover;
     flex-direction: row;
     display: flex;
-    height : 33.8rem
+    height: 100vh;
 `
 class Main extends Component {
-    constructor(props) {
-        super(props);
-    }
     render() {
         return (
             <Container>

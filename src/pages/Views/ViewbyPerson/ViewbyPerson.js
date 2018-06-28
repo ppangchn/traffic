@@ -1,21 +1,21 @@
 import React,{Component} from 'react'
-import Layout from '../../components/Layout'
 import PersonSidebar from './PersonSidebar'
 import PersonTimeline from './PersonTimeline'
+import styled from 'styled-components'
 
-
-class Person extends Component {
-    constructor() {
-        super();
-    }
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+`
+class ViewByPerson extends Component {
     render() {
         return (
-            <Layout>
+            <Container>
           <PersonSidebar/>
           <PersonTimeline/>
-        </Layout>
+        </Container>
         );
     }
 }
 
-export default Person;
+export default ViewByPerson;

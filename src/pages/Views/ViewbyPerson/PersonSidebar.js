@@ -2,22 +2,21 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import Sidebar from '../components/Sidebar'
 import axios from 'axios'
-import '../ViewbyProject/ProjectSidebar.css'
+import './PersonSidebar.css'
 const Item = styled.div`
-    width : 300px
-    height : 80px
+    // width : 300px
+    // height : 80px
     background-color : #ffffff;
     font-family : Verdana
     border-bottom : 0.5px solid #dfdfdf;
+    display: flex;
+    flex-direction: column;
 `
 
 const Head = styled.div`
-    padding-top : 10px
-    font-size : 20px
+  padding-top: 10px;
 `
 const HeadContainer = styled.div`
-    width : 300px
-    height : 60px
     background-color : #ffffff;
     font-family : Verdana
     border-bottom : 0.5px solid #dfdfdf;
@@ -25,15 +24,10 @@ const HeadContainer = styled.div`
     padding-bottom: 14px;
 `
 const User = styled.div`
-  margin-left: 20px;
-  padding-top: 15px;
-  padding-right: 25px;
-  padding-bottom: 5px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 `
-
 const Weight = styled.div`
     font-size: 10px
     color: #5bc2e1
@@ -55,20 +49,17 @@ class PersonSidebar extends Component {
     return (
       <Sidebar>
         <HeadContainer>
-          <Head>
-            &emsp;Name
-          </Head>
+          <Head className="personhead">&emsp;Name</Head>
         </HeadContainer>
         {this.state.users.map(user => {
           return (
-            <div>
-              <Item>
-                <User>
-                  {user.name}&ensp;
-                  <div></div>
-                </User>
-              </Item>
-            </div>
+            <Item className="personitem">
+              <User className="personname">{user.name}</User>
+              <div style={{display:'flex' , flexDirection:'row'}}>
+                <div className="persontag">{user.roles.name}</div>
+                <div className="persontag">{user.tags}</div>
+              </div>
+            </Item>
           )
         })}
       </Sidebar>

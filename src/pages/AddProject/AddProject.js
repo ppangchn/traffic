@@ -11,14 +11,11 @@ import {
 import ColorButton from './components/ColorButton'
 import './AddProject.css'
 import SelectPm from './components/SelectPm'
-import Select from 'react-select'
 import 'react-select/dist/react-select.css'
 import axios from 'axios'
 import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css'
 import './AddProject.css'
-import { Link } from 'react-router-dom'
-import ViewbyPerson from '../Views/ViewbyPerson/ViewbyPerson'
 
 class AddProject extends Component {
   constructor(props) {
@@ -160,7 +157,7 @@ class AddProject extends Component {
     )
   }
   handleSelectChangeMember(value) {
-    const member = value.split(',').map(e => {
+    const member = value.split(',').map((e) => {
       return parseInt(e)
     })
     console.log("You've selected:", member)
@@ -218,9 +215,9 @@ class AddProject extends Component {
       .then(res => {
         const { data } = res
         console.log('Data', data)
-        data.map(data => {
+        data.map(data => 
           listmember.push({ value: data.id, label: data.name })
-        })
+        )
         this.setState({ listmember })
       })
 
@@ -241,9 +238,10 @@ class AddProject extends Component {
     const { onClose } = this.props
 
     return (
-      <Container style={{minWidth: '414px', minHeight: '736px'}}>
+      <Container>
         {/* {console.log('invalid',this.state.invalid)} */}
         <Modal
+          style={{fontSize: "1rem"}}
           size="5"
           isOpen={this.state.open}
           toggle={onClose}
@@ -256,6 +254,7 @@ class AddProject extends Component {
                 <Col>
                   Project name
                   <Input
+                    style={{fontSize: "8px !important"}}
                     name="projectname"
                     style={{ backgroundColor: '#f1f1f1' }}
                     invalid={this.state.invalid}
@@ -266,7 +265,7 @@ class AddProject extends Component {
                 </Col>
                 <Col xs="4">
                   Project Weight
-                  <div style={{ marginTop: '20px' }}>
+                  <div style={{ marginTop: '10px' }}>
                     <Slider
                       className="slider"
                       min={0}
@@ -277,7 +276,7 @@ class AddProject extends Component {
                     />
                   </div>
                 </Col>
-                <Col xs="2">
+                <Col xs="2" style={{marginRight: '10px'}}>
                   <div className="weight">{this.state.choseweight} %</div>
                 </Col>
               </Row>
@@ -298,7 +297,10 @@ class AddProject extends Component {
                   )
                 })}
               </Row>
-              Project PM&emsp;&emsp;&emsp;&emsp;&emsp;Manager weight<br />
+              <Row>
+                <Col xs="4" md="4">Project PM</Col>
+                <Col   xs="5" md="4">Manager weight</Col>
+              </Row>
               {this.state.pm.map((pm, index) => (
                 <SelectPm
                   id={index} //start at 0
@@ -307,27 +309,20 @@ class AddProject extends Component {
                   delete={this.deletePm}
                 />
               ))}
-              <Button
-                outline
-                size="sm"
-                color="secondary"
-                onClick={() => this.addPM()}
-              >
-                +Add manager
-              </Button>
-              {/* <Select
-                    style={{backgroundColor: '#f1f1f1'}}
-                    closeOnSelect={!this.state.stayOpen}
-                    multi={true}
-                    joinValues={true}
-                    disabled={this.state.disabled}
-                    onChange={this.handleSelectChangePm}
-                    options={this.state.listpm}
-                    placeholder="Select PM(s)"
-                    simpleValue
-                    value={this.state.pm}
-                  /> */}
+
               <Row>
+                <Col style={{ marginBottom: '0.625rem' }}>
+                  <Button
+                    outline
+                    size="sm"
+                    color="secondary"
+                    onClick={() => this.addPM()}
+                  >
+                    +Add manager
+                  </Button>
+                </Col>
+              </Row>
+              {/* <Row>
                 <Col>
                   Member
                   <Select
@@ -345,21 +340,21 @@ class AddProject extends Component {
                   />
                   <br />
                 </Col>
-              </Row>
+              </Row> */}
               <Row>
                 <Col>
                   {/* <Link to="/person"> */}
-                    <Button
-                      color="primary"
-                      size="lg"
-                      block
-                      onClick={() => {
-                        this.sendData(), this.toggleSave()
-                        // ,this.props.isSaved(true)
-                      }}
-                    >
-                      Save
-                    </Button>
+                  <Button
+                    color="primary"
+                    size="lg"
+                    block
+                    onClick={() => {
+                      this.sendData(), this.toggleSave()
+                      // ,this.props.isSaved(true)
+                    }}
+                  >
+                    Save
+                  </Button>
                   {/* </Link> */}
                 </Col>
               </Row>
