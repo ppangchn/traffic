@@ -96,15 +96,16 @@ class ProjectTimeline extends Component {
     return (
       <GraphBox>
         <Timeline
+        // className="lineheight"
           groups={this.state.groups}
           items={this.state.items}
           visibleTimeStart={moment().add(7*7,'day')}
           visibleTimeEnd={moment().add(14*8,'day')}
-          sidebarWidth="0"
-          lineHeight="109"
-          stickyHeader="false"
-          minZoom="2592000000" //4 month
-          maxZoom="9676800000"
+          sidebarWidth={0}
+          lineHeight={109}
+          stickyHeader={false}
+          minZoom={2592000000} //4 month
+          maxZoom={9676800000}
           timeSteps={{day: 7}}
           
           // onZoom

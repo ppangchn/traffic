@@ -10,7 +10,6 @@ const Container = styled.div`
 class ViewByProject extends Component {
   render() {
     return (
-      
       <Container>
           <ProjectSideBar />
           <ProjectTimeline />

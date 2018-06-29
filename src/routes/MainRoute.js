@@ -9,7 +9,6 @@ import { Route, withRouter } from 'react-router-dom'
 
 class MainRoute extends Component {
   render() {
-    console.log('SDFKLSDFKSJFLDSJKLFJDSKLFJKDSLFJKLDSJFKLDSF')
     return (
       <div>
         <Route path="/" component={withRouter(Overview)} />

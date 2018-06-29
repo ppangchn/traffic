@@ -1,7 +1,4 @@
-@font-face {
-  font-family: 'Prompt'; /*a name to be used later*/
-  src: url('https://fonts.google.com/specimen/Prompt'); /*URL to font*/
-}
+@import url('https://fonts.googleapis.com/css?family=Prompt');
 
 body
    {

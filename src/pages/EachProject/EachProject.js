@@ -5,14 +5,13 @@ import styled from 'styled-components'
 const Container = styled.div`
   display: flex;
   flex-direction: row;
+  width: 100vw;
 `
 class ViewbyProject extends Component {
   constructor(props) {
     super(props)
   }
   render() {
-    // divved', this.props)
-    console.log(`PARAMMMM ${this.props.match.params.id}`)
     return (
       <Container>
           <EachProjectSidebar id={this.props.match.params.id}/>
@@ -21,11 +20,4 @@ class ViewbyProject extends Component {
     )
   }
 }
-// const Folder = ({ setLink}) => {
-//     console.log(this.props)
-//     setLink();
-//     return (
-//         <div></div>
-//     )
-// }
 export default ViewbyProject

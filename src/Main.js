@@ -9,7 +9,7 @@ const Container = styled.div`
     flex-direction: row;
     display: flex;
     min-height: 100vh;
-
+    overflow: hidden;
 `
 class Main extends Component {
     render() {

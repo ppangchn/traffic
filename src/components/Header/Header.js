@@ -215,7 +215,6 @@ class Header extends Component {
               onClick={() => {
                 this.changeListIcon()
               }}
-              activeClassName="active"
             >
               {this.state.list}
             </NavLink>
@@ -225,7 +224,6 @@ class Header extends Component {
               onClick={() => {
                 this.changeFolderIcon()
               }}
-              activeClassName="active"
             >
               {this.state.folder}
             </NavLink>
@@ -235,7 +233,6 @@ class Header extends Component {
               onClick={() => {
                 this.changePersonIcon()
               }}
-              activeClassName="active"
             >
               {this.state.person}
             </NavLink>
@@ -243,7 +240,6 @@ class Header extends Component {
           <Navbar className="ml-auto">
               <NavLink
               onClick={e => this.toggleAddModal(true)}
-                activeClassName="active"
               >
                 {this.state.add}
               </NavLink>
@@ -252,7 +248,6 @@ class Header extends Component {
                 onClick={() => {
                   this.changeSettingIcon()
                 }}
-                activeClassName="active"
               >
                 {this.state.setting}
               </NavLink>

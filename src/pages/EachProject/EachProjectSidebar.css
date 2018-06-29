@@ -28,7 +28,7 @@
 }
 
 /* Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) { font-size: 10px }
+@media (max-width: 575.98px) { font-size: 10px }
 
 @media (max-width: 575.98px) { ... } */
 /* // Small devices (landscape phones, 576px and up)
@@ -58,6 +58,124 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+@media (max-width: 575.98px) {
+  .eachprojectname {
+    margin-left: 15px;
+    padding-top: 15px;
+    margin-bottom: 5px;
+    font-size: 20px;
+  }
+  .eachprojecthead {
+    border-bottom: 0.5px solid #dfdfdf;
+    padding-bottom: 34px;
+  }
+  .eachprojectitem {
+    padding-left: 20px;
+    border-bottom: 0.5px solid #dfdfdf;
+    padding-bottom: 47.5px;
+  }
+  .membername {
+    padding-top: 15px;
+    padding-right: 25px;
+    padding-bottom: 5px;
+  }
+  .membertag {
+    font-size: 10px;
+    width: 7vw;
+    margin-right: 3px;
+    margin-top: 8px;
+    border-radius: 3px;
+  }
+}
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .eachprojectname {
+    margin-left: 15px;
+    padding-top: 15px;
+    margin-bottom: 5px;
+    font-size: 20px;
+  }
+  .eachprojecthead {
+    border-bottom: 0.5px solid #dfdfdf;
+    padding-bottom: 34px;
+  }
+  .eachprojectitem {
+    padding-left: 20px;
+    border-bottom: 0.5px solid #dfdfdf;
+    padding-bottom: 47.5px;
+  }
+  .membername {
+    padding-top: 15px;
+    padding-right: 25px;
+    padding-bottom: 5px;
+  }
+  .membertag {
+    font-size: 10px;
+    width: 7vw;
+    margin-right: 3px;
+    margin-top: 8px;
+    border-radius: 3px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .eachprojectname {
+    margin-left: 15px;
+    padding-top: 15px;
+    margin-bottom: 5px;
+    font-size: 20px;
+  }
+  .eachprojecthead {
+    border-bottom: 0.5px solid #dfdfdf;
+    padding-bottom: 34px;
+  }
+  .eachprojectitem {
+    padding-left: 20px;
+    border-bottom: 0.5px solid #dfdfdf;
+    padding-bottom: 47.5px;
+  }
+  .membername {
+    padding-top: 15px;
+    padding-right: 25px;
+    padding-bottom: 5px;
+  }
+  .membertag {
+    font-size: 10px;
+    width: 7vw;
+    margin-right: 3px;
+    margin-top: 8px;
+    border-radius: 3px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .eachprojectname {
+    margin-left: 15px;
+    padding-top: 15px;
+    margin-bottom: 5px;
+    font-size: 20px;
+  }
+  .eachprojecthead {
+    border-bottom: 0.5px solid #dfdfdf;
+    padding-bottom: 34px;
+  }
+  .eachprojectitem {
+    padding-left: 20px;
+    border-bottom: 0.5px solid #dfdfdf;
+    padding-bottom: 47.5px;
+  }
+  .membername {
+    padding-top: 15px;
+    padding-right: 25px;
+    padding-bottom: 5px;
+  }
+  .membertag {
+    font-size: 10px;
+    width: 7vw;
+    margin-right: 3px;
+    margin-top: 8px;
+    border-radius: 3px;
+  }
 }
 @media (min-width: 1200px) {
   .eachprojectname {

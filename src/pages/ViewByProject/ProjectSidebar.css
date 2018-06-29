@@ -417,6 +417,10 @@
   .progress {
     height: 5px !important;
   }
+  .pmcontainer {
+    position: relative;
+    bottom: 5px;
+  }
 }
 
 @media (min-width: 576px) and (max-width: 767.98px) {
@@ -452,8 +456,9 @@
     padding-bottom: 17px;
   }
   .projectitem {
-    padding-bottom: 44px;
+    padding-bottom: 28px;
     padding-left: 18px;
+    padding-top: 5px;
   }
   .pmname {
     font-size: 7px;
@@ -530,6 +535,13 @@
   .projectitem {
     padding-bottom: 31.5px
   }
+  .pmcontainer {
+    position: relative;
+    top: 5px;
+  }
+  /* .lineheight {
+    line-height: 100px !important;
+  } */
 }
 
 /* Small devices (landscape phones, 576px and up)
