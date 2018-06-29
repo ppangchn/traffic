@@ -1,10 +1,11 @@
 @font-face {
-  font-family: 'Prompt'; /*a name to be used later*/
-  src: url('https://fonts.google.com/specimen/Prompt'); /*URL to font*/
+	font-family: 'Prompt'; /*a name to be used later*/
+	src: url('https://fonts.google.com/specimen/Prompt'); /*URL to font*/
 }
 
-body
-   {
-    font-family: 'Prompt' !important;
+body {
+	font-family: 'Prompt' !important;
+	background-color: #eaf9fe;
+	-webkit-background-size: cover;
+	background-size: cover;
 }
-  
