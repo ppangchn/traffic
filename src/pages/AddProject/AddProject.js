@@ -352,23 +352,24 @@ class AddProject extends Component {
               <Row>
                 <Col>
                   <Link
+                    className="savelink"
                     to={
                       this.state.projectname &&
                       this.state.filteredPM &&
                       `/project/${this.state.size}`
                     }
                   >
-                    <Button
-                      color="primary"
-                      size="lg"
-                      block
-                      onClick={() => {
-                        this.sendData(), this.toggleSave()
-                        // ,this.props.isSaved(true)
-                      }}
-                    >
-                      Save
-                    </Button>
+                      <Button
+                      color='5bc2e1'
+                        size="lg"
+                        block
+                        onClick={() => {
+                          this.sendData(), this.toggleSave()
+                          // ,this.props.isSaved(true)
+                        }}
+                      >
+                        Save
+                      </Button>
                   </Link>
                 </Col>
               </Row>

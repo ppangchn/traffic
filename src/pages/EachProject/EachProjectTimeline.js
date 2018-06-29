@@ -6,22 +6,28 @@ import Timeline from '../../components/Views/react-calendar-timeline/lib'
 import moment from 'moment'
 import '../ViewByProject/ProjectSidebar.css'
 import GraphBox from '../../components/Views/GraphBox'
-import DayPickerInput from 'react-day-picker/DayPickerInput'
-import { formatDate, parseDate } from 'react-day-picker/moment'
+import { Popover, PopoverBody, Button } from 'reactstrap'
 import 'react-day-picker/lib/style.css'
 import DatePicker from '../../components/Views/EachProject/DatePicker'
 
 class EachProjectTimeline extends Component {
   constructor() {
     super()
-    this.state = { groups: [], items: [] }
+    this.state = { groups: [], items: [] ,popoverOpen: false,id : ""}
+    this.toggle = this.toggle.bind(this);
   }
-  onhandleRow(groupId, time, e) {
+  toggle() {
+    this.setState({
+      popoverOpen: !this.state.popoverOpen
+    })
+  }
+  onhandleRow(itemId, time, e) {
     console.log('pang')
   }
-  onItemSelect(itemId, e, time) {
-    console.log('item click')
-    return <DatePicker />
+  onItemSelect(id) {
+    console.log('item click',id)
+    this.toggle();
+    this.setState({datepicker: id})
   }
   componentDidMount = () => {
     let items = this.state.items.map(i => i)
@@ -31,28 +37,27 @@ class EachProjectTimeline extends Component {
       .then(res => {
         const { data } = res // = res.data
         // console.log('Data Timeline', data)
-        let count = 1
+        let id = 1
+        groups.push({ id: id, title: data.project.name })
         items.push({
-          id: count,
-          group: timeline.id,
+          id: 0,
+          group: id,
           title: '',
-          start_time: start,
-          end_time: end,
+          start_time: moment(data.project.start_time),
+          end_time: moment(data.project.end_time),
           canMove: false,
           canResize: false,
           canChangeGroup: false,
           className: 'bg-' + String(data.project.color).substring(1),
-          itemProps: {
-            onClick: e => this.onItemSelect(count, e, start)
-          }
         })
+        id++
         data.timeline.forEach(timeline => {
-          groups.push({ id: timeline.id, title: timeline.users.name })
+          groups.push({ id: id, title: timeline.users.name })
           let start = moment(timeline.start)
           let end = moment(timeline.end)
           items.push({
-            id: count,
-            group: timeline.id,
+            id: timeline.id,
+            group: id,
             title: '',
             start_time: start,
             end_time: end,
@@ -60,11 +65,12 @@ class EachProjectTimeline extends Component {
             canResize: false,
             canChangeGroup: false,
             className: 'bg-' + String(data.project.color).substring(1),
+            itemIdKey: String(timeline.id),
             itemProps: {
-              onClick: e => this.onItemSelect(count, e, start)
+              onClick: (e) => this.onItemSelect(timeline.id)
             }
           })
-          count++
+          id++
         })
         this.setState({
           groups,
@@ -73,8 +79,11 @@ class EachProjectTimeline extends Component {
       })
   }
   render() {
+    console.log('items', this.state.items)
+    console.log('groups', this.state.groups)
     return (
       <GraphBox>
+        <button id="pang">pang</button>
         <Timeline
           groups={this.state.groups}
           items={this.state.items}
@@ -87,6 +96,17 @@ class EachProjectTimeline extends Component {
           maxZoom="9676800000"
           timeSteps={{ day: 7 }}
         />
+        <Popover
+        placement="bottom"
+        isOpen={this.state.popoverOpen}
+        target="pang"
+        toggle={this.toggle}
+      >
+        <PopoverBody>
+          <DatePicker/>
+          <div style={{marginTop: '15px'}}><Button color='5bc2e1' block size="sm">Save</Button></div>
+        </PopoverBody>
+      </Popover>
       </GraphBox>
     )
   }

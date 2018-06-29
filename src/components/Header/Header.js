@@ -12,7 +12,6 @@ import { Navbar, NavLink } from 'reactstrap'
 import { AddCircleOutline } from 'styled-icons/material/AddCircleOutline'
 import { Link } from 'react-router-dom'
 import AddProject from '../../pages/AddProject/AddProject'
-import './Header.css'
 
 const Container = styled.div`
     background-color: #5bc2e1
@@ -23,7 +22,6 @@ const Container = styled.div`
     border : none;
     
 `
-
 const FolderClose = Folder.extend`
     width : 1.5rem;
     height : 1.5rem;

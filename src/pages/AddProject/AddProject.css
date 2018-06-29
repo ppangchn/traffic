@@ -61,3 +61,11 @@
 input::-webkit-input-placeholder {
     font-size: 0.875rem;
 }
+
+.btn-5bc2e1 {
+    background-color: #5bc2e1;
+    color: white;
+  }
+.savelink:hover {
+      color: white;
+  }
