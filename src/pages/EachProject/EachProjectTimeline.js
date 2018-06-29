@@ -24,10 +24,10 @@ class EachProjectTimeline extends Component {
   onhandleRow(itemId, time, e) {
     console.log('pang')
   }
-  onItemSelect(id) {
+  onItemSelect = (id) => {
     console.log('item click',id)
     this.toggle();
-    this.setState({datepicker: id})
+    this.setState({datepicker: String(id)})
   }
   componentDidMount = () => {
     let items = this.state.items.map(i => i)
@@ -56,7 +56,7 @@ class EachProjectTimeline extends Component {
           let start = moment(timeline.start)
           let end = moment(timeline.end)
           items.push({
-            id: timeline.id,
+            id: String(timeline.id),
             group: id,
             title: '',
             start_time: start,
@@ -67,7 +67,7 @@ class EachProjectTimeline extends Component {
             className: 'bg-' + String(data.project.color).substring(1),
             itemIdKey: String(timeline.id),
             itemProps: {
-              onClick: (e) => this.onItemSelect(timeline.id)
+              //onClick: (e) => this.onItemSelect(timeline.id)
             }
           })
           id++
@@ -81,6 +81,7 @@ class EachProjectTimeline extends Component {
   render() {
     console.log('items', this.state.items)
     console.log('groups', this.state.groups)
+    console.log('datepicker',this.state.datepicker)
     return (
       <GraphBox>
         <button id="pang">pang</button>
@@ -95,6 +96,7 @@ class EachProjectTimeline extends Component {
           minZoom="2592000000" //4 month
           maxZoom="9676800000"
           timeSteps={{ day: 7 }}
+          onItemSelect={this.onItemSelect}
         />
         <Popover
         placement="bottom"

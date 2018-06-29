@@ -69,8 +69,10 @@ class ProjectTimeline extends Component {
         let count = 1
         data.forEach(data => {
           groups.push({ id: data.id, title: data.name })
-          let start = moment(data.timeline.start)
-          let end = moment(data.timeline.end)
+          let start = moment(data.timeline.start).add(5,'day')
+          console.log('start',start);
+          let end = moment(data.timeline.end).add(5,'day')
+          console.log('end',end);
           items.push({
             id: count,
             group: data.id,

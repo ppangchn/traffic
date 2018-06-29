@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Sidebar from '../../components/Views/Sidebar'
 import axios from 'axios'
 import '../ViewByProject/ProjectSidebar.css'
-import { Progress } from 'reactstrap'
+import { Progress,Button } from 'reactstrap'
 import {
   DropdownItem,
   DropdownToggle,
@@ -57,7 +57,6 @@ class EachProjectSidebar extends Component {
     })
   }
   componentDidMount() {
-    console.log('COMPONENT DID MOUSDFSDKLFJKLDSJFKLSDJFKJSDFL', this.props.id)
     // console.log('id', this.props.id)
     axios
       .get(`http://dev.pirsquare.net:3013/traffic-api/project/${this.props.id}`)
@@ -143,6 +142,7 @@ class EachProjectSidebar extends Component {
             </div>
           )
         })}
+        <div className="buttoncontainer"><Button outline color="secondary" block>+ Add member</Button></div>
         <Link to="/project">back</Link>
       </Sidebar>
     )

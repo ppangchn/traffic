@@ -220,3 +220,10 @@
   background-color: #5bc2e1;
   color: white;
 }
+.btn-white {
+  background-color: white;
+  color: #8c8c8c;
+}
+.buttoncontainer {
+  margin: 15px 5px 0 5px;
+}
