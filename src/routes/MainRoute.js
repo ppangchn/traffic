@@ -6,7 +6,7 @@ import Setting from '../pages/Setting/Setting'
 import AddProject from '../pages/AddProject/AddProject'
 import EachProject from '../pages/EachProject/EachProject'
 import { Route, withRouter } from 'react-router-dom'
-
+import { Container } from 'reactstrap'
 class MainRoute extends Component {
   render() {
     return (

@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Prompt');
 
-body
-   {
-    font-family: 'Prompt' !important;
+body {
+	font-family: 'Prompt' !important;
+	background-color: #eaf9fe;
+	-webkit-background-size: cover;
+	background-size: cover;
 }
-  
