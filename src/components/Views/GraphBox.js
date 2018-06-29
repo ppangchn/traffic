@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './GraphBox.css'
-import '../../components/react-calendar-timeline/lib/Timeline.css'
-import '../ViewByProject/ProjectSidebar.css'
+import './react-calendar-timeline/lib'
+import '../../pages/ViewByProject/ProjectSidebar'
 class GraphBox extends Component {
 
 

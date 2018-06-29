@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import Sidebar from '../components/Sidebar'
+import Sidebar from '../../components/Views/Sidebar'
 import axios from 'axios'
 import '../ViewByProject/ProjectSidebar.css'
 import { Progress } from 'reactstrap'
@@ -57,13 +57,17 @@ class EachProjectSidebar extends Component {
     })
   }
   componentDidMount() {
+    console.log('COMPONENT DID MOUSDFSDKLFJKLDSJFKLSDJFKJSDFL', this.props.id)
     // console.log('id', this.props.id)
     axios
       .get(`http://dev.pirsquare.net:3013/traffic-api/project/${this.props.id}`)
       .then(res => {
         const { data } = res
         console.log('Data Project', data)
-        this.setState({ timeline: data.timeline, project: data.project })
+        this.setState({
+          timeline: data.timeline || [],
+          project: data.project || {}
+        })
       })
   }
   render() {
@@ -128,17 +132,17 @@ class EachProjectSidebar extends Component {
             />
           </ProgressContainer>
         </div>
-          {timeline.map(timeline => {
-            return (
-              <div className="eachprojectitem">
-                <div className="membername">{timeline.users.name}</div>
-                <div style={{ display: 'flex', flexDirection: 'row' }}>
-                  <div className="membertag">{timeline.users.roles.name}</div>
-                  <div className="membertag">{timeline.users.tags}</div>
-                </div>
+        {timeline.map(timeline => {
+          return (
+            <div className="eachprojectitem">
+              <div className="membername">{timeline.users.name}</div>
+              <div style={{ display: 'flex', flexDirection: 'row' }}>
+                <div className="membertag">{timeline.users.roles.name}</div>
+                <div className="membertag">{timeline.users.tags}</div>
               </div>
-            )
-          })}
+            </div>
+          )
+        })}
         <Link to="/project">back</Link>
       </Sidebar>
     )

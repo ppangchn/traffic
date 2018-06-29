@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import '../components/GraphBox.css'
-import '../components/TimelineStyle.css'
-import Timeline from '../../components/react-calendar-timeline/lib'
+import '../../components/Views/GraphBox.css'
+import '../../components/Views/TimelineStyle.css'
+import Timeline from '../../components/Views/react-calendar-timeline/lib'
 import moment from 'moment'
-import { defaultSubHeaderLabelFormats } from '../../components/react-calendar-timeline/lib'
+// import { defaultSubHeaderLabelFormats } from '../../components/react-calendar-timeline/lib'
 import '../ViewByProject/ProjectSidebar.css'
-import GraphBox from '../components/GraphBox'
+import GraphBox from '../../components/Views/GraphBox'
 // const testgroups = [{ id: 10, title: 'group 1' }, { id: 20, title: 'group 2' }]
 
 // const testitems = [

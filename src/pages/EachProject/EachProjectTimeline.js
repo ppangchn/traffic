@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import '../components/GraphBox.css'
-import Timeline from '../../components/react-calendar-timeline/lib'
+import '../../components/Views/GraphBox.css'
+import '../../components/Views/TimelineStyle.css'
+import Timeline from '../../components/Views/react-calendar-timeline/lib'
 import moment from 'moment'
+// import { defaultSubHeaderLabelFormats } from '../../components/Views/react-calendar-timeline/lib'
 import '../ViewByProject/ProjectSidebar.css'
-import GraphBox from '../components/GraphBox'
-import '../components/TimelineStyle.css'
+import GraphBox from '../../components/Views/GraphBox'
 // const testgroups = [{ id: 10, title: 'group 1' }, { id: 20, title: 'group 2' }]
 
 // const testitems = [
@@ -33,7 +34,7 @@ import '../components/TimelineStyle.css'
 // ]
 // console.log('testgroups', testgroups)
 // console.log('testitems', testitems)
-// defaultSubHeaderLabelFormats ==
+// defaultSubHeaderLabelFormats ===
 //   {
 //     yearShort: 'YY',
 //     yearLong: 'YYYY',
@@ -49,7 +50,7 @@ import '../components/TimelineStyle.css'
 //     minuteShort: 'mm',
 //     minuteLong: 'HH:mm'
 //   }
-class PersonTimeline extends Component {
+class EachProjectTimeline extends Component {
   constructor() {
     super()
     this.state = { groups: [], items: [] }
@@ -57,25 +58,26 @@ class PersonTimeline extends Component {
   componentDidMount = () => {
     let items = this.state.items.map(i => i)
     let groups = this.state.groups.map(i => i)
-    axios.get(`http://dev.pirsquare.net:3013/traffic-api/users`).then(res => {
-      const { data } = res // = res.data
-      // console.log('Data Timeline', data)
-      let count = 1
-      data.forEach(data => {
-        groups.push({ id: data.id, title: data.name })
-        data.projectTimeline.forEach(timeline => {
-          let start = moment(timeline.start)
-          let end = moment(timeline.end)
+    axios
+      .get(`http://dev.pirsquare.net:3013/traffic-api/project/timeline`)
+      .then(res => {
+        const { data } = res // = res.data
+        // console.log('Data Timeline', data)
+        let count = 1
+        data.forEach(data => {
+          groups.push({ id: data.id, title: data.name })
+          let start = moment(data.timeline.start)
+          let end = moment(data.timeline.end)
           items.push({
             id: count,
             group: data.id,
-            title: timeline.project.name,
+            title: data.name,
             start_time: start,
             end_time: end,
-            canMove: true,
-            canResize: true,
+            canMove: false,
+            canResize: false,
             canChangeGroup: false,
-            className: 'bg-' + String(timeline.project.color).substring(1)
+            className: 'bg-' + data.color.substring(1)
           })
           count++
         })
@@ -84,9 +86,10 @@ class PersonTimeline extends Component {
           items
         })
       })
-    })
   }
   render() {
+    // console.log('groups', this.state.groups)
+    // console.log('items', this.state.items)
     return (
       <GraphBox>
         <Timeline
@@ -95,7 +98,7 @@ class PersonTimeline extends Component {
           visibleTimeStart={moment().add(7*7,'day')}
           visibleTimeEnd={moment().add(14*8,'day')}
           sidebarWidth="0"
-          lineHeight="148"
+          lineHeight="115"
           stickyHeader="false"
           minZoom="2592000000" //4 month
           maxZoom="9676800000"
@@ -106,4 +109,4 @@ class PersonTimeline extends Component {
   }
 }
 
-export default PersonTimeline
+export default EachProjectTimeline

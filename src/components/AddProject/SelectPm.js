@@ -5,7 +5,7 @@ import './Select.css'
 import { X } from 'styled-icons/octicons/X'
 import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css'
-import '../AddProject.css'
+import '../../pages/AddProject/AddProject.css'
 const Exit = X.extend`
   color: #a0a0a0;
   width: 1rem;

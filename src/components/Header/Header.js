@@ -11,7 +11,7 @@ import { ListAlt as ListSolid } from 'styled-icons/fa-solid/ListAlt'
 import { Navbar, NavLink } from 'reactstrap'
 import { AddCircleOutline } from 'styled-icons/material/AddCircleOutline'
 import { Link } from 'react-router-dom'
-import AddProject from '../AddProject/AddProject'
+import AddProject from '../../pages/AddProject/AddProject'
 import './Header.css'
 
 const Container = styled.div`

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Container, Row, Col } from 'reactstrap'
-import Sidebar from '../components/Sidebar'
+import Sidebar from '../../components/Views/Sidebar'
 import { FolderOpen } from 'styled-icons/fa-regular/FolderOpen'
 import { Progress } from 'reactstrap'
 import axios from 'axios'

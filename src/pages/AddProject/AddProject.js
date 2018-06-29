@@ -8,14 +8,15 @@ import {
   Input,
   FormFeedback
 } from 'reactstrap'
-import ColorButton from './components/ColorButton'
+import ColorButton from '../../components/AddProject/ColorButton'
 import './AddProject.css'
-import SelectPm from './components/SelectPm'
+import SelectPm from '../../components/AddProject/SelectPm'
 import 'react-select/dist/react-select.css'
 import axios from 'axios'
 import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css'
 import './AddProject.css'
+import { Link, withRouter } from 'react-router-dom'
 
 class AddProject extends Component {
   constructor(props) {
@@ -76,7 +77,8 @@ class AddProject extends Component {
       choseweight: 0,
       invalid: false,
       listmember: [],
-      member: []
+      member: [],
+      size: 1
     }
     this.toggle = this.toggle.bind(this)
     this.toggledrop = this.toggledrop.bind(this)
@@ -201,6 +203,8 @@ class AddProject extends Component {
       axios
         .put('http://dev.pirsquare.net:3013/traffic-api/project', data)
         .then(function(response) {
+          const newUser = response.data
+          this.props.history.push(`/project/${newUser.id}`)
           console.log(response)
         })
         .catch(function(error) {
@@ -237,6 +241,11 @@ class AddProject extends Component {
         })
         this.setState({ listpm })
       })
+    axios.get(`http://dev.pirsquare.net:3013/traffic-api/project`).then(res => {
+      const { data } = res
+      console.log('Data', data)
+      this.setState({ size: data[data.length - 1].id + 1 })
+    })
   }
   render() {
     const { onClose } = this.props
@@ -342,19 +351,25 @@ class AddProject extends Component {
               </Row>
               <Row>
                 <Col>
-                  {/* <Link to="/person"> */}
-                  <Button
-                    color="primary"
-                    size="lg"
-                    block
-                    onClick={() => {
-                      this.sendData(), this.toggleSave()
-                      // ,this.props.isSaved(true)
-                    }}
+                  <Link
+                    to={
+                      this.state.projectname &&
+                      this.state.filteredPM &&
+                      `/project/${this.state.size}`
+                    }
                   >
-                    Save
-                  </Button>
-                  {/* </Link> */}
+                    <Button
+                      color="primary"
+                      size="lg"
+                      block
+                      onClick={() => {
+                        this.sendData(), this.toggleSave()
+                        // ,this.props.isSaved(true)
+                      }}
+                    >
+                      Save
+                    </Button>
+                  </Link>
                 </Col>
               </Row>
             </Container>
@@ -365,4 +380,4 @@ class AddProject extends Component {
   }
 }
 
-export default AddProject
+export default withRouter(AddProject)

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import Sidebar from '../components/Sidebar'
+import Sidebar from '../../components/Views/Sidebar'
 import axios from 'axios'
 import './PersonSidebar.css'
 const Item = styled.div`

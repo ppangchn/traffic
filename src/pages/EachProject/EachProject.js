@@ -12,6 +12,7 @@ class ViewbyProject extends Component {
   }
   render() {
     // divved', this.props)
+    console.log(`PARAMMMM ${this.props.match.params.id}`)
     return (
       <Container>
           <EachProjectSidebar id={this.props.match.params.id}/>
