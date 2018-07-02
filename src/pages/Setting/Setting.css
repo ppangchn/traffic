@@ -13,9 +13,16 @@
 
 .h-150{
   height: 150px;
+  /* width: 150px; */
   margin-top: 20px
 }
 
 .tap{
   border-radius: 5px;
+}
+
+.btn-secondary {
+  background-color: white !important;
+  border: none !important;
+  float: right;
 }
