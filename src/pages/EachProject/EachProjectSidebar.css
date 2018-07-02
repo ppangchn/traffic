@@ -205,6 +205,9 @@
     margin-top: 8px;
     border-radius: 3px;
   }
+  .error {
+    font-size: 14px;
+  }
 }
 
 .bottomtriangle {
@@ -226,4 +229,7 @@
 }
 .buttoncontainer {
   margin: 15px 5px 0 5px;
+}
+.error {
+  color: #da3849;
 }

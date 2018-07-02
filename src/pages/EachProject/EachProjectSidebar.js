@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Sidebar from '../../components/Views/Sidebar'
 import axios from 'axios'
 import '../ViewByProject/ProjectSidebar.css'
-import { Progress,Button } from 'reactstrap'
+import { Progress, Button } from 'reactstrap'
 import {
   DropdownItem,
   DropdownToggle,
@@ -14,6 +14,7 @@ import { TriangleUp } from 'styled-icons/octicons/TriangleUp'
 import { MoreHoriz } from 'styled-icons/material/MoreHoriz'
 import './EachProjectSidebar.css'
 import { Link } from 'react-router-dom'
+import Select from 'react-select'
 const Head = styled.div`
     padding-top : 10px
     font-size : 20px
@@ -48,7 +49,17 @@ const WhiteTriangle = TriangleUp.extend`
 class EachProjectSidebar extends Component {
   constructor(props) {
     super(props)
-    this.state = { timeline: [], project: {}, dropdownOpen: false }
+    this.state = {
+      timeline: [],
+      project: {},
+      dropdownOpen: false,
+      search: false,
+      allmember: [],
+      selectedmember: '',
+      projectmember: [],
+      errorselectmember: 'Please select member before save :)',
+      isSaved: false
+    }
     this.toggle = this.toggle.bind(this)
   }
   toggle() {
@@ -56,20 +67,72 @@ class EachProjectSidebar extends Component {
       dropdownOpen: !this.state.dropdownOpen
     })
   }
-  componentDidMount() {
+  handleChange = selectedOption => {
+    this.setState({ selectedmember: selectedOption })
+    // selectedOption can be null when the `x` (close) button is clicked
+  }
+  addMember = () => {
+    this.setState({
+      search: true
+    })
+  }
+  sendMember = () => {
+    this.setState({ isSaved: true })
+    if (this.state.selectedmember) {
+      const data = {
+        projectId: this.props.id,
+        useresId: this.state.selectedmember.value
+      }
+      axios
+        .put('http://dev.pirsquare.net:3013/traffic-api/timeline', data)
+        .then(function(response) {
+          console.log(response)
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
+      console.log('send!')
+      this.setState({ search: false, selectedmember: '' })
+    }
+  }
+  async componentDidMount() {
     // console.log('id', this.props.id)
-    axios
+    await axios
       .get(`http://dev.pirsquare.net:3013/traffic-api/project/${this.props.id}`)
       .then(res => {
         const { data } = res
-        console.log('Data Project', data)
+        // console.log('Data Project', data)
+        let projectmember = []
+        data.timeline.map(timeline => {
+          projectmember.push(timeline.users.id)
+        })
+        console.log(projectmember)
         this.setState({
           timeline: data.timeline || [],
-          project: data.project || {}
+          project: data.project || {},
+          projectmember: projectmember
         })
-      })
+      }, console.log('get project member fail'))
+    await axios
+      .get(`http://dev.pirsquare.net:3013/traffic-api/users/pd`)
+      .then(res => {
+        const { data } = res
+        // console.log('Data Project', data)
+        let allmember = []
+        console.log(this.state.projectmember)
+        data.map(user => {
+          let { projectmember } = this.state
+          console.log('projectmember', projectmember)
+          if (projectmember.indexOf(user.id) === -1) {
+            allmember.push({ value: user.id, label: user.name })
+          }
+        })
+        console.log('allmember -> ', allmember)
+        this.setState({ allmember })
+      }, console.log('get allmember fail'))
   }
   render() {
+    console.log('render1')
     const { project, timeline } = this.state
     return (
       <Sidebar>
@@ -142,7 +205,28 @@ class EachProjectSidebar extends Component {
             </div>
           )
         })}
-        <div className="buttoncontainer"><Button outline color="secondary" block>+ Add member</Button></div>
+        {this.state.search && (
+          <div>
+            <Select
+              // name="form-field-name"
+              value={this.state.selectedmember}
+              onChange={this.handleChange}
+              options={this.state.allmember}
+            />
+            <Button color="5bc2e1" size="sm" block onClick={this.sendMember}>
+              Save
+            </Button>
+          </div>
+        )}
+        <div className="buttoncontainer">
+          <Button outline color="secondary" block onClick={this.addMember}>
+            + Add member
+          </Button>
+          <div className="error">
+            {(!this.state.isSaved && !this.state.selectedmember) ||
+              this.state.errorselectmember}
+          </div>
+        </div>
         <Link to="/project">back</Link>
       </Sidebar>
     )
