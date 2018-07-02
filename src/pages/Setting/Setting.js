@@ -33,6 +33,8 @@ class Setting extends Component {
 					return this.fetchData('http://dev.pirsquare.net:3013/traffic-api/users')
 				case '2':
 					return this.fetchData('http://dev.pirsquare.net:3013/traffic-api/users/pm')
+				case '3':
+					return this.fetchData('http://dev.pirsquare.net:3013/traffic-api/users/pd')
 				default:
 					return this.fetchData('http://dev.pirsquare.net:3013/traffic-api/users')
 			}
@@ -54,7 +56,7 @@ class Setting extends Component {
 
 	render() {
 		return (
-			<Container className="mt-2">
+			<Container className="mt-4">
 				<Row>
 					<Col md={12}>
 						<Nav tabs>
@@ -80,16 +82,16 @@ class Setting extends Component {
 								</NavLink>
 							</NavItem>
 
-							{/* <NavItem>
-							<NavLink
-								className={classnames({ active: this.state.activeTab === '3' })}
-								onClick={() => {
-									this.toggle('3')
-								}}
-							>
-								Production
-							</NavLink>
-						</NavItem> */}
+							<NavItem>
+								<NavLink
+									className={classnames({ active: this.state.activeTab === '3' })}
+									onClick={() => {
+										this.toggle('3')
+									}}
+								>
+									Production
+								</NavLink>
+							</NavItem>
 						</Nav>
 
 						<TabContent activeTab={this.state.activeTab}>
@@ -102,10 +104,11 @@ class Setting extends Component {
 								</Card>
 							</Col> */}
 									<Col sm={4} className="h-150">
-									{/* mb-2 */}
+										{/* mb-2 */}
 										<Card body>
-											<CardText><center>
-												<PersonAdd height="110px"/>
+											<CardText>
+												<center>
+													<PersonAdd height="110px" />
 												</center>
 											</CardText>
 										</Card>
@@ -113,7 +116,7 @@ class Setting extends Component {
 
 									{this.state.users.map(users => {
 										return (
-											<Col sm={4} className="mb-2" key={users.id}>
+											<Col sm={4} className="mb-4" key={users.id}>
 												<Card body className="h-150">
 													<CardTitle>
 														<div>{users.name}</div>
@@ -133,10 +136,20 @@ class Setting extends Component {
 
 							<TabPane tabId="2">
 								<Row>
+									<Col sm={4} className="h-150">
+										{/* mb-2 */}
+										<Card body>
+											<CardText>
+												<center>
+													<PersonAdd height="110px" />
+												</center>
+											</CardText>
+										</Card>
+									</Col>
 									{this.state.users.map(usersPM => {
 										return (
-											<Col sm={4} className="mb-2" key={usersPM.id}>
-												<Card body>
+											<Col sm={4} className="mb-4" key={usersPM.id}>
+												<Card body className="h-150">
 													<CardTitle>
 														<div>{usersPM.name}</div>
 													</CardTitle>
@@ -153,39 +166,37 @@ class Setting extends Component {
 								</Row>
 							</TabPane>
 
-							{/* <TabPane tabId="3">
-							<Row>
-								<Col sm="4">
-									<Card body>
-										<CardTitle>Special Title Treatment</CardTitle>
-										<CardText>With supporting text below as a natural lead-in to additional content.</CardText>
-										<Button>Go somewhere</Button>
-									</Card>
-								</Col>
-								<Col sm="4">
-									<Card body>
-										<CardTitle>Special Title Treatment</CardTitle>
-										<CardText>With supporting text below as a natural lead-in to additional content.</CardText>
-										<Button>Go somewhere</Button>
-									</Card>
-								</Col>
-								<Col sm="4">
-									<Card body>
-										<CardTitle>Special Title Treatment</CardTitle>
-										<CardText>With supporting text below as a natural lead-in to additional content.</CardText>
-										<Button>Go somewhere</Button>
-									</Card>
-								</Col>
-								<Col sm="4">
-									<Card body>
-										<CardTitle>Special Title Treatment</CardTitle>
-										<CardText>With supporting text below as a natural lead-in to additional content.</CardText>
-										<Button>Go somewhere</Button>
-									</Card>
-								</Col>
-							</Row>
-						</TabPane>
-						</TabPane> */}
+							<TabPane tabId="3">
+								<Row>
+									<Col sm={4} className="h-150">
+										{/* mb-2 */}
+										<Card body>
+											<CardText>
+												<center>
+													<PersonAdd height="110px" />
+												</center>
+											</CardText>
+										</Card>
+									</Col>
+									{this.state.users.map(usersPD => {
+										return (
+											<Col sm={4} className="mb-4" key={usersPD.id}>
+												<Card body className="h-150">
+													<CardTitle>
+														<div>{usersPD.name}</div>
+													</CardTitle>
+													<CardText>
+														<div style={{ display: 'flex', flexDirection: 'row' }}>
+															<div className="persontag">{usersPD.roles.name} </div>
+															<div className="persontag">{usersPD.tags}</div>
+														</div>
+													</CardText>
+												</Card>
+											</Col>
+										)
+									})}
+								</Row>
+							</TabPane>
 						</TabContent>
 					</Col>
 				</Row>
