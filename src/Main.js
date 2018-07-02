@@ -10,9 +10,7 @@ const Container = styled.div`
 class Main extends Component {
 	render() {
 		return (
-			<Container>
 				<MainRoute />
-			</Container>
 		)
 	}
 }
