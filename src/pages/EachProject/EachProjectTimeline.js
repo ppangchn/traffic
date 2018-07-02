@@ -84,14 +84,13 @@ class EachProjectTimeline extends Component {
     console.log('datepicker',this.state.datepicker)
     return (
       <GraphBox>
-        <button id="pang">pang</button>
         <Timeline
           groups={this.state.groups}
           items={this.state.items}
           visibleTimeStart={moment().add(7 * 7, 'day')}
           visibleTimeEnd={moment().add(14 * 8, 'day')}
           sidebarWidth={0}
-          lineHeight={115}
+          lineHeight={106}
           stickyHeader={false}
           minZoom="2592000000" //4 month
           maxZoom="9676800000"
@@ -109,6 +108,7 @@ class EachProjectTimeline extends Component {
           <div style={{marginTop: '15px'}}><Button color='5bc2e1' block size="sm">Save</Button></div>
         </PopoverBody>
       </Popover>
+      <button id="pang">pang</button>
       </GraphBox>
     )
   }

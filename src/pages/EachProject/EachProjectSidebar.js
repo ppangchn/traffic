@@ -132,7 +132,6 @@ class EachProjectSidebar extends Component {
     await this.getData()
   }
   render() {
-    console.log('render1')
     const { project, timeline } = this.state
     return (
       <Sidebar>

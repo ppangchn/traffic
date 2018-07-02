@@ -395,6 +395,10 @@
   justify-content: space-between;
   align-items: center;
 }
+.percent {
+  text-align: center;
+  position: relative;
+}
 @media (max-width: 575.98px) {
   .projecthead {
     font-size: 15px;
@@ -408,18 +412,47 @@
   }
   .projectname {
     font-size: 10px;
+    margin-top: 4px;
   }
   .progresscontainer {
     margin-left: 1px;
     margin-right: 1px;
     width: 100px;
   }
+  .projectitem {
+    /* padding-bottom: 15px; */
+  }
+  .progresscontainer {
+    margin-right: 10px;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    top: 7px;
+  }
   .progress {
-    height: 5px !important;
+    border-radius: 5px !important;
+    width: 280vw;
+    height: 10px !important;
   }
   .pmcontainer {
+    bottom: 10px;
     position: relative;
-    bottom: 5px;
+  }
+  .percent {
+    bottom: 1px;
+    position: relative;
+    left: 10px;
+    font-size: 8px;
+  }
+  .editbox {
+    position: relative;
+    left: 10px;
+  }
+  .Edit {
+    width: 35%;
+    height: 35%;
+    bottom: 8px;
+    left: 6px;
   }
 }
 
@@ -528,16 +561,39 @@
     margin-left: 15px;
     font-size: 15px;
   }
+  .projectitem {
+    padding-bottom: 15px;
+  }
   .progresscontainer {
     margin-left: 15px;
     margin-right: 10px;
+    display: flex;
+    flex-direction: row;
   }
-  .projectitem {
-    padding-bottom: 31.5px
+  .progress {
+    border-radius: 8px !important;
+    width: 100vw;
   }
   .pmcontainer {
     position: relative;
     top: 5px;
+  }
+  .percent {
+    bottom: 4px;
+    position: relative;
+    left: 10px;
+    display: flex;
+    flex-direction: row;
+  }
+  .editbox {
+    position: relative;
+    left: 15px;
+  }
+  .Edit {
+    width: 40%;
+    height: 40%;
+    bottom: 6px;
+    left: 5px;
   }
   /* .lineheight {
     line-height: 100px !important;
@@ -545,7 +601,7 @@
 }
 
 /* Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) { font-size: 10px }
+@media (max-width: 576px) { font-size: 10px }
 
 @media (max-width: 575.98px) { ... } */
 /* // Small devices (landscape phones, 576px and up)

@@ -8,9 +8,6 @@ const Container = styled.div`
   overflow: hidden;
 `
 class ViewbyProject extends Component {
-  constructor(props) {
-    super(props)
-  }
   render() {
     return (
       <Container>

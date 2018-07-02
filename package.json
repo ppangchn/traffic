@@ -20,6 +20,7 @@
     "react-dom": "^16.4.0",
     "react-helmet": "^5.2.0",
     "react-icon-base": "^2.1.2",
+    "react-inline-editing": "^1.0.10",
     "react-rangeslider": "^2.2.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
@@ -36,5 +37,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "devDependencies": {}
 }
