@@ -50,36 +50,36 @@ const FolderSolid = FolderOpen.extend`
 `
 
 const PersonReg = PersonOutline.extend`
-	width: 1.5rem;
-	height: 1.5rem;
-	color: white;
-	&:hover ${PersonReg} {
-		transition-duration: 300ms;
-		position: relative;
-		top: -1px;
-	}
-	display: inline-block;
-	border-radius: 25%;
+  width: 1.5rem;
+  height: 1.5rem;
+  color: white;
+  &:hover ${PersonReg} {
+    transition-duration: 300ms;
+    position: relative;
+    top: -1px;
+  }
+  display: inline-block;
+  border-radius: 25%;
 `
 
 const PersonSolid = Person.extend`
-	width: 1.5rem;
-	height: 1.5rem;
-	color: white;
-	display: inline-block;
-	border-radius: 25%;
+  width: 1.5rem;
+  height: 1.5rem;
+  color: white;
+  display: inline-block;
+  border-radius: 25%;
 `
 const SettingReg = Settings.extend`
-	width: 1.5rem;
-	height: 1.5rem;
-	color: white;
-	&:hover ${SettingReg} {
-		transition-duration: 300ms;
-		top: -1px;
-	}
-	display: inline-block;
-	cursor: pointer;
-	border-radius: 25%;
+  width: 1.5rem;
+  height: 1.5rem;
+  color: white;
+  &:hover ${SettingReg} {
+    transition-duration: 300ms;
+    top: -1px;
+  }
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 25%;
 `
 const SettingSolid = Gear.extend`
     width : 1.5rem;
@@ -131,30 +131,30 @@ const AddReg = AddCircleOutline.extend`
     position: relative;
 `
 class Header extends Component {
-	constructor() {
-		super()
-		// console.log('pang')
-		this.state = {
-			folder: <FolderClose />,
-			person: <PersonReg />,
-			setting: <SettingReg />,
-			list: <ListAltReg />,
-			add: <AddReg />,
-			icondefault: {
-				folder: <FolderClose />,
-				person: <PersonReg />,
-				setting: <SettingReg />,
-				list: <ListAltReg />,
-				add: <AddReg />
-			},
-			toggleAddModal: false
-			// saved: true
-		}
-	}
-	changeFolderIcon() {
-		this.clear()
-		this.setState({ folder: <FolderSolid /> })
-	}
+  constructor() {
+    super()
+    // console.log('pang')
+    this.state = {
+      folder: <FolderClose />,
+      person: <PersonReg />,
+      setting: <SettingReg />,
+      list: <ListAltReg />,
+      add: <AddReg />,
+      icondefault: {
+        folder: <FolderClose />,
+        person: <PersonReg />,
+        setting: <SettingReg />,
+        list: <ListAltReg />,
+        add: <AddReg />
+      },
+      toggleAddModal: false
+      // saved: true
+    }
+  }
+  changeFolderIcon() {
+    this.clear()
+    this.setState({ folder: <FolderSolid /> })
+  }
 
   changePersonIcon() {
     this.clear()
@@ -178,9 +178,9 @@ class Header extends Component {
       add: def.add
     })
   }
-  toggleAddModal = (state) => {
+  toggleAddModal = state => {
     this.setState({
-      toggleAddModal: state,
+      toggleAddModal: state
       // saved: state
     })
   }
@@ -188,15 +188,18 @@ class Header extends Component {
   //   this.setState({saved: e})
   // }
   componentDidMount() {
-    console.log(window.location.pathname);
-    if (window.location.pathname=="/traffic-app/build/person")  this.setState({ person: <PersonSolid /> })
-    if (window.location.pathname=="/traffic-app/build/project")  this.setState({ folder: <FolderSolid /> })
-    if (window.location.pathname=="/traffic-app/build/setting")  this.setState({ setting: <SettingSolid /> })
-    if (window.location.pathname=="/traffic-app/build/")  this.setState({ list: <ListAltSolidz /> })
-    
+    console.log(window.location.pathname)
+    if (window.location.pathname == '/traffic-app/build/person')
+      this.setState({ person: <PersonSolid /> })
+    if (window.location.pathname == '/traffic-app/build/project')
+      this.setState({ folder: <FolderSolid /> })
+    if (window.location.pathname == '/traffic-app/build/setting')
+      this.setState({ setting: <SettingSolid /> })
+    if (window.location.pathname == '/traffic-app/build/')
+      this.setState({ list: <ListAltSolidz /> })
   }
   render() {
-    const { toggleAddModal,saved } = this.state
+    const { toggleAddModal, saved } = this.state
     return (
       <Container>
         <Navbar>
@@ -228,11 +231,9 @@ class Header extends Component {
             </NavLink>
           </Link>
           <Navbar className="ml-auto">
-              <NavLink
-              onClick={e => this.toggleAddModal(true)}
-              >
-                {this.state.add}
-              </NavLink>
+            <NavLink onClick={e => this.toggleAddModal(true)}>
+              {this.state.add}
+            </NavLink>
             <Link to="/setting">
               <NavLink
                 onClick={() => {
@@ -244,7 +245,9 @@ class Header extends Component {
             </Link>
           </Navbar>
         </Navbar>
-        {(toggleAddModal) && <AddProject onClose={() => this.toggleAddModal(false)} />}
+        {toggleAddModal && (
+          <AddProject onClose={() => this.toggleAddModal(false)} />
+        )}
       </Container>
     )
   }

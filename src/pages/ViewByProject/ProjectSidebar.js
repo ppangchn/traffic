@@ -64,7 +64,7 @@ class ProjectSidebar extends Component {
           // console.log(project.color.substring(1))
           // console.log("IDDDDD",project.id)
           return (
-            <div>
+            <div key={project.name}>
               <Item className="projectitem">
                 <div className="projectname">
                   <Link
@@ -85,7 +85,7 @@ class ProjectSidebar extends Component {
                 </div>
                 <div className="pmcontainer">
                   {project.projectManagement.map(pm => {
-                    return <Pm className="pmname">{pm.user.name}</Pm>
+                    return <Pm key={pm.id} className="pmname">{pm.user.name}</Pm>
                   })}
                 </div>
               </Item>

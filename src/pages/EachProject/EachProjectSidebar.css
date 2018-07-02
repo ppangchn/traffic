@@ -227,6 +227,10 @@
   background-color: white;
   color: #8c8c8c;
 }
+.btn-red {
+  background-color: #da3849;
+  color: white;
+}
 .buttoncontainer {
   margin: 15px 5px 0 5px;
 }

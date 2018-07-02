@@ -70,9 +70,9 @@ class ProjectTimeline extends Component {
         data.forEach(data => {
           groups.push({ id: data.id, title: data.name })
           let start = moment(data.timeline.start).add(5,'day')
-          console.log('start',start);
+          // console.log('start',start);
           let end = moment(data.timeline.end).add(5,'day')
-          console.log('end',end);
+          // console.log('end',end);
           items.push({
             id: count,
             group: data.id,
@@ -101,8 +101,8 @@ class ProjectTimeline extends Component {
         // className="lineheight"
           groups={this.state.groups}
           items={this.state.items}
-          visibleTimeStart={moment().add(7*7,'day')}
-          visibleTimeEnd={moment().add(14*8,'day')}
+          visibleTimeStart={moment().add(7 * 7, 'day')}
+          visibleTimeEnd={moment().add(14 * 8, 'day')}
           sidebarWidth={0}
           lineHeight={109}
           stickyHeader={false}

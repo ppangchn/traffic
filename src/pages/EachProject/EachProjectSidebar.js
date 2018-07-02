@@ -55,10 +55,7 @@ class EachProjectSidebar extends Component {
       dropdownOpen: false,
       search: false,
       allmember: [],
-      selectedmember: '',
-      projectmember: [],
-      errorselectmember: 'Please select member before save :)',
-      isSaved: false
+      projectmember: []
     }
     this.toggle = this.toggle.bind(this)
   }
@@ -68,7 +65,10 @@ class EachProjectSidebar extends Component {
     })
   }
   handleChange = selectedOption => {
-    this.setState({ selectedmember: selectedOption })
+    // this.setState({ selectedmember: selectedOption })
+    // if (selectedOption) {
+    this.sendMember(selectedOption)
+    // }
     // selectedOption can be null when the `x` (close) button is clicked
   }
   addMember = () => {
@@ -76,27 +76,23 @@ class EachProjectSidebar extends Component {
       search: true
     })
   }
-  sendMember = () => {
-    this.setState({ isSaved: true })
-    if (this.state.selectedmember) {
-      const data = {
-        projectId: this.props.id,
-        useresId: this.state.selectedmember.value
-      }
-      axios
-        .put('http://dev.pirsquare.net:3013/traffic-api/timeline', data)
-        .then(function(response) {
-          console.log(response)
-        })
-        .catch(function(error) {
-          console.log(error)
-        })
-      console.log('send!')
-      this.setState({ search: false, selectedmember: '' })
+  async sendMember(member) {
+    const data = {
+      project: parseInt(this.props.id),
+      users: member.value
     }
+    await axios
+      .put('http://dev.pirsquare.net:3013/traffic-api/timeline', data)
+      .then(function(response) {
+        console.log(response)
+      })
+      .catch(function(error) {
+        console.log(error)
+      })
+    console.log('send!')
+    await this.getData()
   }
-  async componentDidMount() {
-    // console.log('id', this.props.id)
+  async getData() {
     await axios
       .get(`http://dev.pirsquare.net:3013/traffic-api/project/${this.props.id}`)
       .then(res => {
@@ -130,6 +126,10 @@ class EachProjectSidebar extends Component {
         console.log('allmember -> ', allmember)
         this.setState({ allmember })
       }, console.log('get allmember fail'))
+  }
+  async componentDidMount() {
+    // console.log('id', this.props.id)
+    await this.getData()
   }
   render() {
     console.log('render1')
@@ -174,15 +174,17 @@ class EachProjectSidebar extends Component {
                   <div className="bottomtriangle">_</div> */}
                   <div>Edit Project</div>
                 </DropdownItem>
-                <DropdownItem
-                  className="dropdowndeleteitem"
-                  style={{
-                    color: '#f67879',
-                    borderRadius: '0 0 0.2rem 0.2rem'
-                  }}
-                >
-                  Delete
-                </DropdownItem>
+                <Link to ="/project" style={{textDecoration: 'none'}}>
+                  <DropdownItem
+                    className="dropdowndeleteitem"
+                    style={{
+                      color: '#f67879',
+                      borderRadius: '0 0 0.2rem 0.2rem'
+                    }}
+                  >
+                    Delete
+                  </DropdownItem>
+                </Link>
               </DropdownMenu>
             </ButtonDropdown>
           </div>
@@ -213,8 +215,13 @@ class EachProjectSidebar extends Component {
               onChange={this.handleChange}
               options={this.state.allmember}
             />
-            <Button color="5bc2e1" size="sm" block onClick={this.sendMember}>
-              Save
+            <Button
+              color="red"
+              size="sm"
+              block
+              onClick={() => this.setState({ search: false })}
+            >
+              Cancel
             </Button>
           </div>
         )}
@@ -222,10 +229,6 @@ class EachProjectSidebar extends Component {
           <Button outline color="secondary" block onClick={this.addMember}>
             + Add member
           </Button>
-          <div className="error">
-            {(!this.state.isSaved && !this.state.selectedmember) ||
-              this.state.errorselectmember}
-          </div>
         </div>
         <Link to="/project">back</Link>
       </Sidebar>
