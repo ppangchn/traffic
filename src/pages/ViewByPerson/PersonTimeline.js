@@ -63,22 +63,25 @@ class PersonTimeline extends Component {
       let count = 1
       data.forEach(data => {
         groups.push({ id: data.id, title: data.name })
-        data.projectTimeline.forEach(timeline => {
-          let start = moment(timeline.start)
-          let end = moment(timeline.end)
-          items.push({
-            id: count,
-            group: data.id,
-            title: timeline.project.name,
-            start_time: start,
-            end_time: end,
-            canMove: true,
-            canResize: true,
-            canChangeGroup: false,
-            className: 'bg-' + String(timeline.project.color).substring(1)
+        if (data.projectTimeline) {
+          data.projectTimeline.forEach(timeline => {
+            let start = moment(timeline.start || 0)
+            let end = moment(timeline.end || 0)
+            items.push({
+              id: count || 0,
+              group: data.id || 0,
+              title: timeline.project.name || ' ',
+              start_time: start,
+              end_time: end,
+              canMove: true,
+              canResize: true,
+              canChangeGroup: false,
+              className: 'bg-' + String(timeline.project.color).substring(1)
+            })
+            count++
           })
-          count++
-        })
+        }
+
         this.setState({
           groups,
           items
@@ -92,14 +95,14 @@ class PersonTimeline extends Component {
         <Timeline
           groups={this.state.groups}
           items={this.state.items}
-          visibleTimeStart={moment().add(7*7,'day')}
-          visibleTimeEnd={moment().add(14*8,'day')}
+          visibleTimeStart={moment().add(7 * 7, 'day')}
+          visibleTimeEnd={moment().add(14 * 8, 'day')}
           sidebarWidth={0}
           lineHeight={148}
           stickyHeader={false}
           minZoom="2592000000" //4 month
           maxZoom="9676800000"
-          timeSteps={{day: 7}}
+          timeSteps={{ day: 7 }}
         />
       </GraphBox>
     )

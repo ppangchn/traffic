@@ -6,8 +6,8 @@ import { Progress } from 'reactstrap'
 import axios from 'axios'
 import './ProjectSidebar.css'
 import { Link } from 'react-router-dom'
-import { Edit as EditIcon } from 'styled-icons/material/Edit'
-import EditableLabel from 'react-inline-editing'
+
+import Percent from '../../components/Views/ViewByProject/Percent'
 
 const Item = styled.div`
   background-color: #ffffff;
@@ -22,13 +22,7 @@ const FolderIcon = FolderOpen.extend`
   margin-bottom: 0.1875rem;
   margin-left: 20px;
 `
-const Edit = EditIcon.extend`
-  position: relative;
-  color: #d9d9d9;
-  :hover ${Edit} {
-    color: #5bc2e1;
-  }
-`
+
 const Head = styled.div`
   padding-top: 0.625rem;
 `
@@ -46,17 +40,13 @@ const Pm = styled.div`
 class ProjectSidebar extends Component {
   constructor(props) {
     super(props)
-    this.state = { projects: [], weight: 0,isedited: false}
-    this._handleFocus = this._handleFocus.bind(this);
-      this._handleFocusOut = this._handleFocusOut.bind(this);
+    this.state = {
+      projects: [],
+      weight: 0,
+      message: 'ReactInline demo'
+    }
   }
-  _handleFocus(text) {
-    console.log('Focused with text: ' + text);
-}
-
-_handleFocusOut(text) {
-    console.log('Left editor with text: ' + text);
-}
+  
   componentDidMount() {
     axios.get(`http://dev.pirsquare.net:3013/traffic-api/project`).then(res => {
       const { data } = res
@@ -94,24 +84,7 @@ _handleFocusOut(text) {
                     color={project.color.substring(1)}
                     value="10"
                   />
-                  <div className="percent">
-                    <EditableLabel
-                      text={project.weight}
-                      labelClassName="myLabelClass"
-                      inputClassName="myInputClass"
-                      inputWidth="35px"
-                      inputHeight="20px"
-                      inputMaxLength="50"
-                      labelFontWeight="bold"
-                      inputFontWeight="bold"
-                      onFocus={this._handleFocus}
-                      onFocusOut={this._handleFocusOut}
-                      isEditing={this.state.isedited}
-                    />%
-                  </div>
-                  <div className="editbox" onClick={() => this.setState({isedited: !this.state.isedited})}>
-                    <Edit className="Edit" />
-                  </div>
+                  <Percent progress={project.process} />
                 </div>
                 <div className="pmcontainer">
                   {project.projectManagement.map(pm => {

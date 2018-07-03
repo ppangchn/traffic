@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Sidebar from '../../components/Views/Sidebar'
 import axios from 'axios'
 import '../ViewByProject/ProjectSidebar.css'
-import { Progress, Button } from 'reactstrap'
+import { Progress, Button, Popover, PopoverBody } from 'reactstrap'
 import {
   DropdownItem,
   DropdownToggle,
@@ -15,6 +15,10 @@ import { MoreHoriz } from 'styled-icons/material/MoreHoriz'
 import './EachProjectSidebar.css'
 import { Link } from 'react-router-dom'
 import Select from 'react-select'
+import { Search as SearchIcon } from 'styled-icons/fa-solid/Search'
+import AddProject from '../AddProject/AddProject'
+
+import DeleteUser from '../../components/Views/EachProject/DeleteUser'
 const Head = styled.div`
     padding-top : 10px
     font-size : 20px
@@ -28,6 +32,7 @@ const HeadContainer = styled.div`
 const ProgressContainer = styled.div`
   margin-left: 15px;
   margin-right: 10px;
+  display: flex;
 `
 const Weight = styled.div`
     font-size: 10px
@@ -46,6 +51,10 @@ const WhiteTriangle = TriangleUp.extend`
   stroke: #5bc2e1;
   stroke-width: 0.04rem;
 `
+const Search = SearchIcon.extend`
+  background-color: #888888;
+`
+
 class EachProjectSidebar extends Component {
   constructor(props) {
     super(props)
@@ -55,13 +64,30 @@ class EachProjectSidebar extends Component {
       dropdownOpen: false,
       search: false,
       allmember: [],
-      projectmember: []
+      projectmember: [],
+      projectpm: [],
+      popoverOpen: false,
+      modalOpen: false
     }
     this.toggle = this.toggle.bind(this)
+    this.togglePopOver = this.togglePopOver.bind(this)
+    this.deleteProject = this.deleteProject.bind(this)
+    this.deleteUser = this.deleteUser.bind(this)
+    this.toggleModal = this.toggleModal.bind(this)
   }
   toggle() {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen
+    })
+  }
+  togglePopOver() {
+    this.setState({
+      popoverOpen: !this.state.popoverOpen
+    })
+  }
+  toggleModal(state) {
+    this.setState({
+      modalOpen: state
     })
   }
   handleChange = selectedOption => {
@@ -70,11 +96,6 @@ class EachProjectSidebar extends Component {
     this.sendMember(selectedOption)
     // }
     // selectedOption can be null when the `x` (close) button is clicked
-  }
-  addMember = () => {
-    this.setState({
-      search: true
-    })
   }
   async sendMember(member) {
     const data = {
@@ -92,7 +113,44 @@ class EachProjectSidebar extends Component {
     console.log('send!')
     await this.getData()
   }
+  deleteProject() {
+    console.log(this.props)
+    axios
+      .delete(
+        `http://dev.pirsquare.net:3013/traffic-api/project/${this.props.id}`
+      )
+      .then(res => {
+        window.history.back()
+      })
+  }
+  deleteUser() {
+    // axios
+    //   .delete(
+    //     `http://dev.pirsquare.net:3013/traffic-api/project/${this.props.id}`
+    //   )
+  }
+  async getPm() {
+    await axios
+      .get(`http://dev.pirsquare.net:3013/traffic-api/Management`)
+      .then(res => {
+        const { data } = res
+        // console.log('Data Project', data)
+        let projectpm = []
+        data.map(user => {
+          projectpm.push({
+            name: user.users.name,
+            roles: user.users.roles.name,
+            tags: user.users.tags
+          })
+        })
+        this.setState({
+          projectpm
+        })
+      })
+  }
+
   async getData() {
+    await this.getPm()
     await axios
       .get(`http://dev.pirsquare.net:3013/traffic-api/project/${this.props.id}`)
       .then(res => {
@@ -102,33 +160,34 @@ class EachProjectSidebar extends Component {
         data.timeline.map(timeline => {
           projectmember.push(timeline.users.id)
         })
-        console.log(projectmember)
+        // console.log(projectmember)
         this.setState({
-          timeline: data.timeline || [],
-          project: data.project || {},
+          timeline: data.timeline,
+          project: data.project,
           projectmember: projectmember
         })
-      }, console.log('get project member fail'))
+      })
     await axios
       .get(`http://dev.pirsquare.net:3013/traffic-api/users/pd`)
       .then(res => {
         const { data } = res
-        // console.log('Data Project', data)
+        // console.log('Data allmember', data)
         let allmember = []
-        console.log(this.state.projectmember)
+        // console.log(this.state.projectmember)
         data.map(user => {
           let { projectmember } = this.state
-          console.log('projectmember', projectmember)
+          // console.log('projectmember', projectmember)
           if (projectmember.indexOf(user.id) === -1) {
             allmember.push({ value: user.id, label: user.name })
           }
         })
-        console.log('allmember -> ', allmember)
+        // console.log('allmember -> ', allmember)
         this.setState({ allmember })
-      }, console.log('get allmember fail'))
+      })
   }
   async componentDidMount() {
     // console.log('id', this.props.id)
+    await this.getPm()
     await this.getData()
   }
   render() {
@@ -139,9 +198,7 @@ class EachProjectSidebar extends Component {
           <Head>&emsp;Name</Head>
         </HeadContainer>
         <div className="eachprojecthead">
-          {' '}
-          <div className="eachprojectname">
-            {project.name}
+          <div>
             <ButtonDropdown
               className="btn-secondary"
               isOpen={this.state.btnDropright}
@@ -171,34 +228,51 @@ class EachProjectSidebar extends Component {
                     <WhiteTriangle />
                   </div>
                   <div className="bottomtriangle">_</div> */}
-                  <div>Edit Project</div>
+                  <div onClick={() => this.toggleModal(true)}>Edit Project</div>
                 </DropdownItem>
-                <Link to ="/project" style={{textDecoration: 'none'}}>
-                  <DropdownItem
-                    className="dropdowndeleteitem"
-                    style={{
-                      color: '#f67879',
-                      borderRadius: '0 0 0.2rem 0.2rem'
-                    }}
-                  >
-                    Delete
-                  </DropdownItem>
-                </Link>
+                <DropdownItem
+                  onClick={this.deleteProject}
+                  className="dropdowndeleteitem"
+                  style={{
+                    color: '#f67879',
+                    borderRadius: '0 0 0.2rem 0.2rem'
+                  }}
+                >
+                  Delete
+                </DropdownItem>
               </DropdownMenu>
             </ButtonDropdown>
           </div>
+
+          <div className="eachprojectname">
+            {project.name}
+            <div className="eachprojectweight">{project.weight}%</div>
+          </div>
           <ProgressContainer>
-            <Progress
-              color={String(project.color).substring(1)}
-              value="10"
-              style={{ borderRadius: '8px' }}
-            />
+            <Progress color={String(project.color).substring(1)} value="10" />
           </ProgressContainer>
         </div>
+        {this.state.projectpm.map(user => {
+          return (
+            <div className="eachprojectitem">
+              <div className="membername">
+                {user.name}
+                <DeleteUser id={user.id} />
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'row' }}>
+                <div className="membertag">{user.roles}</div>
+                <div className="membertag">{user.tags}</div>
+              </div>
+            </div>
+          )
+        })}
         {timeline.map(timeline => {
           return (
             <div className="eachprojectitem">
-              <div className="membername">{timeline.users.name}</div>
+              <div className="membername">
+                {timeline.users.name}
+                <DeleteUser id={timeline.users.id} />
+              </div>
               <div style={{ display: 'flex', flexDirection: 'row' }}>
                 <div className="membertag">{timeline.users.roles.name}</div>
                 <div className="membertag">{timeline.users.tags}</div>
@@ -206,30 +280,50 @@ class EachProjectSidebar extends Component {
             </div>
           )
         })}
-        {this.state.search && (
-          <div>
+        <Popover
+          placement="bottom !important"
+          isOpen={this.state.popoverOpen}
+          target="Popover"
+          toggle={this.togglePopOver}
+          className="addmemberpopover"
+          hideArrow={true}
+        >
+          <PopoverBody>
             <Select
+              // style={{borderColor:''}}
               // name="form-field-name"
+              closeOnSelect={false}
               value={this.state.selectedmember}
               onChange={this.handleChange}
               options={this.state.allmember}
+              autoFocus={true}
+              open={true}
+              openOnFocus={true}
             />
-            <Button
-              color="red"
-              size="sm"
-              block
-              onClick={() => this.setState({ search: false })}
-            >
-              Cancel
-            </Button>
-          </div>
-        )}
+          </PopoverBody>
+        </Popover>
         <div className="buttoncontainer">
-          <Button outline color="secondary" block onClick={this.addMember}>
+          <Button
+            outline
+            color="secondary"
+            block
+            onClick={this.togglePopOver}
+            id="Popover"
+          >
             + Add member
           </Button>
+          <Link to="/project" style={{ textDecoration: 'none' }}>
+            <Button color="danger" block>
+              back
+            </Button>
+          </Link>
         </div>
-        <Link to="/project">back</Link>
+        {this.state.modalOpen && (
+          <AddProject
+            onClose={() => this.toggleModal(false)}
+            id={this.props.id}
+          />
+        )}
       </Sidebar>
     )
   }

@@ -72,10 +72,13 @@
     margin-top: 4px;
   }
   .Select-placeholder {
-    font-size: 15px;
+    font-size: 12px;
   }
   .selectpmbox {
     margin-bottom: 5px;
+  }
+  .sliderboxpm {
+    margin-top: 10px;
   }
 }
 

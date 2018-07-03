@@ -16,7 +16,7 @@ import axios from 'axios'
 import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css'
 import './AddProject.css'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 class AddProject extends Component {
   constructor(props) {
@@ -76,21 +76,20 @@ class AddProject extends Component {
       ],
       choseweight: 0,
       invalid: false,
-      listmember: [],
-      member: [],
-      size: 1
+      invalidpm: 'Please select at least one pm.',
+      isinvalidpm: false
     }
     this.toggle = this.toggle.bind(this)
     this.toggledrop = this.toggledrop.bind(this)
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    this.handleSelectChangeMember = this.handleSelectChangeMember.bind(this)
   }
   toggle() {
     this.setState({ open: !this.state.open })
   }
   toggleSave() {
-    if (this.state.projectname) this.setState({ open: !this.state.open })
+    if (this.state.projectname && this.state.filteredPM.length !== 0)
+      this.setState({ open: !this.state.open })
   }
   toggledrop() {
     this.setState({
@@ -119,6 +118,7 @@ class AddProject extends Component {
     }
   }
   setPm = (index, data) => {
+    this.setState({ invalidpm: false })
     let pm = this.state.pm.map(i => i)
     pm[index] = data
     this.setState(
@@ -155,17 +155,9 @@ class AddProject extends Component {
         filteredPM
       },
       () => {
-        console.log('SELECTED PM FINAL', this.state.filteredPM)
+        // console.log('SELECTED PM FINAL', this.state.filteredPM)
       }
     )
-  }
-  handleSelectChangeMember(value) {
-    const member = value.split(',').map(e => {
-      return parseInt(e)
-    })
-    console.log("You've selected:", member)
-    this.setState({ member })
-    // console.log(this.state.pm);
   }
   clear() {
     this.setState({ listpm: [], projectname: '', color: '', invalidpm: '' })
@@ -184,7 +176,7 @@ class AddProject extends Component {
       choseweight: value
     })
   }
-  async sendData() {
+  sendData = async () => {
     if (this.state.projectname && this.state.filteredPM.length !== 0) {
       let data = {
         name: this.state.projectname,
@@ -197,38 +189,56 @@ class AddProject extends Component {
             weight: data.weight
           }
         }),
-        weight: this.state.choseweight,
-        member: this.state.memeber
+        projectTimeline: this.state.filteredPM.map(data => {
+          return {
+            users: {
+              id: data.value
+            }
+          }
+        }),
+        weight: this.state.choseweight
       }
       await axios
         .put('http://dev.pirsquare.net:3013/traffic-api/project', data)
-        .then(function(response) {
+        .then(response => {
           const newUser = response.data
+          this.props.onClose()
           this.props.history.push(`/project/${newUser.id}`)
-          console.log(response)
         })
         .catch(function(error) {
           console.log(error)
         })
+
       console.log('send!')
     } else {
-      if (this.state.projectname.length === 0) this.setState({ invalid: true })
+      if (this.state.projectname) this.setState({ invalid: true })
       if (this.state.filteredPM.length === 0) {
-        this.setState({ invalidpm: 'Please select at least one pm.' })
+        this.setState({ isinvalidpm: true })
       }
     }
   }
   componentDidMount() {
-    const listmember = this.state.listmember.map(i => i)
-    axios
-      .get(`http://dev.pirsquare.net:3013/traffic-api/users/pd`)
-      .then(res => {
-        const { data } = res
-        console.log('Data', data)
-        data.map(data => listmember.push({ value: data.id, label: data.name }))
-        this.setState({ listmember })
-      })
-
+    if (this.props.id) {
+      axios
+        .get(
+          `http://dev.pirsquare.net:3013/traffic-api/project/${this.props.id}`
+        )
+        .then(res => {
+          const { data } = res
+          let filteredPM = [];
+          let pm = [];
+          data.timeline.map((pm) => {
+            filteredPM.push(pm.users.id)
+            // pm.push({value:pm.users.id,label:pm.users.name})
+          })
+          this.setState({
+            projectname: data.project.name,
+            choseweight: data.project.weight,
+            checkedcolor: this.state.color,
+            filteredPM
+          })
+        })
+    }
     axios
       .get(`http://dev.pirsquare.net:3013/traffic-api/users/pm`)
       .then(res => {
@@ -244,7 +254,6 @@ class AddProject extends Component {
     axios.get(`http://dev.pirsquare.net:3013/traffic-api/project`).then(res => {
       const { data } = res
       console.log('Data', data)
-      this.setState({ size: data[data.length - 1].id + 1 })
     })
   }
   render() {
@@ -266,11 +275,12 @@ class AddProject extends Component {
                 <Col className="projectnamebox">
                   Project name
                   <Input
-                  className="fontinput"
+                    className="fontinput"
                     name="projectname"
                     invalid={this.state.invalid}
                     placeholder="Type your project name"
                     onChange={this.handleInputChange}
+                    value={this.state.projectname}
                   />
                   <FormFeedback tooltip>Can't send empty name!</FormFeedback>
                 </Col>
@@ -332,7 +342,7 @@ class AddProject extends Component {
                     marginBottom: '10px'
                   }}
                 >
-                  {this.state.invalidpm}
+                  {this.state.isinvalidpm && this.state.invalidpm}
                 </Col>
               </Row>
               <Row>
@@ -349,26 +359,26 @@ class AddProject extends Component {
               </Row>
               <Row>
                 <Col>
-                  <Link
+                  {/* <Link
                     className="savelink"
                     to={
                       this.state.projectname &&
                       this.state.filteredPM &&
                       `/project/${this.state.size}`
                     }
+                  > */}
+                  <Button
+                    color="5bc2e1"
+                    size="lg"
+                    block
+                    onClick={() => {
+                      this.sendData(), this.toggleSave()
+                      // ,this.props.isSaved(true)
+                    }}
                   >
-                      <Button
-                      color='5bc2e1'
-                        size="lg"
-                        block
-                        onClick={() => {
-                          this.sendData(), this.toggleSave()
-                          // ,this.props.isSaved(true)
-                        }}
-                      >
-                        Save
-                      </Button>
-                  </Link>
+                    Save
+                  </Button>
+                  {/* </Link> */}
                 </Col>
               </Row>
             </Container>

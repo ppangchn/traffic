@@ -119,7 +119,7 @@
     right: 8px;
   }
   .form-control {
-    font-size: 8px !important;
+    font-size: 10px !important;
   }
   .addpmbox {
     margin-bottom: 7px;
@@ -234,6 +234,7 @@
     right: 5px;
     position: relative;
   }
+  
 }
 /* @media (min-width: 702px) {
     html {

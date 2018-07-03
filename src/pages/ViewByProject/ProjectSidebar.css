@@ -388,8 +388,6 @@
 .linkprojectname-F48FB1:hover {
   color: #f48fb1;
 }
-/* Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) { font-size: 10px } */
 .projectname {
   display: flex;
   justify-content: space-between;
@@ -399,6 +397,9 @@
   text-align: center;
   position: relative;
 }
+/* .projecthead {
+  border-right: 1px solid #c6c6c6;
+} */
 @media (max-width: 575.98px) {
   .projecthead {
     font-size: 15px;
@@ -547,6 +548,7 @@
   }
   .pmcontainer {
     margin-left: 15px;
+    margin-top: 5px;
   }
   .pmname {
     font-size: 10px;
@@ -562,38 +564,23 @@
     font-size: 15px;
   }
   .projectitem {
-    padding-bottom: 15px;
+    padding-bottom: 5px;
   }
   .progresscontainer {
     margin-left: 15px;
     margin-right: 10px;
     display: flex;
     flex-direction: row;
+    top: 8px;
+    position: relative
   }
   .progress {
     border-radius: 8px !important;
-    width: 100vw;
+    width: 80vw;
   }
   .pmcontainer {
+    bottom: 5px;
     position: relative;
-    top: 5px;
-  }
-  .percent {
-    bottom: 4px;
-    position: relative;
-    left: 10px;
-    display: flex;
-    flex-direction: row;
-  }
-  .editbox {
-    position: relative;
-    left: 15px;
-  }
-  .Edit {
-    width: 40%;
-    height: 40%;
-    bottom: 6px;
-    left: 5px;
   }
   /* .lineheight {
     line-height: 100px !important;
