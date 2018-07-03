@@ -20,7 +20,6 @@ const Container = styled.div`
     padding : 0px;
     margin : 0px;
     border : none;
-    
 `
 const FolderClose = Folder.extend`
     width : 1.5rem;

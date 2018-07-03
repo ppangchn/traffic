@@ -53,20 +53,19 @@ class SelectPm extends Component {
   }
   render() {
     return (
-      <Row style={{height: '7vh'}}>
+      <Row className="selectpmbox">
         <Col xs="4">
           <Select
-            optionClassName="drop"
-            style={{ backgroundColor: '#f1f1f1' , fontSize: '0.875rem'}}
-            placeholder="Select PM(s)"
+            ClassName="selectbox"
+            placeholder="All"
             value={this.state.pm}
             onChange={this.handleChange}
             options={this.props.listpm}
             trimFilter
           />
         </Col>
-        <Col xs="4" style={{ bottom: '10px' }}>
-          <div style={{ marginTop: '20px' }}>
+        <Col className="sliderboxpm" xs="4">
+          <div>
             <Slider
               className="slider"
               min={0}
@@ -77,10 +76,10 @@ class SelectPm extends Component {
             />
           </div>
         </Col>
-        <Col style={{ bottom: '35px' }}>
+        <Col className="px-0">
           <div className="weightpm">{this.state.choseweight} %</div>
         </Col>
-        <Col style={{width: '1rem'}}>
+        <Col className="deletebox">
           {this.props.id > 0 && (
             // <Button size="sm" color="danger" onClick={this.delete}>delete</Button>
             <Exit onClick={this.delete} />

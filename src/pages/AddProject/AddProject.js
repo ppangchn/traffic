@@ -184,7 +184,7 @@ class AddProject extends Component {
       choseweight: value
     })
   }
-  sendData() {
+  async sendData() {
     if (this.state.projectname && this.state.filteredPM.length !== 0) {
       let data = {
         name: this.state.projectname,
@@ -200,7 +200,7 @@ class AddProject extends Component {
         weight: this.state.choseweight,
         member: this.state.memeber
       }
-      axios
+      await axios
         .put('http://dev.pirsquare.net:3013/traffic-api/project', data)
         .then(function(response) {
           const newUser = response.data
@@ -254,7 +254,6 @@ class AddProject extends Component {
       <Container>
         {/* {console.log('invalid',this.state.invalid)} */}
         <Modal
-          style={{ fontSize: '1rem' }}
           size="5"
           isOpen={this.state.open}
           toggle={onClose}
@@ -262,14 +261,13 @@ class AddProject extends Component {
         >
           <ModalHeader toggle={onClose}>New Project</ModalHeader>
           <ModalBody>
-            <Container>
+            <Container className="addprojectbox">
               <Row>
-                <Col>
+                <Col className="projectnamebox">
                   Project name
                   <Input
-                    style={{ fontSize: '8px !important' }}
+                  className="fontinput"
                     name="projectname"
-                    style={{ backgroundColor: '#f1f1f1' }}
                     invalid={this.state.invalid}
                     placeholder="Type your project name"
                     onChange={this.handleInputChange}
@@ -277,8 +275,8 @@ class AddProject extends Component {
                   <FormFeedback tooltip>Can't send empty name!</FormFeedback>
                 </Col>
                 <Col xs="4">
-                  Project Weight
-                  <div style={{ marginTop: '10px' }}>
+                  <div className="projectweighttext">Project Weight</div>
+                  <div className="sliderbox">
                     <Slider
                       className="slider"
                       min={0}
@@ -289,7 +287,7 @@ class AddProject extends Component {
                     />
                   </div>
                 </Col>
-                <Col xs="2" style={{ marginRight: '10px' }}>
+                <Col xs="2" className="weightbox">
                   <div className="weight">{this.state.choseweight} %</div>
                 </Col>
               </Row>
@@ -314,7 +312,7 @@ class AddProject extends Component {
                 <Col xs="4" md="4">
                   Project PM
                 </Col>
-                <Col xs="5" md="5">
+                <Col className="pmweighttext" xs="5" md="5">
                   Manager weight
                 </Col>
               </Row>
@@ -338,7 +336,7 @@ class AddProject extends Component {
                 </Col>
               </Row>
               <Row>
-                <Col style={{ marginBottom: '0.625rem' }}>
+                <Col className="addpmbox">
                   <Button
                     outline
                     size="sm"
