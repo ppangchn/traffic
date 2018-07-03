@@ -298,7 +298,7 @@ class AddProject extends Component {
                   </div>
                 </Col>
                 <Col xs="2" className="weightbox">
-                  <div className="weight">{this.state.choseweight} %</div>
+                  <div className="weightproject">{this.state.choseweight} %</div>
                 </Col>
               </Row>
               <Row>
