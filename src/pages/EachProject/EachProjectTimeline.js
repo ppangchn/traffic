@@ -47,8 +47,8 @@ class EachProjectTimeline extends Component {
             id: id,
             group: id,
             title: '',
-            start_time: moment(data.project.start_time),
-            end_time: moment(data.project.end_time),
+            start_time: moment(data.project.start_timeline).add(6,'day'),
+            end_time: moment(data.project.end_timeline).add(6,'day'),
             canMove: false,
             canResize: false,
             canChangeGroup: false,
@@ -97,7 +97,7 @@ class EachProjectTimeline extends Component {
           visibleTimeStart={moment().add(7 * 7, 'day')}
           visibleTimeEnd={moment().add(14 * 8, 'day')}
           sidebarWidth={0}
-          lineHeight={115}
+          lineHeight={115.4}
           stickyHeader={false}
           minZoom="2592000000" //4 month
           maxZoom="9676800000"

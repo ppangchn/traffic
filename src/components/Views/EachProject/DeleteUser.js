@@ -38,10 +38,14 @@ class DeleteUser extends Component {
     this.setState({ modalOpen: !this.state.modalOpen })
   }
   deleteUser() {
-    axios
-      .delete(
-        `http://dev.pirsquare.net:3013/traffic-api/project/${this.props.id}`
-      )
+    const data = {
+      projectId: this.props.idproject,
+      userId: this.props.iduser
+    }
+    axios.delete(
+      `http://dev.pirsquare.net:3013/traffic-api/project/${this.props.id}`,
+      data
+    )
   }
   render() {
     return (
@@ -60,10 +64,13 @@ class DeleteUser extends Component {
             <div style={{ color: '#da3849' }}>&ensp;"{this.props.name}"</div>
           </ModalBody>
           <ModalFooter>
-            <Button color="secondary" onClick={this.toggleModal}>
+            <Button color="grey" onClick={this.toggleModal}>
               Cancel
             </Button>
-            <Button color="danger" onClick={(this.toggleModal,this.deleteUser)}>
+            <Button
+              color="danger"
+              onClick={(this.toggleModal, this.deleteUser)}
+            >
               Confirm
             </Button>
           </ModalFooter>

@@ -71,7 +71,8 @@ class AddProject extends Component {
       choseweight: 0,
       invalid: false,
       invalidpm: 'Please select at least one pm.',
-      isinvalidpm: false
+      isinvalidpm: false,
+      header: 'New Project'
     }
     this.toggle = this.toggle.bind(this)
     this.toggledrop = this.toggledrop.bind(this)
@@ -172,7 +173,7 @@ class AddProject extends Component {
   }
   sendData = async () => {
     try {
-      if (this.state.projectname && this.state.filteredPM.length !== 0) {
+      if (this.state.projectname && this.state.pm[0].value) {
         let data = {
           name: this.state.projectname,
           color: this.state.checkedcolor,
@@ -215,7 +216,7 @@ class AddProject extends Component {
         console.log('projectname ->', this.state.projectname)
         if (this.state.projectname.length === 0)
           this.setState({ invalid: true })
-        if (this.state.filteredPM.length === 0) {
+        if (!this.state.pm[0].value) {
           this.setState({ isinvalidpm: true })
         }
       }
@@ -248,7 +249,9 @@ class AddProject extends Component {
             this.setState({
               projectname: data.project.name,
               choseweight: data.project.weight,
-              pm
+              pm,
+              filteredPM: pm,
+              header: 'Edit Project'
             })
             this.setCheckColor(data.project.color)
           })
@@ -293,7 +296,7 @@ class AddProject extends Component {
           toggle={onClose}
           onExit={() => this.clear()}
         >
-          <ModalHeader toggle={onClose}>New Project</ModalHeader>
+          <ModalHeader toggle={onClose}>{this.state.header}</ModalHeader>
           <ModalBody>
             <Container className="addprojectbox">
               <Row>

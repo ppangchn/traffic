@@ -266,7 +266,11 @@ class EachProjectSidebar extends Component {
             <div className="eachprojectitem">
               <div className="membername">
                 {timeline.users.name}
-                <DeleteUser id={timeline.users.id} name={timeline.users.name} />
+                <DeleteUser
+                  idproject={this.props.id}
+                  iduser={timeline.users.id}
+                  name={timeline.users.name}
+                />
               </div>
               <div style={{ display: 'flex', flexDirection: 'row' }}>
                 <div className="membertag">{timeline.users.roles.name}</div>
@@ -308,9 +312,11 @@ class EachProjectSidebar extends Component {
             + Add member
           </Button>
           <Link to="/project" style={{ textDecoration: 'none' }}>
-            <Button color="danger" block>
-              back
-            </Button>
+            <div className="cancelbutton">
+              <Button color="danger" block>
+                back
+              </Button>
+            </div>
           </Link>
         </div>
         {this.state.modalOpen && (
