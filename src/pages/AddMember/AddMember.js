@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Container, Row, Col } from 'reactstrap'
-import { Button, Modal, ModalHeader, ModalBody, Input, FormFeedback } from 'reactstrap'
+import { Button, Modal, ModalHeader, ModalBody, Input, FormFeedback, ModalFooter } from 'reactstrap'
+import Select from 'react-select'
 import 'react-select/dist/react-select.css'
 import axios from 'axios'
 import 'rc-slider/assets/index.css'
@@ -15,92 +16,117 @@ class AddMember extends Component {
 			open: true,
 			listroles: [],
 			dropdownOpen: false,
-			tags:[],
+			tags: '',
 			filteredROLES: [],
-			roles:[],
+			roles: '',
+			name: ''
 		}
 
 		this.toggle = this.toggle.bind(this)
 		this.toggledrop = this.toggledrop.bind(this)
 		this.handleInputChange = this.handleInputChange.bind(this)
 		this.handleChange = this.handleChange.bind(this)
+		this.handleInputChangeTags = this.handleInputChangeTags.bind(this)
 	}
 
 	toggle() {
 		this.setState({ open: !this.state.open })
 	}
 	toggleSave() {
-    if (this.state.projectname && this.state.filteredPM.length !== 0)
-      this.setState({ open: !this.state.open })
+		if (this.state.name && this.state.roles && this.state.tags !== 0) this.setState({ open: !this.state.open })
 	}
 	toggledrop() {
-    this.setState({
-      dropdownOpen: !this.state.dropdownOpen
-    })
+		this.setState({
+			dropdownOpen: !this.state.dropdownOpen
+		})
 	}
 	handleInputChange(e) {
-    const target = e.target
-    const value = target.type === 'checkbox' ? target.checked : target.value
-    const name = target.name
-    this.setState({
-      [name]: value //เอาค่าในตัวแปร name
-    })
-    if (name.length > 0) this.setState({ invalid: false })
+		let { name } = this.state
+		console.log(e.target.value)
+		this.setState({ name: e.target.value })
+		// const target = e.target
+		// const value = target.type === 'checkbox' ? target.checked : target.value
+		// const name = target.name
+		// this.setState({
+		// 	[name]: value //เอาค่าในตัวแปร name
+		// })
+		if (name.length > 0) this.setState({ invalid: false })
 	}
-	
-  handleChange = selectedOption => {
-    this.setState({ choseweight: selectedOption })
-    // selectedOption can be null when the `x` (close) button is clicked
-    if (selectedOption) {
-      console.log(`Selected: ${selectedOption.label}`)
-    }
+	handleInputChangeTags(e) {
+		let { tags } = this.state
+		this.setState({ tags: e.target.value })
+		if (tags.length > 0) this.setState({ invalid: false })
+		console.log('tags', this.state, e.target.value)
+	}
+
+	handleChange = selectedOption => {
+		this.setState({ roles: selectedOption })
+		// selectedOption can be null when the `x` (close) button is clicked
+		if (selectedOption) {
+			console.log(`Selected: ${selectedOption.label}`)
+		}
 	}
 	setRoles = (index, data) => {
-    this.setState({ invalidpm: false })
-    let roles = this.state.roles.map(i => i)
-    roles[index] = data
-    this.setState(
-      {
-        roles
-      },
-      () => {
-        this.filterROLES()
-      }
-    )
+		this.setState({ invalidpm: false })
+		let roles = this.state.roles.map(i => i)
+		roles[index] = data
+		this.setState(
+			{
+				roles
+			},
+			() => {
+				this.filterROLES()
+			}
+		)
 	}
 	deleteRoles = index => {
-    let roles = this.state.roles.filter((pm, i) => {
-      return i !== index
-    })
-    this.setState({
-      roles
-    })
-  }
-  filterROLES = () => {
-    let roles = this.state.roles.map(i => i)
-    let filteredROLES = []
-    roles.forEach(pm => {
-      if (roles.value) {
-        let isDuplicate = false
-        filteredROLES.forEach(pm2 => {
-          if (pm.value === pm2.value) isDuplicate = true
-        })
-        if (!isDuplicate) filteredROLES.push(pm)
-      }
-    })
-    this.setState(
-      {
-        filteredROLES
-      },
-      () => {
-        // console.log('SELECTED PM FINAL', this.state.filteredPM)
-      }
-    )
+		let roles = this.state.roles.filter((pm, i) => {
+			return i !== index
+		})
+		this.setState({
+			roles
+		})
+	}
+	filterROLES = () => {
+		let roles = this.state.roles.map(i => i)
+		let filteredROLES = []
+		roles.forEach(pm => {
+			if (roles.value) {
+				let isDuplicate = false
+				filteredROLES.forEach(pm2 => {
+					if (pm.value === pm2.value) isDuplicate = true
+				})
+				if (!isDuplicate) filteredROLES.push(pm)
+			}
+		})
+		this.setState(
+			{
+				filteredROLES
+			},
+			() => {
+				// console.log('SELECTED PM FINAL', this.state.filteredPM)
+			}
+		)
 	}
 	clear() {
-    this.setState({ listroles: [], usersname: '',tags:'' })
-  }
-	
+		this.setState({ listroles: [], usersname: '', tags: '' })
+	}
+
+	async sendDataMember() {
+		try {
+			const data = {
+				name: this.state.name,
+				roles: this.state.roles.value,
+				tags: this.state.tags
+			}
+			await axios.put('http://dev.pirsquare.net:3013/traffic-api/users', data).then($res => {
+				console.log('send member', $res)
+			})
+		} catch (error) {
+			console.log('fail to send data add member')
+		}
+	}
+
 	componentDidMount() {
 		try {
 			axios.get(`http://dev.pirsquare.net:3013/traffic-api/roles`).then(res => {
@@ -128,64 +154,65 @@ class AddMember extends Component {
 					<ModalHeader toggle={onClose}>New Member</ModalHeader>
 					<ModalBody>
 						<Container>
-							<Row>
+							<Row className="btsave">
 								<Col>
 									Name
 									<Input
 										style={{ fontSize: '8px !important' }}
 										name="name"
 										style={{ backgroundColor: '#f1f1f1' }}
-										invalid={this.state.invalid}
+										// invalid={this.state.invalid}
 										placeholder="Type your name"
 										onChange={this.handleInputChange}
+										value={this.state.name}
 									/>
 									<FormFeedback tooltip>Can't send empty name!</FormFeedback>
 								</Col>
 							</Row>
 
-							<Row>
-								<Col>
-									Roles
-								</Col>
+							<Row className="btsave">
+								<Col>Roles</Col>
 							</Row>
 							{/* {this.state.roles.map((roles, index) => ( */}
-								<SelectRoles
-									// id={index} //start at 0
-									// roles={roles}
-									listroles={this.state.listroles}
-									setRoles={this.setRoles}
-									delete={this.deleteRoles}
-								/>
+							<Select
+								// ClassName="selectbox"
+								placeholder="Select role"
+								value={this.state.roles}
+								onChange={this.handleChange}
+								options={this.state.listroles}
+								// trimFilter
+							/>
 							{/* ))} */}
-							<Row>
-							<Col>
-								Tags
-								<Input
-									style={{ fontSize: '8px !important' }}
-									name="tags"
-									style={{ backgroundColor: '#f1f1f1' }}
-									invalid={this.state.invalid}
-									placeholder="Type your name"
-									onChange={this.handleInputChange}
-								/>
-								<FormFeedback tooltip>Can't send empty name!</FormFeedback>
-							</Col>
+							<Row className="btsave">
+								<Col>
+									Tags
+									<Input
+										style={{ fontSize: '8px !important' }}
+										name="tags"
+										style={{ backgroundColor: '#f1f1f1' }}
+										// invalid={this.state.invalid}
+										placeholder="Type your name"
+										onChange={this.handleInputChangeTags}
+										value={this.state.tags}
+									/>
+									<FormFeedback tooltip>Can't send empty name!</FormFeedback>
+								</Col>
 							</Row>
-							<Row>
+
+							<Row className="btsave">
 								<Col>
 									{/* <Link className="savelink" to={this.state.projectname  && this.state.filteredPM && `/project/${this.state.size}`}> */}
-									
-										<Button
-											color="5bc2e1"
-											size="lg"
-											block
-											onClick={() => {
-												this.sendData(), this.toggleSave()
-												// ,this.props.isSaved(true)
-											}}
-										>
-											Save
-										</Button>
+									<Button
+										color="5bc2e1"
+										size="lg"
+										block
+										onClick={() => {
+											this.sendDataMember(), this.toggleSave()
+											// ,this.props.isSaved(true)
+										}}
+									>
+										Save
+									</Button>
 									{/* </Link> */}
 								</Col>
 							</Row>

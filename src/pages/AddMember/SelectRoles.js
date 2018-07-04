@@ -27,9 +27,9 @@ class SelectRoles extends Component {
 			console.log(`Selected: ${selectedOption.label}`)
 			console.log('listroles -> ', this.state.listroles)
 		}
-		this.props.SetRoles(this.props.id, {
-			...selectedOption
-		})
+		// this.props.SetRoles(this.props.id, {
+		// 	...selectedOption
+		// })
   }
 
 
