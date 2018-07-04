@@ -211,7 +211,8 @@ class AddProject extends Component {
 
       console.log('send!')
     } else {
-      if (this.state.projectname) this.setState({ invalid: true })
+      console.log('projectname ->',this.state.projectname)
+      if (this.state.projectname.length === 0) this.setState({ invalid: true })
       if (this.state.filteredPM.length === 0) {
         this.setState({ isinvalidpm: true })
       }
@@ -225,18 +226,20 @@ class AddProject extends Component {
         )
         .then(res => {
           const { data } = res
-          let filteredPM = [];
-          let pm = [];
-          data.timeline.map((pm) => {
-            filteredPM.push(pm.users.id)
-            // pm.push({value:pm.users.id,label:pm.users.name})
-          })
+          // let filteredPM = [];
+          // let pm = [];
+          // data.timeline.map((pm) => {
+          //   filteredPM.push(pm.users.id)
+          //   pm.push({value:pm.users.id,label:pm.users.name})
+          // })
+          console.log('Received data', data)
           this.setState({
             projectname: data.project.name,
             choseweight: data.project.weight,
-            checkedcolor: this.state.color,
-            filteredPM
+            // filteredPM
           })
+          this.setCheckColor(data.project.color)
+          console.log('checked color', data.project.color)
         })
     }
     axios

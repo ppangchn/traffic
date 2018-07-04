@@ -1,5 +1,5 @@
-import React,{Component} from 'react'
-import {Check} from 'styled-icons/material/Check';
+import React, { Component } from 'react'
+import { Check } from 'styled-icons/material/Check'
 
 import './ColorButton.css'
 const Checkz = Check.extend`
@@ -9,23 +9,21 @@ const Checkz = Check.extend`
 
 //เรียก function ใน layout และส่งขึันไป
 class ColorButton extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {click : false}
-        
-    }
-   toggle() {
-        this.setState({click:!this.state.click})
-        console.log(this.state.click);
-    }
-    render() {
-        const { color, setCheckedColor, checkedColor } = this.props
-        return(
-            <div>
-             <div className="shape" onClick={() => {setCheckedColor(color),this.toggle()}} style={{backgroundColor: color}}>{!this.state.click || checkedColor == color && <Checkz />}</div>
-            </div>
-
-        );
-    }
+  render() {
+    const { color, setCheckedColor, checkedColor } = this.props
+    return (
+      <div>
+        <div
+          className="shape"
+          onClick={() => {
+            setCheckedColor(color)
+          }}
+          style={{ backgroundColor: color }}
+        >
+          {checkedColor == color && <Checkz />}
+        </div>
+      </div>
+    )
+  }
 }
-export default ColorButton;
+export default ColorButton

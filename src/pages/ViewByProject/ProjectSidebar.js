@@ -74,6 +74,7 @@ class ProjectSidebar extends Component {
                     className={'linkprojectname-' + project.color.substring(1)}
                     // style={{color: 'black'}}
                     to={`/project/${project.id}`}
+                    style={{textOverflow: 'ellipsis',overflow:'hidden'}}
                   >
                     {project.name}
                   </Link>

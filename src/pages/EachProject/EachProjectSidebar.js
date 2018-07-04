@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Sidebar from '../../components/Views/Sidebar'
 import axios from 'axios'
 import '../ViewByProject/ProjectSidebar.css'
-import { Progress, Button, Popover, PopoverBody } from 'reactstrap'
+import { Progress, Button, Popover, PopoverBody,Modal,ModalBody,ModalHeader,ModalFooter } from 'reactstrap'
 import {
   DropdownItem,
   DropdownToggle,
@@ -67,13 +67,15 @@ class EachProjectSidebar extends Component {
       projectmember: [],
       projectpm: [],
       popoverOpen: false,
-      modalOpen: false
+      modalOpen: false,
+      modalDeleteOpen: false
     }
     this.toggle = this.toggle.bind(this)
     this.togglePopOver = this.togglePopOver.bind(this)
     this.deleteProject = this.deleteProject.bind(this)
     this.deleteUser = this.deleteUser.bind(this)
     this.toggleModal = this.toggleModal.bind(this)
+    this.toggleModalDelete = this.toggleModalDelete.bind(this)
   }
   toggle() {
     this.setState({
@@ -89,6 +91,9 @@ class EachProjectSidebar extends Component {
     this.setState({
       modalOpen: state
     })
+  }
+  toggleModalDelete() {
+    this.setState({ modalDeleteOpen: !this.state.modalDeleteOpen })
   }
   handleChange = selectedOption => {
     // this.setState({ selectedmember: selectedOption })
@@ -129,28 +134,28 @@ class EachProjectSidebar extends Component {
     //     `http://dev.pirsquare.net:3013/traffic-api/project/${this.props.id}`
     //   )
   }
-  async getPm() {
-    await axios
-      .get(`http://dev.pirsquare.net:3013/traffic-api/Management`)
-      .then(res => {
-        const { data } = res
-        // console.log('Data Project', data)
-        let projectpm = []
-        data.map(user => {
-          projectpm.push({
-            name: user.users.name,
-            roles: user.users.roles.name,
-            tags: user.users.tags
-          })
-        })
-        this.setState({
-          projectpm
-        })
-      })
-  }
+  // async getPm() {
+  //   await axios
+  //     .get(`http://dev.pirsquare.net:3013/traffic-api/Management`)
+  //     .then(res => {
+  //       const { data } = res
+  //       // console.log('Data Project', data)
+  //       let projectpm = []
+  //       data.map(user => {
+  //         projectpm.push({
+  //           name: user.users.name,
+  //           roles: user.users.roles.name,
+  //           tags: user.users.tags
+  //         })
+  //       })
+  //       this.setState({
+  //         projectpm
+  //       })
+  //     })
+  // }
 
   async getData() {
-    await this.getPm()
+    // await this.getPm()
     await axios
       .get(`http://dev.pirsquare.net:3013/traffic-api/project/${this.props.id}`)
       .then(res => {
@@ -187,7 +192,7 @@ class EachProjectSidebar extends Component {
   }
   async componentDidMount() {
     // console.log('id', this.props.id)
-    await this.getPm()
+    // await this.getPm()
     await this.getData()
   }
   render() {
@@ -231,7 +236,7 @@ class EachProjectSidebar extends Component {
                   <div onClick={() => this.toggleModal(true)}>Edit Project</div>
                 </DropdownItem>
                 <DropdownItem
-                  onClick={this.deleteProject}
+                  onClick={this.toggleModalDelete}
                   className="dropdowndeleteitem"
                   style={{
                     color: '#f67879',
@@ -245,19 +250,21 @@ class EachProjectSidebar extends Component {
           </div>
 
           <div className="eachprojectname">
-            {project.name}
-            <div className="eachprojectweight">{project.weight}%</div>
+            <div style={{ textOverflow: 'ellipsis', overflow: 'hidden' }}>
+              {project.name}
+            </div>
+            <div className="eachprojectweight">{project.process}%</div>
           </div>
           <ProgressContainer>
             <Progress color={String(project.color).substring(1)} value="10" />
           </ProgressContainer>
         </div>
-        {this.state.projectpm.map(user => {
+        {/* {this.state.projectpm.map(user => {
           return (
             <div className="eachprojectitem">
               <div className="membername">
                 {user.name}
-                <DeleteUser id={user.id} />
+                <DeleteUser id={user.id} name={user.name}/>
               </div>
               <div style={{ display: 'flex', flexDirection: 'row' }}>
                 <div className="membertag">{user.roles}</div>
@@ -265,13 +272,13 @@ class EachProjectSidebar extends Component {
               </div>
             </div>
           )
-        })}
+        })} */}
         {timeline.map(timeline => {
           return (
             <div className="eachprojectitem">
               <div className="membername">
                 {timeline.users.name}
-                <DeleteUser id={timeline.users.id} />
+                <DeleteUser id={timeline.users.id} name={timeline.users.name} />
               </div>
               <div style={{ display: 'flex', flexDirection: 'row' }}>
                 <div className="membertag">{timeline.users.roles.name}</div>
@@ -323,6 +330,30 @@ class EachProjectSidebar extends Component {
             onClose={() => this.toggleModal(false)}
             id={this.props.id}
           />
+        )}
+        {this.state.modalDeleteOpen && (
+          <Modal
+            isOpen={this.state.modalDeleteOpen}
+            toggle={this.toggleModalDelete}
+            centered={true}
+            // className={this.props.className}
+          >
+            <ModalHeader toggle={this.toggleModalDelete} style={{ color: '#da3849' }}>
+              Confirm Delete
+            </ModalHeader>
+            <ModalBody style={{ display: 'flex' }}>
+              Are you sure you want to delete project
+              <div style={{ color: '#da3849' ,textOverflow: 'ellipsis', overflow: 'hidden' }}>&ensp;"{project.name}"</div>
+            </ModalBody>
+            <ModalFooter>
+              <Button color="secondary" onClick={this.toggleModalDelete}>
+                Cancel
+              </Button>
+              <Button color="danger" onClick={(this.toggleModalDelete,this.deleteProject)}>
+                Confirm
+              </Button>
+            </ModalFooter>
+          </Modal>
         )}
       </Sidebar>
     )
