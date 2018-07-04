@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import Sidebar from '../../components/Views/Sidebar'
 import { FolderOpen } from 'styled-icons/fa-regular/FolderOpen'
-import { Progress } from 'reactstrap'
+
 import axios from 'axios'
 import './ProjectSidebar.css'
 import { Link } from 'react-router-dom'
@@ -49,13 +49,11 @@ class ProjectSidebar extends Component {
 
   componentDidMount() {
     try {
-      axios
-        .get(`${url}project`)
-        .then(res => {
-          const { data } = res
-          console.log('Data Project', data)
-          this.setState({ projects: data })
-        })
+      axios.get(`${url}project`).then(res => {
+        const { data } = res
+        console.log('Data Project', data)
+        this.setState({ projects: data })
+      })
     } catch (error) {
       console.log('fail to get data at ProjectSidebar', error)
     }
@@ -85,14 +83,7 @@ class ProjectSidebar extends Component {
                     {project.name}
                   </Link>
                 </div>
-                <div className="progresscontainer">
-                  <Progress
-                    className="progress"
-                    color={project.color.substring(1)}
-                    value="10"
-                  />
-                  <Percent progress={project.process} />
-                </div>
+                <Percent project={project}/>
                 <div className="pmcontainer">
                   {project.projectManagement.map(pm => {
                     return (

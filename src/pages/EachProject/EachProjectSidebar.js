@@ -237,7 +237,7 @@ class EachProjectSidebar extends Component {
             <div className="eachprojectweight">{project.process}%</div>
           </div>
           <ProgressContainer>
-            <Progress color={String(project.color).substring(1)} value="10" />
+            <Progress color={String(project.color).substring(1)} value={project.process} />
           </ProgressContainer>
         </div>
         {timeline.map(timeline => {

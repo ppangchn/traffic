@@ -44,12 +44,7 @@ class AddMember extends Component {
 		let { name } = this.state
 		console.log(e.target.value)
 		this.setState({ name: e.target.value })
-		// const target = e.target
-		// const value = target.type === 'checkbox' ? target.checked : target.value
-		// const name = target.name
-		// this.setState({
-		// 	[name]: value //เอาค่าในตัวแปร name
-		// })
+	
 		if (name.length > 0) this.setState({ invalid: false })
 	}
 	handleInputChangeTags(e) {
