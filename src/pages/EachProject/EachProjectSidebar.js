@@ -346,7 +346,7 @@ class EachProjectSidebar extends Component {
               <div style={{ color: '#da3849' ,textOverflow: 'ellipsis', overflow: 'hidden' }}>&ensp;"{project.name}"</div>
             </ModalBody>
             <ModalFooter>
-              <Button color="secondary" onClick={this.toggleModalDelete}>
+              <Button color="grey" onClick={this.toggleModalDelete}>
                 Cancel
               </Button>
               <Button color="danger" onClick={(this.toggleModalDelete,this.deleteProject)}>

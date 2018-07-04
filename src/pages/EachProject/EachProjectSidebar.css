@@ -1,10 +1,42 @@
-/* .btn-secondary {
+
+.bottomtriangle {
+  position: absolute;
+  z-index: 1;
+  left: 4rem;
+  bottom: 76px;
+  font-size: 20px;
+  color: white;
+}
+.btn-secondary {
   background-color: white !important;
   border: none !important;
-} */
+  float: right;
+}
 
 .btn-secondary:focus {
   box-shadow: none !important;
+}
+.btn-grey {
+  background-color: #8c8c8c !important;
+  color: white;
+}
+.btn-5bc2e1 {
+  background-color: #5bc2e1;
+  color: white;
+}
+.btn-white {
+  background-color: white;
+  color: #8c8c8c;
+}
+.btn-red {
+  background-color: #da3849;
+  color: white;
+}
+.error {
+  color: #da3849;
+}
+.progress {
+  border-radius: 8px;
 }
 .dropdown-menu {
   font-size: 0.8rem !important;
@@ -230,30 +262,3 @@
   }
 }
 
-.bottomtriangle {
-  position: absolute;
-  z-index: 1;
-  left: 4rem;
-  bottom: 76px;
-  font-size: 20px;
-  color: white;
-}
-
-.btn-5bc2e1 {
-  background-color: #5bc2e1;
-  color: white;
-}
-.btn-white {
-  background-color: white;
-  color: #8c8c8c;
-}
-.btn-red {
-  background-color: #da3849;
-  color: white;
-}
-.error {
-  color: #da3849;
-}
-.progress {
-  border-radius: 8px;
-}
