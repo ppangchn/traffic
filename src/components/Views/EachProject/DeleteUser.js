@@ -10,6 +10,8 @@ import {
   ModalBody,
   ModalFooter
 } from 'reactstrap'
+import url from '../../../url'
+
 const Exit = X.extend`
   color: #a0a0a0;
   width: 1rem;
@@ -22,26 +24,24 @@ class DeleteUser extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      popoverOpen: false,
       modalOpen: false
     }
-    this.toggle = this.toggle.bind(this)
     this.toggleModal = this.toggleModal.bind(this)
     this.deleteUser = this.deleteUser.bind(this)
-  }
-  toggle() {
-    this.setState({
-      popoverOpen: !this.state.popoverOpen
-    })
   }
   toggleModal() {
     this.setState({ modalOpen: !this.state.modalOpen })
   }
-  deleteUser() {
-    axios
-      .delete(
-        `http://dev.pirsquare.net:3013/traffic-api/project/${this.props.id}`
-      )
+  async deleteUser() {
+    try {
+      this.setState({ modalOpen: !this.state.modalOpen })
+      await axios
+        .delete(`${url}timeline/${this.props.id}`)
+        .then(console.log('delete success!'))
+      this.props.getData()
+    } catch (error) {
+      console.log('cant delete user at DeleteUser', error)
+    }
   }
   render() {
     return (
@@ -60,10 +60,10 @@ class DeleteUser extends Component {
             <div style={{ color: '#da3849' }}>&ensp;"{this.props.name}"</div>
           </ModalBody>
           <ModalFooter>
-            <Button color="secondary" onClick={this.toggleModal}>
+            <Button color="grey" onClick={this.toggleModal}>
               Cancel
             </Button>
-            <Button color="danger" onClick={(this.toggleModal,this.deleteUser)}>
+            <Button color="danger" onClick={this.deleteUser}>
               Confirm
             </Button>
           </ModalFooter>

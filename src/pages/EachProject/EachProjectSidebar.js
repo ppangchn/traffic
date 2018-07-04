@@ -26,8 +26,10 @@ import { Link } from 'react-router-dom'
 import Select from 'react-select'
 import { Search as SearchIcon } from 'styled-icons/fa-solid/Search'
 import AddProject from '../AddProject/AddProject'
-
+import url from '../../url'
 import DeleteUser from '../../components/Views/EachProject/DeleteUser'
+import EachProjectTimeline from './EachProjectTimeline'
+
 const Head = styled.div`
     padding-top : 10px
     font-size : 20px
@@ -77,13 +79,15 @@ class EachProjectSidebar extends Component {
       projectpm: [],
       popoverOpen: false,
       modalOpen: false,
-      modalDeleteOpen: false
+      modalDeleteOpen: false,
+      updateTimeline: false
     }
     this.toggle = this.toggle.bind(this)
     this.togglePopOver = this.togglePopOver.bind(this)
     this.deleteProject = this.deleteProject.bind(this)
     this.toggleModal = this.toggleModal.bind(this)
     this.toggleModalDelete = this.toggleModalDelete.bind(this)
+    this.getData = this.getData.bind(this);
   }
   toggle() {
     this.setState({
@@ -112,69 +116,58 @@ class EachProjectSidebar extends Component {
   }
   deleteProject() {
     try {
-      axios
-        .delete(
-          `http://dev.pirsquare.net:3013/traffic-api/project/${this.props.id}`
-        )
-        .then(res => {
-          window.history.back()
-        })
+      axios.delete(`${url}project/${this.props.id}`).then(res => {
+        window.history.back()
+      })
     } catch (error) {
       console.log('fail to delete project at EachProjectSidebar', error)
     }
   }
-  sendMember(member) {
+  async sendMember(member) {
     try {
       const data = {
         project: parseInt(this.props.id),
         users: member.value
       }
-      axios
-        .put('http://dev.pirsquare.net:3013/traffic-api/timeline', data)
-        .then(this.getData())
-        .catch(function(error) {
-          console.log(error)
-        })
-      console.log('send!')
+      await axios.put(`${url}timeline`, data)
+      await this.getData()
+      await this.setUpdateTimeline(true);
+      console.log('send member!')
     } catch (error) {
       console.log('fail to send member at EachProjectSidebar')
     }
   }
 
-  getData() {
-    axios
-      .get(`http://dev.pirsquare.net:3013/traffic-api/project/${this.props.id}`)
-      .then(res => {
-        const { data } = res
-        // console.log('Data Project', data)
-        let projectmember = []
-        data.timeline.map(timeline => {
-          projectmember.push(timeline.users.id)
-        })
-        // console.log(projectmember)
-        this.setState({
-          timeline: data.timeline,
-          project: data.project,
-          projectmember: projectmember
-        })
+  async getData() {
+    await axios.get(`${url}project/${this.props.id}`).then(res => {
+      const { data } = res
+      // console.log('Data Project', data)
+      let projectmember = []
+      data.timeline.map(timeline => {
+        projectmember.push(timeline.users.id)
       })
-    axios
-      .get(`http://dev.pirsquare.net:3013/traffic-api/users/pd`)
-      .then(res => {
-        const { data } = res
-        // console.log('Data allmember', data)
-        let allmember = []
-        // console.log(this.state.projectmember)
-        data.map(user => {
-          let { projectmember } = this.state
-          // console.log('projectmember', projectmember)
-          if (projectmember.indexOf(user.id) === -1) {
-            allmember.push({ value: user.id, label: user.name })
-          }
-        })
-        // console.log('allmember -> ', allmember)
-        this.setState({ allmember })
+      // console.log(projectmember)
+      this.setState({
+        timeline: data.timeline,
+        project: data.project,
+        projectmember: projectmember
       })
+    })
+    await axios.get(`${url}users/pd`).then(res => {
+      const { data } = res
+      // console.log('Data allmember', data)
+      let allmember = []
+      // console.log(this.state.projectmember)
+      data.map(user => {
+        let { projectmember } = this.state
+        // console.log('projectmember', projectmember)
+        if (projectmember.indexOf(user.id) === -1) {
+          allmember.push({ value: user.id, label: user.name })
+        }
+      })
+      // console.log('allmember -> ', allmember)
+      this.setState({ allmember })
+    })
   }
   componentDidMount() {
     try {
@@ -247,26 +240,18 @@ class EachProjectSidebar extends Component {
             <Progress color={String(project.color).substring(1)} value="10" />
           </ProgressContainer>
         </div>
-        {/* {this.state.projectpm.map(user => {
-          return (
-            <div className="eachprojectitem">
-              <div className="membername">
-                {user.name}
-                <DeleteUser id={user.id} name={user.name}/>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'row' }}>
-                <div className="membertag">{user.roles}</div>
-                <div className="membertag">{user.tags}</div>
-              </div>
-            </div>
-          )
-        })} */}
         {timeline.map(timeline => {
           return (
-            <div className="eachprojectitem">
+            <div 
+            id={timeline.id}
+            className="eachprojectitem">
               <div className="membername">
                 {timeline.users.name}
-                <DeleteUser id={timeline.users.id} name={timeline.users.name} />
+                <DeleteUser
+                  id={timeline.id}
+                  name={timeline.users.name}
+                  getData={() => this.getData()}
+                />
               </div>
               <div style={{ display: 'flex', flexDirection: 'row' }}>
                 <div className="membertag">{timeline.users.roles.name}</div>
@@ -307,11 +292,14 @@ class EachProjectSidebar extends Component {
           >
             + Add member
           </Button>
-          <Link to="/project" style={{ textDecoration: 'none' }}>
-            <Button color="danger" block>
-              back
-            </Button>
-          </Link>
+
+          <div className="cancelbutton">
+            <Link to="/project" style={{ textDecoration: 'none' }}>
+              <Button color="danger" block>
+                back
+              </Button>
+            </Link>
+          </div>
         </div>
         {this.state.modalOpen && (
           <AddProject

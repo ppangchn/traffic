@@ -7,6 +7,7 @@ import moment from 'moment'
 // import { defaultSubHeaderLabelFormats } from '../../components/react-calendar-timeline/lib'
 import '../ViewByProject/ProjectSidebar.css'
 import GraphBox from '../../components/Views/GraphBox'
+import url from '../../url'
 // const testgroups = [{ id: 10, title: 'group 1' }, { id: 20, title: 'group 2' }]
 
 // const testitems = [
@@ -60,7 +61,7 @@ class ProjectTimeline extends Component {
       let items = this.state.items.map(i => i)
       let groups = this.state.groups.map(i => i)
       axios
-        .get(`http://dev.pirsquare.net:3013/traffic-api/project/timeline`)
+        .get(`${url}project/timeline`)
         .then(res => {
           const { data } = res // = res.data
           let count = 1
@@ -105,7 +106,6 @@ class ProjectTimeline extends Component {
           minZoom={2592000000} //4 month
           maxZoom={9676800000}
           timeSteps={{ day: 7 }}
-
           // onZoom
           // timeSteps={moment().startOf('iosWeek')}
           // subHeaderLabelFormats={defaultSubHeaderLabelFormats}
