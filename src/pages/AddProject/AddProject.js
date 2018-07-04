@@ -1,13 +1,6 @@
 import React, { Component } from 'react'
 import { Container, Row, Col } from 'reactstrap'
-import {
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  Input,
-  FormFeedback
-} from 'reactstrap'
+import { Button, Modal, ModalHeader, ModalBody, Input, FormFeedback } from 'reactstrap'
 import ColorButton from '../../components/AddProject/ColorButton'
 import './AddProject.css'
 import SelectPm from '../../components/AddProject/SelectPm'
@@ -186,9 +179,9 @@ class AddProject extends Component {
               weight: data.weight
             }
 
-            if (!!data.id) {
-              pm.id = data.id
-            }
+						if (!!data.id) {
+							pm.id = data.id
+						}
 
             return pm
           }),

@@ -44,8 +44,12 @@ class Setting extends Component {
 		this.state = {
 			activeTab: '0',
 			users: [],
-			toggleAddModal: false
+			toggleAddModal: false,
+			add: <IconAdd />
 		}
+		this.toggle = this.toggle.bind(this)
+		this.handleInputChange = this.handleInputChange.bind(this)
+		this.handleChange = this.handleChange.bind(this)
 	}
 
 	toggle = tab => {
@@ -70,6 +74,28 @@ class Setting extends Component {
 		this.setState({ open: !this.state.open })
 	}
 
+	toggleSave() {
+		if (this.state.projectname && this.state.filteredPM.length !== 0) this.setState({ open: !this.state.open })
+	}
+
+	handleInputChange(e) {
+		const target = e.target
+		const value = target.type === 'checkbox' ? target.checked : target.value
+		const name = target.name
+		this.setState({
+			[name]: value //เอาค่าในตัวแปร name
+		})
+		if (name.length > 0) this.setState({ invalid: false })
+	}
+
+	handleChange = selectedOption => {
+		this.setState({ choseweight: selectedOption })
+		// selectedOption can be null when the `x` (close) button is clicked
+		if (selectedOption) {
+			console.log(`Selected: ${selectedOption.label}`)
+		}
+	}
+
 	fetchData = url => {
 		axios.get(url).then(res => {
 			const { data } = res
@@ -84,13 +110,25 @@ class Setting extends Component {
 	}
 
 	toggleAddModal = state => {
-    this.setState({
-      toggleAddModal: state
-      // saved: state
-    })
-  }
+		this.setState({
+			toggleAddModal: state
+			// saved: state
+		})
+	}
+
+	clear() {
+		let def = this.state.icondefault
+		this.setState({
+			folder: def.folder,
+			person: def.person,
+			setting: def.setting,
+			list: def.list,
+			add: def.add
+		})
+	}
+
 	render() {
-		const { onClose } = this.props
+		const { toggleAddModal } = this.state
 		return (
 			<Container className="mt-5">
 				<Row>
@@ -140,8 +178,9 @@ class Setting extends Component {
 											<CardBody className="add">
 												<div>
 													<center>
-														<IconAdd />
-														{/* {toggleAddModal && <AddMember onClose={() => this.toggleAddModal(false)} />} */}
+														{/* <IconAdd /> */}
+
+														<NavLink onClick={e => this.toggleAddModal(true)}>{this.state.add}</NavLink>
 													</center>
 												</div>
 											</CardBody>
@@ -162,7 +201,8 @@ class Setting extends Component {
 											<CardBody className="add">
 												<div>
 													<center>
-														<IconAdd />
+														{/* <IconAdd /> */}
+														<NavLink onClick={e => this.toggleAddModal(true)}>{this.state.add}</NavLink>
 													</center>
 												</div>
 											</CardBody>
@@ -182,7 +222,8 @@ class Setting extends Component {
 											<CardBody className="add">
 												<div>
 													<center>
-														<IconAdd />
+														{/* <IconAdd /> */}
+														<NavLink onClick={e => this.toggleAddModal(true)}>{this.state.add}</NavLink>
 													</center>
 												</div>
 											</CardBody>
@@ -196,6 +237,8 @@ class Setting extends Component {
 						</TabContent>
 					</Col>
 				</Row>
+
+				{toggleAddModal && <AddMember onClose={() => this.toggleAddModal(false)} />}
 			</Container>
 		)
 	}
