@@ -1,0 +1,157 @@
+.selectbox {
+  border: 1px solid #55bbcc;
+}
+.weightpm {
+  border: 1px solid #a0a0a0;
+  color: #a0a0a0;
+  text-align: center;
+}
+
+@media (max-width: 320px) {
+  .weightpm {
+    font-size: 12px;
+    margin-top: 13px;
+    width: 3.125rem;
+    border-radius: 5px;
+    margin-left: 13px;
+  }
+  .deletebox {
+    margin-top: 15px;
+    left: 11px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .Select-placeholder {
+    font-size: 13px;
+  }
+  .selectpmbox {
+    margin-bottom: 5px;
+  }
+  .Select-control {
+    width: 0;
+  }
+  .sliderboxpm {
+    padding-right: 0 !important;
+    margin-top: 15px;
+    left: 4px;
+  }
+}
+@media (min-width: 321px) and (max-width: 575.98px) {
+  .weightpm {
+    font-size: 12px;
+    margin-top: 6px;
+    width: 3.125rem;
+    border-radius: 5px;
+    margin-left: 15px;
+  }
+  .deletebox {
+    margin-top: 7px;
+    padding-right: 0 !important;
+  }
+  .Select-placeholder {
+    font-size: 10px;
+  }
+  .selectpmbox {
+    margin-bottom: 5px;
+  }
+  .sliderboxpm {
+    margin-top: 10px;
+    left: 6px;
+  }
+}
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .weightpm {
+    font-size: 12px;
+    margin-top: 6px;
+    width: 3.125rem;
+    border-radius: 5px;
+    margin-left: 15px;
+  }
+  .deletebox {
+    margin-left: 23px;
+    margin-top: 4px;
+  }
+  .Select-placeholder {
+    font-size: 12px;
+  }
+  .selectpmbox {
+    margin-bottom: 5px;
+  }
+  .sliderboxpm {
+    margin-top: 10px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .weightpm {
+    font-size: 12px;
+    margin-top: 9px;
+    width: 3.125rem;
+    border-radius: 5px;
+    margin-left: 15px;
+  }
+  .deletebox {
+    margin-left: 23px;
+    margin-top: 7px;
+  }
+  .Select-placeholder {
+    font-size: 15px;
+  }
+  .selectpmbox {
+    margin-bottom: 5px;
+  }
+  .sliderboxpm {
+    margin-top: 12px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .weightpm {
+    font-size: 12px;
+    margin-top: 9px;
+    width: 3.125rem;
+    border-radius: 5px;
+    margin-left: 15px;
+  }
+  .deletebox {
+    margin-left: 23px;
+    margin-top: 7px;
+  }
+  .Select-placeholder {
+    font-size: 15px;
+  }
+  .selectpmbox {
+    margin-bottom: 5px;
+  }
+  .sliderboxpm {
+    margin-top: 12px;
+  }
+}
+@media (min-width: 1200px) {
+  .weightpm {
+    font-size: 12px;
+    margin-top: 3px;
+    width: 3.125rem;
+    border-radius: 5px;
+    margin-left: 15px;
+  }
+  .deletebox {
+    margin-left: 23px;
+    margin-top: 8px;
+  }
+  .Select-placeholder {
+    font-size: 15px;
+  }
+  .selectpmbox {
+    margin-bottom: 5px;
+  }
+  .sliderboxpm {
+    margin-top: 12px;
+    margin-left: 10px;
+
+  }
+  .weightpm {
+    top: 5px;
+    position: relative
+  }
+}
