@@ -28,6 +28,7 @@ import { MoreHoriz } from 'styled-icons/material/MoreHoriz'
 import { Link } from 'react-router-dom'
 import UserSettings from '../../components/UserSettings/UserSettings'
 import AddMember from '../AddMember/AddMember'
+import url from '../../url'
 
 const IconAdd = PersonAdd.extend`
 	width: 100px;
@@ -54,13 +55,13 @@ class Setting extends Component {
 			})
 			switch (tab) {
 				case '1':
-					return this.fetchData('http://dev.pirsquare.net:3013/traffic-api/users')
+					return this.fetchData(`${url}users`)
 				case '2':
-					return this.fetchData('http://dev.pirsquare.net:3013/traffic-api/users/pm')
+					return this.fetchData(`${url}users/pm`)
 				case '3':
-					return this.fetchData('http://dev.pirsquare.net:3013/traffic-api/users/pd')
+					return this.fetchData(`${url}users/pd`)
 				default:
-					return this.fetchData('http://dev.pirsquare.net:3013/traffic-api/users')
+					return this.fetchData(`${url}users`)
 			}
 		}
 	}

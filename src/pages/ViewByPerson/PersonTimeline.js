@@ -5,6 +5,7 @@ import Timeline from '../../components/Views/react-calendar-timeline/lib'
 import moment from 'moment'
 import '../ViewByProject/ProjectSidebar.css'
 import GraphBox from '../../components/Views/GraphBox'
+import url from '../../url'
 import '../../components/Views/TimelineStyle.css'
 // const testgroups = [{ id: 10, title: 'group 1' }, { id: 20, title: 'group 2' }]
 
@@ -58,7 +59,7 @@ class PersonTimeline extends Component {
     try {
       let items = this.state.items.map(i => i)
       let groups = this.state.groups.map(i => i)
-      axios.get(`http://dev.pirsquare.net:3013/traffic-api/users`).then(res => {
+      axios.get(`${url}users`).then(res => {
         const { data } = res // = res.data
         // console.log('Data Timeline', data)
         let count = 1

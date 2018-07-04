@@ -6,7 +6,7 @@ import { Progress } from 'reactstrap'
 import axios from 'axios'
 import './ProjectSidebar.css'
 import { Link } from 'react-router-dom'
-
+import url from '../../url'
 import Percent from '../../components/Views/ViewByProject/Percent'
 
 const Item = styled.div`
@@ -50,7 +50,7 @@ class ProjectSidebar extends Component {
   componentDidMount() {
     try {
       axios
-        .get(`http://dev.pirsquare.net:3013/traffic-api/project`)
+        .get(`${url}project`)
         .then(res => {
           const { data } = res
           console.log('Data Project', data)

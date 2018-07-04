@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import Sidebar from '../../components/Views/Sidebar'
 import axios from 'axios'
+import url from '../../url'
 import './PersonSidebar.css'
 const Item = styled.div`
   background-color: #ffffff;
@@ -34,7 +35,7 @@ class PersonSidebar extends Component {
     this.state = { users: [] }
   }
   componentDidMount() {
-    axios.get(`http://dev.pirsquare.net:3013/traffic-api/users`).then(res => {
+    axios.get(`${url}users`).then(res => {
       const { data } = res
       console.log('Data Project', data)
       this.setState({ users: data })

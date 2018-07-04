@@ -17,6 +17,7 @@ import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css'
 import './AddProject.css'
 import { withRouter } from 'react-router-dom'
+import url from '../../url'
 
 class AddProject extends Component {
   constructor(props) {
@@ -201,7 +202,7 @@ class AddProject extends Component {
           weight: this.state.choseweight
         }
         axios
-          .put('http://dev.pirsquare.net:3013/traffic-api/project', data)
+          .put(`${url}project`, data)
           .then(response => {
             const newUser = response.data
             this.props.onClose()
@@ -229,7 +230,7 @@ class AddProject extends Component {
       if (this.props.id) {
         axios
           .get(
-            `http://dev.pirsquare.net:3013/traffic-api/project/${this.props.id}`
+            `${url}project/${this.props.id}`
           )
           .then(res => {
             const { data } = res
@@ -267,7 +268,7 @@ class AddProject extends Component {
         })
       }
       axios
-        .get(`http://dev.pirsquare.net:3013/traffic-api/users/pm`)
+        .get(`${url}users/pm`)
         .then(res => {
           const { data } = res
           console.log('Data', data)
