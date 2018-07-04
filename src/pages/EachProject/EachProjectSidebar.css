@@ -1,10 +1,42 @@
+
+.bottomtriangle {
+  position: absolute;
+  z-index: 1;
+  left: 4rem;
+  bottom: 76px;
+  font-size: 20px;
+  color: white;
+}
 .btn-secondary {
   background-color: white !important;
   border: none !important;
+  float: right;
 }
 
 .btn-secondary:focus {
   box-shadow: none !important;
+}
+.btn-grey {
+  background-color: #8c8c8c !important;
+  color: white;
+}
+.btn-5bc2e1 {
+  background-color: #5bc2e1;
+  color: white;
+}
+.btn-white {
+  background-color: white;
+  color: #8c8c8c;
+}
+.btn-red {
+  background-color: #da3849;
+  color: white;
+}
+.error {
+  color: #da3849;
+}
+.progress {
+  border-radius: 8px;
 }
 .dropdown-menu {
   font-size: 0.8rem !important;
@@ -26,6 +58,9 @@
   background-color: white !important;
   color: '#f67879' !important;
 }
+/* .Select-control {
+  border-color: black !important;
+} */
 
 /* Small devices (landscape phones, 576px and up)
 @media (max-width: 575.98px) { font-size: 10px }
@@ -180,7 +215,7 @@
 @media (min-width: 1200px) {
   .eachprojectname {
     margin-left: 15px;
-    padding-top: 15px;
+    padding-top: 24px;
     margin-bottom: 5px;
     font-size: 30px;
   }
@@ -191,7 +226,7 @@
   .eachprojectitem {
     padding-left: 20px;
     border-bottom: 0.5px solid #dfdfdf;
-    padding-bottom: 38.5px;
+    padding-bottom: 48px;
   }
   .membername {
     padding-top: 15px;
@@ -208,32 +243,22 @@
   .error {
     font-size: 14px;
   }
+  .buttoncontainer {
+    margin: 15px 5px 300px 5px;
+  }
+  .addmemberpopover {
+    width: 250px;
+    height: 260px;
+  }
+  .eachprojectweight {
+    font-size: 22px;
+    position: relative;
+    left: 38px;
+  }
+  .eachprojectedit {
+    bottom: 10px;
+    left: 5px;
+    position: relative;
+  }
 }
 
-.bottomtriangle {
-  position: absolute;
-  z-index: 1;
-  left: 4rem;
-  bottom: 76px;
-  font-size: 20px;
-  color: white;
-}
-
-.btn-5bc2e1 {
-  background-color: #5bc2e1;
-  color: white;
-}
-.btn-white {
-  background-color: white;
-  color: #8c8c8c;
-}
-.btn-red {
-  background-color: #da3849;
-  color: white;
-}
-.buttoncontainer {
-  margin: 15px 5px 0 5px;
-}
-.error {
-  color: #da3849;
-}

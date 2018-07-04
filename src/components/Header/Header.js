@@ -147,7 +147,6 @@ class Header extends Component {
         add: <AddReg />
       },
       toggleAddModal: false
-      // saved: true
     }
   }
   changeFolderIcon() {
@@ -198,7 +197,7 @@ class Header extends Component {
       this.setState({ list: <ListAltSolidz /> })
   }
   render() {
-    const { toggleAddModal, saved } = this.state
+    const { toggleAddModal} = this.state
     return (
       <Container>
         <Navbar>

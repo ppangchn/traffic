@@ -16,7 +16,7 @@ import axios from 'axios'
 import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css'
 import './AddProject.css'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 class AddProject extends Component {
   constructor(props) {
@@ -59,13 +59,7 @@ class AddProject extends Component {
       ],
       projectname: '',
       checkedcolor: '',
-      pm: [
-        {
-          value: null,
-          label: '',
-          weight: 0
-        }
-      ],
+      pm: [],
       filteredPM: [],
       weights: [
         { value: 0, label: '0 point' },
@@ -76,21 +70,20 @@ class AddProject extends Component {
       ],
       choseweight: 0,
       invalid: false,
-      listmember: [],
-      member: [],
-      size: 1
+      invalidpm: 'Please select at least one pm.',
+      isinvalidpm: false
     }
     this.toggle = this.toggle.bind(this)
     this.toggledrop = this.toggledrop.bind(this)
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    this.handleSelectChangeMember = this.handleSelectChangeMember.bind(this)
   }
   toggle() {
     this.setState({ open: !this.state.open })
   }
   toggleSave() {
-    if (this.state.projectname) this.setState({ open: !this.state.open })
+    if (this.state.projectname && this.state.filteredPM.length !== 0)
+      this.setState({ open: !this.state.open })
   }
   toggledrop() {
     this.setState({
@@ -119,6 +112,7 @@ class AddProject extends Component {
     }
   }
   setPm = (index, data) => {
+    this.setState({ invalidpm: false })
     let pm = this.state.pm.map(i => i)
     pm[index] = data
     this.setState(
@@ -155,17 +149,9 @@ class AddProject extends Component {
         filteredPM
       },
       () => {
-        console.log('SELECTED PM FINAL', this.state.filteredPM)
+        // console.log('SELECTED PM FINAL', this.state.filteredPM)
       }
     )
-  }
-  handleSelectChangeMember(value) {
-    const member = value.split(',').map(e => {
-      return parseInt(e)
-    })
-    console.log("You've selected:", member)
-    this.setState({ member })
-    // console.log(this.state.pm);
   }
   clear() {
     this.setState({ listpm: [], projectname: '', color: '', invalidpm: '' })
@@ -184,68 +170,116 @@ class AddProject extends Component {
       choseweight: value
     })
   }
-  async sendData() {
-    if (this.state.projectname && this.state.filteredPM.length !== 0) {
-      let data = {
-        name: this.state.projectname,
-        color: this.state.checkedcolor,
-        projectManagement: this.state.filteredPM.map(data => {
-          return {
-            users: {
-              id: data.value
-            },
-            weight: data.weight
-          }
-        }),
-        weight: this.state.choseweight,
-        member: this.state.memeber
+  sendData = async () => {
+    try {
+      if (this.state.projectname && this.state.filteredPM.length !== 0) {
+        let data = {
+          name: this.state.projectname,
+          color: this.state.checkedcolor,
+          projectManagement: this.state.filteredPM.map(data => {
+            let pm = {
+              users: {
+                id: data.value
+              },
+              weight: data.weight
+            }
+
+            if (!!data.id) {
+              pm.id = data.id
+            }
+
+            return pm
+          }),
+          projectTimeline: this.state.filteredPM.map(data => {
+            return {
+              users: {
+                id: data.value
+              }
+            }
+          }),
+          weight: this.state.choseweight
+        }
+        axios
+          .put('http://dev.pirsquare.net:3013/traffic-api/project', data)
+          .then(response => {
+            const newUser = response.data
+            this.props.onClose()
+            this.props.history.push(`/project/${newUser.id}`)
+          })
+          .catch(function(error) {
+            console.log(error)
+          })
+
+        console.log('send!')
+      } else {
+        console.log('projectname ->', this.state.projectname)
+        if (this.state.projectname.length === 0)
+          this.setState({ invalid: true })
+        if (this.state.filteredPM.length === 0) {
+          this.setState({ isinvalidpm: true })
+        }
       }
-      await axios
-        .put('http://dev.pirsquare.net:3013/traffic-api/project', data)
-        .then(function(response) {
-          const newUser = response.data
-          this.props.history.push(`/project/${newUser.id}`)
-          console.log(response)
-        })
-        .catch(function(error) {
-          console.log(error)
-        })
-      console.log('send!')
-    } else {
-      if (this.state.projectname.length === 0) this.setState({ invalid: true })
-      if (this.state.filteredPM.length === 0) {
-        this.setState({ invalidpm: 'Please select at least one pm.' })
-      }
+    } catch (error) {
+      console('error addproject', error)
     }
   }
   componentDidMount() {
-    const listmember = this.state.listmember.map(i => i)
-    axios
-      .get(`http://dev.pirsquare.net:3013/traffic-api/users/pd`)
-      .then(res => {
-        const { data } = res
-        console.log('Data', data)
-        data.map(data => listmember.push({ value: data.id, label: data.name }))
-        this.setState({ listmember })
-      })
-
-    axios
-      .get(`http://dev.pirsquare.net:3013/traffic-api/users/pm`)
-      .then(res => {
-        const { data } = res
-        console.log('Data', data)
-        let listpm = []
-        data.map(data => {
-          // if (this.props.pm.indexOf(data.name)===-1)
-          listpm.push({ value: data.id, label: data.name })
+    try {
+      if (this.props.id) {
+        axios
+          .get(
+            `http://dev.pirsquare.net:3013/traffic-api/project/${this.props.id}`
+          )
+          .then(res => {
+            const { data } = res
+            // let filteredPM = [];
+            // let pm = [];
+            // data.timeline.map((pm) => {
+            //   // filteredPM.push(pm.users.id)
+            //   pm.push({value:pm.users.id,label:pm.users.name,weight:})
+            // })
+            // console.log('Received data', data)
+            const pm = data.project.projectManagement.map(pm => ({
+              value: pm.users.id,
+              label: pm.users.name,
+              weight: pm.weight,
+              id: pm.id
+            }))
+            this.setState({
+              projectname: data.project.name,
+              choseweight: data.project.weight,
+              pm
+            })
+            this.setCheckColor(data.project.color)
+          })
+      } else {
+        this.setState({
+          pm: [
+            {
+              value: null,
+              label: '',
+              weight: 0
+            }
+          ]
         })
-        this.setState({ listpm })
-      })
-    axios.get(`http://dev.pirsquare.net:3013/traffic-api/project`).then(res => {
-      const { data } = res
-      console.log('Data', data)
-      this.setState({ size: data[data.length - 1].id + 1 })
-    })
+      }
+      axios
+        .get(`http://dev.pirsquare.net:3013/traffic-api/users/pm`)
+        .then(res => {
+          const { data } = res
+          console.log('Data', data)
+          let listpm = []
+          data.map(data => {
+            // if (this.props.pm.indexOf(data.name)===-1)
+            listpm.push({ value: data.id, label: data.name })
+          })
+          this.setState({
+            listpm
+          })
+        })
+    } catch (error) {
+      console.log('fail to get data at AddProject', error)
+    }
   }
   render() {
     const { onClose } = this.props
@@ -266,11 +300,12 @@ class AddProject extends Component {
                 <Col className="projectnamebox">
                   Project name
                   <Input
-                  className="fontinput"
+                    className="fontinput"
                     name="projectname"
                     invalid={this.state.invalid}
                     placeholder="Type your project name"
                     onChange={this.handleInputChange}
+                    value={this.state.projectname}
                   />
                   <FormFeedback tooltip>Can't send empty name!</FormFeedback>
                 </Col>
@@ -288,7 +323,9 @@ class AddProject extends Component {
                   </div>
                 </Col>
                 <Col xs="2" className="weightbox">
-                  <div className="weight">{this.state.choseweight} %</div>
+                  <div className="weightproject">
+                    {this.state.choseweight} %
+                  </div>
                 </Col>
               </Row>
               <Row>
@@ -319,6 +356,7 @@ class AddProject extends Component {
               {this.state.pm.map((pm, index) => (
                 <SelectPm
                   id={index} //start at 0
+                  pm={pm}
                   listpm={this.state.listpm}
                   setPm={this.setPm}
                   delete={this.deletePm}
@@ -332,7 +370,7 @@ class AddProject extends Component {
                     marginBottom: '10px'
                   }}
                 >
-                  {this.state.invalidpm}
+                  {this.state.isinvalidpm && this.state.invalidpm}
                 </Col>
               </Row>
               <Row>
@@ -349,26 +387,16 @@ class AddProject extends Component {
               </Row>
               <Row>
                 <Col>
-                  <Link
-                    className="savelink"
-                    to={
-                      this.state.projectname &&
-                      this.state.filteredPM &&
-                      `/project/${this.state.size}`
-                    }
+                  <Button
+                    color="5bc2e1"
+                    size="lg"
+                    block
+                    onClick={() => {
+                      this.sendData(), this.toggleSave()
+                    }}
                   >
-                      <Button
-                      color='5bc2e1'
-                        size="lg"
-                        block
-                        onClick={() => {
-                          this.sendData(), this.toggleSave()
-                          // ,this.props.isSaved(true)
-                        }}
-                      >
-                        Save
-                      </Button>
-                  </Link>
+                    Save
+                  </Button>
                 </Col>
               </Row>
             </Container>

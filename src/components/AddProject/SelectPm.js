@@ -17,7 +17,11 @@ const Exit = X.extend`
 class SelectPm extends Component {
   constructor(props) {
     super(props)
-    this.state = { pm: '', listpm: [], choseweight: 0 }
+    const { value, label, weight } = this.props.pm
+
+    console.log('Select PM', this.props.pm)
+
+    this.state = { pm: value, listpm: [], choseweight: weight }
     this.handleChange = this.handleChange.bind(this)
   }
   handleChange = selectedOption => {

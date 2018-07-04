@@ -21,12 +21,44 @@
   border: 0px;
   padding: 0px 1em;
 }
-.weight {
+.weightproject {
   border: 1px solid #a0a0a0;
   border-radius: 5px;
   color: #a0a0a0;
   text-align: center;
 }
+.btn-5bc2e1 {
+    background-color: #5bc2e1;
+    color: white;
+  }
+  .savelink:hover {
+    color: white;
+    text-decoration: none;
+  }
+  .rc-slider-rail {
+    background-color: #d8d8d8 !important;
+  }
+  .rc-slider-track {
+    background-color: #5ac2e2 !important;
+  }
+  
+  .rc-slider-handle {
+    background-color: #3d93a8 !important;
+    border-color: #fff !important;
+  }
+  .form-control {
+    border-color: #5ac2e2 !important;
+  }
+  .weightproject {
+    border-color: #5ac2e2 !important;
+  }
+  .weightpm {
+    border-color: #5ac2e2 !important;
+  }
+  
+  .Select-control {
+    border-color: #5ac2e2 !important;
+  }
 @media (max-width: 320px) {
   .addprojectbox {
     font-size: 8px;
@@ -35,7 +67,7 @@
     margin-top: 10px;
     margin-left: 4px;
   }
-  .weight {
+  .weightproject {
     font-size: 12px;
     width: 48px;
     bottom: 4px;
@@ -68,18 +100,18 @@
   .addprojectbox {
     font-size: 10px;
   }
-  .weight {
+  .weightproject {
     font-size: 12px;
     width: 48px;
   }
   .weightbox {
     margin-right: 5px;
     bottom: 8px;
-    margin-top: 26px;
     right: 8px;
+    margin-top: 26px
   }
   .form-control {
-    font-size: 8px !important;
+    font-size: 10px !important;
   }
   .addpmbox {
     margin-bottom: 7px;
@@ -100,6 +132,9 @@
   .pmweighttext {
     padding-left: 15px !important;
   }
+  ::-webkit-input-placeholder {
+      font-size: 10px;
+  }
 }
 @media (min-width: 576px) and (max-width: 767.98px) {
   .addprojectbox {
@@ -108,18 +143,18 @@
   .sliderbox {
     margin-top: 10px;
   }
-  .weight {
+  .weightproject {
     font-size: 12px;
     width: 48px;
   }
   .weightbox {
     margin-right: 5px;
     bottom: 8px;
-    margin-top: 30px;
     right: 8px;
-  }
+    margin-top: 30px;
+}
   .form-control {
-    font-size: 8px !important;
+    font-size: 10px !important;
   }
   .addpmbox {
     margin-bottom: 7px;
@@ -134,7 +169,7 @@
   .sliderbox {
     margin-top: 10px;
   }
-  .weight {
+  .weightproject {
     font-size: 12px;
     width: 48px;
     margin-top: 6px;
@@ -169,9 +204,9 @@
     font-size: 15px;
   }
   .sliderbox {
-    margin-top: 17px;
+    margin-top: 12px;
   }
-  .weight {
+  .weightproject {
     font-size: 12px;
     top: 9px;
     position: relative;
@@ -179,7 +214,7 @@
   }
   .weightbox {
     margin-right: 10px;
-    margin-top: 26px;
+    margin-top: 21px;
   }
   .form-control {
     font-size: 14px !important;
@@ -204,9 +239,9 @@
     font-size: 15px;
   }
   .sliderbox {
-    margin-top: 17px;
+    margin-top: 10px;
   }
-  .weight {
+  .weightproject {
     font-size: 12px;
     position: relative;
     top: 8px;
@@ -214,7 +249,7 @@
   }
   .weightbox {
     margin-right: 10px;
-    margin-top: 26px;
+    margin-top: 21px;
   }
   .form-control {
     font-size: 14px !important;
@@ -234,6 +269,7 @@
     right: 5px;
     position: relative;
   }
+  
 }
 /* @media (min-width: 702px) {
     html {
@@ -253,35 +289,4 @@
     }
 } */
 
-.btn-5bc2e1 {
-  background-color: #5bc2e1;
-  color: white;
-}
-.savelink:hover {
-  color: white;
-  text-decoration: none;
-}
-.rc-slider-rail {
-  background-color: #d8d8d8 !important;
-}
-.rc-slider-track {
-  background-color: #5ac2e2 !important;
-}
 
-.rc-slider-handle {
-  background-color: #3d93a8 !important;
-  border-color: #fff !important;
-}
-.form-control {
-  border-color: #5ac2e2 !important;
-}
-.weight {
-  border-color: #5ac2e2 !important;
-}
-.weightpm {
-  border-color: #5ac2e2 !important;
-}
-
-.Select-control {
-  border-color: #5ac2e2 !important;
-}

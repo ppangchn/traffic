@@ -4,19 +4,19 @@ import Sidebar from '../../components/Views/Sidebar'
 import axios from 'axios'
 import './PersonSidebar.css'
 const Item = styled.div`
-    background-color : #ffffff;
-    border-bottom : 0.5px solid #dfdfdf;
-    display: flex;
-    flex-direction: column;
+  background-color: #ffffff;
+  border-bottom: 0.5px solid #dfdfdf;
+  display: flex;
+  flex-direction: column;
 `
 const Head = styled.div`
   padding-top: 10px;
 `
 const HeadContainer = styled.div`
-    background-color : #ffffff;
-    border-bottom : 0.5px solid #dfdfdf;
-    padding-top: 5px;
-    padding-bottom: 14px;
+  background-color: #ffffff;
+  border-bottom: 0.5px solid #dfdfdf;
+  padding-top: 5px;
+  padding-bottom: 14px;
 `
 const User = styled.div`
   display: flex;
@@ -50,7 +50,7 @@ class PersonSidebar extends Component {
           return (
             <Item className="personitem">
               <User className="personname">{user.name}</User>
-              <div style={{display:'flex' , flexDirection:'row'}}>
+              <div style={{ display: 'flex', flexDirection: 'row' }}>
                 <div className="persontag">{user.roles.name}</div>
                 <div className="persontag">{user.tags}</div>
               </div>
