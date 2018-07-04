@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { X } from 'styled-icons/octicons/X'
+import axios from 'axios'
 import {
   Button,
   Popover,
@@ -26,6 +27,7 @@ class DeleteUser extends Component {
     }
     this.toggle = this.toggle.bind(this)
     this.toggleModal = this.toggleModal.bind(this)
+    this.deleteUser = this.deleteUser.bind(this)
   }
   toggle() {
     this.setState({
@@ -35,32 +37,25 @@ class DeleteUser extends Component {
   toggleModal() {
     this.setState({ modalOpen: !this.state.modalOpen })
   }
+  deleteUser() {
+    axios
+      .delete(
+        `http://dev.pirsquare.net:3013/traffic-api/project/${this.props.id}`
+      )
+  }
   render() {
     return (
       <div>
         <Exit id={`Popover${this.props.id}`} onClick={this.toggleModal} />
-        {/* <Popover
-          placement="bottom"
-          isOpen={this.state.popoverOpen}
-          target={`Popover${this.props.id}`}
-          toggle={this.toggle}
-        >
-          <PopoverBody>
-            <Button color="danger" size="sm" onClick={this.toggleModal}>
-              Confirm
-            </Button>
-          </PopoverBody>
-        </Popover> */}
         <Modal
           isOpen={this.state.modalOpen}
           toggle={this.toggleModal}
           centered={true}
-          // className={this.props.className}
         >
           <ModalHeader toggle={this.toggleModal} style={{ color: '#da3849' }}>
             Confirm Delete
           </ModalHeader>
-          <ModalBody style={{display: 'flex'}}>
+          <ModalBody style={{ display: 'flex' }}>
             Are you sure you want to delete
             <div style={{ color: '#da3849' }}>&ensp;"{this.props.name}"</div>
           </ModalBody>
@@ -68,7 +63,7 @@ class DeleteUser extends Component {
             <Button color="secondary" onClick={this.toggleModal}>
               Cancel
             </Button>
-            <Button color="danger" onClick={this.toggleModal}>
+            <Button color="danger" onClick={(this.toggleModal,this.deleteUser)}>
               Confirm
             </Button>
           </ModalFooter>

@@ -46,13 +46,19 @@ class ProjectSidebar extends Component {
       message: 'ReactInline demo'
     }
   }
-  
+
   componentDidMount() {
-    axios.get(`http://dev.pirsquare.net:3013/traffic-api/project`).then(res => {
-      const { data } = res
-      console.log('Data Project', data)
-      this.setState({ projects: data })
-    })
+    try {
+      axios
+        .get(`http://dev.pirsquare.net:3013/traffic-api/project`)
+        .then(res => {
+          const { data } = res
+          console.log('Data Project', data)
+          this.setState({ projects: data })
+        })
+    } catch (error) {
+      console.log('fail to get data at ProjectSidebar', error)
+    }
   }
 
   render() {
@@ -74,7 +80,7 @@ class ProjectSidebar extends Component {
                     className={'linkprojectname-' + project.color.substring(1)}
                     // style={{color: 'black'}}
                     to={`/project/${project.id}`}
-                    style={{textOverflow: 'ellipsis',overflow:'hidden'}}
+                    style={{ textOverflow: 'ellipsis', overflow: 'hidden' }}
                   >
                     {project.name}
                   </Link>

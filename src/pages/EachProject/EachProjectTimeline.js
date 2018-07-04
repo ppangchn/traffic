@@ -30,74 +30,60 @@ class EachProjectTimeline extends Component {
     this.setState({ datepicker: String(id) })
   }
   componentDidMount = () => {
-    let items = this.state.items.map(i => i)
-    let groups = this.state.groups.map(i => i)
-    let id = 1
-    axios
-      .get(`http://dev.pirsquare.net:3013/traffic-api/Management`)
-      .then(res => {
-        const { data } = res
-        data.forEach(data => {
-        groups.push({ id: id, title: data.users.name })
-        items.push({
-          id: 0,
-          group: id,
-          title: '',
-          start_time: moment(data.project.start_time),
-          end_time: moment(data.project.end_time),
-          canMove: false,
-          canResize: false,
-          canChangeGroup: false,
-          className: 'bg-' + String(data.project.color).substring(1)
-        })
-        id++
-        })
-      })
-    axios
-      .get(`http://dev.pirsquare.net:3013/traffic-api/project/${this.props.id}`)
-      .then(res => {
-        const { data } = res // = res.data
-        // console.log('Data Timeline', data)
-        
-        groups.push({ id: id, title: data.project.name })
-        items.push({
-          id: id,
-          group: id,
-          title: '',
-          start_time: moment(data.project.start_time),
-          end_time: moment(data.project.end_time),
-          canMove: false,
-          canResize: false,
-          canChangeGroup: false,
-          className: 'bg-' + String(data.project.color).substring(1)
-        })
-        id++
-        data.timeline.forEach(timeline => {
-          groups.push({ id: id, title: timeline.users.name })
-          let start = moment(timeline.start)
-          let end = moment(timeline.end)
+    try {
+      let items = this.state.items.map(i => i)
+      let groups = this.state.groups.map(i => i)
+      let id = 1
+      axios
+        .get(
+          `http://dev.pirsquare.net:3013/traffic-api/project/${this.props.id}`
+        )
+        .then(res => {
+          const { data } = res // = res.data
+          // console.log('Data Timeline', data)
+
+          groups.push({ id: id, title: data.project.name })
           items.push({
             id: id,
             group: id,
             title: '',
-            start_time: start,
-            end_time: end,
+            start_time: moment(data.project.start_time),
+            end_time: moment(data.project.end_time),
             canMove: false,
             canResize: false,
             canChangeGroup: false,
-            className: 'bg-' + String(data.project.color).substring(1),
-            itemIdKey: String(timeline.id),
-            itemProps: {
-              //onClick: (e) => this.onItemSelect(timeline.id)
-            }
+            className: 'bg-' + String(data.project.color).substring(1)
           })
           id++
+          data.timeline.forEach(timeline => {
+            groups.push({ id: id, title: timeline.users.name })
+            let start = moment(timeline.start).add(6, 'day')
+            let end = moment(timeline.end).add(6, 'day')
+            items.push({
+              id: id,
+              group: id,
+              title: '',
+              start_time: start,
+              end_time: end,
+              canMove: false,
+              canResize: false,
+              canChangeGroup: false,
+              className: 'bg-' + String(data.project.color).substring(1),
+              itemIdKey: String(timeline.id),
+              itemProps: {
+                //onClick: (e) => this.onItemSelect(timeline.id)
+              }
+            })
+            id++
+          })
+          this.setState({
+            groups,
+            items
+          })
         })
-        this.setState({
-          groups,
-          items
-        })
-      })
+    } catch (error) {
+      console.log('fail to get data at EachProjectTimeline', error)
+    }
   }
   render() {
     console.log('items', this.state.items)
@@ -133,7 +119,9 @@ class EachProjectTimeline extends Component {
             </div>
           </PopoverBody>
         </Popover>
-        <button id="pang" onClick={this.toggle}>pang</button>
+        <button id="pang" onClick={this.toggle}>
+          pang
+        </button>
       </GraphBox>
     )
   }

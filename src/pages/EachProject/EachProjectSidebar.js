@@ -3,7 +3,16 @@ import styled from 'styled-components'
 import Sidebar from '../../components/Views/Sidebar'
 import axios from 'axios'
 import '../ViewByProject/ProjectSidebar.css'
-import { Progress, Button, Popover, PopoverBody,Modal,ModalBody,ModalHeader,ModalFooter } from 'reactstrap'
+import {
+  Progress,
+  Button,
+  Popover,
+  PopoverBody,
+  Modal,
+  ModalBody,
+  ModalHeader,
+  ModalFooter
+} from 'reactstrap'
 import {
   DropdownItem,
   DropdownToggle,
@@ -73,7 +82,6 @@ class EachProjectSidebar extends Component {
     this.toggle = this.toggle.bind(this)
     this.togglePopOver = this.togglePopOver.bind(this)
     this.deleteProject = this.deleteProject.bind(this)
-    this.deleteUser = this.deleteUser.bind(this)
     this.toggleModal = this.toggleModal.bind(this)
     this.toggleModalDelete = this.toggleModalDelete.bind(this)
   }
@@ -102,61 +110,39 @@ class EachProjectSidebar extends Component {
     // }
     // selectedOption can be null when the `x` (close) button is clicked
   }
-  async sendMember(member) {
-    const data = {
-      project: parseInt(this.props.id),
-      users: member.value
-    }
-    await axios
-      .put('http://dev.pirsquare.net:3013/traffic-api/timeline', data)
-      .then(function(response) {
-        console.log(response)
-      })
-      .catch(function(error) {
-        console.log(error)
-      })
-    console.log('send!')
-    await this.getData()
-  }
   deleteProject() {
-    console.log(this.props)
-    axios
-      .delete(
-        `http://dev.pirsquare.net:3013/traffic-api/project/${this.props.id}`
-      )
-      .then(res => {
-        window.history.back()
-      })
+    try {
+      axios
+        .delete(
+          `http://dev.pirsquare.net:3013/traffic-api/project/${this.props.id}`
+        )
+        .then(res => {
+          window.history.back()
+        })
+    } catch (error) {
+      console.log('fail to delete project at EachProjectSidebar', error)
+    }
   }
-  deleteUser() {
-    // axios
-    //   .delete(
-    //     `http://dev.pirsquare.net:3013/traffic-api/project/${this.props.id}`
-    //   )
+  sendMember(member) {
+    try {
+      const data = {
+        project: parseInt(this.props.id),
+        users: member.value
+      }
+      axios
+        .put('http://dev.pirsquare.net:3013/traffic-api/timeline', data)
+        .then(this.getData())
+        .catch(function(error) {
+          console.log(error)
+        })
+      console.log('send!')
+    } catch (error) {
+      console.log('fail to send member at EachProjectSidebar')
+    }
   }
-  // async getPm() {
-  //   await axios
-  //     .get(`http://dev.pirsquare.net:3013/traffic-api/Management`)
-  //     .then(res => {
-  //       const { data } = res
-  //       // console.log('Data Project', data)
-  //       let projectpm = []
-  //       data.map(user => {
-  //         projectpm.push({
-  //           name: user.users.name,
-  //           roles: user.users.roles.name,
-  //           tags: user.users.tags
-  //         })
-  //       })
-  //       this.setState({
-  //         projectpm
-  //       })
-  //     })
-  // }
 
-  async getData() {
-    // await this.getPm()
-    await axios
+  getData() {
+    axios
       .get(`http://dev.pirsquare.net:3013/traffic-api/project/${this.props.id}`)
       .then(res => {
         const { data } = res
@@ -172,7 +158,7 @@ class EachProjectSidebar extends Component {
           projectmember: projectmember
         })
       })
-    await axios
+    axios
       .get(`http://dev.pirsquare.net:3013/traffic-api/users/pd`)
       .then(res => {
         const { data } = res
@@ -190,10 +176,12 @@ class EachProjectSidebar extends Component {
         this.setState({ allmember })
       })
   }
-  async componentDidMount() {
-    // console.log('id', this.props.id)
-    // await this.getPm()
-    await this.getData()
+  componentDidMount() {
+    try {
+      this.getData()
+    } catch (error) {
+      console.log('fail to get data at EachProjectSidebar')
+    }
   }
   render() {
     const { project, timeline } = this.state
@@ -338,18 +326,32 @@ class EachProjectSidebar extends Component {
             centered={true}
             // className={this.props.className}
           >
-            <ModalHeader toggle={this.toggleModalDelete} style={{ color: '#da3849' }}>
+            <ModalHeader
+              toggle={this.toggleModalDelete}
+              style={{ color: '#da3849' }}
+            >
               Confirm Delete
             </ModalHeader>
             <ModalBody style={{ display: 'flex' }}>
               Are you sure you want to delete project
-              <div style={{ color: '#da3849' ,textOverflow: 'ellipsis', overflow: 'hidden' }}>&ensp;"{project.name}"</div>
+              <div
+                style={{
+                  color: '#da3849',
+                  textOverflow: 'ellipsis',
+                  overflow: 'hidden'
+                }}
+              >
+                &ensp;"{project.name}"
+              </div>
             </ModalBody>
             <ModalFooter>
               <Button color="grey" onClick={this.toggleModalDelete}>
                 Cancel
               </Button>
-              <Button color="danger" onClick={(this.toggleModalDelete,this.deleteProject)}>
+              <Button
+                color="danger"
+                onClick={(this.toggleModalDelete, this.deleteProject)}
+              >
                 Confirm
               </Button>
             </ModalFooter>
