@@ -31,6 +31,7 @@ const HeadContainer = styled.div`
   border-bottom: 0.5px solid #dfdfdf;
   padding-top: 5px;
   padding-bottom: 11px;
+  border-right: 0.5px solid #dfdfdf;
 `
 const Pm = styled.div`
   display: inline-block;
@@ -68,8 +69,6 @@ class ProjectSidebar extends Component {
           </Head>
         </HeadContainer>
         {this.state.projects.map(project => {
-          // console.log(project.color.substring(1))
-          // console.log("IDDDDD",project.id)
           return (
             <div key={project.name}>
               <Item className="projectitem">

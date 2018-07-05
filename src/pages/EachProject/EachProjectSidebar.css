@@ -78,7 +78,6 @@
 }
 .membername {
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 @media (max-width: 575.98px) {

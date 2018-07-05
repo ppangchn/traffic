@@ -6,33 +6,18 @@ import Timeline from '../../components/Views/react-calendar-timeline/lib'
 import moment from 'moment'
 import '../ViewByProject/ProjectSidebar.css'
 import GraphBox from '../../components/Views/GraphBox'
-import { Popover, PopoverBody, Button } from 'reactstrap'
+import { Button } from 'reactstrap'
 import 'react-day-picker/lib/style.css'
 import url from '../../url'
-import DatePicker from '../../components/Views/EachProject/DatePicker'
 
 class EachProjectTimeline extends Component {
   constructor() {
     super()
-    this.state = { groups: [], items: [], popoverOpen: false, id: '' }
-    this.toggle = this.toggle.bind(this)
-  }
-  toggle() {
-    this.setState({
-      popoverOpen: !this.state.popoverOpen
-    })
-  }
-  onhandleRow(itemId, time, e) {
-    console.log('pang')
-  }
-  onItemSelect = id => {
-    console.log('item click', id)
-    this.toggle()
-    this.setState({ datepicker: String(id) })
+    this.state = { groups: [], items: [], id: '' }
   }
   async getData() {
-    let items = this.state.items.map(i => i)
-    let groups = this.state.groups.map(i => i)
+    let items = []
+    let groups = []
     let id = 1
     await axios.get(`${url}project/${this.props.id}`).then(res => {
       const { data } = res // = res.data
@@ -63,11 +48,7 @@ class EachProjectTimeline extends Component {
           canMove: false,
           canResize: false,
           canChangeGroup: false,
-          className: 'bg-' + String(data.project.color).substring(1),
-          itemIdKey: String(timeline.id),
-          itemProps: {
-            //onClick: (e) => this.onItemSelect(timeline.id)
-          }
+          className: 'bg-' + String(data.project.color).substring(1)
         })
         id++
       })
@@ -76,6 +57,7 @@ class EachProjectTimeline extends Component {
         items
       })
     })
+    console.log('items', this.state.items)
   }
   componentDidMount = () => {
     try {
@@ -84,10 +66,14 @@ class EachProjectTimeline extends Component {
       console.log('fail to get data at EachProjectTimeline', error)
     }
   }
+  componentWillReceiveProps() {
+    try {
+      this.getData()
+    } catch (error) {
+      console.log('fail to get data at EachProjectTimeline', error)
+    }
+  }
   render() {
-    console.log('items', this.state.items)
-    console.log('groups', this.state.groups)
-    console.log('datepicker', this.state.datepicker)
     return (
       <GraphBox>
         <Timeline
@@ -101,26 +87,7 @@ class EachProjectTimeline extends Component {
           minZoom="2592000000" //4 month
           maxZoom="9676800000"
           timeSteps={{ day: 7 }}
-          onItemSelect={this.onItemSelect}
         />
-        <Popover
-          placement="bottom !important"
-          isOpen={this.state.popoverOpen}
-          target="pang"
-          toggle={this.toggle}
-        >
-          <PopoverBody>
-            <DatePicker />
-            <div style={{ marginTop: '15px' }}>
-              <Button color="5bc2e1" block size="sm">
-                Save
-              </Button>
-            </div>
-          </PopoverBody>
-        </Popover>
-        <button id="pang" onClick={this.toggle}>
-          pang
-        </button>
       </GraphBox>
     )
   }

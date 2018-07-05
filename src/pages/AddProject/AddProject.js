@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
 import { Container, Row, Col } from 'reactstrap'
-import { Button, Modal, ModalHeader, ModalBody, Input, FormFeedback } from 'reactstrap'
+import {
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  Input,
+  FormFeedback
+} from 'reactstrap'
 import ColorButton from '../../components/AddProject/ColorButton'
 import './AddProject.css'
 import SelectPm from '../../components/AddProject/SelectPm'
@@ -65,6 +72,8 @@ class AddProject extends Component {
       choseweight: 0,
       invalid: false,
       invalidpm: 'Please select at least one pm.',
+      invalidcolor: 'Please select one color for this project.',
+      isinvalidcolor: false,
       isinvalidpm: false,
       header: 'New Project'
     }
@@ -87,6 +96,7 @@ class AddProject extends Component {
   }
   setCheckColor = c => {
     console.log(c)
+    if (c) this.setState({ isinvalidcolor: false })
     this.setState({ checkedcolor: c })
   }
 
@@ -123,9 +133,13 @@ class AddProject extends Component {
     let pm = this.state.pm.filter((pm, i) => {
       return i !== index
     })
-    this.setState({
-      pm
-    })
+    this.setState(
+      {
+        pm
+      },
+      () => this.filterPM()
+    )
+    console.log('pm', pm)
   }
   filterPM = () => {
     let pm = this.state.pm.map(i => i)
@@ -144,7 +158,7 @@ class AddProject extends Component {
         filteredPM
       },
       () => {
-        // console.log('SELECTED PM FINAL', this.state.filteredPM)
+        console.log('SELECTED PM FINAL', this.state.filteredPM)
       }
     )
   }
@@ -168,87 +182,140 @@ class AddProject extends Component {
   sendData = async () => {
     try {
       if (this.state.projectname && this.state.pm[0].value) {
+        if (this.props.id) {
+          
+        }
+        let listTimeline = await[]
+        await console.log('check up ->', this.state)
+        if (!!this.state.timeline) {
+          listTimeline = await this.state.timeline.map($objTimeline => {
+            if ($objTimeline.users.roles.id == 2) {
+              $objTimeline.isDisable = true
+            }
+
+            return $objTimeline
+          })
+        }
+
+        await this.state.filteredPM.map($objPM => {
+          let findTimeline = listTimeline.find($fndTimeline => {
+            return $fndTimeline.users.id == $objPM.value
+          })
+
+          if (!!findTimeline) {
+            findTimeline.isDisable = false
+          } else {
+            listTimeline.push({
+              users: {
+                id: $objPM.value
+              }
+            })
+          }
+        })
+        let listPM = []
+        console.log('check up ->', this.state.project.projectManagement)
+        if (!!this.state.project.projectManagement) {
+          listPM = await this.state.project.projectManagement.map($objPM => {
+            let pm = {
+              users: {
+                id: $objPM.users.id
+              },
+              weight: $objPM.weight,
+              isDisable: false
+            }
+
+            let findPM = this.state.filteredPM.find($fndPM => {
+              return $fndPM.value == $objPM.users.id
+            })
+
+            if (!!!findPM) {
+              pm.isDisable = true
+            }
+
+            if (!!$objPM.id) {
+              pm.id = $objPM.id
+            }
+
+            return pm
+          })
+        }
+
+        await this.state.filteredPM.map($objPM => {
+          let findPM = listPM.find($fndPM => {
+            return $fndPM.users.id == $objPM.value
+          })
+
+          if (!!!findPM) {
+            listPM.push({
+              users: {
+                id: $objPM.value
+              },
+              weight: $objPM.weight,
+              isDisable: false
+            })
+          }
+        })
+
         let data = {
           name: this.state.projectname,
           color: this.state.checkedcolor,
-          projectManagement: this.state.filteredPM.map(data => {
-            let pm = {
-              users: {
-                id: data.value
-              },
-              weight: data.weight
-            }
-
-						if (!!data.id) {
-							pm.id = data.id
-						}
-
-            return pm
-          }),
-          projectTimeline: this.state.filteredPM.map(data => {
-            return {
-              users: {
-                id: data.value
-              }
-            }
-          }),
+          projectManagement: listPM,
+          projectTimeline: listTimeline,
           weight: this.state.choseweight
         }
+
+        if (!!this.props.id) {
+          data.id = this.props.id
+        }
+
         axios
           .put(`${url}project`, data)
           .then(response => {
             const newUser = response.data
             this.props.onClose()
             this.props.history.push(`/project/${newUser.id}`)
+            console.log('send!')
           })
           .catch(function(error) {
-            console.log(error)
+            console.log('cant send data at AddProject', error)
           })
-
-        console.log('send!')
       } else {
-        console.log('projectname ->', this.state.projectname)
         if (this.state.projectname.length === 0)
           this.setState({ invalid: true })
         if (!this.state.pm[0].value) {
           this.setState({ isinvalidpm: true })
         }
+        if (!this.state.checkedcolor) {
+          this.setState({ isinvalidcolor: true })
+        }
       }
     } catch (error) {
-      console('error addproject', error)
+      console.log('error addproject', error)
     }
   }
   componentDidMount() {
     try {
       if (this.props.id) {
-        axios
-          .get(
-            `${url}project/${this.props.id}`
-          )
-          .then(res => {
-            const { data } = res
-            // let filteredPM = [];
-            // let pm = [];
-            // data.timeline.map((pm) => {
-            //   // filteredPM.push(pm.users.id)
-            //   pm.push({value:pm.users.id,label:pm.users.name,weight:})
-            // })
-            // console.log('Received data', data)
-            const pm = data.project.projectManagement.map(pm => ({
-              value: pm.users.id,
-              label: pm.users.name,
-              weight: pm.weight,
-              id: pm.id
-            }))
-            this.setState({
-              projectname: data.project.name,
-              choseweight: data.project.weight,
-              pm,
-              filteredPM: pm,
-              header: 'Edit Project'
-            })
-            this.setCheckColor(data.project.color)
+        axios.get(`${url}project/${this.props.id}`).then(res => {
+          console.log('add project -> ', res)
+          const { data } = res
+          const pm = data.project.projectManagement.map(pm => ({
+            value: pm.users.id,
+            label: pm.users.name,
+            weight: pm.weight,
+            id: pm.id
+          }))
+          this.setState({
+            projectname: data.project.name,
+            choseweight: data.project.weight,
+            pm,
+            filteredPM: pm,
+            header: 'Edit Project',
+            timeline: data.timeline,
+            project: data.project
           })
+          this.setCheckColor(data.project.color)
+        })
       } else {
         this.setState({
           pm: [
@@ -260,20 +327,18 @@ class AddProject extends Component {
           ]
         })
       }
-      axios
-        .get(`${url}users/pm`)
-        .then(res => {
-          const { data } = res
-          console.log('Data', data)
-          let listpm = []
-          data.map(data => {
-            // if (this.props.pm.indexOf(data.name)===-1)
-            listpm.push({ value: data.id, label: data.name })
-          })
-          this.setState({
-            listpm
-          })
+      axios.get(`${url}users/pm`).then(res => {
+        const { data } = res
+        console.log('Data', data)
+        let listpm = []
+        data.map(data => {
+          // if (this.props.pm.indexOf(data.name)===-1)
+          listpm.push({ value: data.id, label: data.name })
         })
+        this.setState({
+          listpm
+        })
+      })
     } catch (error) {
       console.log('fail to get data at AddProject', error)
     }
@@ -341,6 +406,16 @@ class AddProject extends Component {
                     </Col>
                   )
                 })}
+              </Row>
+              <Row
+                className="pd10"
+                style={{
+                  color: '#da3849',
+                  fontSize: '80%',
+                  marginBottom: '10px'
+                }}
+              >
+                {this.state.isinvalidcolor && this.state.invalidcolor}
               </Row>
               <Row>
                 <Col xs="4" md="4">

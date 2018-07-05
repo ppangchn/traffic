@@ -18,25 +18,13 @@ class SelectPm extends Component {
   constructor(props) {
     super(props)
     const { value, label, weight } = this.props.pm
-
-    console.log('Select PM', this.props.pm)
-
-    this.state = { pm: value, listpm: [], choseweight: weight }
+    this.state = { pm: value, listpm: [], choseweight: weight, disabled: true }
     this.handleChange = this.handleChange.bind(this)
   }
   handleChange = selectedOption => {
     this.setState({ pm: selectedOption })
-    console.log('selected', selectedOption)
-    // let listpm = this.state.defaultlistpm;
-    // let index = listpm.indexOf(selectedOption)
-    // listpm.splice(index,1);
-    // this.setState({listpm});
-    // this.props.setPm(selectedOption);
-    // selectedOption can be null when the `x` (close) button is clicked
-    if (selectedOption) {
-      console.log(`Selected: ${selectedOption.label}`)
-      console.log('listpm -> ', this.state.listpm)
-    }
+    if (selectedOption) this.setState({ disabled: false })
+    else this.setState({ disabled: true })
     this.props.setPm(this.props.id, {
       ...selectedOption,
       weight: this.state.choseweight
@@ -53,7 +41,11 @@ class SelectPm extends Component {
     })
   }
   delete = e => {
+    console.log('delete user!')
     this.props.delete(this.props.id)
+  }
+  componentDidMount() {
+    if (this.state.pm) this.setState({ disabled: false })
   }
   render() {
     return (
@@ -77,6 +69,7 @@ class SelectPm extends Component {
               step={25}
               onChange={this.slideChange}
               value={this.state.choseweight}
+              disabled={this.state.disabled}
             />
           </div>
         </Col>

@@ -36,9 +36,11 @@ export default class DatePicker extends React.Component {
   handleFromChange(from) {
     // Change the from date and focus the "to" input field
     this.setState({ from })
+    this.props.setStartTime(from);
   }
   handleToChange(to) {
     this.setState({ to }, this.showFromMonth)
+    this.props.setEndTime(to);
   }
   render() {
     console.log('datepicker!')

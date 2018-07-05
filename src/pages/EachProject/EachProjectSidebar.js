@@ -28,7 +28,7 @@ import { Search as SearchIcon } from 'styled-icons/fa-solid/Search'
 import AddProject from '../AddProject/AddProject'
 import url from '../../url'
 import DeleteUser from '../../components/Views/EachProject/DeleteUser'
-import EachProjectTimeline from './EachProjectTimeline'
+import EditTimeline from '../../components/Views/EachProject/EditTimeline'
 
 const Head = styled.div`
     padding-top : 10px
@@ -87,7 +87,7 @@ class EachProjectSidebar extends Component {
     this.deleteProject = this.deleteProject.bind(this)
     this.toggleModal = this.toggleModal.bind(this)
     this.toggleModalDelete = this.toggleModalDelete.bind(this)
-    this.getData = this.getData.bind(this);
+    this.getData = this.getData.bind(this)
   }
   toggle() {
     this.setState({
@@ -131,7 +131,7 @@ class EachProjectSidebar extends Component {
       }
       await axios.put(`${url}timeline`, data)
       await this.getData()
-      await this.setUpdateTimeline(true);
+
       console.log('send member!')
     } catch (error) {
       console.log('fail to send member at EachProjectSidebar')
@@ -141,12 +141,11 @@ class EachProjectSidebar extends Component {
   async getData() {
     await axios.get(`${url}project/${this.props.id}`).then(res => {
       const { data } = res
-      // console.log('Data Project', data)
       let projectmember = []
       data.timeline.map(timeline => {
         projectmember.push(timeline.users.id)
       })
-      // console.log(projectmember)
+
       this.setState({
         timeline: data.timeline,
         project: data.project,
@@ -237,28 +236,36 @@ class EachProjectSidebar extends Component {
             <div className="eachprojectweight">{project.process}%</div>
           </div>
           <ProgressContainer>
-            <Progress color={String(project.color).substring(1)} value={project.process} />
+            <Progress
+              color={String(project.color).substring(1)}
+              value={project.process}
+            />
           </ProgressContainer>
         </div>
         {timeline.map(timeline => {
-          return (
-            <div 
-            id={timeline.id}
-            className="eachprojectitem">
-              <div className="membername">
-                {timeline.users.name}
-                <DeleteUser
-                  id={timeline.id}
-                  name={timeline.users.name}
-                  getData={() => this.getData()}
-                />
+          if (timeline) {
+            return (
+              <div id={timeline.id} className="eachprojectitem">
+                <div className="membername">
+                  {timeline.users.name}
+                  <EditTimeline
+                    id={timeline.id}
+                    updateData={this.props.updateData}
+                  />
+                  <DeleteUser
+                    id={timeline.id}
+                    name={timeline.users.name}
+                    roles={timeline.users.roles.name}
+                    getData={() => this.getData()}
+                  />
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'row' }}>
+                  <div className="membertag">{timeline.users.roles.name}</div>
+                  <div className="membertag">{timeline.users.tags}</div>
+                </div>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'row' }}>
-                <div className="membertag">{timeline.users.roles.name}</div>
-                <div className="membertag">{timeline.users.tags}</div>
-              </div>
-            </div>
-          )
+            )
+          }
         })}
         <Popover
           placement="bottom !important"

@@ -11,7 +11,7 @@ import {
   ModalFooter
 } from 'reactstrap'
 import url from '../../../url'
-
+import './DeleteUser.css'
 const Exit = X.extend`
   color: #a0a0a0;
   width: 1rem;
@@ -45,8 +45,8 @@ class DeleteUser extends Component {
   }
   render() {
     return (
-      <div>
-        <Exit id={`Popover${this.props.id}`} onClick={this.toggleModal} />
+      <div className="deleteuser">
+        {this.props.roles==="DEV" && <Exit id={`Popover${this.props.id}`} onClick={this.toggleModal} />}
         <Modal
           isOpen={this.state.modalOpen}
           toggle={this.toggleModal}
