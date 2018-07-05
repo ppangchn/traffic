@@ -26,6 +26,7 @@
     "react-scripts": "1.1.4",
     "react-search-box": "0.0.10",
     "react-select": "^1.2.1",
+    "react-tag-input": "^5.1.0",
     "reactstrap": "^6.1.0",
     "replace-in-file": "^3.4.0",
     "resolve-url-loader": "^2.3.0",
