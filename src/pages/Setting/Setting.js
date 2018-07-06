@@ -30,6 +30,7 @@ import UserSettings from '../../components/UserSettings/UserSettings'
 import AddMember from '../AddMember/AddMember'
 import url from '../../url'
 
+
 const IconAdd = PersonAdd.extend`
 	width: 100px;
 	height: 100px;
