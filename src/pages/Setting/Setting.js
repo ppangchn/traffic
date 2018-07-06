@@ -90,7 +90,6 @@ class Setting extends Component {
 
 	handleChange = selectedOption => {
 		this.setState({ choseweight: selectedOption })
-		// selectedOption can be null when the `x` (close) button is clicked
 		if (selectedOption) {
 			console.log(`Selected: ${selectedOption.label}`)
 		}
@@ -99,13 +98,11 @@ class Setting extends Component {
 	fetchData = url => {
 		axios.get(url).then(res => {
 			const { data } = res
-			console.log('Data Users', data)
 			this.setState({ users: data })
 		})
 	}
 
 	componentDidMount() {
-		console.log('toggle 1')
 		this.toggle('1')
 	}
 
