@@ -25,11 +25,6 @@ const User = styled.div`
   justify-content: space-between;
   align-items: center;
 `
-const Weight = styled.div`
-    font-size: 10px
-    color: #5bc2e1
-    display: flex;
-`
 class PersonSidebar extends Component {
   constructor() {
     super()
@@ -42,11 +37,11 @@ class PersonSidebar extends Component {
       let users = []
       let roles = []
       let tags = []
-      data.map(
-        user => users.push(user.name),
-        // roles.push(user.roles.name)
-        // tags.push(user.tags)
-      )
+      data.map(user => {
+        users.push(user.name)
+        roles.push(user.roles.name)
+        tags.push(user.tags)
+      })
       this.setState({ users, roles, tags })
     })
   }
@@ -61,10 +56,10 @@ class PersonSidebar extends Component {
             <Item className="personitem">
               <User className="personname">{user}</User>
               <div style={{ display: 'flex', flexDirection: 'row' }}>
-                {/* <div className="persontag">{this.state.roles[index]}</div>
-                {this.state.tags[index].map(user => {
-                  return <div className="persontag">{user.tags}</div>
-                })} */}
+                <div className="persontag">{this.state.roles[index]}</div>
+                {this.state.tags[index].map(tag => {
+                  return <div className="persontag">{tag.name}</div>
+                })}
               </div>
             </Item>
           )

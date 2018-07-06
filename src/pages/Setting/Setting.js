@@ -95,7 +95,6 @@ class Setting extends Component {
 
 	handleChange = selectedOption => {
 		this.setState({ choseweight: selectedOption })
-
 		if (selectedOption) {
 			console.log(`Selected: ${selectedOption.label}`)
 		}

@@ -45,11 +45,6 @@ const ProgressContainer = styled.div`
   margin-right: 10px;
   display: flex;
 `
-const Weight = styled.div`
-    font-size: 10px
-    color: #5bc2e1
-    display: flex;
-`
 const Edit = MoreHoriz.extend`
   color: #5bc2e1;
   width: 1.5625rem;
@@ -279,11 +274,9 @@ class EachProjectSidebar extends Component {
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'row' }}>
                   <div className="membertag">{timeline.users.roles.name}</div>
-                  {/* {timeline.users.tags.map((tag) => {
-                    return (
-                      <div className="membertag">{tag.name}</div>
-                    )
-                  })} */}
+                  {timeline.users.tags.map(tag => {
+                    return <div className="membertag">{tag.name}</div>
+                  })}
                 </div>
               </div>
             )
@@ -321,11 +314,13 @@ class EachProjectSidebar extends Component {
           >
             + Add member
           </Button>
-          <Link to="/project" style={{ textDecoration: 'none' }}>
-            <Button color="danger" block>
-              back
-            </Button>
-          </Link>
+          <div className="cancelbutton">
+            <Link to="/project" style={{ textDecoration: 'none' }}>
+              <Button color="danger" block>
+                back
+              </Button>
+            </Link>
+          </div>
         </div>
         {this.state.modalOpen && (
           <AddProject
