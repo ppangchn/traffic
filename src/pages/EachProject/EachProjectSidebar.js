@@ -28,6 +28,8 @@ import { Search as SearchIcon } from 'styled-icons/fa-solid/Search'
 import AddProject from '../AddProject/AddProject'
 import EditTimeline from '../../components/Views/EachProject/EditTimeline'
 import DeleteUser from '../../components/Views/EachProject/DeleteUser'
+import url from '../../url'
+
 const Head = styled.div`
     padding-top : 10px
     font-size : 20px
@@ -117,7 +119,7 @@ class EachProjectSidebar extends Component {
       console.log('fail to delete project at EachProjectSidebar', error)
     }
   }
-  sendMember(member) {
+  async sendMember(member) {
     try {
       const data = {
         project: parseInt(this.props.id),
@@ -312,11 +314,13 @@ class EachProjectSidebar extends Component {
           >
             + Add member
           </Button>
-          <Link to="/project" style={{ textDecoration: 'none' }}>
-            <Button color="danger" block>
-              back
-            </Button>
-          </Link>
+          <div className="cancelbutton">
+            <Link to="/project" style={{ textDecoration: 'none' }}>
+              <Button color="danger" block>
+                back
+              </Button>
+            </Link>
+          </div>
         </div>
         {this.state.modalOpen && (
           <AddProject
