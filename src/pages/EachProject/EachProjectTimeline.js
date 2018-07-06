@@ -3,7 +3,6 @@ import axios from 'axios'
 import '../../components/Views/GraphBox.css'
 import '../../components/Views/TimelineStyle.css'
 import Timeline from '../../components/Views/react-calendar-timeline/lib'
-// import Timeline from 'new-react-calendar-timeline/lib'
 import moment from 'moment'
 import '../ViewByProject/ProjectSidebar.css'
 import GraphBox from '../../components/Views/GraphBox'
@@ -22,7 +21,6 @@ class EachProjectTimeline extends Component {
     let id = 1
     await axios.get(`${url}/project/${this.props.id}`).then(res => {
       const { data } = res // = res.data
-      // console.log('Data Timeline', data)
       groups.push({ id: id, title: data.project.name })
       items.push({
         id: id,
@@ -81,8 +79,8 @@ class EachProjectTimeline extends Component {
         <Timeline
           groups={this.state.groups}
           items={this.state.items}
-          visibleTimeStart={moment()}
-          visibleTimeEnd={moment().add(14, 'day')}
+          visibleTimeStart={moment().add(-7,'day')}
+          visibleTimeEnd={moment().add(7*7, 'day')}
           sidebarWidth={0}
           lineHeight={115.4}
           stickyHeader={false}

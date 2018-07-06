@@ -147,9 +147,6 @@ var TimelineElementsHeader = function (_Component) {
             {
               key: 'top-label-' + time.valueOf(),
               className: 'rct-label-group' + (hasRightSidebar ? ' rct-has-right-sidebar' : ''),
-              onClick: function onClick() {
-                return _this2.handlePeriodClick(time, nextUnit);
-              },
               style: {
                 left: left - 1 + 'px',
                 width: labelWidth + 'px',
@@ -187,9 +184,6 @@ var TimelineElementsHeader = function (_Component) {
           {
             key: 'label-' + time.valueOf(),
             className: 'rct-label ' + (twoHeaders ? '' : 'rct-label-only') + ' ' + (firstOfType ? 'rct-first-of-type' : '') + ' ' + (minUnit !== 'month' ? 'rct-day-' + time.day() : '') + ' ',
-            onClick: function onClick() {
-              return _this2.handlePeriodClick(time, minUnit);
-            },
             style: {
               left: left - leftCorrect + 'px',
               width: labelWidth + 'px',
