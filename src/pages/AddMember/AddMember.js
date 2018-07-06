@@ -31,22 +31,22 @@ class AddMember extends Component {
 			roles: '',
 			name: '',
 			email: '',
-			tags: [{ id: 'pm', text: 'pm' }, { id: 'dev', text: 'dev' }],
+			tags: [{ id: '1', name: 'pm' }, { id: '2', name: 'dev' }],
 			suggestions: [
-				{ id: 'pm', text: 'pm' },
-				{ id: 'dev', text: 'dev' },
-				{ id: 'designer', text: 'designer' },
-				{ id: 'ux', text: 'ux' },
-				{ id: 'ui', text: 'ui' },
-				{ id: 'pc', text: 'pc' },
-				{ id: 'bd', text: 'bd' },
-				{ id: 'node', text: 'node' },
-				{ id: 'react', text: 'react' },
-				{ id: 'angular', text: 'angular' },
-				{ id: 'sa', text: 'sa' },
-				{ id: 'php', text: 'php' },
-				{ id: 'android', text: 'android' },
-				{ id: 'ios', text: 'ios' }
+				{ id: '1', name: 'pm' },
+				{ id: '2', name: 'dev' },
+				{ id: '3', name: 'designer' },
+				{ id: '4', name: 'ux' },
+				{ id: '5', name: 'ui' },
+				{ id: '6', name: 'pc' },
+				{ id: '7', name: 'bd' },
+				{ id: '8', name: 'node' },
+				{ id: '9', name: 'react' },
+				{ id: '10', name: 'angular' },
+				{ id: '11', name: 'sa' },
+				{ id: '12', name: 'php' },
+				{ id: '13', name: 'android' },
+				{ id: '14', name: 'ios' }
 			]
 		}
 
@@ -154,29 +154,34 @@ class AddMember extends Component {
 			const data = {
 				name: this.state.name,
 				roles: this.state.roles.value,
-				tags: this.state.tags,
+				tags: this.state.tags.map(($objTag) => {
+					return {name: $objTag.name}
+				}),
 				email: this.state.email
 			}
+			console.log(data);
+
 			await axios.put('http://dev.pirsquare.net:3013/traffic-api/users', data).then($res => {
 				console.log('send member', $res)
+				this.props.getData();
 			})
 		} catch (error) {
 			console.log('fail to send data add member')
 		}
 	}
 
-	async sendDataTags() {
-		try {
-			const data = {
-				tags: this.state.tags
-			}
-			await axios.put('http://dev.pirsquare.net:3013/traffic-api/tags', data).then($res => {
-				console.log('send tags', $res)
-			})
-		} catch (error) {
-			console.log('fail to send data add tags')
-		}
-	}
+	// async sendDataTags() {
+	// 	try {
+	// 		const data = {
+	// 			tags: this.state.tags
+	// 		}
+	// 		await axios.put('http://dev.pirsquare.net:3013/traffic-api/tags', data).then($res => {
+	// 			console.log('send tags', $res)
+	// 		})
+	// 	} catch (error) {
+	// 		console.log('fail to send data add tags')
+	// 	}
+	// }
 
 	componentDidMount() {
 		try {
@@ -205,7 +210,10 @@ class AddMember extends Component {
 	}
 
 	handleAddition(tag) {
-		this.setState(state => ({ tags: [...state.tags, tag] }))
+		this.setState(state => ({ tags: [
+			...state.tags,
+			{id: tag.id,name: tag.text}
+		]}))
 	}
 
 	handleDrag(tag, currPos, newPos) {
@@ -261,20 +269,11 @@ class AddMember extends Component {
 							<Row className="btsave">
 								<Col>
 									Tags
-									{/* <Input
-										style={{ fontSize: '8px !important' }}
-										name="tags"
-										style={{ backgroundColor: '#f1f1f1' }}
-										// invalid={this.state.invalid}
-										placeholder="Type your name"
-										onChange={this.handleInputChangeTags}
-										value={this.state.tags}
-									/>
-									<FormFeedback tooltip>Can't send empty name!</FormFeedback> */}
 									<div>
 										<ReactTags
 											tags={tags}
-											suggestions={suggestions}
+											labelField={'name'}
+											// suggestions={suggestions}
 											handleDelete={this.handleDelete}
 											handleAddition={this.handleAddition}
 											// handleDrag={this.handleDrag}

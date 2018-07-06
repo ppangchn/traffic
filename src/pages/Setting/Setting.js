@@ -44,6 +44,8 @@ class Setting extends Component {
 		this.state = {
 			activeTab: '0',
 			users: [],
+			roles: [],
+			tags: [],
 			toggleAddModal: false,
 			add: <IconAdd />
 		}
@@ -92,31 +94,36 @@ class Setting extends Component {
 
 	handleChange = selectedOption => {
 		this.setState({ choseweight: selectedOption })
-		// selectedOption can be null when the `x` (close) button is clicked
+
 		if (selectedOption) {
 			console.log(`Selected: ${selectedOption.label}`)
 		}
 	}
 
 	fetchData = url => {
-		console.log('activeTap->', this.state.activeTab)
-		console.log('url -> ', url)
 		axios.get(url).then(res => {
 			const { data } = res
-			console.log('Data Users', data)
-			this.setState({ users: data })
+
+			let users = []
+			let roles = []
+			let tags = []
+			data.map(e => {
+				users.push({ id: e.id, name: e.name })
+				roles.push(e.roles)
+				tags.push(e.tags)
+			})
+
+			this.setState({ users, roles, tags })
 		})
 	}
 
 	componentDidMount() {
-		console.log('toggle 1')
 		this.toggle('1')
 	}
 
 	toggleAddModal = state => {
 		this.setState({
 			toggleAddModal: state
-			// saved: state
 		})
 	}
 
@@ -188,8 +195,15 @@ class Setting extends Component {
 										</Card>
 									</Col>
 
-									{this.state.users.map(users => {
-										return <UserSettings selectURL={() => this.selectURL(this.state.activeTab)} users={users} />
+									{this.state.users.map((users, index) => {
+										return (
+											<UserSettings
+												selectURL={() => this.selectURL(this.state.activeTab)}
+												users={users}
+												roles={this.state.roles[index]}
+												tags={this.state.tags[index]}
+											/>
+										)
 									})}
 								</Row>
 							</TabPane>
@@ -207,8 +221,15 @@ class Setting extends Component {
 											</CardBody>
 										</Card>
 									</Col>
-									{this.state.users.map(users => {
-										return <UserSettings selectURL={() => this.selectURL(this.state.activeTab)} users={users} />
+									{this.state.users.map((users, index) => {
+										return (
+											<UserSettings
+												selectURL={() => this.selectURL(this.state.activeTab)}
+												users={users}
+												roles={this.state.roles[index]}
+												tags={this.state.tags[index]}
+											/>
+										)
 									})}
 								</Row>
 							</TabPane>
@@ -226,8 +247,15 @@ class Setting extends Component {
 											</CardBody>
 										</Card>
 									</Col>
-									{this.state.users.map(users => {
-										return <UserSettings selectURL={() => this.selectURL(this.state.activeTab)} users={users} />
+									{this.state.users.map((users, index) => {
+										return (
+											<UserSettings
+												selectURL={() => this.selectURL(this.state.activeTab)}
+												users={users}
+												roles={this.state.roles[index]}
+												tags={this.state.tags[index]}
+											/>
+										)
 									})}
 								</Row>
 							</TabPane>
@@ -235,7 +263,7 @@ class Setting extends Component {
 					</Col>
 				</Row>
 
-				{toggleAddModal && <AddMember onClose={() => this.toggleAddModal(false)} />}
+				{toggleAddModal && <AddMember getData={() => this.selectURL(this.state.activeTab)} onClose={() => this.toggleAddModal(false)} />}
 			</Container>
 		)
 	}

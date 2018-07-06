@@ -75,7 +75,7 @@ export default class UserSettings extends Component {
 	}
 
 	render() {
-		const { users } = this.props
+		const { users, roles, tags } = this.props
 		return (
 			<Col sm={4} className="mb-4" key={users.id}>
 				<Card body className="h-150">
@@ -123,13 +123,17 @@ export default class UserSettings extends Component {
 					</CardTitle>
 					<CardText>
 						<div style={{ display: 'flex', flexDirection: 'row' }}>
-							<div className="persontag">{users.roles.name} </div>
-							<div className="persontag">{users.tags}</div>
+							<div className="persontag">{roles.name} </div>
+							{tags.map(tag => {
+								return <div className="persontag">{tag.name}</div>
+							})}
 						</div>
 					</CardText>
 				</Card>
 
-				{this.state.modalDeleteOpen && <DeleteMember  toggle={this.toggleModalDelete} deleteUser={() => this.deleteUser()} name={users.name} />}
+				{this.state.modalDeleteOpen && (
+					<DeleteMember toggle={this.toggleModalDelete} deleteUser={() => this.deleteUser()} name={users.name} />
+				)}
 			</Col>
 		)
 	}
