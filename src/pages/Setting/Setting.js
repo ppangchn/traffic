@@ -44,6 +44,8 @@ class Setting extends Component {
 		this.state = {
 			activeTab: '0',
 			users: [],
+			roles: [],
+			tags: [],
 			toggleAddModal: false,
 			add: <IconAdd />
 		}
@@ -57,19 +59,21 @@ class Setting extends Component {
 			this.setState({
 				activeTab: tab
 			})
-			switch (tab) {
-				case '1':
-					return this.fetchData(`${url}/users`)
-				case '2':
-					return this.fetchData(`${url}/users/pm`)
-				case '3':
-					return this.fetchData(`${url}/users/pd`)
-				default:
-					return this.fetchData(`${url}/users`)
-			}
+			this.selectURL(tab)
 		}
 	}
-
+	selectURL(tab) {
+		switch (tab) {
+			case '1':
+				return this.fetchData(`${url}users`)
+			case '2':
+				return this.fetchData(`${url}users/pm`)
+			case '3':
+				return this.fetchData(`${url}users/pd`)
+			default:
+				return this.fetchData(`${url}users`)
+		}
+	}
 	toggle() {
 		this.setState({ open: !this.state.open })
 	}
@@ -98,7 +102,17 @@ class Setting extends Component {
 	fetchData = url => {
 		axios.get(url).then(res => {
 			const { data } = res
-			this.setState({ users: data })
+
+			let users = []
+			let roles = []
+			let tags = []
+			data.map(e => {
+				users.push({ id: e.id, name: e.name })
+				roles.push(e.roles)
+				tags.push(e.tags)
+			})
+
+			this.setState({ users, roles, tags })
 		})
 	}
 
@@ -109,7 +123,6 @@ class Setting extends Component {
 	toggleAddModal = state => {
 		this.setState({
 			toggleAddModal: state
-			// saved: state
 		})
 	}
 
@@ -170,13 +183,10 @@ class Setting extends Component {
 							<TabPane tabId="1">
 								<Row>
 									<Col sm={4} className="mb-4">
-										{/* mb-2 */}
 										<Card body className="h-150">
 											<CardBody className="add">
 												<div>
 													<center>
-														{/* <IconAdd /> */}
-
 														<NavLink onClick={e => this.toggleAddModal(true)}>{this.state.add}</NavLink>
 													</center>
 												</div>
@@ -184,8 +194,15 @@ class Setting extends Component {
 										</Card>
 									</Col>
 
-									{this.state.users.map(users => {
-										return <UserSettings users={users} />
+									{this.state.users.map((users, index) => {
+										return (
+											<UserSettings
+												selectURL={() => this.selectURL(this.state.activeTab)}
+												users={users}
+												roles={this.state.roles[index]}
+												tags={this.state.tags[index]}
+											/>
+										)
 									})}
 								</Row>
 							</TabPane>
@@ -193,20 +210,25 @@ class Setting extends Component {
 							<TabPane tabId="2">
 								<Row>
 									<Col sm={4} className="mb-4">
-										{/* mb-2 */}
 										<Card body className="h-150">
 											<CardBody className="add">
 												<div>
 													<center>
-														{/* <IconAdd /> */}
 														<NavLink onClick={e => this.toggleAddModal(true)}>{this.state.add}</NavLink>
 													</center>
 												</div>
 											</CardBody>
 										</Card>
 									</Col>
-									{this.state.users.map(users => {
-										return <UserSettings users={users} />
+									{this.state.users.map((users, index) => {
+										return (
+											<UserSettings
+												selectURL={() => this.selectURL(this.state.activeTab)}
+												users={users}
+												roles={this.state.roles[index]}
+												tags={this.state.tags[index]}
+											/>
+										)
 									})}
 								</Row>
 							</TabPane>
@@ -214,20 +236,25 @@ class Setting extends Component {
 							<TabPane tabId="3">
 								<Row>
 									<Col sm={4} className="mb-4">
-										{/* mb-2 */}
 										<Card body className="h-150">
 											<CardBody className="add">
 												<div>
 													<center>
-														{/* <IconAdd /> */}
 														<NavLink onClick={e => this.toggleAddModal(true)}>{this.state.add}</NavLink>
 													</center>
 												</div>
 											</CardBody>
 										</Card>
 									</Col>
-									{this.state.users.map(users => {
-										return <UserSettings users={users} />
+									{this.state.users.map((users, index) => {
+										return (
+											<UserSettings
+												selectURL={() => this.selectURL(this.state.activeTab)}
+												users={users}
+												roles={this.state.roles[index]}
+												tags={this.state.tags[index]}
+											/>
+										)
 									})}
 								</Row>
 							</TabPane>
@@ -235,7 +262,7 @@ class Setting extends Component {
 					</Col>
 				</Row>
 
-				{toggleAddModal && <AddMember onClose={() => this.toggleAddModal(false)} />}
+				{toggleAddModal && <AddMember getData={() => this.selectURL(this.state.activeTab)} onClose={() => this.toggleAddModal(false)} />}
 			</Container>
 		)
 	}

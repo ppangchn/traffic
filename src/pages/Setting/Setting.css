@@ -5,10 +5,11 @@
 }
 .persontag {
 	font-size: 10px;
-	width: 30px;
+	width: auto;
 	margin-right: 3px;
 	margin-top: 4px;
 	border-radius: 2px;
+	padding: 0 6px;
 }
 .font {
 	font-size: 30px !important;

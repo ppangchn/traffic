@@ -6,8 +6,18 @@ import 'react-select/dist/react-select.css'
 import axios from 'axios'
 import 'rc-slider/assets/index.css'
 import './AddMember.css'
+import './tag.css'
 import { Link, withRouter } from 'react-router-dom'
 import SelectRoles from './SelectRoles'
+
+import { WithContext as ReactTags } from 'react-tag-input'
+
+const KeyCodes = {
+	comma: 188,
+	enter: 13
+}
+
+const delimiters = [KeyCodes.comma, KeyCodes.enter]
 
 class AddMember extends Component {
 	constructor(props) {
@@ -16,17 +26,40 @@ class AddMember extends Component {
 			open: true,
 			listroles: [],
 			dropdownOpen: false,
-			tags: '',
+			// tags: '',
 			filteredROLES: [],
 			roles: '',
-			name: ''
+			name: '',
+			email: '',
+			tags: [{ id: '1', name: 'pm' }, { id: '2', name: 'dev' }],
+			suggestions: [
+				{ id: '1', name: 'pm' },
+				{ id: '2', name: 'dev' },
+				{ id: '3', name: 'designer' },
+				{ id: '4', name: 'ux' },
+				{ id: '5', name: 'ui' },
+				{ id: '6', name: 'pc' },
+				{ id: '7', name: 'bd' },
+				{ id: '8', name: 'node' },
+				{ id: '9', name: 'react' },
+				{ id: '10', name: 'angular' },
+				{ id: '11', name: 'sa' },
+				{ id: '12', name: 'php' },
+				{ id: '13', name: 'android' },
+				{ id: '14', name: 'ios' }
+			]
 		}
 
 		this.toggle = this.toggle.bind(this)
 		this.toggledrop = this.toggledrop.bind(this)
 		this.handleInputChange = this.handleInputChange.bind(this)
+		this.handleInputChangeEmail = this.handleInputChangeEmail.bind(this)
 		this.handleChange = this.handleChange.bind(this)
 		this.handleInputChangeTags = this.handleInputChangeTags.bind(this)
+
+		// lib tag
+		this.handleDelete = this.handleDelete.bind(this)
+		this.handleAddition = this.handleAddition.bind(this)
 	}
 
 	toggle() {
@@ -44,9 +77,18 @@ class AddMember extends Component {
 		let { name } = this.state
 		console.log(e.target.value)
 		this.setState({ name: e.target.value })
-	
+
 		if (name.length > 0) this.setState({ invalid: false })
 	}
+
+	handleInputChangeEmail(e) {
+		let { email } = this.state
+		console.log(e.target.value)
+		this.setState({ email: e.target.value })
+
+		if (email.length > 0) this.setState({ invalid: false })
+	}
+
 	handleInputChangeTags(e) {
 		let { tags } = this.state
 		this.setState({ tags: e.target.value })
@@ -112,15 +154,34 @@ class AddMember extends Component {
 			const data = {
 				name: this.state.name,
 				roles: this.state.roles.value,
-				tags: this.state.tags
+				tags: this.state.tags.map(($objTag) => {
+					return {name: $objTag.name}
+				}),
+				email: this.state.email
 			}
+			console.log(data);
+
 			await axios.put('http://dev.pirsquare.net:3013/traffic-api/users', data).then($res => {
 				console.log('send member', $res)
+				this.props.getData();
 			})
 		} catch (error) {
 			console.log('fail to send data add member')
 		}
 	}
+
+	// async sendDataTags() {
+	// 	try {
+	// 		const data = {
+	// 			tags: this.state.tags
+	// 		}
+	// 		await axios.put('http://dev.pirsquare.net:3013/traffic-api/tags', data).then($res => {
+	// 			console.log('send tags', $res)
+	// 		})
+	// 	} catch (error) {
+	// 		console.log('fail to send data add tags')
+	// 	}
+	// }
 
 	componentDidMount() {
 		try {
@@ -140,8 +201,35 @@ class AddMember extends Component {
 			console.log('fail to get data at AddMember', error)
 		}
 	}
+
+	handleDelete(i) {
+		const { tags } = this.state
+		this.setState({
+			tags: tags.filter((tag, index) => index !== i)
+		})
+	}
+
+	handleAddition(tag) {
+		this.setState(state => ({ tags: [
+			...state.tags,
+			{id: tag.id,name: tag.text}
+		]}))
+	}
+
+	handleDrag(tag, currPos, newPos) {
+		const tags = [...this.state.tags]
+		const newTags = tags.slice()
+
+		newTags.splice(currPos, 1)
+		newTags.splice(newPos, 0, tag)
+
+		// re-render
+		this.setState({ tags: newTags })
+	}
+
 	render() {
 		const { onClose } = this.props
+		const { tags, suggestions } = this.state
 		return (
 			<Container>
 				{/* {console.log('invalid',this.state.invalid)} */}
@@ -181,16 +269,33 @@ class AddMember extends Component {
 							<Row className="btsave">
 								<Col>
 									Tags
+									<div>
+										<ReactTags
+											tags={tags}
+											labelField={'name'}
+											// suggestions={suggestions}
+											handleDelete={this.handleDelete}
+											handleAddition={this.handleAddition}
+											// handleDrag={this.handleDrag}
+											delimiters={delimiters}
+										/>
+									</div>
+								</Col>
+							</Row>
+
+							<Row className="btsave">
+								<Col>
+									Sent your E-Mail
 									<Input
 										style={{ fontSize: '8px !important' }}
-										name="tags"
+										name="name"
 										style={{ backgroundColor: '#f1f1f1' }}
 										// invalid={this.state.invalid}
-										placeholder="Type your name"
-										onChange={this.handleInputChangeTags}
-										value={this.state.tags}
+										placeholder="example@pirsquare.net"
+										onChange={this.handleInputChangeEmail}
+										value={this.state.email}
 									/>
-									<FormFeedback tooltip>Can't send empty name!</FormFeedback>
+									<FormFeedback tooltip>Can't send empty e-mail!</FormFeedback>
 								</Col>
 							</Row>
 

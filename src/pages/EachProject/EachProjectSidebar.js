@@ -26,10 +26,8 @@ import { Link } from 'react-router-dom'
 import Select from 'react-select'
 import { Search as SearchIcon } from 'styled-icons/fa-solid/Search'
 import AddProject from '../AddProject/AddProject'
-import url from '../../url'
-import DeleteUser from '../../components/Views/EachProject/DeleteUser'
 import EditTimeline from '../../components/Views/EachProject/EditTimeline'
-
+import DeleteUser from '../../components/Views/EachProject/DeleteUser'
 const Head = styled.div`
     padding-top : 10px
     font-size : 20px
@@ -119,7 +117,7 @@ class EachProjectSidebar extends Component {
       console.log('fail to delete project at EachProjectSidebar', error)
     }
   }
-  async sendMember(member) {
+  sendMember(member) {
     try {
       const data = {
         project: parseInt(this.props.id),
@@ -238,6 +236,20 @@ class EachProjectSidebar extends Component {
             />
           </ProgressContainer>
         </div>
+        {/* {this.state.projectpm.map(user => {
+          return (
+            <div className="eachprojectitem">
+              <div className="membername">
+                {user.name}
+                <DeleteUser id={user.id} name={user.name}/>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'row' }}>
+                <div className="membertag">{user.roles}</div>
+                <div className="membertag">{user.tags}</div>
+              </div>
+            </div>
+          )
+        })} */}
         {timeline.map(timeline => {
           if (timeline) {
             return (
@@ -300,14 +312,11 @@ class EachProjectSidebar extends Component {
           >
             + Add member
           </Button>
-
-          <div className="cancelbutton">
-            <Link to="/project" style={{ textDecoration: 'none' }}>
-              <Button color="danger" block>
-                back
-              </Button>
-            </Link>
-          </div>
+          <Link to="/project" style={{ textDecoration: 'none' }}>
+            <Button color="danger" block>
+              back
+            </Button>
+          </Link>
         </div>
         {this.state.modalOpen && (
           <AddProject
