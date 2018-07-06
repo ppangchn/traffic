@@ -30,6 +30,7 @@ import UserSettings from '../../components/UserSettings/UserSettings'
 import AddMember from '../AddMember/AddMember'
 import url from '../../url'
 
+
 const IconAdd = PersonAdd.extend`
 	width: 100px;
 	height: 100px;
@@ -65,13 +66,13 @@ class Setting extends Component {
 	selectURL(tab) {
 		switch (tab) {
 			case '1':
-				return this.fetchData(`${url}users`)
+				return this.fetchData(`${url}/users`)
 			case '2':
-				return this.fetchData(`${url}users/pm`)
+				return this.fetchData(`${url}/users/pm`)
 			case '3':
-				return this.fetchData(`${url}users/pd`)
+				return this.fetchData(`${url}/users/pd`)
 			default:
-				return this.fetchData(`${url}users`)
+				return this.fetchData(`${url}/users`)
 		}
 	}
 	toggle() {
