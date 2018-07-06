@@ -28,8 +28,8 @@ class EachProjectTimeline extends Component {
         id: id,
         group: id,
         title: '',
-        start_time: moment(data.project.start_timeline).add(6, 'day'),
-        end_time: moment(data.project.end_timeline).add(6, 'day'),
+        start_time: moment(data.project.start_timeline).add(-1, 'day'),
+        end_time: moment(data.project.end_timeline).add(-1, 'day'),
         canMove: false,
         canResize: false,
         canChangeGroup: false,
@@ -38,8 +38,8 @@ class EachProjectTimeline extends Component {
       id++
       data.timeline.forEach(timeline => {
         groups.push({ id: id, title: timeline.users.name })
-        let start = moment(timeline.start).add(6, 'day')
-        let end = moment(timeline.end).add(6, 'day')
+        let start = moment(timeline.start).add(-1, 'day')
+        let end = moment(timeline.end).add(-1, 'day')
         items.push({
           id: id,
           group: id,

@@ -80,7 +80,8 @@ class EachProjectSidebar extends Component {
       popoverOpen: false,
       modalOpen: false,
       modalDeleteOpen: false,
-      updateTimeline: false
+      updateTimeline: false,
+      tags: []
     }
     this.toggle = this.toggle.bind(this)
     this.togglePopOver = this.togglePopOver.bind(this)
@@ -131,7 +132,7 @@ class EachProjectSidebar extends Component {
       }
       await axios.put(`${url}/timeline`, data)
       await this.getData()
-      await this.props.updateData();
+      await this.props.updateData()
 
       console.log('send member!')
     } catch (error) {
@@ -140,7 +141,7 @@ class EachProjectSidebar extends Component {
   }
 
   async getData() {
-    await this.props.updateData();
+    await this.props.updateData()
     await axios.get(`${url}/project/${this.props.id}`).then(res => {
       const { data } = res
       let projectmember = []
@@ -161,12 +162,10 @@ class EachProjectSidebar extends Component {
       // console.log(this.state.projectmember)
       data.map(user => {
         let { projectmember } = this.state
-        // console.log('projectmember', projectmember)
         if (projectmember.indexOf(user.id) === -1) {
           allmember.push({ value: user.id, label: user.name })
         }
       })
-      // console.log('allmember -> ', allmember)
       this.setState({ allmember })
     })
   }
@@ -266,7 +265,11 @@ class EachProjectSidebar extends Component {
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'row' }}>
                   <div className="membertag">{timeline.users.roles.name}</div>
-                  <div className="membertag">{timeline.users.tags}</div>
+                  {/* {timeline.users.tags.map((tag) => {
+                    return (
+                      <div className="membertag">{tag.name}</div>
+                    )
+                  })} */}
                 </div>
               </div>
             )
