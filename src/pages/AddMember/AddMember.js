@@ -154,7 +154,8 @@ class AddMember extends Component {
 			const data = {
 				name: this.state.name,
 				roles: this.state.roles.value,
-				tags: this.state.tags
+				tags: this.state.tags,
+				email: this.state.email
 			}
 			await axios.put('http://dev.pirsquare.net:3013/traffic-api/users', data).then($res => {
 				console.log('send member', $res)

@@ -25,6 +25,7 @@ div.ReactTags__tagInput input.ReactTags__tagInputField:focus {
 
 /* Styles for selected tags */
 div.ReactTags__selected span.ReactTags__tag {
+    
     border: 1px solid #ddd!important;
     background: #eee!important;
     font-size: 12px!important;

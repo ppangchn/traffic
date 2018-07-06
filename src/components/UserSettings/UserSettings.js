@@ -29,6 +29,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import '../../pages/Setting/Setting.css'
 import DeleteMember from './DeleteMember'
+import { ENGINE_METHOD_DIGESTS } from 'constants'
 
 const Editt = MoreHoriz.extend`
 	color: #5bc2e1;
@@ -45,7 +46,7 @@ export default class UserSettings extends Component {
 			modalDeleteOpen: false,
 			users: []
 		}
-		this.deleteMember = this.deleteMember.bind(this)
+		// this.deleteUser = this.deleteUser.bind(this)
 		// this.toggleModal = this.toggleModal.bind(this)
 		this.toggleModalDelete = this.toggleModalDelete.bind(this)
 	}
@@ -57,16 +58,19 @@ export default class UserSettings extends Component {
 	}
 
 	toggleModalDelete() {
-		this.setState({ modalDeleteOpen: !this.state.modalDeleteOpen})
+		this.setState({ modalDeleteOpen: !this.state.modalDeleteOpen })
 	}
 
-	deleteMember() {
+	async deleteUser() {
 		try {
-			axios.delete(`http://dev.pirsquare.net:3013/traffic-api/users/${this.props.id}`).then(res => {
-				// window.history.back()
-			})
+			await axios
+				.delete(`http://dev.pirsquare.net:3013/traffic-api/users/${this.props.users.id}`)
+				.then(console.log('delete success!'), this.toggleModalDelete())
+			this.props.selectURL()
+
+			// this.props.getData()
 		} catch (error) {
-			console.log('fail to delete project at EachProjectSidebar', error)
+			console.log('cant delete user at DeleteUser', error)
 		}
 	}
 
@@ -86,8 +90,6 @@ export default class UserSettings extends Component {
 									this.setState({ btnDropright: !this.state.btnDropright })
 								}}
 							>
-								
-
 								<DropdownToggle>
 									<Editt />
 								</DropdownToggle>
@@ -127,39 +129,7 @@ export default class UserSettings extends Component {
 					</CardText>
 				</Card>
 
-				{this.state.modalDeleteOpen && <DeleteMember id={users.id} name={users.name} />
-					// <Modal
-					// 	isOpen={this.state.modalDeleteOpen}
-					// 	toggle={this.toggleModalDelete}
-					// 	centered={true}
-					// 	// className={this.props.className}
-					// >
-					// 	<ModalHeader toggle={this.toggleModalDelete} style={{ color: '#da3849' }}>
-					// 		Confirm Delete
-					// 	</ModalHeader>
-					// 	<ModalBody style={{ display: 'flex' }}>
-					// 		Are you sure you want to delete member
-					// 		<div
-					// 			style={{
-					// 				color: '#da3849',
-					// 				textOverflow: 'ellipsis',
-					// 				overflow: 'hidden'
-					// 			}}
-					// 		>
-					// 			&ensp;"{users.name}"
-					// 		</div>
-					// 	</ModalBody>
-					// 	<ModalFooter>
-					// 		<Button color="grey" onClick={this.toggleModalDelete}>
-					// 			Cancel
-					// 		</Button>
-					// 		<Button color="danger" onClick={(this.toggleModalDelete, this.deleteMember)}>
-					// 			Confirm
-					// 		</Button>
-					// 	</ModalFooter>
-					// </Modal>
-				}
-				{/* {} */}
+				{this.state.modalDeleteOpen && <DeleteMember  toggle={this.toggleModalDelete} deleteUser={() => this.deleteUser()} name={users.name} />}
 			</Col>
 		)
 	}

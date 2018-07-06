@@ -57,19 +57,21 @@ class Setting extends Component {
 			this.setState({
 				activeTab: tab
 			})
-			switch (tab) {
-				case '1':
-					return this.fetchData(`${url}users`)
-				case '2':
-					return this.fetchData(`${url}users/pm`)
-				case '3':
-					return this.fetchData(`${url}users/pd`)
-				default:
-					return this.fetchData(`${url}users`)
-			}
+			this.selectURL(tab)
 		}
 	}
-
+	selectURL(tab) {
+		switch (tab) {
+			case '1':
+				return this.fetchData(`${url}users`)
+			case '2':
+				return this.fetchData(`${url}users/pm`)
+			case '3':
+				return this.fetchData(`${url}users/pd`)
+			default:
+				return this.fetchData(`${url}users`)
+		}
+	}
 	toggle() {
 		this.setState({ open: !this.state.open })
 	}
@@ -97,6 +99,8 @@ class Setting extends Component {
 	}
 
 	fetchData = url => {
+		console.log('activeTap->', this.state.activeTab)
+		console.log('url -> ', url)
 		axios.get(url).then(res => {
 			const { data } = res
 			console.log('Data Users', data)
@@ -185,7 +189,7 @@ class Setting extends Component {
 									</Col>
 
 									{this.state.users.map(users => {
-										return <UserSettings users={users} />
+										return <UserSettings selectURL={() => this.selectURL(this.state.activeTab)} users={users} />
 									})}
 								</Row>
 							</TabPane>
@@ -204,7 +208,7 @@ class Setting extends Component {
 										</Card>
 									</Col>
 									{this.state.users.map(users => {
-										return <UserSettings users={users} />
+										return <UserSettings selectURL={() => this.selectURL(this.state.activeTab)} users={users} />
 									})}
 								</Row>
 							</TabPane>
@@ -223,7 +227,7 @@ class Setting extends Component {
 										</Card>
 									</Col>
 									{this.state.users.map(users => {
-										return <UserSettings users={users} />
+										return <UserSettings selectURL={() => this.selectURL(this.state.activeTab)} users={users} />
 									})}
 								</Row>
 							</TabPane>
