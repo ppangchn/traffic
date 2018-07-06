@@ -59,13 +59,13 @@ class Setting extends Component {
 			})
 			switch (tab) {
 				case '1':
-					return this.fetchData(`${url}users`)
+					return this.fetchData(`${url}/users`)
 				case '2':
-					return this.fetchData(`${url}users/pm`)
+					return this.fetchData(`${url}/users/pm`)
 				case '3':
-					return this.fetchData(`${url}users/pd`)
+					return this.fetchData(`${url}/users/pd`)
 				default:
-					return this.fetchData(`${url}users`)
+					return this.fetchData(`${url}/users`)
 			}
 		}
 	}

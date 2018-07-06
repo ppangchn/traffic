@@ -59,7 +59,7 @@ class PersonTimeline extends Component {
     try {
       let items = this.state.items.map(i => i)
       let groups = this.state.groups.map(i => i)
-      axios.get(`${url}users`).then(res => {
+      axios.get(`${url}/users`).then(res => {
         const { data } = res // = res.data
         // console.log('Data Timeline', data)
         let count = 1

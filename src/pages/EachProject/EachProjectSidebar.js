@@ -116,7 +116,7 @@ class EachProjectSidebar extends Component {
   }
   deleteProject() {
     try {
-      axios.delete(`${url}project/${this.props.id}`).then(res => {
+      axios.delete(`${url}/project/${this.props.id}`).then(res => {
         window.history.back()
       })
     } catch (error) {
@@ -129,8 +129,9 @@ class EachProjectSidebar extends Component {
         project: parseInt(this.props.id),
         users: member.value
       }
-      await axios.put(`${url}timeline`, data)
+      await axios.put(`${url}/timeline`, data)
       await this.getData()
+      await this.props.updateData();
 
       console.log('send member!')
     } catch (error) {
@@ -139,7 +140,8 @@ class EachProjectSidebar extends Component {
   }
 
   async getData() {
-    await axios.get(`${url}project/${this.props.id}`).then(res => {
+    await this.props.updateData();
+    await axios.get(`${url}/project/${this.props.id}`).then(res => {
       const { data } = res
       let projectmember = []
       data.timeline.map(timeline => {
@@ -152,7 +154,7 @@ class EachProjectSidebar extends Component {
         projectmember: projectmember
       })
     })
-    await axios.get(`${url}users/pd`).then(res => {
+    await axios.get(`${url}/users/pd`).then(res => {
       const { data } = res
       // console.log('Data allmember', data)
       let allmember = []
@@ -250,7 +252,10 @@ class EachProjectSidebar extends Component {
                   {timeline.users.name}
                   <EditTimeline
                     id={timeline.id}
-                    updateData={this.props.updateData}
+                    start={timeline.start}
+                    end={timeline.end}
+                    updateData={() => this.props.updateData()}
+                    getData={() => this.getData()}
                   />
                   <DeleteUser
                     id={timeline.id}

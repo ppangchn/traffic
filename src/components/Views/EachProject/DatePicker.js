@@ -42,8 +42,13 @@ export default class DatePicker extends React.Component {
     this.setState({ to }, this.showFromMonth)
     this.props.setEndTime(to);
   }
+  componentDidMount() {
+    this.setState({
+      from: moment(this.props.start).toDate(),
+      to: moment(this.props.end).toDate()
+    })
+  }
   render() {
-    console.log('datepicker!')
     const { from, to } = this.state
     const modifiers = { start: from, end: to }
     return (

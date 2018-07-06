@@ -50,7 +50,7 @@ class ProjectSidebar extends Component {
 
   componentDidMount() {
     try {
-      axios.get(`${url}project`).then(res => {
+      axios.get(`${url}/project`).then(res => {
         const { data } = res
         console.log('Data Project', data)
         this.setState({ projects: data })

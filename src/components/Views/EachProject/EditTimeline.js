@@ -5,6 +5,7 @@ import DatePicker from '../EachProject/DatePicker'
 import url from '../../../url'
 import axios from 'axios'
 import './EditTimeline.css'
+import * as moment from 'moment'
 const Calendar = CalendarIcon.extend`
   width: 1rem;
   height: 1rem;
@@ -31,8 +32,10 @@ class EditTimeline extends Component {
     })
   }
   setStartTime(start) {
-    this.setState({ start })
-    console.log('start->', start)
+    this.setState({ start }, () => {
+      console.log('start->', this.state.start)
+    })
+    // console.log('start->', start)
   }
   setEndTime(end) {
     this.setState({ end })
@@ -41,20 +44,36 @@ class EditTimeline extends Component {
   sendData() {
     const data = {
       id: this.props.id,
-      start: this.state.start,
-      end: this.state.end
+      start: moment(this.state.start).startOf('day').format(),
+      end: moment(this.state.end).startOf('day').format()
     }
-    console.log('timeline ->', data)
     try {
-      axios.put(`${url}timeline`, data).then(() => {
+      axios.put(`${url}/timeline`, data).then(() => {
         this.toggle()
         this.props.updateData()
+        this.props.getData()
       })
       console.log('send!')
     } catch (error) {
       console.log('cant update timelineF', error)
     }
   }
+  // getData() {
+  //   axios.get(`${url}/project/${this.props.id}`).then(res => {
+  //     const { data } = res
+  //     console.log('data ja ->', data)
+  //     this.setState({
+  //       data
+  //     })
+  //   })
+  // }
+  // componentDidMount() {
+  //   try {
+  //     this.getData()
+  //   } catch (error) {
+  //     console.log('error getdata edittimeline', error)
+  //   }
+  // }
   render() {
     return (
       <div className="calendar">
@@ -67,6 +86,8 @@ class EditTimeline extends Component {
         >
           <PopoverBody>
             <DatePicker
+              start={this.props.start}
+              end={this.props.end}
               setStartTime={e => this.setStartTime(e)}
               setEndTime={e => this.setEndTime(e)}
             />

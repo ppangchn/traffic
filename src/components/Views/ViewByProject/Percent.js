@@ -27,7 +27,7 @@ class Percent extends Component {
     }
     try {
       axios
-        .put(`${url}project`, data)
+        .put(`${url}/project`, data)
         .then(
           console.log('send!'),
           this.setState({ process: process.process ,isedited: false})

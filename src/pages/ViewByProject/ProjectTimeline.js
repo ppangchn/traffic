@@ -61,7 +61,7 @@ class ProjectTimeline extends Component {
       let items = this.state.items.map(i => i)
       let groups = this.state.groups.map(i => i)
       axios
-        .get(`${url}project/timeline`)
+        .get(`${url}/project/timeline`)
         .then(res => {
           const { data } = res // = res.data
           let count = 1

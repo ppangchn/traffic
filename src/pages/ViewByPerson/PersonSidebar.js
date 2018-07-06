@@ -16,6 +16,7 @@ const Head = styled.div`
 const HeadContainer = styled.div`
   background-color: #ffffff;
   border-bottom: 0.5px solid #dfdfdf;
+  border-right: 0.5px solid #dfdfdf;
   padding-top: 5px;
   padding-bottom: 14px;
 `
@@ -35,7 +36,7 @@ class PersonSidebar extends Component {
     this.state = { users: [] }
   }
   componentDidMount() {
-    axios.get(`${url}users`).then(res => {
+    axios.get(`${url}/users`).then(res => {
       const { data } = res
       console.log('Data Project', data)
       this.setState({ users: data })

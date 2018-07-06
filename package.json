@@ -13,6 +13,7 @@
     "lodash.isequal": "^4.5.0",
     "moment": "^2.22.2",
     "moment-timezone": "^0.5.21",
+    "new-react-calendar-timeline": "^2.2.0",
     "next": "^6.0.3",
     "rc-slider": "^8.6.1",
     "react": "^16.4.0",
