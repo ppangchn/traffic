@@ -400,7 +400,7 @@
 /* .projecthead {
   border-right: 1px solid #c6c6c6;
 } */
-@media (max-width: 575.98px) {
+@media (min-width: 321px) and (max-width: 575.98px) { 
   .projecthead {
     font-size: 15px;
   }
@@ -421,7 +421,7 @@
     width: 100px;
   }
   .projectitem {
-    /* padding-bottom: 15px; */
+    padding-right: 17px;
   }
   .progresscontainer {
     margin-right: 10px;
@@ -452,7 +452,7 @@
   .Edit {
     width: 35%;
     height: 35%;
-    bottom: 8px;
+    bottom: 13px;
     left: 6px;
   }
 }
@@ -516,10 +516,12 @@
 @media (min-width: 992px) and (max-width: 1199.98px) {
   .projecthead {
     font-size: 15px;
+    padding-bottom: 19px;
   }
   .projectitem {
-    padding-bottom: 5px;
+    padding-bottom: 11px;
     padding-left: 18px;
+    
   }
   .pmname {
     font-size: 5px;
@@ -562,9 +564,7 @@
     padding-top: 15px;
     margin-left: 15px;
     font-size: 15px;
-  }
-  .projectitem {
-
+    padding-bottom: 2px;
   }
   .progresscontainer {
     margin-left: 15px;

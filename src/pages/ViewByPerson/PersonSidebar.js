@@ -16,6 +16,7 @@ const Head = styled.div`
 const HeadContainer = styled.div`
   background-color: #ffffff;
   border-bottom: 0.5px solid #dfdfdf;
+  border-right: 0.5px solid #dfdfdf;
   padding-top: 5px;
   padding-bottom: 14px;
 `
@@ -32,13 +33,21 @@ const Weight = styled.div`
 class PersonSidebar extends Component {
   constructor() {
     super()
-    this.state = { users: [] }
+    this.state = { users: [], roles: [], tags: [] }
   }
   componentDidMount() {
-    axios.get(`${url}users`).then(res => {
+    axios.get(`${url}/users`).then(res => {
       const { data } = res
       console.log('Data Project', data)
-      this.setState({ users: data })
+      let users = []
+      let roles = []
+      let tags = []
+      data.map(
+        user => users.push(user.name),
+        // roles.push(user.roles.name)
+        // tags.push(user.tags)
+      )
+      this.setState({ users, roles, tags })
     })
   }
   render() {
@@ -47,13 +56,15 @@ class PersonSidebar extends Component {
         <HeadContainer>
           <Head className="personhead">&emsp;Name</Head>
         </HeadContainer>
-        {this.state.users.map(user => {
+        {this.state.users.map((user, index) => {
           return (
             <Item className="personitem">
-              <User className="personname">{user.name}</User>
+              <User className="personname">{user}</User>
               <div style={{ display: 'flex', flexDirection: 'row' }}>
-                <div className="persontag">{user.roles.name}</div>
-                <div className="persontag">{user.tags}</div>
+                {/* <div className="persontag">{this.state.roles[index]}</div>
+                {this.state.tags[index].map(user => {
+                  return <div className="persontag">{user.tags}</div>
+                })} */}
               </div>
             </Item>
           )

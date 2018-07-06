@@ -4,53 +4,9 @@ import '../../components/Views/GraphBox.css'
 import '../../components/Views/TimelineStyle.css'
 import Timeline from '../../components/Views/react-calendar-timeline/lib'
 import moment from 'moment'
-// import { defaultSubHeaderLabelFormats } from '../../components/react-calendar-timeline/lib'
 import '../ViewByProject/ProjectSidebar.css'
 import GraphBox from '../../components/Views/GraphBox'
 import url from '../../url'
-// const testgroups = [{ id: 10, title: 'group 1' }, { id: 20, title: 'group 2' }]
-
-// const testitems = [
-//   {
-//     id: 1,
-//     group: 10,
-//     title: 'item 1',
-//     start_time: moment(),
-//     end_time: moment().add(1, 'week')
-//   },
-//   {
-//     id: 2,
-//     group: 20,
-//     title: 'item 2',
-//     start_time: moment().add(-0.5, 'week'),
-//     end_time: moment().add(0.5, 'week')
-//   },
-//   {
-//     id: 3,
-//     group: 10,
-//     title: 'item 3',
-//     start_time: moment().add(2, 'hour'),
-//     end_time: moment().add(3, 'hour')
-//   }
-// ]
-//console.log('testgroups', testgroups)
-//console.log('testitems', testitems)
-// defaultSubHeaderLabelFormats ==
-//   {
-//     yearShort: 'YY',
-//     yearLong: 'YYYY',
-//     monthShort: 'MM',
-//     monthMedium: 'MMM',
-//     monthLong: 'MMMM',
-//     dayShort: 'Do',
-//     dayMedium: 'Do',
-//     dayMediumLong: 'Do',
-//     dayLong: 'dddd, Do',
-//     hourShort: 'HH',
-//     hourLong: 'HH:00',
-//     minuteShort: 'mm',
-//     minuteLong: 'HH:mm'
-//   }
 class ProjectTimeline extends Component {
   constructor() {
     super()
@@ -61,14 +17,14 @@ class ProjectTimeline extends Component {
       let items = this.state.items.map(i => i)
       let groups = this.state.groups.map(i => i)
       axios
-        .get(`${url}project/timeline`)
+        .get(`${url}/project/timeline`)
         .then(res => {
           const { data } = res // = res.data
           let count = 1
           data.forEach(data => {
             groups.push({ id: data.id, title: data.name })
-            let start = moment(data.timeline.start).add(6, 'day')
-            let end = moment(data.timeline.end).add(6, 'day')
+            let start = moment(data.timeline.start).add(-1, 'day')
+            let end = moment(data.timeline.end).add(-1, 'day')
             items.push({
               id: count,
               group: data.id,
@@ -98,14 +54,15 @@ class ProjectTimeline extends Component {
           // className="lineheight"
           groups={this.state.groups}
           items={this.state.items}
-          visibleTimeStart={moment().add(7 * 7, 'day')}
-          visibleTimeEnd={moment().add(14 * 8, 'day')}
+          visibleTimeStart={moment().add(7*4,'day')}
+          visibleTimeEnd={moment().add(7*9, 'day')}
           sidebarWidth={0}
           lineHeight={92.4}
           stickyHeader={false}
-          minZoom={2592000000} //4 month
-          maxZoom={9676800000}
+          minZoom="2592000000" //4 month
+          maxZoom="9676800000"
           timeSteps={{ day: 7 }}
+          itemHeightRatio={0.4}
           // onZoom
           // timeSteps={moment().startOf('iosWeek')}
           // subHeaderLabelFormats={defaultSubHeaderLabelFormats}

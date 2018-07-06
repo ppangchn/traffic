@@ -78,9 +78,20 @@
 }
 .membername {
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
+.rct-label-group {
+  background-color: white !important;
+}
+.rct-label{
+  background-color: white !important;
+}
+/* .rct-hl-odd {
+  background: #eaf9fe !important;
+}
+.rct-hl-even {
+  background-color: #eaf9fe !important;
+} */
 @media (max-width: 575.98px) {
   .eachprojectname {
     margin-left: 15px;

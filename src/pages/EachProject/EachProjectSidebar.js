@@ -26,7 +26,7 @@ import { Link } from 'react-router-dom'
 import Select from 'react-select'
 import { Search as SearchIcon } from 'styled-icons/fa-solid/Search'
 import AddProject from '../AddProject/AddProject'
-
+import EditTimeline from '../../components/Views/EachProject/EditTimeline'
 import DeleteUser from '../../components/Views/EachProject/DeleteUser'
 const Head = styled.div`
     padding-top : 10px
@@ -77,13 +77,16 @@ class EachProjectSidebar extends Component {
       projectpm: [],
       popoverOpen: false,
       modalOpen: false,
-      modalDeleteOpen: false
+      modalDeleteOpen: false,
+      updateTimeline: false,
+      tags: []
     }
     this.toggle = this.toggle.bind(this)
     this.togglePopOver = this.togglePopOver.bind(this)
     this.deleteProject = this.deleteProject.bind(this)
     this.toggleModal = this.toggleModal.bind(this)
     this.toggleModalDelete = this.toggleModalDelete.bind(this)
+    this.getData = this.getData.bind(this)
   }
   toggle() {
     this.setState({
@@ -112,13 +115,9 @@ class EachProjectSidebar extends Component {
   }
   deleteProject() {
     try {
-      axios
-        .delete(
-          `http://dev.pirsquare.net:3013/traffic-api/project/${this.props.id}`
-        )
-        .then(res => {
-          window.history.back()
-        })
+      axios.delete(`${url}/project/${this.props.id}`).then(res => {
+        window.history.back()
+      })
     } catch (error) {
       console.log('fail to delete project at EachProjectSidebar', error)
     }
@@ -129,52 +128,44 @@ class EachProjectSidebar extends Component {
         project: parseInt(this.props.id),
         users: member.value
       }
-      axios
-        .put('http://dev.pirsquare.net:3013/traffic-api/timeline', data)
-        .then(this.getData())
-        .catch(function(error) {
-          console.log(error)
-        })
-      console.log('send!')
+      await axios.put(`${url}/timeline`, data)
+      await this.getData()
+      await this.props.updateData()
+
+      console.log('send member!')
     } catch (error) {
       console.log('fail to send member at EachProjectSidebar')
     }
   }
 
-  getData() {
-    axios
-      .get(`http://dev.pirsquare.net:3013/traffic-api/project/${this.props.id}`)
-      .then(res => {
-        const { data } = res
-        // console.log('Data Project', data)
-        let projectmember = []
-        data.timeline.map(timeline => {
-          projectmember.push(timeline.users.id)
-        })
-        // console.log(projectmember)
-        this.setState({
-          timeline: data.timeline,
-          project: data.project,
-          projectmember: projectmember
-        })
+  async getData() {
+    await this.props.updateData()
+    await axios.get(`${url}/project/${this.props.id}`).then(res => {
+      const { data } = res
+      let projectmember = []
+      data.timeline.map(timeline => {
+        projectmember.push(timeline.users.id)
       })
-    axios
-      .get(`http://dev.pirsquare.net:3013/traffic-api/users/pd`)
-      .then(res => {
-        const { data } = res
-        // console.log('Data allmember', data)
-        let allmember = []
-        // console.log(this.state.projectmember)
-        data.map(user => {
-          let { projectmember } = this.state
-          // console.log('projectmember', projectmember)
-          if (projectmember.indexOf(user.id) === -1) {
-            allmember.push({ value: user.id, label: user.name })
-          }
-        })
-        // console.log('allmember -> ', allmember)
-        this.setState({ allmember })
+
+      this.setState({
+        timeline: data.timeline,
+        project: data.project,
+        projectmember: projectmember
       })
+    })
+    await axios.get(`${url}/users/pd`).then(res => {
+      const { data } = res
+      // console.log('Data allmember', data)
+      let allmember = []
+      // console.log(this.state.projectmember)
+      data.map(user => {
+        let { projectmember } = this.state
+        if (projectmember.indexOf(user.id) === -1) {
+          allmember.push({ value: user.id, label: user.name })
+        }
+      })
+      this.setState({ allmember })
+    })
   }
   componentDidMount() {
     try {
@@ -244,7 +235,10 @@ class EachProjectSidebar extends Component {
             <div className="eachprojectweight">{project.process}%</div>
           </div>
           <ProgressContainer>
-            <Progress color={String(project.color).substring(1)} value="10" />
+            <Progress
+              color={String(project.color).substring(1)}
+              value={project.process}
+            />
           </ProgressContainer>
         </div>
         {/* {this.state.projectpm.map(user => {
@@ -262,18 +256,36 @@ class EachProjectSidebar extends Component {
           )
         })} */}
         {timeline.map(timeline => {
-          return (
-            <div className="eachprojectitem">
-              <div className="membername">
-                {timeline.users.name}
-                <DeleteUser id={timeline.users.id} name={timeline.users.name} />
+          if (timeline) {
+            return (
+              <div id={timeline.id} className="eachprojectitem">
+                <div className="membername">
+                  {timeline.users.name}
+                  <EditTimeline
+                    id={timeline.id}
+                    start={timeline.start}
+                    end={timeline.end}
+                    updateData={() => this.props.updateData()}
+                    getData={() => this.getData()}
+                  />
+                  <DeleteUser
+                    id={timeline.id}
+                    name={timeline.users.name}
+                    roles={timeline.users.roles.name}
+                    getData={() => this.getData()}
+                  />
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'row' }}>
+                  <div className="membertag">{timeline.users.roles.name}</div>
+                  {/* {timeline.users.tags.map((tag) => {
+                    return (
+                      <div className="membertag">{tag.name}</div>
+                    )
+                  })} */}
+                </div>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'row' }}>
-                <div className="membertag">{timeline.users.roles.name}</div>
-                <div className="membertag">{timeline.users.tags}</div>
-              </div>
-            </div>
-          )
+            )
+          }
         })}
         <Popover
           placement="bottom !important"

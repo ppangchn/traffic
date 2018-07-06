@@ -7,49 +7,6 @@ import '../ViewByProject/ProjectSidebar.css'
 import GraphBox from '../../components/Views/GraphBox'
 import url from '../../url'
 import '../../components/Views/TimelineStyle.css'
-// const testgroups = [{ id: 10, title: 'group 1' }, { id: 20, title: 'group 2' }]
-
-// const testitems = [
-//   {
-//     id: 1,
-//     group: 10,
-//     title: 'item 1',
-//     start_time: moment(),
-//     end_time: moment().add(1, 'week')
-//   },
-//   {
-//     id: 2,
-//     group: 20,
-//     title: 'item 2',
-//     start_time: moment().add(-0.5, 'week'),
-//     end_time: moment().add(0.5, 'week')
-//   },
-//   {
-//     id: 3,
-//     group: 10,
-//     title: 'item 3',
-//     start_time: moment().add(2, 'hour'),
-//     end_time: moment().add(3, 'hour')
-//   }
-// ]
-// console.log('testgroups', testgroups)
-// console.log('testitems', testitems)
-// defaultSubHeaderLabelFormats ==
-//   {
-//     yearShort: 'YY',
-//     yearLong: 'YYYY',
-//     monthShort: 'MM',
-//     monthMedium: 'MMM',
-//     monthLong: 'MMMM',
-//     dayShort: 'Do',
-//     dayMedium: 'Do',
-//     dayMediumLong: 'Do',
-//     dayLong: 'dddd, Do',
-//     hourShort: 'HH',
-//     hourLong: 'HH:00',
-//     minuteShort: 'mm',
-//     minuteLong: 'HH:mm'
-//   }
 class PersonTimeline extends Component {
   constructor() {
     super()
@@ -59,16 +16,15 @@ class PersonTimeline extends Component {
     try {
       let items = this.state.items.map(i => i)
       let groups = this.state.groups.map(i => i)
-      axios.get(`${url}users`).then(res => {
+      axios.get(`${url}/users`).then(res => {
         const { data } = res // = res.data
-        // console.log('Data Timeline', data)
         let count = 1
         data.forEach(data => {
           groups.push({ id: data.id, title: data.name })
           if (data.projectTimeline) {
             data.projectTimeline.forEach(timeline => {
-              let start = moment(timeline.start || 0)
-              let end = moment(timeline.end || 0)
+              let start = moment(timeline.start || 0).add(-1,'day')
+              let end = moment(timeline.end || 0).add(-1,'day')
               items.push({
                 id: count || 0,
                 group: data.id || 0,
@@ -108,6 +64,7 @@ class PersonTimeline extends Component {
           minZoom="2592000000" //4 month
           maxZoom="9676800000"
           timeSteps={{ day: 7 }}
+          itemHeightRatio={0.3}
         />
       </GraphBox>
     )

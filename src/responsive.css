@@ -1,5 +1,7 @@
-/* Small devices (landscape phones, 576px and up)
-@media (max-width: 575.98px) { ... }
+/* 
+@media (max-width: 320px) { ... }
+Small devices (landscape phones, 576px and up)
+@media (min-width: 321px) and (max-width: 575.98px) { ... }
 
 @media (max-width: 575.98px) { ... } */
 /* // Small devices (landscape phones, 576px and up)

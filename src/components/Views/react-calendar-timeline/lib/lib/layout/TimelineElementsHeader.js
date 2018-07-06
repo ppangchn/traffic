@@ -82,6 +82,7 @@ var TimelineElementsHeader = function (_Component) {
   }, {
     key: 'subHeaderLabel',
     value: function subHeaderLabel(time, unit, width) {
+      time = time.add('days', 1)
       var f = this.props.subHeaderLabelFormats;
 
 
@@ -146,9 +147,6 @@ var TimelineElementsHeader = function (_Component) {
             {
               key: 'top-label-' + time.valueOf(),
               className: 'rct-label-group' + (hasRightSidebar ? ' rct-has-right-sidebar' : ''),
-              onClick: function onClick() {
-                return _this2.handlePeriodClick(time, nextUnit);
-              },
               style: {
                 left: left - 1 + 'px',
                 width: labelWidth + 'px',
@@ -173,9 +171,12 @@ var TimelineElementsHeader = function (_Component) {
         var firstOfType = minUnitValue === (minUnit === 'day' ? 1 : 0);
         var labelWidth = Math.round((nextTime.valueOf() - time.valueOf()) * ratio);
         var leftCorrect = firstOfType ? 1 : 0;
+        let timeNew = time
+
+        console.log(time, time.valueOf(), typeof time)
 
         // EDIT EDIT EDIT EDIT EDIT EDIT EDIT EDIT EDIT EDIT EDIT EDIT EDIT EDIT 
-        time = time.startOf('isoWeek')
+        // time = time.startOf('isoWeek')
         // EDIT EDIT EDIT EDIT EDIT EDIT EDIT EDIT EDIT EDIT EDIT EDIT EDIT EDIT
 
         bottomHeaderLabels.push(_react2.default.createElement(
@@ -183,9 +184,6 @@ var TimelineElementsHeader = function (_Component) {
           {
             key: 'label-' + time.valueOf(),
             className: 'rct-label ' + (twoHeaders ? '' : 'rct-label-only') + ' ' + (firstOfType ? 'rct-first-of-type' : '') + ' ' + (minUnit !== 'month' ? 'rct-day-' + time.day() : '') + ' ',
-            onClick: function onClick() {
-              return _this2.handlePeriodClick(time, minUnit);
-            },
             style: {
               left: left - leftCorrect + 'px',
               width: labelWidth + 'px',
@@ -195,7 +193,7 @@ var TimelineElementsHeader = function (_Component) {
               cursor: 'pointer'
             }
           },
-          _this2.subHeaderLabel(time, minUnit, labelWidth)
+          _this2.subHeaderLabel(timeNew, minUnit, labelWidth)
         ));
       });
 
