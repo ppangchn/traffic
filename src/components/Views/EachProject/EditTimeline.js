@@ -67,13 +67,14 @@ class EditTimeline extends Component {
   //     })
   //   })
   // }
-  // componentDidMount() {
-  //   try {
-  //     this.getData()
-  //   } catch (error) {
-  //     console.log('error getdata edittimeline', error)
-  //   }
-  // }
+  componentDidMount() {
+    try {
+      this.setStartTime(this.props.start);
+      this.setEndTime(this.props.end)
+    } catch (error) {
+      console.log('error getdata edittimeline', error)
+    }
+  }
   render() {
     return (
       <div className="calendar">

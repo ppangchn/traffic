@@ -35,12 +35,16 @@ export default class DatePicker extends React.Component {
   }
   handleFromChange(from) {
     // Change the from date and focus the "to" input field
-    this.setState({ from })
-    this.props.setStartTime(from);
+    if (from) {
+      this.setState({ from })
+      this.props.setStartTime(from)
+    }
   }
   handleToChange(to) {
-    this.setState({ to }, this.showFromMonth)
-    this.props.setEndTime(to);
+    if (to) {
+      this.setState({ to }, this.showFromMonth)
+      this.props.setEndTime(to)
+    }
   }
   componentDidMount() {
     this.setState({
@@ -72,7 +76,7 @@ export default class DatePicker extends React.Component {
         —{' '}
         <span className="InputFromTo-to">
           <DayPickerInput
-          className="popover"
+            className="popover"
             ref={el => (this.to = el)}
             value={to}
             placeholder="To"
