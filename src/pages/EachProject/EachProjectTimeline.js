@@ -87,6 +87,7 @@ class EachProjectTimeline extends Component {
           minZoom="2592000000" //4 month
           maxZoom="9676800000"
           timeSteps={{ day: 7 }}
+          itemHeightRatio={0.3}
         />
       </GraphBox>
     )
