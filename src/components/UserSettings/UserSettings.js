@@ -62,9 +62,9 @@ export default class UserSettings extends Component {
   toggleModalDelete() {
     this.setState({ modalDeleteOpen: !this.state.modalDeleteOpen })
   }
-  toggleEditMember() {
+  toggleEditMember(state) {
 		console.log('toggle!')
-    this.setState({ editmember: !this.state.editmember })
+    this.setState({ editmember: state })
   }
   async deleteUser() {
     try {
@@ -110,7 +110,7 @@ export default class UserSettings extends Component {
                       borderRadius: '0.2rem 0.2rem 0 0'
                     }}
                   >
-                    <div onClick={() => this.toggleEditMember()}>Edit Member</div>
+                    <div onClick={() => this.toggleEditMember(true)}>Edit Member</div>
                   </DropdownItem>
 
                   {/* <Link to="/project" style={{ textDecoration: 'none' }}> */}
@@ -147,7 +147,7 @@ export default class UserSettings extends Component {
             name={users.name}
           />
         )}
-        {this.state.editmember && <AddMember id={this.props.id} />}
+        {this.state.editmember && <AddMember id={this.props.id} onClose={() => {this.toggleEditMember(false)}} />}
       </Col>
     )
   }

@@ -19,6 +19,7 @@ import { Link, withRouter } from 'react-router-dom'
 import SelectRoles from './SelectRoles'
 import url from '../../url'
 import { WithContext as ReactTags } from 'react-tag-input'
+import './AddMember.css'
 
 const KeyCodes = {
   comma: 188,
@@ -55,7 +56,12 @@ class AddMember extends Component {
         { id: '12', name: 'php' },
         { id: '13', name: 'android' },
         { id: '14', name: 'ios' }
-      ]
+      ],
+      header: 'New Member',
+      invalidname: false,
+      invalidroles: false,
+      invalidemail: false,
+      invalidrolesmessage: 'Please select one role for this member.'
     }
 
     this.toggle = this.toggle.bind(this)
@@ -72,10 +78,12 @@ class AddMember extends Component {
 
   toggle() {
     this.setState({ open: !this.state.open })
+    this.props.onClose()
   }
   toggleSave() {
     if (this.state.name && this.state.roles && this.state.tags !== 0)
       this.setState({ open: !this.state.open })
+    this.props.onClose()
   }
   toggledrop() {
     this.setState({
@@ -83,19 +91,17 @@ class AddMember extends Component {
     })
   }
   handleInputChange(e) {
+    if (e) this.setState({ invalidname: false })
     let { name } = this.state
     console.log(e.target.value)
     this.setState({ name: e.target.value })
-
-    if (name.length > 0) this.setState({ invalid: false })
   }
 
   handleInputChangeEmail(e) {
+    if (e) this.setState({ invalidemail: false })
     let { email } = this.state
     console.log(e.target.value)
     this.setState({ email: e.target.value })
-
-    if (email.length > 0) this.setState({ invalid: false })
   }
 
   handleInputChangeTags(e) {
@@ -109,7 +115,7 @@ class AddMember extends Component {
     this.setState({ roles: selectedOption })
     // selectedOption can be null when the `x` (close) button is clicked
     if (selectedOption) {
-      console.log(`Selected: ${selectedOption.label}`)
+      this.setState({ invalidroles: false })
     }
   }
   setRoles = (index, data) => {
@@ -160,21 +166,26 @@ class AddMember extends Component {
 
   async sendDataMember() {
     try {
-      const data = {
-        name: this.state.name,
-        roles: this.state.roles.value,
-        tags: this.state.tags.map($objTag => {
-          return { name: $objTag.name }
-        }),
-        email: this.state.email
+      if (this.state.name && this.state.roles && this.state.email) {
+        const data = {
+          name: this.state.name,
+          roles: this.state.roles.value,
+          tags: this.state.tags.map($objTag => {
+            return { name: $objTag.name }
+          }),
+          email: this.state.email
+        }
+        await axios.put(`${url}/users`, data).then($res => {
+          console.log('send member', $res)
+          this.toggleSave()
+          this.props.getData()
+          this.props.onClose()
+        })
+      } else {
+        if (!this.state.name) this.setState({ invalidname: true })
+        if (!this.state.roles) this.setState({ invalidroles: true })
+        if (!this.state.email) this.setState({ invalidemail: true })
       }
-      console.log(data)
-
-      await axios.put(`${url}/users`, data).then($res => {
-        console.log('send member', $res)
-        this.props.getData()
-        this.props.onClose()
-      })
     } catch (error) {
       console.log('fail to send data add member')
     }
@@ -200,11 +211,13 @@ class AddMember extends Component {
           const { data } = res
           data.map(user => {
             if (user.id === this.props.id) {
+              console.log('roles -> ',user.roles.name.toString())
               this.setState({
                 name: user.name,
                 roles: user.roles.name,
-								tags: user.tags,
-								email: user.email
+                tags: user.tags,
+                email: user.email,
+                header: 'Edit Member'
               })
             }
           })
@@ -212,7 +225,6 @@ class AddMember extends Component {
       }
       axios.get(`${url}/roles`).then(res => {
         const { data } = res
-        console.log('Data', data)
         let listroles = []
         data.map(data => {
           // if (this.props.pm.indexOf(data.name)===-1)
@@ -263,7 +275,7 @@ class AddMember extends Component {
           isOpen={this.state.open}
           toggle={onClose}
         >
-          <ModalHeader toggle={onClose}>New Member</ModalHeader>
+          <ModalHeader toggle={onClose}>{this.state.header}</ModalHeader>
           <ModalBody>
             <Container>
               <Row className="btsave">
@@ -277,6 +289,7 @@ class AddMember extends Component {
                     placeholder="Type your name"
                     onChange={this.handleInputChange}
                     value={this.state.name}
+                    invalid={this.state.invalidname}
                   />
                   <FormFeedback tooltip>Can't send empty name!</FormFeedback>
                 </Col>
@@ -285,15 +298,17 @@ class AddMember extends Component {
               <Row className="btsave">
                 <Col>Roles</Col>
               </Row>
-              {/* {this.state.roles.map((roles, index) => ( */}
               <Select
                 // ClassName="selectbox"
                 placeholder="Select role"
                 value={this.state.roles}
                 onChange={this.handleChange}
                 options={this.state.listroles}
-                // trimFilter
+                trimFilter
               />
+              <div className="invalid">
+                {this.state.invalidroles && this.state.invalidrolesmessage}
+              </div>
               {/* ))} */}
               <Row className="btsave">
                 <Col>
@@ -323,6 +338,7 @@ class AddMember extends Component {
                     placeholder="example@pirsquare.net"
                     onChange={this.handleInputChangeEmail}
                     value={this.state.email}
+                    invalid={this.state.invalidemail}
                   />
                   <FormFeedback tooltip>Can't send empty e-mail!</FormFeedback>
                 </Col>
@@ -336,7 +352,7 @@ class AddMember extends Component {
                     size="lg"
                     block
                     onClick={() => {
-                      this.sendDataMember(), this.toggleSave()
+                      this.sendDataMember()
                       // ,this.props.isSaved(true)
                     }}
                   >
