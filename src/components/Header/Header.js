@@ -74,6 +74,7 @@ const SettingReg = Settings.extend`
   color: white;
   &:hover ${SettingReg} {
     transition-duration: 300ms;
+    position: relative;
     top: -1px;
   }
   display: inline-block;
@@ -97,7 +98,8 @@ const ListAltReg = ListAlt.extend`
     height : 1.5rem;
     color : white;
     &:hover ${ListAltReg} {
-        
+      transition-duration: 300ms;
+      top: -1px;
     }
     display: inline-block;
     cursor: pointer;
@@ -121,7 +123,8 @@ const AddReg = AddCircleOutline.extend`
     height : 1.5rem;
     color : white;
     &:hover ${AddReg} {
-        
+      transition-duration: 300ms;
+      top: -1px;
     }
     display: inline-block;
     cursor: pointer;

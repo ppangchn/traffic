@@ -29,8 +29,6 @@ const Head = styled.div`
 const HeadContainer = styled.div`
   background-color: #ffffff;
   border-bottom: 0.5px solid #dfdfdf;
-  padding-top: 5px;
-  padding-bottom: 11px;
   border-right: 0.5px solid #dfdfdf;
 `
 const Pm = styled.div`

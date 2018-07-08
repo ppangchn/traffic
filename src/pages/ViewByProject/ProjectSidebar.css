@@ -400,7 +400,7 @@
 /* .projecthead {
   border-right: 1px solid #c6c6c6;
 } */
-@media (min-width: 321px) and (max-width: 575.98px) { 
+@media (min-width: 321px) and (max-width: 575.98px) {
   .projecthead {
     font-size: 15px;
   }
@@ -546,7 +546,7 @@
   .projecthead {
     font-size: 20px;
     padding-left: 10px;
-    padding-bottom: 12px;
+    padding-bottom: 17px;
   }
   .pmcontainer {
     margin-left: 15px;
@@ -572,7 +572,7 @@
     display: flex;
     flex-direction: row;
     top: 8px;
-    position: relative
+    position: relative;
   }
   .progress {
     border-radius: 8px !important;
@@ -582,7 +582,6 @@
     bottom: 5px;
     position: relative;
   }
-
   /* .lineheight {
     line-height: 100px !important;
   } */
