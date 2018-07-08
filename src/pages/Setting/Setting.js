@@ -30,13 +30,13 @@ import UserSettings from '../../components/UserSettings/UserSettings'
 import AddMember from '../AddMember/AddMember'
 import url from '../../url'
 
-
 const IconAdd = PersonAdd.extend`
 	width: 100px;
 	height: 100px;
 	color: gray;
 	display: inline-block;
 	border-radius: 10px;
+	cursor: pointer !important;
 `
 
 class Setting extends Component {
@@ -147,7 +147,7 @@ class Setting extends Component {
 						<Nav tabs className="mx-5">
 							<NavItem>
 								<NavLink
-									className="tap"
+									className="tap  cursor: pointer"
 									className={classnames({ active: this.state.activeTab === '1' })}
 									onClick={() => {
 										this.toggle('1')

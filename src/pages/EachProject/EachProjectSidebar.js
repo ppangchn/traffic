@@ -3,22 +3,8 @@ import styled from 'styled-components'
 import Sidebar from '../../components/Views/Sidebar'
 import axios from 'axios'
 import '../ViewByProject/ProjectSidebar.css'
-import {
-  Progress,
-  Button,
-  Popover,
-  PopoverBody,
-  Modal,
-  ModalBody,
-  ModalHeader,
-  ModalFooter
-} from 'reactstrap'
-import {
-  DropdownItem,
-  DropdownToggle,
-  DropdownMenu,
-  ButtonDropdown
-} from 'reactstrap'
+import { Progress, Button, Popover, PopoverBody, Modal, ModalBody, ModalHeader, ModalFooter } from 'reactstrap'
+import { DropdownItem, DropdownToggle, DropdownMenu, ButtonDropdown } from 'reactstrap'
 import { TriangleUp } from 'styled-icons/octicons/TriangleUp'
 import { MoreHoriz } from 'styled-icons/material/MoreHoriz'
 import './EachProjectSidebar.css'
@@ -35,170 +21,170 @@ const Head = styled.div`
     font-size : 20px
 `
 const HeadContainer = styled.div`
-  background-color: #ffffff;
-  border-bottom: 0.5px solid #dfdfdf;
-  padding-top: 5px;
-  padding-bottom: 14px;
+	background-color: #ffffff;
+	border-bottom: 0.5px solid #dfdfdf;
+	padding-top: 5px;
+	padding-bottom: 14px;
 `
 const ProgressContainer = styled.div`
-  margin-left: 15px;
-  margin-right: 10px;
-  display: flex;
+	margin-left: 15px;
+	margin-right: 10px;
+	display: flex;
 `
 const Edit = MoreHoriz.extend`
-  color: #5bc2e1;
-  width: 1.5625rem;
-  height: 1.5625rem;
+	color: #5bc2e1;
+	width: 1.5625rem;
+	height: 1.5625rem;
 `
 const WhiteTriangle = TriangleUp.extend`
-  color: white;
-  width: 1.5625rem;
-  height: 1.5625rem;
-  stroke: #5bc2e1;
-  stroke-width: 0.04rem;
+	color: white;
+	width: 1.5625rem;
+	height: 1.5625rem;
+	stroke: #5bc2e1;
+	stroke-width: 0.04rem;
 `
 const Search = SearchIcon.extend`
-  background-color: #888888;
+	background-color: #888888;
 `
 
 class EachProjectSidebar extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      timeline: [],
-      project: {},
-      dropdownOpen: false,
-      search: false,
-      allmember: [],
-      projectmember: [],
-      projectpm: [],
-      popoverOpen: false,
-      modalOpen: false,
-      modalDeleteOpen: false,
-      updateTimeline: false,
-      tags: []
-    }
-    this.toggle = this.toggle.bind(this)
-    this.togglePopOver = this.togglePopOver.bind(this)
-    this.deleteProject = this.deleteProject.bind(this)
-    this.toggleModal = this.toggleModal.bind(this)
-    this.toggleModalDelete = this.toggleModalDelete.bind(this)
-    this.getData = this.getData.bind(this)
-  }
-  toggle() {
-    this.setState({
-      dropdownOpen: !this.state.dropdownOpen
-    })
-  }
-  togglePopOver() {
-    this.setState({
-      popoverOpen: !this.state.popoverOpen
-    })
-  }
-  toggleModal(state) {
-    this.setState({
-      modalOpen: state
-    })
-  }
-  toggleModalDelete() {
-    this.setState({ modalDeleteOpen: !this.state.modalDeleteOpen })
-  }
-  handleChange = selectedOption => {
-    // this.setState({ selectedmember: selectedOption })
-    // if (selectedOption) {
-    this.sendMember(selectedOption)
-    // }
-    // selectedOption can be null when the `x` (close) button is clicked
-  }
-  deleteProject() {
-    try {
-      axios.delete(`${url}/project/${this.props.id}`).then(res => {
-        window.history.back()
-      })
-    } catch (error) {
-      console.log('fail to delete project at EachProjectSidebar', error)
-    }
-  }
-  async sendMember(member) {
-    try {
-      const data = {
-        project: parseInt(this.props.id),
-        users: member.value
-      }
-      await axios.put(`${url}/timeline`, data)
-      await this.getData()
-      await this.props.updateData()
+	constructor(props) {
+		super(props)
+		this.state = {
+			timeline: [],
+			project: {},
+			dropdownOpen: false,
+			search: false,
+			allmember: [],
+			projectmember: [],
+			projectpm: [],
+			popoverOpen: false,
+			modalOpen: false,
+			modalDeleteOpen: false,
+			updateTimeline: false,
+			tags: []
+		}
+		this.toggle = this.toggle.bind(this)
+		this.togglePopOver = this.togglePopOver.bind(this)
+		this.deleteProject = this.deleteProject.bind(this)
+		this.toggleModal = this.toggleModal.bind(this)
+		this.toggleModalDelete = this.toggleModalDelete.bind(this)
+		this.getData = this.getData.bind(this)
+	}
+	toggle() {
+		this.setState({
+			dropdownOpen: !this.state.dropdownOpen
+		})
+	}
+	togglePopOver() {
+		this.setState({
+			popoverOpen: !this.state.popoverOpen
+		})
+	}
+	toggleModal(state) {
+		this.setState({
+			modalOpen: state
+		})
+	}
+	toggleModalDelete() {
+		this.setState({ modalDeleteOpen: !this.state.modalDeleteOpen })
+	}
+	handleChange = selectedOption => {
+		// this.setState({ selectedmember: selectedOption })
+		// if (selectedOption) {
+		this.sendMember(selectedOption)
+		// }
+		// selectedOption can be null when the `x` (close) button is clicked
+	}
+	deleteProject() {
+		try {
+			axios.delete(`${url}/project/${this.props.id}`).then(res => {
+				window.history.back()
+			})
+		} catch (error) {
+			console.log('fail to delete project at EachProjectSidebar', error)
+		}
+	}
+	async sendMember(member) {
+		try {
+			const data = {
+				project: parseInt(this.props.id),
+				users: member.value
+			}
+			await axios.put(`${url}/timeline`, data)
+			await this.getData()
+			await this.props.updateData()
 
-      console.log('send member!')
-    } catch (error) {
-      console.log('fail to send member at EachProjectSidebar')
-    }
-  }
+			console.log('send member!')
+		} catch (error) {
+			console.log('fail to send member at EachProjectSidebar')
+		}
+	}
 
-  async getData() {
-    await this.props.updateData()
-    await axios.get(`${url}/project/${this.props.id}`).then(res => {
-      const { data } = res
-      let projectmember = []
-      data.timeline.map(timeline => {
-        projectmember.push(timeline.users.id)
-      })
+	async getData() {
+		await this.props.updateData()
+		await axios.get(`${url}/project/${this.props.id}`).then(res => {
+			const { data } = res
+			let projectmember = []
+			data.timeline.map(timeline => {
+				projectmember.push(timeline.users.id)
+			})
 
-      this.setState({
-        timeline: data.timeline,
-        project: data.project,
-        projectmember: projectmember
-      })
-    })
-    await axios.get(`${url}/users/pd`).then(res => {
-      const { data } = res
-      // console.log('Data allmember', data)
-      let allmember = []
-      // console.log(this.state.projectmember)
-      data.map(user => {
-        let { projectmember } = this.state
-        if (projectmember.indexOf(user.id) === -1) {
-          allmember.push({ value: user.id, label: user.name })
-        }
-      })
-      this.setState({ allmember })
-    })
-  }
-  componentDidMount() {
-    try {
-      this.getData()
-    } catch (error) {
-      console.log('fail to get data at EachProjectSidebar')
-    }
-  }
-  render() {
-    const { project, timeline } = this.state
-    return (
-      <Sidebar>
-        <HeadContainer>
-          <Head>&emsp;Name</Head>
-        </HeadContainer>
-        <div className="eachprojecthead">
-          <div>
-            <ButtonDropdown
-              className="btn-secondary"
-              isOpen={this.state.btnDropright}
-              toggle={() => {
-                this.setState({ btnDropright: !this.state.btnDropright })
-              }}
-            >
-              <DropdownToggle>
-                <Edit />
-              </DropdownToggle>
-              <DropdownMenu className="dropdown-menu">
-                <DropdownItem
-                  className="dropdownitem"
-                  style={{
-                    borderBottom: '1px solid #5bc2e1',
-                    borderRadius: '0.2rem 0.2rem 0 0'
-                  }}
-                >
-                  {/* <div
+			this.setState({
+				timeline: data.timeline,
+				project: data.project,
+				projectmember: projectmember
+			})
+		})
+		await axios.get(`${url}/users/pd`).then(res => {
+			const { data } = res
+			// console.log('Data allmember', data)
+			let allmember = []
+			// console.log(this.state.projectmember)
+			data.map(user => {
+				let { projectmember } = this.state
+				if (projectmember.indexOf(user.id) === -1) {
+					allmember.push({ value: user.id, label: user.name })
+				}
+			})
+			this.setState({ allmember })
+		})
+	}
+	componentDidMount() {
+		try {
+			this.getData()
+		} catch (error) {
+			console.log('fail to get data at EachProjectSidebar')
+		}
+	}
+	render() {
+		const { project, timeline } = this.state
+		return (
+			<Sidebar>
+				<HeadContainer>
+					<Head>&emsp;Name</Head>
+				</HeadContainer>
+				<div className="eachprojecthead">
+					<div>
+						<ButtonDropdown
+							className="btn-secondary"
+							isOpen={this.state.btnDropright}
+							toggle={() => {
+								this.setState({ btnDropright: !this.state.btnDropright })
+							}}
+						>
+							<DropdownToggle>
+								<Edit />
+							</DropdownToggle>
+							<DropdownMenu className="dropdown-menu">
+								<DropdownItem
+									className="dropdownitem"
+									style={{
+										borderBottom: '1px solid #5bc2e1',
+										borderRadius: '0.2rem 0.2rem 0 0'
+									}}
+								>
+									{/* <div
                     style={{
                       position: 'absolute',
                       zIndex: '1',
@@ -209,36 +195,31 @@ class EachProjectSidebar extends Component {
                     <WhiteTriangle />
                   </div>
                   <div className="bottomtriangle">_</div> */}
-                  <div onClick={() => this.toggleModal(true)}>Edit Project</div>
-                </DropdownItem>
-                <DropdownItem
-                  onClick={this.toggleModalDelete}
-                  className="dropdowndeleteitem"
-                  style={{
-                    color: '#f67879',
-                    borderRadius: '0 0 0.2rem 0.2rem'
-                  }}
-                >
-                  Delete
-                </DropdownItem>
-              </DropdownMenu>
-            </ButtonDropdown>
-          </div>
+									<div onClick={() => this.toggleModal(true)}>Edit Project</div>
+								</DropdownItem>
+								<DropdownItem
+									onClick={this.toggleModalDelete}
+									className="dropdowndeleteitem"
+									style={{
+										color: '#f67879',
+										borderRadius: '0 0 0.2rem 0.2rem'
+									}}
+								>
+									Delete
+								</DropdownItem>
+							</DropdownMenu>
+						</ButtonDropdown>
+					</div>
 
-          <div className="eachprojectname">
-            <div style={{ textOverflow: 'ellipsis', overflow: 'hidden' }}>
-              {project.name}
-            </div>
-            <div className="eachprojectweight">{project.process}%</div>
-          </div>
-          <ProgressContainer>
-            <Progress
-              color={String(project.color).substring(1)}
-              value={project.process}
-            />
-          </ProgressContainer>
-        </div>
-        {/* {this.state.projectpm.map(user => {
+					<div className="eachprojectname">
+						<div style={{ textOverflow: 'ellipsis', overflow: 'hidden' }}>{project.name}</div>
+						<div className="eachprojectweight">{project.process}%</div>
+					</div>
+					<ProgressContainer>
+						<Progress color={String(project.color).substring(1)} value={project.process} />
+					</ProgressContainer>
+				</div>
+				{/* {this.state.projectpm.map(user => {
           return (
             <div className="eachprojectitem">
               <div className="membername">
@@ -252,123 +233,106 @@ class EachProjectSidebar extends Component {
             </div>
           )
         })} */}
-        {timeline.map(timeline => {
-          if (timeline) {
-            return (
-              <div id={timeline.id} className="eachprojectitem">
-                <div className="membername">
-                  {timeline.users.name}
-                  <EditTimeline
-                    id={timeline.id}
-                    start={timeline.start}
-                    end={timeline.end}
-                    updateData={() => this.props.updateData()}
-                    getData={() => this.getData()}
-                  />
-                  <DeleteUser
-                    id={timeline.id}
-                    name={timeline.users.name}
-                    roles={timeline.users.roles.name}
-                    getData={() => this.getData()}
-                  />
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'row' }}>
-                  <div className="membertag">{timeline.users.roles.name}</div>
-                  {timeline.users.tags.map(tag => {
-                    return <div className="membertag">{tag.name}</div>
-                  })}
-                </div>
-              </div>
-            )
-          }
-        })}
-        <Popover
-          placement="bottom !important"
-          isOpen={this.state.popoverOpen}
-          target="Popover"
-          toggle={this.togglePopOver}
-          className="addmemberpopover"
-          hideArrow={true}
-        >
-          <PopoverBody>
-            <Select
-              // style={{borderColor:''}}
-              // name="form-field-name"
-              closeOnSelect={false}
-              value={this.state.selectedmember}
-              onChange={this.handleChange}
-              options={this.state.allmember}
-              autoFocus={true}
-              open={true}
-              openOnFocus={true}
-            />
-          </PopoverBody>
-        </Popover>
-        <div className="buttoncontainer">
-          <Button
-            outline
-            color="secondary"
-            block
-            onClick={this.togglePopOver}
-            id="Popover"
-          >
-            + Add member
-          </Button>
-          <div className="cancelbutton">
-            <Link to="/project" style={{ textDecoration: 'none' }}>
-              <Button color="danger" block>
-                back
-              </Button>
-            </Link>
-          </div>
-        </div>
-        {this.state.modalOpen && (
-          <AddProject
-            onClose={() => this.toggleModal(false)}
-            id={this.props.id}
-          />
-        )}
-        {this.state.modalDeleteOpen && (
-          <Modal
-            isOpen={this.state.modalDeleteOpen}
-            toggle={this.toggleModalDelete}
-            centered={true}
-            // className={this.props.className}
-          >
-            <ModalHeader
-              toggle={this.toggleModalDelete}
-              style={{ color: '#da3849' }}
-            >
-              Confirm Delete
-            </ModalHeader>
-            <ModalBody style={{ display: 'flex' }}>
-              Are you sure you want to delete project
-              <div
-                style={{
-                  color: '#da3849',
-                  textOverflow: 'ellipsis',
-                  overflow: 'hidden'
-                }}
-              >
-                &ensp;"{project.name}"
-              </div>
-            </ModalBody>
-            <ModalFooter>
-              <Button color="grey" onClick={this.toggleModalDelete}>
-                Cancel
-              </Button>
-              <Button
-                color="danger"
-                onClick={(this.toggleModalDelete, this.deleteProject)}
-              >
-                Confirm
-              </Button>
-            </ModalFooter>
-          </Modal>
-        )}
-      </Sidebar>
-    )
-  }
+				{timeline.map(timeline => {
+					if (timeline) {
+						return (
+							<div id={timeline.id} className="eachprojectitem">
+								<div className="membername">
+									{timeline.users.name}
+									<EditTimeline
+										id={timeline.id}
+										start={timeline.start}
+										end={timeline.end}
+										updateData={() => this.props.updateData()}
+										getData={() => this.getData()}
+									/>
+									<DeleteUser
+										id={timeline.id}
+										name={timeline.users.name}
+										roles={timeline.users.roles.name}
+										getData={() => this.getData()}
+									/>
+								</div>
+								<div style={{ display: 'flex', flexDirection: 'row' }}>
+									<div className="membertag">{timeline.users.roles.name}</div>
+									{timeline.users.tags.map(tag => {
+										return <div className="membertag">{tag.name}</div>
+									})}
+								</div>
+							</div>
+						)
+					}
+				})}
+				<Popover
+					placement="bottom !important"
+					isOpen={this.state.popoverOpen}
+					target="Popover"
+					toggle={this.togglePopOver}
+					className="addmemberpopover"
+					hideArrow={true}
+				>
+					<PopoverBody>
+						<Select
+							// style={{borderColor:''}}
+							// name="form-field-name"
+							closeOnSelect={false}
+							value={this.state.selectedmember}
+							onChange={this.handleChange}
+							options={this.state.allmember}
+							autoFocus={true}
+							open={true}
+							openOnFocus={true}
+						/>
+					</PopoverBody>
+				</Popover>
+				<div className="buttoncontainer">
+					<Button outline color="secondary" block onClick={this.togglePopOver} id="Popover">
+						+ Add member
+					</Button>
+					<div className="cancelbutton">
+						<Link to="/project" style={{ textDecoration: 'none' }}>
+							<Button color="danger" block>
+								back
+							</Button>
+						</Link>
+					</div>
+				</div>
+				{this.state.modalOpen && <AddProject onClose={() => this.toggleModal(false)} id={this.props.id} />}
+				{this.state.modalDeleteOpen && (
+					<Modal
+						isOpen={this.state.modalDeleteOpen}
+						toggle={this.toggleModalDelete}
+						centered={true}
+						// className={this.props.className}
+					>
+						<ModalHeader toggle={this.toggleModalDelete} style={{ color: '#da3849' }}>
+							Confirm Delete
+						</ModalHeader>
+						<ModalBody style={{ display: 'flex' }}>
+							Are you sure you want to delete project
+							<div
+								style={{
+									color: '#da3849',
+									textOverflow: 'ellipsis',
+									overflow: 'hidden'
+								}}
+							>
+								&ensp;"{project.name}"
+							</div>
+						</ModalBody>
+						<ModalFooter>
+							<Button color="grey" onClick={this.toggleModalDelete}>
+								Cancel
+							</Button>
+							<Button color="danger" onClick={(this.toggleModalDelete, this.deleteProject)}>
+								Confirm
+							</Button>
+						</ModalFooter>
+					</Modal>
+				)}
+			</Sidebar>
+		)
+	}
 }
 
 export default EachProjectSidebar
