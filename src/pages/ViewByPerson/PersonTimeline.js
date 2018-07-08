@@ -14,20 +14,20 @@ class PersonTimeline extends Component {
   }
   componentDidMount = () => {
     try {
-      let items = this.state.items.map(i => i)
-      let groups = this.state.groups.map(i => i)
+      let items = []
+      let groups = []
       axios.get(`${url}/users`).then(res => {
         const { data } = res // = res.data
         let count = 1
         data.forEach(data => {
-          groups.push({ id: data.id, title: data.name })
+          groups.push({ id: count, title: data.name })
           if (data.projectTimeline) {
             data.projectTimeline.forEach(timeline => {
-              let start = moment(timeline.start || 0).add(-1,'day')
-              let end = moment(timeline.end || 0).add(-1,'day')
+              let start = moment(timeline.start || 0).add(-1, 'day')
+              let end = moment(timeline.end || 0).add(-1, 'day')
               items.push({
-                id: count || 0,
-                group: data.id || 0,
+                id: count,
+                group: count,
                 title: timeline.project.name || ' ',
                 start_time: start,
                 end_time: end,
@@ -36,9 +36,9 @@ class PersonTimeline extends Component {
                 canChangeGroup: false,
                 className: 'bg-' + String(timeline.project.color).substring(1)
               })
-              count++
             })
           }
+          count++
 
           this.setState({
             groups,
@@ -56,10 +56,10 @@ class PersonTimeline extends Component {
         <Timeline
           groups={this.state.groups}
           items={this.state.items}
-          visibleTimeStart={moment().add(-7*2,'day')}
+          visibleTimeStart={moment().add(-7 * 2, 'day')}
           visibleTimeEnd={moment().add(7 * 8, 'day')}
           sidebarWidth={0}
-          lineHeight={125}
+          lineHeight={102}
           stickyHeader={false}
           minZoom="2592000000" //4 month
           maxZoom="9676800000"

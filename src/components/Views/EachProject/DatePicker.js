@@ -47,10 +47,12 @@ export default class DatePicker extends React.Component {
     }
   }
   componentDidMount() {
-    this.setState({
-      from: moment(this.props.start).toDate(),
-      to: moment(this.props.end).toDate()
-    })
+    if (this.props.start && this.props.end) {
+      this.setState({
+        from: moment(this.props.start).toDate(),
+        to: moment(this.props.end).toDate()
+      })
+    }
   }
   render() {
     const { from, to } = this.state
