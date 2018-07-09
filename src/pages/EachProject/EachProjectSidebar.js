@@ -23,6 +23,7 @@ const Head = styled.div`
 const HeadContainer = styled.div`
 	background-color: #ffffff;
 	border-bottom: 0.5px solid #dfdfdf;
+	border-right: 0.5px solid #dfdfdf;
 	padding-top: 5px;
 	padding-bottom: 14px;
 `
@@ -42,9 +43,6 @@ const WhiteTriangle = TriangleUp.extend`
 	height: 1.5625rem;
 	stroke: #5bc2e1;
 	stroke-width: 0.04rem;
-`
-const Search = SearchIcon.extend`
-	background-color: #888888;
 `
 
 class EachProjectSidebar extends Component {
@@ -138,9 +136,7 @@ class EachProjectSidebar extends Component {
 		})
 		await axios.get(`${url}/users/pd`).then(res => {
 			const { data } = res
-			// console.log('Data allmember', data)
 			let allmember = []
-			// console.log(this.state.projectmember)
 			data.map(user => {
 				let { projectmember } = this.state
 				if (projectmember.indexOf(user.id) === -1) {
@@ -219,20 +215,6 @@ class EachProjectSidebar extends Component {
 						<Progress color={String(project.color).substring(1)} value={project.process} />
 					</ProgressContainer>
 				</div>
-				{/* {this.state.projectpm.map(user => {
-          return (
-            <div className="eachprojectitem">
-              <div className="membername">
-                {user.name}
-                <DeleteUser id={user.id} name={user.name}/>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'row' }}>
-                <div className="membertag">{user.roles}</div>
-                <div className="membertag">{user.tags}</div>
-              </div>
-            </div>
-          )
-        })} */}
 				{timeline.map(timeline => {
 					if (timeline) {
 						return (
