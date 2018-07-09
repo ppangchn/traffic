@@ -43,9 +43,6 @@
   border-bottom-right-radius: 20px !important;
 }
 .nav-link.active {
-  /* color: #495057 !important;
-  background-color: rgb(207, 24, 24);
-  border-color: #ff00f2 #dee2e6 #fff !important; */
   color: #fff !important;
   background-color: #5ac2e2 !important;
   border-color: #5ac2e2 !important;
@@ -54,46 +51,18 @@
   border-bottom-left-radius: 20px !important;
   border-bottom-right-radius: 20px !important;
   cursor: pointer !important;
-  /* border:none !important; */
 }
 .nav-link:hover {
   border-color: transparent;
 }
 .nav-link {
 	border: none !important;
-	/* border-top-left-radius: 0 !important;
-	border-top-right-radius: 0 !important; */
 }
 .tap {
-  /* padding: 20px !important; */
   background-color: #fff !important;
-  /* border-color: #fff !important; */
   border-top-left-radius: 15px !important;
   border-top-right-radius: 15px !important;
   border-bottom-left-radius: 15px !important;
   border-bottom-right-radius: 15px !important;
   cursor: pointer !important;
-  /* border:none !important; */
 }
-
-/* .btn-secondary {
-	background-color: white !important;
-	border: none !important;
-	float: right;
-} */
-
-/* .nav-link {
-  margin-top: 10px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  cursor: pointer;
-}
-.nav-link.active {
-  border-top-left-radius: 10px !important;
-  border-top-right-radius: 10px !important;
-  border-bottom-left-radius: 10px !important;
-  border-bottom-right-radius: 10px !important;
-  cursor: pointer !important;
-} */
