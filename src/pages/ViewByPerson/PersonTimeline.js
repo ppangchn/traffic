@@ -45,6 +45,8 @@ class PersonTimeline extends Component {
           })
         })
       })
+      console.log('items na ->',items)
+      console.log('groups na ->',groups)
     } catch (error) {
       console.log('fail to get data at PersonTimeline')
     }

@@ -400,174 +400,6 @@
 
 @media (min-width: 321px) and (max-width: 575.98px) {
   .headcontainer {
-    font-size: 16px;
-    padding-bottom: 15px;
-  }
-  .head {
-    padding-top: 20px;
-  }
-  .foldericon {
-    width: 26px;
-    margin-left: 20px;
-    position: relative;
-    bottom: 3px;
-  }
-  .projectname {
-    font-size: 13px;
-    position: relative;
-    bottom: 18px;
-  }
-  .progresscontainer {
-    margin-left: 1px;
-    margin-right: 1px;
-    width: 100px;
-  }
-  .projectitem {
-    padding-right: 17px;
-    padding-top: 29px;
-  }
-  .progresscontainer {
-    margin-right: 10px;
-    display: flex;
-    flex-direction: row;
-    position: relative;
-    bottom: 10px;
-  }
-  .progress {
-    border-radius: 5px !important;
-    width: 280vw;
-    height: 10px !important;
-  }
-  .pmcontainer {
-    bottom: 20px;
-    position: relative;
-  }
-  .pmname {
-    font-size: 7px;
-    border: 1px solid #c6c6c6;
-    border-radius: 15px;
-    margin-right: 2px;
-    padding: 1px 3px 1px 3px;
-  }
-  .percent {
-    bottom: 1px;
-    position: relative;
-    left: 10px;
-    font-size: 8px;
-  }
-  .Edit {
-    width: 35%;
-    height: 35%;
-    bottom: 13px;
-    left: 6px;
-  }
-}
-
-@media (min-width: 576px) and (max-width: 767.98px) {
-  .headcontainer {
-    font-size: 15px;
-  }
-  .foldericon {
-    width: 26px;
-    margin-left: 20px;
-    position: relative;
-    bottom: 3px;
-  }
-  .projectitem {
-    padding-bottom: 5px;
-    padding-left: 18px;
-  }
-  .pmname {
-    font-size: 5px;
-    border: 0.5px solid #c6c6c6;
-    border-radius: 5px;
-    margin-right: 2px;
-    padding: 1px 2px 1px 2px;
-  }
-  .projectname {
-    font-size: 10px;
-  }
-  .progresscontainer {
-    margin-left: 1px;
-    margin-right: 1px;
-    width: 100px;
-  }
-  .progress {
-    height: 5px !important;
-  }
-}
-@media (min-width: 768px) and (max-width: 991.98px) {
-  .headcontainer {
-    font-size: 18px;
-    padding-bottom: 17px;
-  }
-  .foldericon {
-    width: 26px;
-    margin-left: 20px;
-    position: relative;
-    bottom: 3px;
-  }
-  .projectitem {
-    padding-bottom: 28px;
-    padding-left: 18px;
-    padding-top: 5px;
-  }
-  .pmname {
-    font-size: 7px;
-    border: 0.5px solid #c6c6c6;
-    border-radius: 8px;
-    margin-right: 2px;
-    padding: 0.5px 2px 1px 2px;
-  }
-  .projectname {
-    font-size: 15px;
-  }
-  .progresscontainer {
-    margin-left: 1px;
-    margin-right: 1px;
-    width: 100px;
-  }
-  .progress {
-    height: 5px !important;
-  }
-}
-@media (min-width: 992px) and (max-width: 1199.98px) {
-  .headcontainer {
-    font-size: 15px;
-    padding-bottom: 19px;
-  }
-  .foldericon {
-    width: 26px;
-    margin-left: 20px;
-    position: relative;
-    bottom: 3px;
-  }
-  .projectitem {
-    padding-bottom: 11px;
-    padding-left: 18px;
-    padding-top: 10px;
-  }
-  .pmname {
-    font-size: 5px;
-    border: 0.5px solid #c6c6c6;
-    border-radius: 5px;
-    margin-right: 2px;
-    padding: 1px 2px 1px 2px;
-  }
-  .projectname {
-    font-size: 10px;
-  }
-  .progresscontainer {
-    margin-left: 1px;
-    margin-right: 1px;
-    width: 100px;
-  }
-  .progress {
-    height: 5px !important;
-  }
-}
-@media (min-width: 1200px) {
-  .headcontainer {
     font-size: 20px;
     padding-left: 10px;
     padding-bottom: 12px;
@@ -612,7 +444,223 @@
   }
   .progress {
     border-radius: 8px !important;
+    width: 120px;
+  }
+  .pmcontainer {
+    bottom: 5px;
+    position: relative;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .headcontainer {
+    font-size: 20px;
+    padding-left: 10px;
+    padding-bottom: 12px;
+  }
+  .head {
+    padding-top: 17px;
+  }
+  .foldericon {
+    width: 26px;
+    margin-left: 20px;
+    position: relative;
+    bottom: 3px;
+  }
+  .projectitem {
+    padding-bottom: 23px;
+  }
+  .pmcontainer {
+    margin-left: 15px;
+    margin-top: 7px;
+  }
+  .pmname {
+    font-size: 10px;
+    border: 0.125rem solid #c6c6c6;
+    border-radius: 0.625rem;
+    padding-left: 0.3125rem;
+    padding-right: 0.3125rem;
+    margin-right: 2px;
+  }
+  .projectname {
+    padding-top: 15px;
+    margin-left: 15px;
+    font-size: 15px;
+    padding-bottom: 2px;
+  }
+  .progresscontainer {
+    margin-left: 15px;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: row;
+    top: 4px;
+    position: relative;
+  }
+  .progress {
+    border-radius: 8px !important;
+    width: 120px;
+  }
+  .pmcontainer {
+    bottom: 5px;
+    position: relative;
+  }
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .headcontainer {
+    font-size: 20px;
+    padding-left: 10px;
+    padding-bottom: 12px;
+  }
+  .head {
+    padding-top: 17px;
+  }
+  .foldericon {
+    width: 26px;
+    margin-left: 20px;
+    position: relative;
+    bottom: 3px;
+  }
+  .projectitem {
+    padding-bottom: 23px;
+  }
+  .pmcontainer {
+    margin-left: 15px;
+    margin-top: 7px;
+  }
+  .pmname {
+    font-size: 10px;
+    border: 0.125rem solid #c6c6c6;
+    border-radius: 0.625rem;
+    padding-left: 0.3125rem;
+    padding-right: 0.3125rem;
+    margin-right: 2px;
+  }
+  .projectname {
+    padding-top: 15px;
+    margin-left: 15px;
+    font-size: 15px;
+    padding-bottom: 2px;
+  }
+  .progresscontainer {
+    margin-left: 15px;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: row;
+    top: 4px;
+    position: relative;
+  }
+  .progress {
+    border-radius: 8px !important;
     width: 80vw;
+    height: 13px;
+  }
+  .pmcontainer {
+    bottom: 5px;
+    position: relative;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .headcontainer {
+    font-size: 20px;
+    padding-left: 10px;
+    padding-bottom: 12px;
+  }
+  .head {
+    padding-top: 17px;
+  }
+  .foldericon {
+    width: 26px;
+    margin-left: 20px;
+    position: relative;
+    bottom: 3px;
+  }
+  .projectitem {
+    padding-bottom: 23px;
+  }
+  .pmcontainer {
+    margin-left: 15px;
+    margin-top: 7px;
+  }
+  .pmname {
+    font-size: 10px;
+    border: 0.125rem solid #c6c6c6;
+    border-radius: 0.625rem;
+    padding-left: 0.3125rem;
+    padding-right: 0.3125rem;
+    margin-right: 2px;
+  }
+  .projectname {
+    padding-top: 15px;
+    margin-left: 15px;
+    font-size: 15px;
+    padding-bottom: 2px;
+  }
+  .progresscontainer {
+    margin-left: 15px;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: row;
+    top: 4px;
+    position: relative;
+  }
+  .progress {
+    border-radius: 8px !important;
+    width: 80vw;
+    height: 16px;
+  }
+  .pmcontainer {
+    bottom: 5px;
+    position: relative;
+  }
+}
+@media (min-width: 1200px) {
+  .headcontainer {
+    font-size: 20px;
+    padding-left: 10px;
+    padding-bottom: 12px;
+  }
+  .head {
+    padding-top: 17px;
+  }
+  .foldericon {
+    width: 26px;
+    margin-left: 20px;
+    position: relative;
+    bottom: 3px;
+  }
+  .projectitem {
+    padding-bottom: 23px;
+  }
+  .pmcontainer {
+    margin-left: 15px;
+    margin-top: 7px;
+  }
+  .pmname {
+    font-size: 10px;
+    border: 0.125rem solid #c6c6c6;
+    border-radius: 0.625rem;
+    padding-left: 0.3125rem;
+    padding-right: 0.3125rem;
+    margin-right: 2px;
+  }
+  .projectname {
+    padding-top: 15px;
+    margin-left: 15px;
+    font-size: 15px;
+    padding-bottom: 2px;
+  }
+  .progresscontainer {
+    margin-left: 15px;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: row;
+    top: 4px;
+    position: relative;
+  }
+  .progress {
+    border-radius: 8px !important;
+    width: 80vw;
+    height: 16px;
   }
   .pmcontainer {
     bottom: 5px;
