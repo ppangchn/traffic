@@ -2,18 +2,16 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import Sidebar from '../../components/Views/Sidebar'
 import { FolderOpen } from 'styled-icons/fa-regular/FolderOpen'
-
 import axios from 'axios'
-import './ProjectSidebar.css'
 import { Link } from 'react-router-dom'
 import url from '../../url'
 import Percent from '../../components/Views/ViewByProject/Percent'
+import '../ViewByProject/ProjectSidebar.css'
+import './PersonalProjectSidebar.css'
 
-const Item = styled.div`
-  background-color: #ffffff;
+const UserName = styled.div`
+  border-right: 0.5px solid #dfdfdf;
   border-bottom: 0.5px solid #dfdfdf;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
 `
 const FolderIcon = FolderOpen.extend`
   color: #5bc2e1;
@@ -22,6 +20,13 @@ const HeadContainer = styled.div`
   background-color: #ffffff;
   border-bottom: 0.5px solid #dfdfdf;
   border-right: 0.5px solid #dfdfdf;
+  background-color: #ececec;
+`
+const Item = styled.div`
+  background-color: #ffffff;
+  border-bottom: 0.5px solid #dfdfdf;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 `
 const Pm = styled.div`
   display: inline-block;
@@ -32,53 +37,57 @@ class ProjectSidebar extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      projects: [],
-      weight: 0,
-      message: 'ReactInline demo'
+      data: {}
     }
   }
 
   componentDidMount() {
     try {
-      axios.get(`${url}/project`).then(res => {
+      axios.get(`${url}/users/${this.props.id}`).then(res => {
         const { data } = res
-        console.log('Data Project', data)
-        this.setState({ projects: data })
+        this.setState({ data })
+        console.log('timeline --->',data.projectTimeline)
       })
     } catch (error) {
-      console.log('fail to get data at ProjectSidebar', error)
+      console.log('fail to get data at PersonalProjectSidebar', error)
     }
   }
 
   render() {
+    const {data} = this.state;
     return (
       <Sidebar>
-        <HeadContainer className="headcontainer">
+        <UserName className="username">{data.name}</UserName>
+        <HeadContainer className="personalheadcontainer">
           <div className="head">
             <FolderIcon className="foldericon" />&emsp;Project
           </div>
         </HeadContainer>
-        {this.state.projects.map(project => {
+        {data.projectTimeline && data.projectTimeline.map(project => {
           return (
-            <div key={project.name}>
+            <div key={project.project.name}>
               <Item className="projectitem">
-                <div className="projectname">
+                <div className="personalprojectname">
                   <Link
-                    className={'linkprojectname-' + project.color.substring(1)}
-                    to={`/project/${project.id}`}
-                    style={{ textOverflow: 'ellipsis', overflow: 'hidden' ,textDecoration: 'none'}}
+                    className={'linkprojectname-' + String(project.project.color).substring(1)}
+                    to={`/project/${project.project.id}`}
+                    style={{
+                      textOverflow: 'ellipsis',
+                      overflow: 'hidden',
+                      textDecoration: 'none'
+                    }}
                   >
-                    {project.name}
+                    {project.project.name}
                   </Link>
                 </div>
-                <Percent project={project} />
-                <div className="pmcontainer">
+                <Percent project={project.project} />
+                {/* <div className="pmcontainer">
                   {project.projectManagement.map(pm => {
                     if (!pm.isDisable) {
                       return (
                         <Pm key={pm.id} className="pmname">
                           <Link
-                            to={`/person/${pm.user.id}`}
+                            to={`/person/${pm.id}`}
                             style={{ color: 'black', textDecoration: 'none' }}
                           >
                             {pm.user.name}
@@ -87,7 +96,7 @@ class ProjectSidebar extends Component {
                       )
                     }
                   })}
-                </div>
+                </div> */}
               </Item>
             </div>
           )
