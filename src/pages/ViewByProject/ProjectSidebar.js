@@ -16,15 +16,7 @@ const Item = styled.div`
   padding-right: 0.5rem;
 `
 const FolderIcon = FolderOpen.extend`
-  width: 10%;
-  height: 10%;
   color: #5bc2e1;
-  margin-bottom: 0.1875rem;
-  margin-left: 20px;
-`
-
-const Head = styled.div`
-  padding-top: 0.625rem;
 `
 const HeadContainer = styled.div`
   background-color: #ffffff;
@@ -61,10 +53,10 @@ class ProjectSidebar extends Component {
   render() {
     return (
       <Sidebar>
-        <HeadContainer className="projecthead">
-          <Head>
-            <FolderIcon />&emsp;Project
-          </Head>
+        <HeadContainer className="headcontainer">
+          <div className="head">
+            <FolderIcon className="foldericon" />&emsp;Project
+          </div>
         </HeadContainer>
         {this.state.projects.map(project => {
           return (
@@ -80,14 +72,16 @@ class ProjectSidebar extends Component {
                     {project.name}
                   </Link>
                 </div>
-                <Percent project={project}/>
+                <Percent project={project} />
                 <div className="pmcontainer">
                   {project.projectManagement.map(pm => {
-                    return (
-                      <Pm key={pm.id} className="pmname">
-                        {pm.user.name}
-                      </Pm>
-                    )
+                    if (!pm.isDisable) {
+                      return (
+                        <Pm key={pm.id} className="pmname">
+                          {pm.user.name}
+                        </Pm>
+                      )
+                    }
                   })}
                 </div>
               </Item>

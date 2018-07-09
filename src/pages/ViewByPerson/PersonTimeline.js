@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import '../../components/Views/GraphBox.css'
 import Timeline from '../../components/Views/react-calendar-timeline/lib'
 import moment from 'moment'
 import '../ViewByProject/ProjectSidebar.css'

@@ -397,23 +397,25 @@
   text-align: center;
   position: relative;
 }
-/* .projecthead {
-  border-right: 1px solid #c6c6c6;
-} */
+
 @media (min-width: 321px) and (max-width: 575.98px) {
-  .projecthead {
-    font-size: 15px;
+  .headcontainer {
+    font-size: 16px;
+    padding-bottom: 15px;
   }
-  .pmname {
-    font-size: 5px;
-    border: 0.5px solid #c6c6c6;
-    border-radius: 5px;
-    margin-right: 2px;
-    padding: 1px 2px 1px 2px;
+  .head {
+    padding-top: 20px;
+  }
+  .foldericon {
+    width: 26px;
+    margin-left: 20px;
+    position: relative;
+    bottom: 3px;
   }
   .projectname {
-    font-size: 10px;
-    margin-top: 4px;
+    font-size: 13px;
+    position: relative;
+    bottom: 18px;
   }
   .progresscontainer {
     margin-left: 1px;
@@ -422,13 +424,14 @@
   }
   .projectitem {
     padding-right: 17px;
+    padding-top: 29px;
   }
   .progresscontainer {
     margin-right: 10px;
     display: flex;
     flex-direction: row;
     position: relative;
-    top: 7px;
+    bottom: 10px;
   }
   .progress {
     border-radius: 5px !important;
@@ -436,18 +439,21 @@
     height: 10px !important;
   }
   .pmcontainer {
-    bottom: 10px;
+    bottom: 20px;
     position: relative;
+  }
+  .pmname {
+    font-size: 7px;
+    border: 1px solid #c6c6c6;
+    border-radius: 15px;
+    margin-right: 2px;
+    padding: 1px 3px 1px 3px;
   }
   .percent {
     bottom: 1px;
     position: relative;
     left: 10px;
     font-size: 8px;
-  }
-  .editbox {
-    position: relative;
-    left: 10px;
   }
   .Edit {
     width: 35%;
@@ -458,8 +464,14 @@
 }
 
 @media (min-width: 576px) and (max-width: 767.98px) {
-  .projecthead {
+  .headcontainer {
     font-size: 15px;
+  }
+  .foldericon {
+    width: 26px;
+    margin-left: 20px;
+    position: relative;
+    bottom: 3px;
   }
   .projectitem {
     padding-bottom: 5px;
@@ -485,9 +497,15 @@
   }
 }
 @media (min-width: 768px) and (max-width: 991.98px) {
-  .projecthead {
+  .headcontainer {
     font-size: 18px;
     padding-bottom: 17px;
+  }
+  .foldericon {
+    width: 26px;
+    margin-left: 20px;
+    position: relative;
+    bottom: 3px;
   }
   .projectitem {
     padding-bottom: 28px;
@@ -514,9 +532,15 @@
   }
 }
 @media (min-width: 992px) and (max-width: 1199.98px) {
-  .projecthead {
+  .headcontainer {
     font-size: 15px;
     padding-bottom: 19px;
+  }
+  .foldericon {
+    width: 26px;
+    margin-left: 20px;
+    position: relative;
+    bottom: 3px;
   }
   .projectitem {
     padding-bottom: 11px;
@@ -543,14 +567,26 @@
   }
 }
 @media (min-width: 1200px) {
-  .projecthead {
+  .headcontainer {
     font-size: 20px;
     padding-left: 10px;
-    padding-bottom: 17px;
+    padding-bottom: 12px;
+  }
+  .head {
+    padding-top: 17px;
+  }
+  .foldericon {
+    width: 26px;
+    margin-left: 20px;
+    position: relative;
+    bottom: 3px;
+  }
+  .projectitem {
+    padding-bottom: 23px;
   }
   .pmcontainer {
     margin-left: 15px;
-    margin-top: 5px;
+    margin-top: 7px;
   }
   .pmname {
     font-size: 10px;
@@ -582,7 +618,4 @@
     bottom: 5px;
     position: relative;
   }
-  /* .lineheight {
-    line-height: 100px !important;
-  } */
 }
