@@ -140,7 +140,7 @@ class Setting extends Component {
 			<Container className="mt-5">
 				<Row>
 					<Col md={12}>
-						<Nav tabs className="mx-5">
+						<Nav tabs className="mx-1">
 							<NavItem>
 								<NavLink
 									className="tap"
@@ -182,7 +182,7 @@ class Setting extends Component {
 							</NavItem>
 						</Nav>
 
-						<TabContent activeTab={this.state.activeTab} className="mx-5">
+						<TabContent activeTab={this.state.activeTab} className="mx-1">
 							<TabPane tabId="1">
 								<Row>
 									<Col sm={4} className="mb-4">

@@ -105,7 +105,7 @@ class AddMember extends Component {
 
 	handleChange = selectedOption => {
 		this.setState({ roles: selectedOption })
-		// selectedOption can be null when the `x` (close) button is clicked
+
 		if (selectedOption) {
 			this.setState({ invalidroles: false })
 		}
@@ -147,9 +147,7 @@ class AddMember extends Component {
 			{
 				filteredROLES
 			},
-			() => {
-				// console.log('SELECTED PM FINAL', this.state.filteredPM)
-			}
+			() => {}
 		)
 	}
 	clear() {
@@ -172,7 +170,7 @@ class AddMember extends Component {
 					console.log('send member', $res)
 					this.toggleSave()
 					this.props.getData()
-          this.props.onClose()
+					this.props.onClose()
 				})
 			} else {
 				if (!this.state.name) this.setState({ invalidname: true })
@@ -183,19 +181,6 @@ class AddMember extends Component {
 			console.log('fail to send data add member', error)
 		}
 	}
-
-	// async sendDataTags() {
-	// 	try {
-	// 		const data = {
-	// 			tags: this.state.tags
-	// 		}
-	// 		await axios.put('http://dev.pirsquare.net:3013/traffic-api/tags', data).then($res => {
-	// 			console.log('send tags', $res)
-	// 		})
-	// 	} catch (error) {
-	// 		console.log('fail to send data add tags')
-	// 	}
-	// }
 
 	componentDidMount() {
 		try {
@@ -225,7 +210,6 @@ class AddMember extends Component {
 				const { data } = res
 				let listroles = []
 				data.map(data => {
-					// if (this.props.pm.indexOf(data.name)===-1)
 					listroles.push({ value: data.id, label: data.name })
 				})
 				this.setState({
@@ -267,7 +251,6 @@ class AddMember extends Component {
 		const { tags, suggestions } = this.state
 		return (
 			<Container>
-				{/* {console.log('invalid',this.state.invalid)} */}
 				<Modal style={{ fontSize: '1rem' }} size="5" isOpen={this.state.open} toggle={onClose}>
 					<ModalHeader toggle={onClose}>{this.state.header}</ModalHeader>
 					<ModalBody>
@@ -279,7 +262,6 @@ class AddMember extends Component {
 										style={{ fontSize: '8px !important' }}
 										name="name"
 										style={{ backgroundColor: '#f1f1f1' }}
-										// invalid={this.state.invalid}
 										placeholder="Type your name"
 										onChange={this.handleInputChange}
 										value={this.state.name}
@@ -293,7 +275,6 @@ class AddMember extends Component {
 								<Col>Roles</Col>
 							</Row>
 							<Select
-								// ClassName="selectbox"
 								placeholder="Select role"
 								value={this.state.roles}
 								onChange={this.handleChange}
@@ -301,7 +282,7 @@ class AddMember extends Component {
 								trimFilter
 							/>
 							<div className="invalid">{this.state.invalidroles && this.state.invalidrolesmessage}</div>
-							{/* ))} */}
+
 							<Row className="btsave">
 								<Col>
 									Tags
@@ -312,7 +293,6 @@ class AddMember extends Component {
 											// suggestions={suggestions}
 											handleDelete={this.handleDelete}
 											handleAddition={this.handleAddition}
-											// handleDrag={this.handleDrag}
 											delimiters={delimiters}
 										/>
 									</div>
@@ -325,9 +305,7 @@ class AddMember extends Component {
 									<Input
 										style={{ fontSize: '8px !important' }}
 										name="name"
-										type="email"
 										style={{ backgroundColor: '#f1f1f1' }}
-										// invalid={this.state.invalid}
 										placeholder="example@pirsquare.net"
 										onChange={this.handleInputChangeEmail}
 										value={this.state.email}
@@ -339,19 +317,16 @@ class AddMember extends Component {
 
 							<Row className="btsave">
 								<Col>
-									{/* <Link className="savelink" to={this.state.projectname  && this.state.filteredPM && `/project/${this.state.size}`}> */}
 									<Button
 										color="5bc2e1"
 										size="lg"
 										block
 										onClick={() => {
 											this.sendDataMember()
-											// ,this.props.isSaved(true)
 										}}
 									>
 										Save
 									</Button>
-									{/* </Link> */}
 								</Col>
 							</Row>
 						</Container>
