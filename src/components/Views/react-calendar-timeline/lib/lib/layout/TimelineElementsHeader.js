@@ -173,7 +173,7 @@ var TimelineElementsHeader = function (_Component) {
         var leftCorrect = firstOfType ? 1 : 0;
         let timeNew = time
 
-        console.log(time, time.valueOf(), typeof time)
+        // console.log(time, time.valueOf(), typeof time)
 
         // EDIT EDIT EDIT EDIT EDIT EDIT EDIT EDIT EDIT EDIT EDIT EDIT EDIT EDIT 
         // time = time.startOf('isoWeek')

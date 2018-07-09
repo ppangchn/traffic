@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import '../../components/Views/GraphBox.css'
 import Timeline from '../../components/Views/react-calendar-timeline/lib'
 import moment from 'moment'
 import '../ViewByProject/ProjectSidebar.css'
@@ -46,6 +45,8 @@ class PersonTimeline extends Component {
           })
         })
       })
+      console.log('items na ->',items)
+      console.log('groups na ->',groups)
     } catch (error) {
       console.log('fail to get data at PersonTimeline')
     }

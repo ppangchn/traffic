@@ -194,10 +194,9 @@ class AddProject extends Component {
         let listTimeline = await []
         let listPM = []
         if (this.props.id) {
-          await console.log('check up ->', this.state)
           if (!!this.state.timeline) {
             listTimeline = await this.state.timeline.map($objTimeline => {
-              if ($objTimeline.users.roles.id == 2) {
+              if ($objTimeline.users.roles.id >=2 && $objTimeline.users.roles.id <= 8) {
                 $objTimeline.isDisable = true
               }
 
@@ -221,7 +220,6 @@ class AddProject extends Component {
             }
           })
 
-          // console.log('check up ->', this.state.project.projectManagement)
           if (!!this.state.project.projectManagement) {
             listPM = await this.state.project.projectManagement.map($objPM => {
               let pm = {
@@ -272,7 +270,6 @@ class AddProject extends Component {
               weight: pm.weight
             }
           })
-          console.log('pangpang listpm ->', listPM)
           listTimeline = this.state.filteredPM.map($objPM => {
             return {
               users: {
@@ -280,7 +277,6 @@ class AddProject extends Component {
               }
             }
           })
-          // listTimeline = this.state.timeline
         }
 
         let data = {
@@ -296,11 +292,10 @@ class AddProject extends Component {
         }
 
         axios.put(`${url}/project`, data).then(response => {
-          console.log('response -> ', response)
           const newUser = response.data
           this.props.onClose()
-          this.props.history.push(`/project/${newUser.id}`)
           console.log('send!')
+          this.props.history.push(`/project/${newUser.id}`)
         })
       } else {
         if (this.state.projectname.length === 0)

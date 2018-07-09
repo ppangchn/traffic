@@ -15,8 +15,6 @@ import AddProject from '../../pages/AddProject/AddProject'
 
 const Container = styled.div`
     background-color: #5bc2e1
-    max-height : 93px;
-    max-width : 1920px;
     padding : 0px;
     margin : 0px;
     border : none;
