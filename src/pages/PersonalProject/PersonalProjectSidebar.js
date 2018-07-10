@@ -66,7 +66,7 @@ class ProjectSidebar extends Component {
         {data.projectTimeline && data.projectTimeline.map(project => {
           return (
             <div key={project.project.name}>
-              <Item className="projectitem">
+              <Item className="personalprojectitem">
                 <div className="personalprojectname">
                   <Link
                     className={'linkprojectname-' + String(project.project.color).substring(1)}
@@ -82,22 +82,22 @@ class ProjectSidebar extends Component {
                   </Link>
                 </div>
                 <Percent project={project.project} />
-                {/* <div className="pmcontainer">
-                  {project.projectManagement.map(pm => {
-                    if (!pm.isDisable) {
+                <div className="pmcontainer">
+                  {project.project.projectManagement.map(pm => {
+                    if (!pm.isDisable && pm.users.id!=this.props.id) {
                       return (
                         <Pm key={pm.id} className="pmname">
                           <Link
-                            to={`/person/${pm.id}`}
+                            to={`/person/${pm.users.id}`}
                             style={{ color: 'black', textDecoration: 'none' }}
                           >
-                            {pm.user.name}
+                            {pm.users.name}
                           </Link>
                         </Pm>
                       )
                     }
                   })}
-                </div> */}
+                </div>
               </Item>
             </div>
           )

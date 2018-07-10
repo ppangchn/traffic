@@ -90,8 +90,9 @@ class AddProject extends Component {
       this.state.projectname &&
       this.state.filteredPM.length !== 0 &&
       this.state.checkedcolor
-    )
+    ) {
       this.setState({ open: !this.state.open })
+    }
   }
   toggledrop() {
     this.setState({
@@ -196,7 +197,10 @@ class AddProject extends Component {
         if (this.props.id) {
           if (!!this.state.timeline) {
             listTimeline = await this.state.timeline.map($objTimeline => {
-              if ($objTimeline.users.roles.id >=2 && $objTimeline.users.roles.id <= 8) {
+              if (
+                $objTimeline.users.roles.id >= 2 &&
+                $objTimeline.users.roles.id <= 8
+              ) {
                 $objTimeline.isDisable = true
               }
 

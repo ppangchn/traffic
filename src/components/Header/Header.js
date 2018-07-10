@@ -181,6 +181,9 @@ class Header extends Component {
     this.setState({
       toggleAddModal: state
     })
+    if (!state) {
+      this.clear()
+    }
   }
   update() {
     this.clear()
@@ -194,7 +197,7 @@ class Header extends Component {
       this.setState({ list: <ListAltSolidz /> })
   }
   componentWillReceiveProps() {
-    this.update();
+    this.update()
   }
   componentDidMount() {
     this.update()

@@ -53,6 +53,7 @@ class SelectPm extends Component {
         <Col xs="4">
           <Select
             ClassName="selectbox"
+            style={{borderColor: '#5ac2e2 '}}
             placeholder="All"
             value={this.state.pm}
             onChange={this.handleChange}

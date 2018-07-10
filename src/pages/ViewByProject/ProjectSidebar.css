@@ -633,7 +633,8 @@
   }
   .pmcontainer {
     margin-left: 15px;
-    margin-top: 7px;
+    bottom: 5px;
+    position: relative;
   }
   .pmname {
     font-size: 10px;
@@ -654,16 +655,11 @@
     margin-right: 10px;
     display: flex;
     flex-direction: row;
-    top: 4px;
     position: relative;
   }
   .progress {
     border-radius: 8px !important;
     width: 80vw;
     height: 16px;
-  }
-  .pmcontainer {
-    bottom: 5px;
-    position: relative;
   }
 }

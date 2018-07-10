@@ -29,7 +29,10 @@ Small devices (landscape phones, 576px and up)
   .personalheadcontainer {
     font-size: 20px;
     padding-left: 10px;
-    padding-top: 7px;
+    padding-top: 8px;
     padding-bottom: 20px;
+  }
+  .personalprojectitem {
+    height: 75.5px;
   }
 }

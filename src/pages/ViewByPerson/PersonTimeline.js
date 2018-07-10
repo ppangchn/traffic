@@ -10,12 +10,15 @@ import url from '../../url'
 class PersonTimeline extends Component {
   constructor() {
     super()
-    this.state = { groups: [], items: [] }
+    this.state = {
+      groups: [],
+      items: []
+    }
   }
   componentDidMount = () => {
     try {
-      let items = this.state.items.map(i => i)
-      let groups = this.state.items.map(i => i)
+      let items = []
+      let groups = []
       axios.get(`${url}/users/person`).then(res => {
         const { data } = res // = res.data
         let count = 1
@@ -23,32 +26,34 @@ class PersonTimeline extends Component {
           groups.push({ id: data.id, title: data.name })
           if (data.projectTimeline) {
             data.projectTimeline.forEach(timeline => {
-              let start = null
-              let end = null
-              if (timeline.start && timeline.end) {
-                start = moment(timeline.start).add(-1, 'day')
-                end = moment(timeline.end).add(-1, 'day')
+              if (!timeline.isDisable) {
+                let start = null
+                let end = null
+                if (timeline.start && timeline.end) {
+                  start = moment(timeline.start).add(-1, 'day')
+                  end = moment(timeline.end).add(-1, 'day')
+                }
+                items.push({
+                  id: count,
+                  group: data.id,
+                  title: timeline.project.name,
+                  start_time: start,
+                  end_time: end,
+                  canMove: false,
+                  canResize: false,
+                  canChangeGroup: false,
+                  className: 'bg-' + String(timeline.project.color).substring(1)
+                })
+                count++
               }
-              items.push({
-                id: count,
-                group: data.id,
-                title: timeline.project.name,
-                start_time: start,
-                end_time: end,
-                canMove: false,
-                canResize: false,
-                canChangeGroup: false,
-                className: 'bg-' + String(timeline.project.color).substring(1)
-              })
-              count++
             })
           }
-          })
-          this.setState({
-            groups,
-            items
         })
+        this.setState({
+          groups,
+          items
         })
+      })
       // console.log('items na ->', items)
       // console.log('groups na ->', groups)
     } catch (error) {
@@ -61,11 +66,10 @@ class PersonTimeline extends Component {
         <Timeline
           groups={this.state.groups}
           items={this.state.items}
-          visibleTimeStart={moment().add(7*4,'day')}
-          visibleTimeEnd={moment().add(7*9, 'day')}
+          visibleTimeStart={moment().add(7 * 4, 'day')}
+          visibleTimeEnd={moment().add(7 * 13, 'day')}
           sidebarWidth={0}
           lineHeight={102}
-          // lineHeight={50}
           stickyHeader={false}
           minZoom="2592000000" //4 month
           maxZoom="9676800000"

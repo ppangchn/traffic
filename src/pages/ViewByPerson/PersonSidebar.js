@@ -36,13 +36,14 @@ const User = styled.div`
 class PersonSidebar extends Component {
   constructor() {
     super()
-    this.state = { users: [], roles: [], tags: [], listmember: [] ,searchmember: ''}
-    this.handleChange = this.handleChange.bind(this);
+    this.state = {
+      users: [],
+      roles: [],
+      tags: [],
+      listmember: [],
+    }
   }
-  handleChange(value) {
-    this.setState({searchmember: value})
-  }
-  componentDidMount() {
+  getData() {
     axios.get(`${url}/users/person`).then(res => {
       const { data } = res
       // console.log('Data Project', data)
@@ -59,24 +60,19 @@ class PersonSidebar extends Component {
       this.setState({ users, roles, tags, listmember })
     })
   }
+  componentDidMount() {
+    try {
+      this.getData()
+    } catch (error) {
+      console.log('error get data at personsidebar')
+    }
+  }
   render() {
     return (
       <Sidebar>
         <HeadContainer>
           <Head className="personhead">&emsp;Name</Head>
         </HeadContainer>
-        <SearchBox className="searchbox">
-          <Select
-            style={{borderRadius: '50px',borderColor: '#e8e8e8'}}
-            // name="form-field-name"
-            placeholder="All Member"
-            closeOnSelect={false}
-            value={this.state.searchmember}
-            onChange={this.handleChange}
-            options={this.state.listmember}
-          />
-        </SearchBox>
-
         {this.state.users.map((user, index) => {
           return (
             <Item className="personitem">
