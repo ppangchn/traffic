@@ -54,7 +54,8 @@ class AddMember extends Component {
 			invalidname: false,
 			invalidroles: false,
 			invalidemail: false,
-			invalidrolesmessage: 'Please select one role for this member.'
+			invalidrolesmessage: 'Please select one role for this member.',
+			sendResetPass: false
 		}
 
 		this.toggle = this.toggle.bind(this)
@@ -87,6 +88,12 @@ class AddMember extends Component {
 		let { name } = this.state
 		console.log(e.target.value)
 		this.setState({ name: e.target.value })
+	}
+
+	handleCheckboxChange = e => {
+		this.setState({
+			[e.target.name]: e.target.checked
+		})
 	}
 
 	handleInputChangeEmail(e) {
@@ -249,6 +256,7 @@ class AddMember extends Component {
 		console.log('Current roles', this.state.roles)
 		const { onClose } = this.props
 		const { tags, suggestions } = this.state
+		
 		return (
 			<Container>
 				<Modal style={{ fontSize: '1rem' }} size="5" isOpen={this.state.open} toggle={onClose}>
@@ -265,7 +273,8 @@ class AddMember extends Component {
 										placeholder="Type your name"
 										onChange={this.handleInputChange}
 										value={this.state.name}
-										invalid={this.state.invalidname}
+                    invalid={this.state.invalidname}
+                    trimFilter
 									/>
 									<FormFeedback tooltip>Can't send empty name!</FormFeedback>
 								</Col>
@@ -301,7 +310,7 @@ class AddMember extends Component {
 
 							<Row className="btsave">
 								<Col>
-									Sent your E-Mail
+								Email
 									<Input
 										style={{ fontSize: '8px !important' }}
 										name="name"
@@ -315,6 +324,14 @@ class AddMember extends Component {
 								</Col>
 							</Row>
 
+							{['DEV', 'DSN'].indexOf(this.state.roles.label) === -1 && (
+								<div className="checkbox">
+									<label>
+										<input type="checkbox" class="input" checked={this.state.sendResetPass} name="sendResetPass" onChange={this.handleCheckboxChange} />
+										 Send Reset Password
+									</label>
+								</div>
+							)}
 							<Row className="btsave">
 								<Col>
 									<Button

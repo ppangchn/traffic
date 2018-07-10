@@ -40,6 +40,18 @@
     font-size: 80%;
     color: #dc3545;
 }
+
+.checkbox {
+	/* outline: 1px solid #1e5180; */
+	margin-top:10px !important;
+
+}
+
+.input{
+	margin-right: 10px;
+}
+
+
 @media (min-width: 375px) {
 	font-size: 8px;
 }
