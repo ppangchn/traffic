@@ -107,7 +107,7 @@ class PersonTimeline extends Component {
           maxZoom="9676800000"
           timeSteps={{ day: 7 }}
           itemHeightRatio={0.3}
-          // stackItems={true}
+          stackItems={true}
         />
       </GraphBox>
     )
