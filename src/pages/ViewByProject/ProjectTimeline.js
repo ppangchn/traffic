@@ -50,7 +50,6 @@ class ProjectTimeline extends Component {
     return (
       <GraphBox>
         <Timeline
-          // className="lineheight"
           groups={this.state.groups}
           items={this.state.items}
           visibleTimeStart={moment().add(7*4,'day')}
@@ -61,11 +60,7 @@ class ProjectTimeline extends Component {
           minZoom="2592000000" //4 month
           maxZoom="9676800000"
           timeSteps={{ day: 7 }}
-          itemHeightRatio={0.4}
-          // onZoom
-          // timeSteps={moment().startOf('iosWeek')}
-          // subHeaderLabelFormats={defaultSubHeaderLabelFormats}
-          // minResizeWidth="0"
+          itemHeightRatio={0.3}
         />
       </GraphBox>
     )

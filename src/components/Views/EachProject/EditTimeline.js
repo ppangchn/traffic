@@ -33,13 +33,10 @@ class EditTimeline extends Component {
   }
   setStartTime(start) {
     this.setState({ start }, () => {
-      console.log('start->', this.state.start)
     })
-    // console.log('start->', start)
   }
   setEndTime(end) {
     this.setState({ end })
-    console.log('end->', end)
   }
   sendData() {
     const data = {
@@ -58,15 +55,7 @@ class EditTimeline extends Component {
       console.log('cant update timelineF', error)
     }
   }
-  // getData() {
-  //   axios.get(`${url}/project/${this.props.id}`).then(res => {
-  //     const { data } = res
-  //     console.log('data ja ->', data)
-  //     this.setState({
-  //       data
-  //     })
-  //   })
-  // }
+
   componentDidMount() {
     try {
       this.setStartTime(this.props.start);

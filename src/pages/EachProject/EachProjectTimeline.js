@@ -71,8 +71,6 @@ class EachProjectTimeline extends Component {
     }
   }
   render() {
-    console.log('groups ->', this.state.groups)
-    console.log('items->', this.state.items)
     return (
       <GraphBox>
         <Timeline

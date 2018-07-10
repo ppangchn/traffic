@@ -9,11 +9,14 @@ const Container = styled.div`
   overflow: hidden;
 `
 class ViewByProject extends Component {
+  constructor(props) {
+    super(props)
+  }
   render() {
     return (
       <Container>
-          <ProjectSideBar />
-          <ProjectTimeline />
+        <ProjectSideBar updateHeader={this.props.updateHeader}/>
+        <ProjectTimeline />
       </Container>
     )
   }

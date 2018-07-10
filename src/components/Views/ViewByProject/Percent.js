@@ -48,7 +48,7 @@ class Percent extends Component {
       <div className="progresscontainer">
         <Progress
           className="progress"
-          color={project.color.substring(1)}
+          color={String(project.color).substring(1)}
           value={this.state.process}
         />
         <div className="percent">
