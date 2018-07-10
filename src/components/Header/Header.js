@@ -188,7 +188,7 @@ class Header extends Component {
   // }
   componentDidMount() {
     console.log(window.location.pathname)
-    if (window.location.pathname.includes == '/traffic-app/build/person/')
+    if (window.location.pathname.indexOf("/traffic-app/build/person/") == 0)
       this.setState({ person: <PersonSolid /> })
     if (window.location.pathname == '/traffic-app/build/project')
       this.setState({ folder: <FolderSolid /> })

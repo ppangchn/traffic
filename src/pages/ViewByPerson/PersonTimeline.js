@@ -53,7 +53,7 @@ class PersonTimeline extends Component {
     try {
       let items = this.state.items.map(i => i)
       let groups = this.state.items.map(i => i)
-      axios.get(`${url}/users`).then(res => {
+      axios.get(`${url}/users/person`).then(res => {
         const { data } = res // = res.data
         let count = 1
         data.forEach(data => {
@@ -102,12 +102,13 @@ class PersonTimeline extends Component {
           visibleTimeEnd={moment().add(7*9, 'day')}
           sidebarWidth={0}
           lineHeight={102}
+          // lineHeight={50}
           stickyHeader={false}
           minZoom="2592000000" //4 month
           maxZoom="9676800000"
           timeSteps={{ day: 7 }}
           itemHeightRatio={0.3}
-          stackItems={true}
+          // stackItems={true}
         />
       </GraphBox>
     )

@@ -31,7 +31,7 @@ class PersonSidebar extends Component {
     this.state = { users: [], roles: [], tags: [] }
   }
   componentDidMount() {
-    axios.get(`${url}/users`).then(res => {
+    axios.get(`${url}/users/person`).then(res => {
       const { data } = res
       console.log('Data Project', data)
       let users = []
