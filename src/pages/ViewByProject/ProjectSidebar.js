@@ -36,13 +36,16 @@ class ProjectSidebar extends Component {
       weight: 0,
       message: 'ReactInline demo'
     }
+    this.update = this.update.bind(this);
   }
-
+  update() {
+    this.props.updateHeader();
+  }
   componentDidMount() {
     try {
       axios.get(`${url}/project`).then(res => {
         const { data } = res
-        console.log('Data Project', data)
+        // console.log('Data Project', data)
         this.setState({ projects: data })
       })
     } catch (error) {
@@ -78,10 +81,11 @@ class ProjectSidebar extends Component {
                       return (
                         <Pm key={pm.id} className="pmname">
                           <Link
-                            to={`/person/${pm.user.id}`}
+                            to={`/person/${pm.users.id}`}
                             style={{ color: 'black', textDecoration: 'none' }}
+                            onClick={this.update}
                           >
-                            {pm.user.name}
+                            {pm.users.name}
                           </Link>
                         </Pm>
                       )

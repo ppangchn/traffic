@@ -131,8 +131,8 @@ const AddReg = AddCircleOutline.extend`
     position: relative;
 `
 class Header extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     // console.log('pang')
     this.state = {
       folder: <FolderClose />,
@@ -180,15 +180,11 @@ class Header extends Component {
   toggleAddModal = state => {
     this.setState({
       toggleAddModal: state
-      // saved: state
     })
   }
-  // isSaved(e) {
-  //   this.setState({saved: e})
-  // }
-  componentDidMount() {
-    console.log(window.location.pathname)
-    if (window.location.pathname.indexOf("/traffic-app/build/person/") == 0)
+  update() {
+    this.clear()
+    if (window.location.pathname == '/traffic-app/build/person')
       this.setState({ person: <PersonSolid /> })
     if (window.location.pathname == '/traffic-app/build/project')
       this.setState({ folder: <FolderSolid /> })
@@ -197,8 +193,14 @@ class Header extends Component {
     if (window.location.pathname == '/traffic-app/build/')
       this.setState({ list: <ListAltSolidz /> })
   }
+  componentWillReceiveProps() {
+    this.update();
+  }
+  componentDidMount() {
+    this.update()
+  }
   render() {
-    const { toggleAddModal} = this.state
+    const { toggleAddModal } = this.state
     return (
       <Container>
         <Navbar>

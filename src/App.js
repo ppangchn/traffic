@@ -9,12 +9,19 @@ const Container = styled.div`
 	height: 100%;
 `
 class App extends Component {
+	constructor() {
+		super();
+		this.state = {update: Date.now()}
+	}
+	updateHeader() {
+		this.setState({update: Date.now()})
+	}
 	render() {
 		return (
 			<Router basename={'/traffic-app/build'}>
 				<div>
-					<Header />
-					<Main />
+					<Header update={this.state.update}/>
+					<Main updateHeader={() => this.updateHeader()}/>
 				</div>
 			</Router>
 		)

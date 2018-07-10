@@ -73,6 +73,9 @@
   }
 }
 @media (min-width: 1200px) {
+  .searchbox {
+    padding: 30px 30px 35.5px 30px;
+  }
   .personhead {
     font-size: 20px;
     padding-left: 10px;

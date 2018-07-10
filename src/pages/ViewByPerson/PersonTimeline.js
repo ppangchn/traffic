@@ -6,44 +6,7 @@ import moment from 'moment'
 import '../ViewByProject/ProjectSidebar.css'
 import GraphBox from '../../components/Views/GraphBox'
 import url from '../../url'
-const groups = [{ id: 1, title: 'group 1' }, { id: 2, title: 'group 2' }, { id: 3, title: 'group 2' }, { id: 4, title: 'group 2' }, { id: 5, title: 'group 2' }]
 
-const items = [
-  {
-    id: 1,
-    group: 1,
-    title: 'item 1',
-    start_time: moment(),
-    end_time: moment().add(1, 'hour')
-  },
-  {
-    id: 2,
-    group: 2,
-    title: 'item 2',
-    start_time: moment().add(-0.5, 'hour'),
-    end_time: moment().add(0.5, 'hour')
-  },
-  {
-    id: 3,
-    group: 3,
-    title: 'item 3',
-    start_time: moment().add(2, 'hour'),
-    end_time: moment().add(3, 'hour')
-  },
-  {
-    id: 4,
-    group: 4,
-    title: 'item 3',
-    start_time: moment().add(2, 'hour'),
-    end_time: moment().add(3, 'hour')
-  },{
-    id: 5,
-    group: 5,
-    title: 'item 3',
-    start_time: moment().add(2, 'hour'),
-    end_time: moment().add(3, 'hour')
-  }
-]
 class PersonTimeline extends Component {
   constructor() {
     super()
@@ -86,8 +49,8 @@ class PersonTimeline extends Component {
             items
         })
         })
-      console.log('items na ->', items)
-      console.log('groups na ->', groups)
+      // console.log('items na ->', items)
+      // console.log('groups na ->', groups)
     } catch (error) {
       console.log('fail to get data at PersonTimeline')
     }

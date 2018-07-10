@@ -88,11 +88,7 @@ class EachProjectSidebar extends Component {
 		this.setState({ modalDeleteOpen: !this.state.modalDeleteOpen })
 	}
 	handleChange = selectedOption => {
-		// this.setState({ selectedmember: selectedOption })
-		// if (selectedOption) {
 		this.sendMember(selectedOption)
-		// }
-		// selectedOption can be null when the `x` (close) button is clicked
 	}
 	deleteProject() {
 		try {

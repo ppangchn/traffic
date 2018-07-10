@@ -76,6 +76,7 @@ class ProjectSidebar extends Component {
                       overflow: 'hidden',
                       textDecoration: 'none'
                     }}
+                    onClick={this.props.updateHeader}
                   >
                     {project.project.name}
                   </Link>

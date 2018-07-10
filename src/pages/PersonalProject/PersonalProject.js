@@ -13,7 +13,7 @@ class PersonalProject extends Component {
   render() {
     return (
       <Container>
-        <PersonalProjectSidebar id={this.props.match.params.id} />
+        <PersonalProjectSidebar id={this.props.match.params.id}/>
         <PersonalProjectTimeline id={this.props.match.params.id} />
       </Container>
     )

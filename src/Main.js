@@ -3,9 +3,12 @@ import styled from 'styled-components'
 import MainRoute from './routes/MainRoute'
 // import { Container } from 'reactstrap'
 class Main extends Component {
+	constructor(props) {
+		super(props);
+	}
 	render() {
 		return (
-				<MainRoute />
+				<MainRoute updateHeader={this.props.updateHeader}/>
 		)
 	}
 }
