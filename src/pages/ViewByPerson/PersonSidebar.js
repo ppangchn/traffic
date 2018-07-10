@@ -77,7 +77,7 @@ class PersonSidebar extends Component {
           return (
             <Item className="personitem">
               <User className="personname">{user}</User>
-              <div style={{ display: 'flex', flexDirection: 'row' }}>
+              <div style={{ display: 'flex', flexDirection: 'row' ,flexWrap:'wrap' }}>
                 <div className="persontag">{this.state.roles[index]}</div>
                 {this.state.tags[index].map(tag => {
                   return <div className="persontag">{tag.name}</div>

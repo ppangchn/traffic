@@ -126,7 +126,7 @@ export default class UserSettings extends Component {
 						</div>
 					</CardTitle>
 					<CardText>
-						<div style={{ display: 'flex', flexDirection: 'row' }}>
+						<div style={{ display: 'flex', flexDirection: 'row' ,flexWrap: 'wrap' }}>
 							<div className="persontag">{roles.name} </div>
 							{tags.map(tag => {
 								return <div className="persontag">{tag.name}</div>
