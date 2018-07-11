@@ -3,6 +3,9 @@ import Header from './components/Header/Header'
 import { BrowserRouter as Router } from 'react-router-dom'
 import Main from './Main'
 import styled from 'styled-components'
+import { Switch, Route, withRouter } from 'react-router-dom'
+import Login from './pages/Login/Login';
+import ResetPassword from './pages/ResetPassword/ResetPassword'
 
 const Container = styled.div`
 	width: 100%;
@@ -19,10 +22,13 @@ class App extends Component {
 	render() {
 		return (
 			<Router basename={'/traffic-app/build'}>
-				<div>
-					<Header update={this.state.update}/>
+				<Switch>
+				{/* <div> */}
+					<Route exact path="/login" component={withRouter(Login)} />
+					<Route exact path="/resetpassword" component={withRouter(ResetPassword)} />
 					<Main updateHeader={() => this.updateHeader()}/>
-				</div>
+					{/* </div> */}
+				</Switch>
 			</Router>
 		)
 	}

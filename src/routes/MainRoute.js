@@ -27,6 +27,7 @@ class MainRoute extends Component {
         <Route path="/setting" component={withRouter(Setting)} />
         <Route path="/project/:id" component={withRouter(EachProject)} />
         <Route path="/person/:id" component={withRouter(PersonalProject)} />
+        
       </div>
     )
   }
