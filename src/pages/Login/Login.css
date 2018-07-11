@@ -1,3 +1,25 @@
-.btsave{
+.btsave {
 	margin-top: 20px;
+}
+
+.loginblock {
+	width: 270px;
+	height: 150px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin: -75px 0 0 -135px;
+	text-align: center;
+}
+
+.form-control {
+  width: 100% !important;
+  margin-top: 15px !important;
+  margin-bottom: 15px !important;
+	border-radius: 20px !important;
+}
+.btn-block {
+  width: 100% !important;
+  border-radius: 30px !important;
+  margin-top: 30px;
 }

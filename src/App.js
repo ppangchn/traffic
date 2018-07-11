@@ -22,6 +22,7 @@ class App extends Component {
 	render() {
 		return (
 			<Router basename={'/traffic-app/build'}>
+			
 				<Switch>
 				{/* <div> */}
 					<Route exact path="/login" component={withRouter(Login)} />
