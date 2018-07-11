@@ -56,11 +56,9 @@ class Overview extends Component {
             )
           })}
         </UserContainer>
-        <footer className="stick-footer">
-          <div style={{float: 'right'}}>
+          <div className="comparecontainer">
             <Button color="compare"><Timeline className="timelineicon"/>{' '}Compare</Button>
           </div>
-        </footer>
       </Container>
     )
   }

@@ -22,7 +22,7 @@
 }
 
 @media (min-width: 1200px) {
-  .stick-footer {
+  .comparecontainer {
     height: 100px;
     display: flex;
     justify-content: flex-end;
