@@ -54,7 +54,7 @@ export default class ResetPassword extends Component {
 						// value={this.state.email}
 						// invalid={this.state.invalidemail}
 					/>
-					<Button color="5bc2e1" size="lg" block>
+					<Button color="submit" size="lg" block>
 						Submit
 					</Button>
 				</div>

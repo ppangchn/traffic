@@ -7,6 +7,7 @@
 ::-webkit-scrollbar {
   display: none;
   }
+  
 @media (min-width: 321px) and (max-width: 575.98px) {
 }
 
@@ -28,6 +29,7 @@
     justify-content: flex-end;
     align-items: center;
     margin-right: 40px;
+    background-color: transparent
   }
   .timelineicon {
     width: 20px;
