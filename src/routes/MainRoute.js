@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import Overview from '../pages/Overview/Overview'
+import DashBoard from '../pages/Overview/DashBoard'
+import Compare from '../pages/Overview/Compare'
 import ViewByProject from '../pages/ViewByProject/ViewByProject'
 import ViewByPerson from '../pages/ViewByPerson/ViewByPerson'
 import Setting from '../pages/Setting/Setting'
@@ -7,6 +8,7 @@ import AddProject from '../pages/AddProject/AddProject'
 import EachProject from '../pages/EachProject/EachProject'
 import { Route, withRouter } from 'react-router-dom'
 import PersonalProject from '../pages/PersonalProject/PersonalProject'
+
 class MainRoute extends Component {
   constructor(props) {
     super(props)
@@ -15,12 +17,10 @@ class MainRoute extends Component {
     const viewbyproject = () => {
       return <ViewByProject updateHeader={this.props.updateHeader} />
     }
-    const overview = () => {
-      return <Overview updateHeader={this.props.updateHeader} />
-    }
     return (
       <div>
-        <Route path="/overview" component={withRouter(overview)} />
+        <Route exact path="/overview" component={withRouter(DashBoard)} />
+        <Route path="/overview/compare" component={withRouter(Compare)} />
         <Route exact path="/project" component={withRouter(viewbyproject)} />
         <Route exact path="/person" component={withRouter(ViewByPerson)} />
         <Route path="/addproject" component={withRouter(AddProject)} />

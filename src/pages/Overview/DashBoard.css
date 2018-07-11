@@ -29,12 +29,9 @@
     justify-content: flex-end;
     align-items: center;
     margin-right: 40px;
-    background-color: none;
   }
   .timelineicon {
     width: 20px;
 
-  }
-  .usercontainer {
   }
 }

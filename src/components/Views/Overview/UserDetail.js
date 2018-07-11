@@ -22,7 +22,7 @@ const Item = styled.div`
 class UserDetail extends Component {
   constructor(props) {
     super(props)
-    this.state = { toggleAddModal: false ,data:{}}
+    this.state = { toggleAddModal: false, data: {} }
     this.update = this.update.bind(this)
   }
   update() {
@@ -58,7 +58,7 @@ class UserDetail extends Component {
         }
       ]
     }
-    this.setState({data})
+    this.setState({ data })
   }
   render() {
     const { projectTimeline } = this.props
@@ -68,32 +68,36 @@ class UserDetail extends Component {
         <Line data={this.state.data} />
         {/* <Scatter data={data}/> */}
         {projectTimeline.map(project => {
-          return (
-            <Item className="overviewprojectitem">
-              <div className="overviewprojectname">
-                <Link
-                  className={
-                    'linkprojectname-' + project.project.color.substring(1)
-                  }
-                  to={`/project/${project.project.id}`}
-                  style={{
-                    textOverflow: 'ellipsis',
-                    overflow: 'hidden',
-                    textDecoration: 'none'
-                  }}
-                  onClick={this.update}
-                >
-                  {project.project.name}
-                </Link>
-                <div style={{ float: 'right' }}>{project.project.process}%</div>
-                <Progress
-                  className="overviewprogress"
-                  color={String(project.project.color).substring(1)}
-                  value={project.project.process}
-                />
-              </div>
-            </Item>
-          )
+          if (!project.project.isDisable) {
+            return (
+              <Item className="overviewprojectitem">
+                <div className="overviewprojectname">
+                  <Link
+                    className={
+                      'linkprojectname-' + project.project.color.substring(1)
+                    }
+                    to={`/project/${project.project.id}`}
+                    style={{
+                      textOverflow: 'ellipsis',
+                      overflow: 'hidden',
+                      textDecoration: 'none'
+                    }}
+                    onClick={this.update}
+                  >
+                    {project.project.name}
+                  </Link>
+                  <div style={{ float: 'right' }}>
+                    {project.project.process}%
+                  </div>
+                  <Progress
+                    className="overviewprogress"
+                    color={String(project.project.color).substring(1)}
+                    value={project.project.process}
+                  />
+                </div>
+              </Item>
+            )
+          }
         })}
         <Button onClick={() => this.toggleAddModal(true)} color="5bc2e1">
           + New Project
