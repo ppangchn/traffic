@@ -18,8 +18,6 @@ const HeadContainer = styled.div`
   background-color: #ffffff;
   border-bottom: 0.5px solid #dfdfdf;
   border-right: 0.5px solid #dfdfdf;
-  padding-top: 5px;
-  padding-bottom: 14px;
 `
 const SearchBox = styled.div`
   background-color: #ffffff;
@@ -77,7 +75,7 @@ class PersonSidebar extends Component {
   render() {
     return (
       <Sidebar>
-        <HeadContainer>
+        <HeadContainer className="personheadcontainer">
           <Head className="personhead">&emsp;Name</Head>
         </HeadContainer>
         {this.state.users.map((user, index) => {

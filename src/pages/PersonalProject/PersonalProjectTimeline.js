@@ -69,7 +69,7 @@ class ProjectTimeline extends Component {
           visibleTimeStart={moment().add(-7 * 2, 'day')}
           visibleTimeEnd={moment().add(7 * 9, 'day')}
           sidebarWidth={0}
-          lineHeight={75.4}
+          lineHeight={75.5}
           stickyHeader={false}
           minZoom="2592000000" //4 month
           maxZoom="9676800000"
