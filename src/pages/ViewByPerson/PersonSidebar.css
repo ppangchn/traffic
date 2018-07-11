@@ -3,9 +3,6 @@
   text-align: center;
   color: #8c8c8c;
 }
-.Select-menu-outer {
-  top: 40px;
-}
 @media (max-width: 575.98px) {
   .personhead {
     padding-left: 10px;
