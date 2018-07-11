@@ -4,11 +4,11 @@ import styled from 'styled-components'
 import url from '../../url'
 import axios from 'axios'
 import { Button } from 'reactstrap'
-import {Timeline as TimelineIcon} from 'styled-icons/material/Timeline'
+import { Timeline as TimelineIcon } from 'styled-icons/material/Timeline'
 import './Overview.css'
 
 const Timeline = TimelineIcon.extend`
-  color: #5bc2e1
+  color: #5bc2e1;
 `
 const Container = styled.div`
   background-color: #f1f5f8;
@@ -18,7 +18,6 @@ const Container = styled.div`
 const UserContainer = styled.div`
   overflow-x: scroll;
   display: flex;
-  height: 155vh;
 `
 class Overview extends Component {
   constructor() {
@@ -26,7 +25,7 @@ class Overview extends Component {
     this.state = { data: [], graph: [] }
   }
   componentDidMount() {
-    axios.get(`${url}/users/person`).then(res => {
+    axios.get(`${url}/users/pm`).then(res => {
       const { data } = res
       let graph = []
       console.log('data na -> ', data)
@@ -41,7 +40,7 @@ class Overview extends Component {
   render() {
     return (
       <Container>
-        <UserContainer>
+        <UserContainer className="usercontainer">
           {this.state.data.map(user => {
             return (
               <div>
@@ -55,9 +54,11 @@ class Overview extends Component {
             )
           })}
         </UserContainer>
-          <div className="comparecontainer">
-            <Button color="compare"><Timeline className="timelineicon"/>{' '}Compare</Button>
-          </div>
+        <div className="comparecontainer">
+          <Button color="compare">
+            <Timeline className="timelineicon" /> Compare
+          </Button>
+        </div>
       </Container>
     )
   }
