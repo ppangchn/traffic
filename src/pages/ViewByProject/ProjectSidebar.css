@@ -402,7 +402,7 @@
   .headcontainer {
     font-size: 20px;
     padding-left: 10px;
-    padding-bottom: 12px;
+    padding-bottom: 12.5px;
   }
   .head {
     padding-top: 17px;
@@ -418,7 +418,6 @@
   }
   .pmcontainer {
     margin-left: 15px;
-    margin-top: 7px;
   }
   .pmname {
     font-size: 10px;
@@ -439,7 +438,6 @@
     margin-right: 10px;
     display: flex;
     flex-direction: row;
-    top: 8px;
     position: relative;
   }
   .progress {
@@ -456,7 +454,7 @@
   .headcontainer {
     font-size: 20px;
     padding-left: 10px;
-    padding-bottom: 12px;
+    padding-bottom: 12.5px;
   }
   .head {
     padding-top: 17px;
@@ -472,7 +470,6 @@
   }
   .pmcontainer {
     margin-left: 15px;
-    margin-top: 7px;
   }
   .pmname {
     font-size: 10px;
@@ -493,8 +490,8 @@
     margin-right: 10px;
     display: flex;
     flex-direction: row;
-    top: 4px;
     position: relative;
+    justify-content: flex-end
   }
   .progress {
     border-radius: 8px !important;
@@ -509,7 +506,7 @@
   .headcontainer {
     font-size: 20px;
     padding-left: 10px;
-    padding-bottom: 12px;
+    padding-bottom: 12.5px;
   }
   .head {
     padding-top: 17px;
@@ -525,7 +522,6 @@
   }
   .pmcontainer {
     margin-left: 15px;
-    margin-top: 7px;
   }
   .pmname {
     font-size: 10px;
@@ -546,12 +542,11 @@
     margin-right: 10px;
     display: flex;
     flex-direction: row;
-    top: 4px;
     position: relative;
   }
   .progress {
     border-radius: 8px !important;
-    width: 80vw;
+    width: 16vw;
     height: 13px;
   }
   .pmcontainer {
@@ -563,7 +558,7 @@
   .headcontainer {
     font-size: 20px;
     padding-left: 10px;
-    padding-bottom: 12px;
+    padding-bottom: 12.5px;
   }
   .head {
     padding-top: 17px;
@@ -579,7 +574,6 @@
   }
   .pmcontainer {
     margin-left: 15px;
-    margin-top: 7px;
   }
   .pmname {
     font-size: 10px;
@@ -600,12 +594,11 @@
     margin-right: 10px;
     display: flex;
     flex-direction: row;
-    top: 4px;
     position: relative;
   }
   .progress {
     border-radius: 8px !important;
-    width: 80vw;
+    width: 15vw;
     height: 16px;
   }
   .pmcontainer {
@@ -659,7 +652,7 @@
   }
   .progress {
     border-radius: 8px !important;
-    width: 80vw;
+    width: 30vw;
     height: 16px;
   }
 }

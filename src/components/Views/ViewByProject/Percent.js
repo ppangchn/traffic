@@ -30,20 +30,28 @@ class Percent extends Component {
         .put(`${url}/project`, data)
         .then(
           console.log('send!'),
-          this.setState({ process: process.process ,isedited: false})
+          this.setState({ process: process.process, isedited: false })
         )
     } catch (error) {
       console.log('cant send process value at Percent', error)
     }
   }
   customValidateText(text) {
-    return text.length > 0 && text.length < 4 && +text <= 100 && text !== "00" && text!="000" && +text >=0 && !text.includes('.')
+    return (
+      text.length > 0 &&
+      text.length < 4 &&
+      +text <= 100 &&
+      text !== '00' &&
+      text != '000' &&
+      +text >= 0 &&
+      !text.includes('.')
+    )
   }
   componentDidMount() {
     this.setState({ process: '' + this.props.project.process })
   }
   render() {
-    const {project} = this.props;
+    const { project } = this.props
     return (
       <div className="progresscontainer">
         <Progress
@@ -62,12 +70,12 @@ class Percent extends Component {
             editing={this.state.isedited}
             stopPropagation={true}
           />&nbsp;%
-          <div
-            className="editbox"
-            onClick={() => this.setState({ isedited: !this.state.isedited })}
-          >
-            <Edit className="Edit" />
-          </div>
+        </div>
+        <div
+          className="editbox"
+          onClick={() => this.setState({ isedited: !this.state.isedited })}
+        >
+          <Edit className="Edit" />
         </div>
       </div>
     )

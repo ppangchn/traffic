@@ -27,12 +27,12 @@
   .overviewprojectitem {
     padding-bottom: 10px;
   }
-  .progress {
-    width: 210px !important;
-  }
   .overviewprojectname {
     padding-top: 15px;
     font-size: 15px;
     padding-bottom: 2px;
+  }
+  .overviewprogress {
+    width: 100% !important;
   }
 }

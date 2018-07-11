@@ -14,8 +14,8 @@
   }
   .Edit {
     width: 15px;
-    bottom: 6px;
-    left: 5px;
+    bottom: 12px;
+    left: 15px;
   }
   .editing {
     height: 20px;
@@ -36,8 +36,9 @@
   }
   .Edit {
     width: 15px;
-    bottom: 6px;
-    left: 5px;
+    bottom: 10px;
+    left: 15px;
+    margin-right: 10px;
   }
   .editing {
     max-width: 30px;
@@ -63,10 +64,9 @@
     top: 3px;
   }
   .Edit {
-    width: 60%;
     height: 60%;
-    bottom: 6px;
-    left: 5px;
+    bottom: 10px;
+    left: 14px;
   }
   .editing {
     max-width: 30px;
@@ -95,8 +95,8 @@
   .Edit {
     width: 60%;
     height: 60%;
-    bottom: 6px;
-    left: 5px;
+    bottom: 10px;
+    left: 16px;
   }
   .editing {
     max-width: 30px;
@@ -121,11 +121,13 @@
     position: relative;
     top: 4px;
     width: 37px;
+    display: flex;
+    justify-content: flex-end
   }
   .Edit {
     width: 60%;
     height: 60%;
-    bottom: 6px;
+    bottom: 4px;
     left: 5px;
   }
   .editing {
