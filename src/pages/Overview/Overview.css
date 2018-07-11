@@ -1,0 +1,36 @@
+.btn-compare {
+  border-radius: 30px !important;
+  background-color: white;
+  color: #5bc2e1;
+  box-shadow: 0px 4px 10px 1px #d8ecf5;
+}
+::-webkit-scrollbar {
+  display: none;
+  }
+@media (min-width: 321px) and (max-width: 575.98px) {
+}
+
+@media (max-width: 575.98px) {
+}
+@media (min-width: 576px) and (max-width: 767.98px) {
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+}
+
+@media (min-width: 1200px) {
+  .stick-footer {
+    height: 100px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 40px;
+  }
+  .timelineicon {
+    width: 20px;
+
+  }
+}
