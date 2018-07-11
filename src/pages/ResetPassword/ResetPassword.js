@@ -46,6 +46,7 @@ export default class ResetPassword extends Component {
 					<Input
 						style={{ fontSize: '8px !important' }}
 						name="password"
+
 						type="password"
 						style={{ backgroundColor: '#f1f1f1' }}
 						placeholder="Confirm Password"
