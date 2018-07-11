@@ -33,21 +33,23 @@ class ProjectTimeline extends Component {
         const { data } = res // = res.data
         let count = 2
         data.projectTimeline.forEach(timeline => {
-          groups.push({ id: count, title: timeline.project.name })
-          let start = moment(timeline.start).add(-1, 'day')
-          let end = moment(timeline.end).add(-1, 'day')
-          items.push({
-            id: count,
-            group: count,
-            title: '',
-            start_time: start,
-            end_time: end,
-            canMove: false,
-            canResize: false,
-            canChangeGroup: false,
-            className: 'bg-' + timeline.project.color.substring(1)
-          })
-          count++
+          if (!timeline.project.isDisable) {
+            groups.push({ id: count, title: timeline.project.name })
+            let start = moment(timeline.start).add(-1, 'day')
+            let end = moment(timeline.end).add(-1, 'day')
+            items.push({
+              id: count,
+              group: count,
+              title: '',
+              start_time: start,
+              end_time: end,
+              canMove: false,
+              canResize: false,
+              canChangeGroup: false,
+              className: 'bg-' + timeline.project.color.substring(1)
+            })
+            count++
+          }
         })
         this.setState({
           groups,
@@ -64,7 +66,7 @@ class ProjectTimeline extends Component {
         <Timeline
           groups={this.state.groups}
           items={this.state.items}
-          visibleTimeStart={moment().add(-7*2, 'day')}
+          visibleTimeStart={moment().add(-7 * 2, 'day')}
           visibleTimeEnd={moment().add(7 * 9, 'day')}
           sidebarWidth={0}
           lineHeight={75.4}

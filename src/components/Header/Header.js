@@ -193,7 +193,7 @@ class Header extends Component {
       this.setState({ folder: <FolderSolid /> })
     if (window.location.pathname == '/traffic-app/build/setting')
       this.setState({ setting: <SettingSolid /> })
-    if (window.location.pathname == '/traffic-app/build/')
+    if (window.location.pathname == '/traffic-app/build/overview')
       this.setState({ list: <ListAltSolidz /> })
   }
   componentWillReceiveProps() {
@@ -207,7 +207,7 @@ class Header extends Component {
     return (
       <Container>
         <Navbar>
-          <Link to="/">
+          <Link to="/overview">
             <NavLink
               onClick={() => {
                 this.changeListIcon()

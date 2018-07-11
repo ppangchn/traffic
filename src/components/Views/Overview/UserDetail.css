@@ -1,0 +1,38 @@
+.btn-5bc2e1 {
+  background-color: #5bc2e1;
+  color: white;
+  margin: 10px 10px 10px 0;
+}
+@media (min-width: 321px) and (max-width: 575.98px) {
+}
+
+@media (max-width: 575.98px) {
+}
+@media (min-width: 576px) and (max-width: 767.98px) {
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+}
+
+@media (min-width: 1200px) {
+  .userdetail {
+    width: 300px;
+    margin: 30px 20px 0 20px;
+    padding: 20px 20px 0 20px;
+    font-size: 30px;
+  }
+  .overviewprojectitem {
+    padding-bottom: 10px;
+  }
+  .progress {
+    width: 20vw !important;
+  }
+  .overviewprojectname {
+    padding-top: 15px;
+    font-size: 15px;
+    padding-bottom: 2px;
+  }
+}

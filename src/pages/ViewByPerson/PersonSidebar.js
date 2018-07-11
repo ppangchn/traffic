@@ -41,6 +41,7 @@ class PersonSidebar extends Component {
       roles: [],
       tags: [],
       listmember: [],
+      length: []
     }
   }
   getData() {
@@ -51,13 +52,19 @@ class PersonSidebar extends Component {
       let roles = []
       let tags = []
       let listmember = []
+      let length = []
       data.map(user => {
         users.push(user.name)
         roles.push(user.roles.name)
         tags.push(user.tags)
         listmember.push({ value: user.id, label: user.name })
+        let count = 0
+        user.projectTimeline.map(timeline => {
+          if (!timeline.project.isDisable) count++
+        })
+        length.push(count)
       })
-      this.setState({ users, roles, tags, listmember })
+      this.setState({ users, roles, tags, listmember ,length})
     })
   }
   componentDidMount() {
@@ -74,10 +81,17 @@ class PersonSidebar extends Component {
           <Head className="personhead">&emsp;Name</Head>
         </HeadContainer>
         {this.state.users.map((user, index) => {
+          console.log('classname', `projectitem${this.state.length}`)
           return (
-            <Item className="personitem">
+            <Item className={`personitem${this.state.length[index]}`}>
               <User className="personname">{user}</User>
-              <div style={{ display: 'flex', flexDirection: 'row' ,flexWrap:'wrap' }}>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  flexWrap: 'wrap'
+                }}
+              >
                 <div className="persontag">{this.state.roles[index]}</div>
                 {this.state.tags[index].map(tag => {
                   return <div className="persontag">{tag.name}</div>

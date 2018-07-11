@@ -79,10 +79,60 @@
     font-size: 20px;
     padding-left: 10px;
   }
-  .personitem {
+  .personitem0 {
     padding-bottom: 19.5px;
     padding-left: 30px;
     height: 102px;
+  }
+  .personitem1 {
+    padding-bottom: 19.5px;
+    padding-left: 30px;
+    height: 123.5px;
+  }
+  .personitem2 {
+    padding-bottom: 19.5px;
+    padding-left: 30px;
+    height: 124px;
+  }
+  .personitem3 {
+    padding-bottom: 19.5px;
+    padding-left: 30px;
+    height: 166px;
+  }
+  .personitem4 {
+    padding-bottom: 19.5px;
+    padding-left: 30px;
+    height: 208px;
+  }
+  .personitem5 {
+    padding-bottom: 19.5px;
+    padding-left: 30px;
+    height: 250px;
+  }
+  .personitem6 {
+    padding-bottom: 19.5px;
+    padding-left: 30px;
+    height: 292px;
+  }
+  .personitem7 {
+    padding-bottom: 19.5px;
+    padding-left: 30px;
+    height: 334px;
+  }
+  .personitem8 {
+    padding-bottom: 19.5px;
+    padding-left: 30px;
+    height: 376px;
+  }
+  .personitem9 {
+    padding-bottom: 19.5px;
+    padding-left: 30px;
+    height: 418px;
+  }
+  .personitem10 {
+    padding-bottom: 19.5px;
+    padding-left: 30px;
+    height: 460px;
   }
   .persontag {
     font-size: 10px;

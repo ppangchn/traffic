@@ -277,7 +277,7 @@ export function stack(items, groupOrders, lineHeight, force) {
     }
 
     groupHeights.push(Math.max(groupHeight + verticalMargin, lineHeight))
-    totalHeight += Math.max(groupHeight + verticalMargin, lineHeight)
+    totalHeight+=(Math.max(groupHeight + verticalMargin, lineHeight))
   })
   return {
     height: totalHeight,

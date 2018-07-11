@@ -249,10 +249,10 @@ function stack(items, groupOrders, lineHeight, force) {
     var verticalMargin = 0;
     for (i = 0, iMax = group.length; i < iMax; i++) {
       var item = group[i];
-      verticalMargin = lineHeight - item.dimensions.height;
+      verticalMargin = lineHeight - item.dimensions.height - 50;
 
       if (item.dimensions.stack && item.dimensions.top === null) {
-        item.dimensions.top = totalHeight + verticalMargin;
+        item.dimensions.top = totalHeight + 30;
         groupHeight = Math.max(groupHeight, lineHeight);
         do {
           var collidingItem = null;
@@ -268,15 +268,15 @@ function stack(items, groupOrders, lineHeight, force) {
 
           if (collidingItem != null) {
             // There is a collision. Reposition the items above the colliding element
-            item.dimensions.top = collidingItem.dimensions.top + lineHeight;
+            item.dimensions.top = collidingItem.dimensions.top + lineHeight - 60;
             groupHeight = Math.max(groupHeight, item.dimensions.top + item.dimensions.height - totalHeight);
           }
         } while (collidingItem);
       }
     }
 
-    groupHeights.push(Math.max(groupHeight + verticalMargin, lineHeight));
-    totalHeight += Math.max(groupHeight + verticalMargin, lineHeight);
+    groupHeights.push(Math.max(groupHeight + verticalMargin, lineHeight))
+    totalHeight+=(Math.max(groupHeight + verticalMargin, lineHeight))
   });
   return {
     height: totalHeight,

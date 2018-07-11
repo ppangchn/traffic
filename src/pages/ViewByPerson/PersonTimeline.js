@@ -26,7 +26,7 @@ class PersonTimeline extends Component {
           groups.push({ id: data.id, title: data.name })
           if (data.projectTimeline) {
             data.projectTimeline.forEach(timeline => {
-              if (!timeline.isDisable) {
+              if (!timeline.project.isDisable && !timeline.isDisable) {
                 let start = null
                 let end = null
                 if (timeline.start && timeline.end) {
@@ -54,8 +54,8 @@ class PersonTimeline extends Component {
           items
         })
       })
-      // console.log('items na ->', items)
-      // console.log('groups na ->', groups)
+      console.log('items na ->', items)
+      console.log('groups na ->', groups)
     } catch (error) {
       console.log('fail to get data at PersonTimeline')
     }
@@ -66,8 +66,8 @@ class PersonTimeline extends Component {
         <Timeline
           groups={this.state.groups}
           items={this.state.items}
-          visibleTimeStart={moment().add(7 * 4, 'day')}
-          visibleTimeEnd={moment().add(7 * 13, 'day')}
+          visibleTimeStart={moment().add(7 * 10, 'day')}
+          visibleTimeEnd={moment().add(7 * 23, 'day')}
           sidebarWidth={0}
           lineHeight={102}
           stickyHeader={false}
@@ -75,7 +75,7 @@ class PersonTimeline extends Component {
           maxZoom="9676800000"
           timeSteps={{ day: 7 }}
           itemHeightRatio={0.3}
-          // stackItems={true}
+          stackItems={true}
         />
       </GraphBox>
     )

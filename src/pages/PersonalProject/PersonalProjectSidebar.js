@@ -46,7 +46,7 @@ class ProjectSidebar extends Component {
       axios.get(`${url}/users/${this.props.id}`).then(res => {
         const { data } = res
         this.setState({ data })
-        console.log('timeline --->',data.projectTimeline)
+        console.log('timeline --->', data.projectTimeline)
       })
     } catch (error) {
       console.log('fail to get data at PersonalProjectSidebar', error)
@@ -54,7 +54,7 @@ class ProjectSidebar extends Component {
   }
 
   render() {
-    const {data} = this.state;
+    const { data } = this.state
     return (
       <Sidebar>
         <UserName className="username">{data.name}</UserName>
@@ -63,45 +63,54 @@ class ProjectSidebar extends Component {
             <FolderIcon className="foldericon" />&emsp;Project
           </div>
         </HeadContainer>
-        {data.projectTimeline && data.projectTimeline.map(project => {
-          return (
-            <div key={project.project.name}>
-              <Item className="personalprojectitem">
-                <div className="personalprojectname">
-                  <Link
-                    className={'linkprojectname-' + String(project.project.color).substring(1)}
-                    to={`/project/${project.project.id}`}
-                    style={{
-                      textOverflow: 'ellipsis',
-                      overflow: 'hidden',
-                      textDecoration: 'none'
-                    }}
-                    onClick={this.props.updateHeader}
-                  >
-                    {project.project.name}
-                  </Link>
+        {data.projectTimeline &&
+          data.projectTimeline.map(project => {
+            if (!project.project.isDisable) {
+              return (
+                <div key={project.project.name}>
+                  <Item className="personalprojectitem">
+                    <div className="personalprojectname">
+                      <Link
+                        className={
+                          'linkprojectname-' +
+                          String(project.project.color).substring(1)
+                        }
+                        to={`/project/${project.project.id}`}
+                        style={{
+                          textOverflow: 'ellipsis',
+                          overflow: 'hidden',
+                          textDecoration: 'none'
+                        }}
+                        onClick={this.props.updateHeader}
+                      >
+                        {project.project.name}
+                      </Link>
+                    </div>
+                    <Percent project={project.project} />
+                    <div className="pmcontainer">
+                      {project.project.projectManagement.map(pm => {
+                        if (!pm.isDisable && pm.users.id != this.props.id) {
+                          return (
+                            <Pm key={pm.id} className="pmname">
+                              <Link
+                                to={`/person/${pm.users.id}`}
+                                style={{
+                                  color: 'black',
+                                  textDecoration: 'none'
+                                }}
+                              >
+                                {pm.users.name}
+                              </Link>
+                            </Pm>
+                          )
+                        }
+                      })}
+                    </div>
+                  </Item>
                 </div>
-                <Percent project={project.project} />
-                <div className="pmcontainer">
-                  {project.project.projectManagement.map(pm => {
-                    if (!pm.isDisable && pm.users.id!=this.props.id) {
-                      return (
-                        <Pm key={pm.id} className="pmname">
-                          <Link
-                            to={`/person/${pm.users.id}`}
-                            style={{ color: 'black', textDecoration: 'none' }}
-                          >
-                            {pm.users.name}
-                          </Link>
-                        </Pm>
-                      )
-                    }
-                  })}
-                </div>
-              </Item>
-            </div>
-          )
-        })}
+              )
+            }
+          })}
       </Sidebar>
     )
   }
