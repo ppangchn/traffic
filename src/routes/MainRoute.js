@@ -7,6 +7,7 @@ import AddProject from '../pages/AddProject/AddProject'
 import EachProject from '../pages/EachProject/EachProject'
 import { Route, withRouter } from 'react-router-dom'
 import PersonalProject from '../pages/PersonalProject/PersonalProject'
+
 // const OverView = <Overview update={this.props.update} />
 class MainRoute extends Component {
   constructor(props) {
@@ -25,6 +26,7 @@ class MainRoute extends Component {
         <Route path="/setting" component={withRouter(Setting)} />
         <Route path="/project/:id" component={withRouter(EachProject)} />
         <Route path="/person/:id" component={withRouter(PersonalProject)} />
+        
       </div>
     )
   }
