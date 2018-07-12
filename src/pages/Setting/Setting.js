@@ -190,13 +190,11 @@ class Setting extends Component {
                     <Card body className="h-150">
                       <CardBody className="add">
                         <div>
-                          <center>
                             <NavLink onClick={e => this.toggleAddModal(true)}>
                               <div className="addmembericon">
                                 {this.state.add}
                               </div>
                             </NavLink>
-                          </center>
                         </div>
                       </CardBody>
                     </Card>

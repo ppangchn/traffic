@@ -5,6 +5,7 @@ import axios from 'axios'
 import url from '../../url'
 import Select from 'react-select'
 import './PersonSidebar.css'
+import { max } from '../../../node_modules/moment'
 const Item = styled.div`
   background-color: #ffffff;
   border-bottom: 0.5px solid #dfdfdf;
@@ -51,6 +52,10 @@ class PersonSidebar extends Component {
       let tags = []
       let listmember = []
       let length = []
+      let start = 0
+      let end = 0
+      let startmillisecond = 0
+      let endmillisecond = 0
       data.map(user => {
         users.push(user.name)
         roles.push(user.roles.name)
@@ -58,8 +63,13 @@ class PersonSidebar extends Component {
         listmember.push({ value: user.id, label: user.name })
         let count = 0
         user.projectTimeline.map(timeline => {
-          if (!timeline.project.isDisable && timeline.start && timeline.end)
-            count++
+          if (!timeline.project.isDisable && timeline.start && timeline.end) {
+            startmillisecond = timeline.start.getMilliseconds();;
+            endmillisecond = timeline.end.getMilliseconds();;
+            if (startmillisecond >= start || endmillisecond <= end) count++
+            start = Math.max(start, startmillisecond)
+            end = Math.max(end, endmillisecond)
+          }
         })
         length.push(count)
       })
