@@ -69,7 +69,6 @@ var ScrollElement = function (_Component) {
         var speed = e.ctrlKey ? 10 : e.metaKey ? 3 : 1;
 
         // convert vertical zoom to horiziontal
-        _this.props.onWheelZoom(speed, xPosition, e.deltaY);
       } else if (e.shiftKey) {
         // shift+scroll event from a touchpad has deltaY property populated; shift+scroll event from a mouse has deltaX
         _this.scrollComponent.scrollLeft += e.deltaY || e.deltaX;

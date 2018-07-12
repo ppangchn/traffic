@@ -757,7 +757,7 @@ ReactCalendarTimeline.defaultProps = {
   dragSnap: 1000 * 60 * 15, // 15min
   minResizeWidth: 20,
   stickyOffset: 0,
-  stickyHeader: true,
+  stickyHeader: false,
   lineHeight: 30,
   headerLabelGroupHeight: 30,
   headerLabelHeight: 30,
@@ -970,23 +970,6 @@ var _initialiseProps = function _initialiseProps() {
         _this4.props.onZoom(_this4.getTimelineContext());
       }
     });
-  };
-
-  this.handleWheelZoom = function (speed, xPosition, deltaY) {
-    _this4.changeZoom(1.0 + speed * deltaY / 500, xPosition / _this4.state.width);
-  };
-
-  this.changeZoom = function (scale) {
-    var offset = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0.5;
-    var _props4 = _this4.props,
-        minZoom = _props4.minZoom,
-        maxZoom = _props4.maxZoom;
-
-    var oldZoom = _this4.state.visibleTimeEnd - _this4.state.visibleTimeStart;
-    var newZoom = Math.min(Math.max(Math.round(oldZoom * scale), minZoom), maxZoom); // min 1 min, max 20 years
-    var newVisibleTimeStart = Math.round(_this4.state.visibleTimeStart + (oldZoom - newZoom) * offset);
-
-    _this4.props.onTimeChange(newVisibleTimeStart, newVisibleTimeStart + newZoom, _this4.updateScrollCanvas);
   };
 
   this.showPeriod = function (from, unit) {

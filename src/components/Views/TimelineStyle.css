@@ -80,7 +80,8 @@
   display: flex; }
   .react-calendar-timeline .rct-header-container.header-sticky {
     position: sticky;
-    position: -webkit-sticky; }
+    position: -webkit-sticky; 
+  }
 
 .react-calendar-timeline .rct-header {
   margin: 0;

@@ -41,6 +41,7 @@ class ProjectTimeline extends Component {
             groups,
             items
           })
+          console.log(groups,items)
         })
     } catch (error) {
       console.log('fail to get data at ProjectTimeline', error)
@@ -56,9 +57,7 @@ class ProjectTimeline extends Component {
           visibleTimeEnd={moment().add(7*9, 'day')}
           sidebarWidth={0}
           lineHeight={110.5}
-          stickyHeader={false}
-          minZoom="2592000000" //4 month
-          maxZoom="9676800000"
+          stickyHeader={true}
           timeSteps={{ day: 7 }}
           itemHeightRatio={0.3}
         />

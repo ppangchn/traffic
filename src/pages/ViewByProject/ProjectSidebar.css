@@ -401,7 +401,6 @@
 @media (min-width: 321px) and (max-width: 575.98px) {
   .headcontainer {
     font-size: 20px;
-    padding-left: 10px;
     padding-bottom: 12.5px;
   }
   .head {
@@ -414,23 +413,22 @@
     bottom: 3px;
   }
   .projectitem {
-    padding-bottom: 23px;
-  }
-  .pmcontainer {
-    margin-left: 15px;
+    padding-bottom: 6px;
+    padding-right: 0.5rem;
   }
   .pmname {
-    font-size: 10px;
+    font-size: 7px;
     border: 0.125rem solid #c6c6c6;
     border-radius: 0.625rem;
     padding-left: 0.3125rem;
     padding-right: 0.3125rem;
     margin-right: 2px;
+    margin-bottom: 1px;
   }
   .projectname {
     padding-top: 15px;
     margin-left: 15px;
-    font-size: 15px;
+    font-size: 10px;
     padding-bottom: 2px;
   }
   .progresscontainer {
@@ -442,18 +440,21 @@
   }
   .progress {
     border-radius: 8px !important;
-    width: 120px;
+    width: 80px;
+    height: 10px !important;
   }
   .pmcontainer {
-    bottom: 5px;
+    bottom: 10px;
     position: relative;
+    margin-left: 15px;
+    line-height: 10px;
+    height: 48px;
   }
 }
 
 @media (min-width: 576px) and (max-width: 767.98px) {
   .headcontainer {
     font-size: 20px;
-    padding-left: 10px;
     padding-bottom: 12.5px;
   }
   .head {
@@ -466,23 +467,22 @@
     bottom: 3px;
   }
   .projectitem {
-    padding-bottom: 23px;
-  }
-  .pmcontainer {
-    margin-left: 15px;
+    padding-bottom: 6px;
+    padding-right: 0.5rem;
   }
   .pmname {
-    font-size: 10px;
+    font-size: 7px;
     border: 0.125rem solid #c6c6c6;
     border-radius: 0.625rem;
     padding-left: 0.3125rem;
     padding-right: 0.3125rem;
     margin-right: 2px;
+    margin-bottom: 1px;
   }
   .projectname {
     padding-top: 15px;
     margin-left: 15px;
-    font-size: 15px;
+    font-size: 10px;
     padding-bottom: 2px;
   }
   .progresscontainer {
@@ -491,21 +491,23 @@
     display: flex;
     flex-direction: row;
     position: relative;
-    justify-content: flex-end
   }
   .progress {
     border-radius: 8px !important;
-    width: 120px;
+    width: 80px;
+    height: 10px !important;
   }
   .pmcontainer {
-    bottom: 5px;
+    bottom: 10px;
     position: relative;
+    margin-left: 15px;
+    line-height: 10px;
+    height: 48px;
   }
 }
 @media (min-width: 768px) and (max-width: 991.98px) {
   .headcontainer {
     font-size: 20px;
-    padding-left: 10px;
     padding-bottom: 12.5px;
   }
   .head {
@@ -518,23 +520,22 @@
     bottom: 3px;
   }
   .projectitem {
-    padding-bottom: 23px;
-  }
-  .pmcontainer {
-    margin-left: 15px;
+    padding-bottom: 6px;
+    padding-right: 0.5rem;
   }
   .pmname {
-    font-size: 10px;
+    font-size: 7px;
     border: 0.125rem solid #c6c6c6;
     border-radius: 0.625rem;
     padding-left: 0.3125rem;
     padding-right: 0.3125rem;
     margin-right: 2px;
+    margin-bottom: 1px;
   }
   .projectname {
     padding-top: 15px;
     margin-left: 15px;
-    font-size: 15px;
+    font-size: 10px;
     padding-bottom: 2px;
   }
   .progresscontainer {
@@ -547,11 +548,14 @@
   .progress {
     border-radius: 8px !important;
     width: 16vw;
-    height: 13px;
+    height: 10px !important;
   }
   .pmcontainer {
-    bottom: 5px;
+    bottom: 10px;
     position: relative;
+    margin-left: 15px;
+    line-height: 10px;
+    height: 48px;
   }
 }
 @media (min-width: 992px) and (max-width: 1199.98px) {
@@ -571,6 +575,8 @@
   }
   .projectitem {
     padding-bottom: 23px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
   .pmcontainer {
     margin-left: 15px;
@@ -623,6 +629,8 @@
   }
   .projectitem {
     padding-bottom: 23px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
   .pmcontainer {
     margin-left: 15px;

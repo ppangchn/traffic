@@ -55,7 +55,7 @@
 .weightpm {
   border-color: #5ac2e2 !important;
 }
-@media (max-width: 320px) {
+/* @media (max-width: 320px) {
   .addprojectbox {
     font-size: 8px;
   }
@@ -91,7 +91,16 @@
   .Select-control {
     top: 5px;
   }
-}
+  .form-control {
+    font-size: 7px !important;
+    top: 5px;
+    position: relative;
+    width: 85%;
+  }
+  .fontinput::placeholder {
+    font-size: 7px !important;
+  }
+} */
 @media (min-width: 321px) and (max-width: 575.98px) {
   .addprojectbox {
     font-size: 10px;
@@ -128,8 +137,13 @@
   .pmweighttext {
     padding-left: 15px !important;
   }
-  ::-webkit-input-placeholder {
-    font-size: 10px;
+  .form-control {
+    font-size: 7px !important;
+    position: relative;
+    width: 85%;
+  }
+  .fontinput::placeholder {
+    font-size: 8px !important;
   }
 }
 @media (min-width: 576px) and (max-width: 767.98px) {
@@ -149,12 +163,18 @@
     right: 8px;
     margin-top: 30px;
   }
-  .form-control {
-    font-size: 10px !important;
-  }
   .addpmbox {
     margin-bottom: 7px;
     bottom: 5px;
+  }
+  .form-control {
+    font-size: 7px !important;
+    top: 5px;
+    position: relative;
+    width: 85%;
+  }
+  .fontinput::placeholder {
+    font-size: 10px !important;
   }
 }
 
@@ -247,7 +267,7 @@
     margin-right: 10px;
     margin-top: 21px;
   }
-  .form-control {
+  .fontinput::placeholder {
     font-size: 14px !important;
   }
   .addpmbox {
@@ -266,20 +286,3 @@
     position: relative;
   }
 }
-/* @media (min-width: 702px) {
-    html {
-        font-size: 10px;
-    }
-}
-
-@media (min-width: 724px) {
-    html {
-        font-size: 9px;
-    }
-}
-
-@media (max-width: 623px) {
-    html {
-        font-size: 8px;
-    }
-} */

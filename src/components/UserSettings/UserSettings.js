@@ -2,32 +2,17 @@ import React, { Component } from 'react'
 import { MoreHoriz } from 'styled-icons/material/MoreHoriz'
 import {
 	DropdownToggle,
-	Edit,
 	DropdownMenu,
 	DropdownItem,
 	ButtonDropdown,
-	Container,
-	TabContent,
-	TabPane,
-	Nav,
-	NavItem,
-	NavLink,
 	Card,
-	CardBody,
-	Button,
 	CardTitle,
 	CardText,
-	Row,
-	Col,
-	Modal,
-	ModalBody,
-	ModalHeader,
-	ModalFooter
+	Col
 } from 'reactstrap'
 import axios from 'axios'
-
-import { Link } from 'react-router-dom'
 import '../../pages/Setting/Setting.css'
+import './UserSetting.css'
 import DeleteMember from './DeleteMember'
 import AddMember from '../../pages/AddMember/AddMember'
 
@@ -36,7 +21,6 @@ const Editt = MoreHoriz.extend`
 	width: 1.5625rem;
 	height: 1.5625rem;
 `
-
 export default class UserSettings extends Component {
 	constructor(props) {
 		super(props)
@@ -47,8 +31,6 @@ export default class UserSettings extends Component {
 			users: [],
 			editmember: false
 		}
-		// this.deleteUser = this.deleteUser.bind(this)
-		// this.toggleModal = this.toggleModal.bind(this)
 		this.toggleModalDelete = this.toggleModalDelete.bind(this)
 	}
 
@@ -71,8 +53,6 @@ export default class UserSettings extends Component {
 				.delete(`http://dev.pirsquare.net:3013/traffic-api/users/${this.props.users.id}`)
 				.then(console.log('delete success!'), this.toggleModalDelete())
 			this.props.getData()
-
-			// this.props.getData()
 		} catch (error) {
 			console.log('cant delete user at DeleteUser', error)
 		}
@@ -81,7 +61,7 @@ export default class UserSettings extends Component {
 	render() {
 		const { users, roles, tags } = this.props
 		return (
-			<Col sm={4} className="mb-4" key={users.id}>
+			<Col md={4} sm={4}  className="mb-4" key={users.id}>
 				<Card body className="h-150">
 					<CardTitle>
 						<div className="font">
@@ -95,7 +75,7 @@ export default class UserSettings extends Component {
 								}}
 							>
 								<DropdownToggle>
-									<Editt />
+									<div className="editmembercontainer"><Editt /></div>
 								</DropdownToggle>
 								<DropdownMenu className="dropdown-menu">
 									<DropdownItem
