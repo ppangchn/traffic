@@ -976,19 +976,6 @@ var _initialiseProps = function _initialiseProps() {
     _this4.changeZoom(1.0 + speed * deltaY / 500, xPosition / _this4.state.width);
   };
 
-  this.changeZoom = function (scale) {
-    var offset = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0.5;
-    var _props4 = _this4.props,
-        minZoom = _props4.minZoom,
-        maxZoom = _props4.maxZoom;
-
-    var oldZoom = _this4.state.visibleTimeEnd - _this4.state.visibleTimeStart;
-    var newZoom = Math.min(Math.max(Math.round(oldZoom * scale), minZoom), maxZoom); // min 1 min, max 20 years
-    var newVisibleTimeStart = Math.round(_this4.state.visibleTimeStart + (oldZoom - newZoom) * offset);
-
-    _this4.props.onTimeChange(newVisibleTimeStart, newVisibleTimeStart + newZoom, _this4.updateScrollCanvas);
-  };
-
   this.showPeriod = function (from, unit) {
 
     var visibleTimeStart = from.valueOf();

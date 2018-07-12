@@ -50,9 +50,6 @@ export default class ReactCalendarTimeline extends Component {
     itemHeightRatio: PropTypes.number,
     minimumWidthForItemContentVisibility: PropTypes.number,
 
-    minZoom: PropTypes.number,
-    maxZoom: PropTypes.number,
-
     clickTolerance: PropTypes.number,
 
     canChangeGroup: PropTypes.bool,
@@ -173,9 +170,6 @@ export default class ReactCalendarTimeline extends Component {
     headerLabelHeight: 30,
     itemHeightRatio: 0.65,
     minimumWidthForItemContentVisibility: 25,
-
-    minZoom: 60 * 60 * 1000, // 1 hour
-    maxZoom: 5 * 365.24 * 86400 * 1000, // 5 years
 
     clickTolerance: 3, // how many pixels can we drag for it to be still considered a click?
 

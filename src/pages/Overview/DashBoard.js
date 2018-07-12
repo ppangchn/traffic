@@ -21,6 +21,8 @@ const Container = styled.div`
 const UserContainer = styled.div`
   overflow-x: scroll;
   display: flex;
+  height: 100vh;
+  
 `
 class DashBoard extends Component {
   constructor(props) {
@@ -55,13 +57,11 @@ class DashBoard extends Component {
             )
           })}
         </UserContainer>
-        <div className="comparecontainer">
           <Link to="/overview/compare">
             <Button color="compare">
               <Timeline className="timelineicon" /> Compare
             </Button>
           </Link>
-        </div>
       </Container>
     )
   }

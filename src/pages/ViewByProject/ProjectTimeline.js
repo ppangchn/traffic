@@ -57,8 +57,6 @@ class ProjectTimeline extends Component {
           sidebarWidth={0}
           lineHeight={110.5}
           stickyHeader={false}
-          minZoom="2592000000" //4 month
-          maxZoom="9676800000"
           timeSteps={{ day: 7 }}
           itemHeightRatio={0.3}
         />

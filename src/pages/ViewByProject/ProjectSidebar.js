@@ -12,8 +12,6 @@ import Percent from '../../components/Views/ViewByProject/Percent'
 const Item = styled.div`
   background-color: #ffffff;
   border-bottom: 0.5px solid #dfdfdf;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
 `
 const FolderIcon = FolderOpen.extend`
   color: #5bc2e1;

@@ -45,7 +45,7 @@ class PersonSidebar extends Component {
   getData() {
     axios.get(`${url}/users/person`).then(res => {
       const { data } = res
-      // console.log('Data Project', data)
+      console.log('Data Project', data)
       let users = []
       let roles = []
       let tags = []
@@ -58,11 +58,13 @@ class PersonSidebar extends Component {
         listmember.push({ value: user.id, label: user.name })
         let count = 0
         user.projectTimeline.map(timeline => {
-          if (!timeline.project.isDisable) count++
+          if (!timeline.project.isDisable && timeline.start && timeline.end)
+            count++
         })
         length.push(count)
       })
-      this.setState({ users, roles, tags, listmember ,length})
+      this.setState({ users, roles, tags, listmember, length })
+      console.log('length -> ', length)
     })
   }
   componentDidMount() {
@@ -79,11 +81,11 @@ class PersonSidebar extends Component {
           <Head className="personhead">&emsp;Name</Head>
         </HeadContainer>
         {this.state.users.map((user, index) => {
-          console.log('classname', `projectitem${this.state.length}`)
           return (
             <Item className={`personitem${this.state.length[index]}`}>
               <User className="personname">{user}</User>
               <div
+                className="persontagcontainer"
                 style={{
                   display: 'flex',
                   flexDirection: 'row',
