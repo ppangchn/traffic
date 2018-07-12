@@ -8,37 +8,58 @@ const Container = styled.div`
 	width: 100vw;
 	height: 100vh;
 	background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+background-color: white;
 `
 export default class Login extends Component {
+	constructor(props) {
+		super(props)
+		this.state = {
+			email: '',
+			password: '',
+			// invalidpassword: false,
+			invalidemail: false
+		}
+	}
+
+	handleInputChange = e => {
+		const { name, value } = e.target
+		this.setState({ [name]: value })
+	}
+
 	render() {
 		return (
 			<Container>
-				<div class="loginblock">
-					traffic.
-					{/* <Input placeholder="example@pirsquare.net"/> */}
-					<Input
-						style={{ fontSize: '8px !important' }}
-            name="name"
-            className="btsave"
-						type="email"
-						style={{ backgroundColor: '#f1f1f1' }}
-						placeholder="example@pirsquare.net"
-						// onChange={this.handleInputChangeEmail}
-						// value={this.state.email}
-						// invalid={this.state.invalidemail}
-					/>
-					{/* <Input placeholder="example@pirsquare.net"/> */}
-					<Input
-            style={{ fontSize: '8px !important' }}
-						name="password"
-						type="password"
-						style={{ backgroundColor: '#f1f1f1' }}
-						placeholder="Password"
-						// onChange={this.handleInputChangeEmail}
-						// value={this.state.email}
-						// invalid={this.state.invalidemail}
-					/>
-					<Button color="5bc2e1" size="lg" block>
+				<div style={{display: 'flex', flexDirection: 'column' ,textAlign: 'center'}}>
+				traffic.
+					<div className="ipp">
+						<input
+							style={{ fontSize: '8px !important' }}
+							name="email"
+							className="inputform"
+							type="email"
+							placeholder="example@pirsquare.net"
+							onChange={this.handleInputChange}
+							value={this.state.email}
+							invalid={this.state.invalidemail}
+							required
+						/>
+					</div>
+					<div className="ipp">
+						<input
+							className="inputform"
+							style={{ fontSize: '8px !important' }}
+							name="password"
+							type="password"
+							placeholder="Password"
+							onChange={this.handleInputChange}
+							value={this.state.password}
+							invalid={this.state.invalidpassword}
+						/>
+					</div>
+					<Button color="submit" size="lg" block>
 						Sign In
 					</Button>
 					<div>

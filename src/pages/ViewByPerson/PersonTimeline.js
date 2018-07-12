@@ -66,8 +66,8 @@ class PersonTimeline extends Component {
         <Timeline
           groups={this.state.groups}
           items={this.state.items}
-          visibleTimeStart={moment().add(7 * 10, 'day')}
-          visibleTimeEnd={moment().add(7 * 23, 'day')}
+          visibleTimeStart={moment().add(7*4,'day')}
+          visibleTimeEnd={moment().add(7*9, 'day')}
           sidebarWidth={0}
           lineHeight={102}
           stickyHeader={false}

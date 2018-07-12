@@ -29,25 +29,24 @@ export default class ResetPassword extends Component {
 					<KeyReset />
 					<br />
 					ResetPassword <br />
-
-				<div class="please">Please enter your new password</div>
+					<div class="please">Please enter your new password</div>
 					{/* <Input placeholder="example@pirsquare.net"/> */}
-					<Input
+					<input
 						style={{ fontSize: '8px !important' }}
 						name="name"
 						type="password"
-						style={{ backgroundColor: '#f1f1f1' }}
+						className="inputform"
 						placeholder="New Password"
 						// onChange={this.handleInputChangeEmail}
 						// value={this.state.email}
 						// invalid={this.state.invalidemail}
 					/>
 					{/* <Input placeholder="example@pirsquare.net"/> */}
-					<Input
+					<input
 						style={{ fontSize: '8px !important' }}
 						name="password"
 						type="password"
-						style={{ backgroundColor: '#f1f1f1' }}
+						className="inputform"
 						placeholder="Confirm Password"
 						// onChange={this.handleInputChangeEmail}
 						// value={this.state.email}

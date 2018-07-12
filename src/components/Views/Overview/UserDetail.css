@@ -20,19 +20,19 @@
 @media (min-width: 1200px) {
   .userdetail {
     width: 250px;
-    margin: 30px 20px 0 20px;
+    margin: 30px 20px 30px 20px;
     padding: 20px 20px 0 20px;
     font-size: 30px;
   }
   .overviewprojectitem {
     padding-bottom: 10px;
   }
-  .progress {
-    width: 210px !important;
-  }
   .overviewprojectname {
     padding-top: 15px;
     font-size: 15px;
     padding-bottom: 2px;
+  }
+  .overviewprogress {
+    width: 100% !important;
   }
 }
