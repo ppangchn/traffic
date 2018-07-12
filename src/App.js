@@ -22,7 +22,7 @@ class App extends Component {
           <Route exact path="/login" component={withRouter(Login)} />
           <Route
             exact
-            path="/resetpassword"
+            path="/resetpassword/:token"
             component={withRouter(ResetPassword)}
           />
           <Main updateHeader={() => this.updateHeader()} />

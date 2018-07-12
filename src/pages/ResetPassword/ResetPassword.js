@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import './ResetPassword.css'
 import { Key } from 'styled-icons/fa-solid/Key'
 import styled from 'styled-components'
+import url from '../../url'
+import axios from 'axios'
 
 const KeyReset = Key.extend`
 	width: 50px;
@@ -21,6 +23,25 @@ display: flex;
 export default class ResetPassword extends Component {
 	constructor(props) {
 		super(props)
+		this.state = {
+			token: []
+		}
+	}
+
+	componentDidMount = () => {
+		// try {
+		//   axios.get(`${url}/auth`).then(res => {
+		//     const { data } = res
+		//     console.log('Date Token', data)
+		//     this.setState({ token: data })
+		//   })
+		// } catch (error) {
+		//   console.log('fail ', error)
+		// }
+		if (this.props.match.params.token) {
+			this.setState({ token: this.props.match.params.token })
+		}
+		console.log(this.props)
 	}
 	render() {
 		return (

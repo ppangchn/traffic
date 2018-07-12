@@ -22,13 +22,13 @@ import {
 } from 'reactstrap'
 import classnames from 'classnames'
 import './Setting.css'
-import axios from 'axios'
 import { PersonAdd } from 'styled-icons/material/PersonAdd'
 import { MoreHoriz } from 'styled-icons/material/MoreHoriz'
 import { Link } from 'react-router-dom'
 import UserSettings from '../../components/UserSettings/UserSettings'
 import AddMember from '../AddMember/AddMember'
 import url from '../../url'
+import axios from 'axios'
 
 const IconAdd = PersonAdd.extend`
 	width: 100px;

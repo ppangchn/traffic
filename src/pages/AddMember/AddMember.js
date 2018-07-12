@@ -27,6 +27,7 @@ class AddMember extends Component {
 			open: true,
 			listroles: [],
 			dropdownOpen: false,
+
 			// tags: '',
 			filteredROLES: [],
 			id: null,
@@ -93,7 +94,10 @@ class AddMember extends Component {
 	handleCheckboxChange = e => {
 		this.setState({
 			[e.target.name]: e.target.checked
+			// checked : !this.statesendResetPass
 		})
+		console.log([e.target.name], e.target.checked)
+		console.log('wow', this.state.sendResetPass)
 	}
 
 	handleInputChangeEmail(e) {
@@ -179,6 +183,13 @@ class AddMember extends Component {
 					this.props.getData()
 					this.props.onClose()
 				})
+				if (this.state.sendResetPass) {
+					try {
+						axios.post(`${url}/users/forgotpass`, data)
+					} catch (error) {
+						console.log('cant send email',error)
+					}
+				}
 			} else {
 				if (!this.state.name) this.setState({ invalidname: true })
 				if (!this.state.roles) this.setState({ invalidroles: true })
@@ -256,7 +267,7 @@ class AddMember extends Component {
 		console.log('Current roles', this.state.roles)
 		const { onClose } = this.props
 		const { tags, suggestions } = this.state
-		
+
 		return (
 			<Container>
 				<Modal style={{ fontSize: '1rem' }} size="5" isOpen={this.state.open} toggle={onClose}>
@@ -273,8 +284,8 @@ class AddMember extends Component {
 										placeholder="Type your name"
 										onChange={this.handleInputChange}
 										value={this.state.name}
-                    invalid={this.state.invalidname}
-                    trimFilter
+										invalid={this.state.invalidname}
+										trimFilter
 									/>
 									<FormFeedback tooltip>Can't send empty name!</FormFeedback>
 								</Col>
@@ -310,7 +321,7 @@ class AddMember extends Component {
 
 							<Row className="btsave">
 								<Col>
-								Email
+									Email
 									<Input
 										style={{ fontSize: '8px !important' }}
 										name="name"
@@ -327,8 +338,14 @@ class AddMember extends Component {
 							{['DEV', 'DSN'].indexOf(this.state.roles.label) === -1 && (
 								<div className="checkbox">
 									<label>
-										<input type="checkbox" class="input" checked={this.state.sendResetPass} name="sendResetPass" onChange={this.handleCheckboxChange} />
-										 Send Reset Password
+										<input
+											type="checkbox"
+											class="input"
+											checked={this.state.sendResetPass}
+											name="sendResetPass"
+											onChange={this.handleCheckboxChange}
+										/>
+										Send Reset Password
 									</label>
 								</div>
 							)}
