@@ -187,7 +187,7 @@ class AddMember extends Component {
 					try {
 						axios.post(`${url}/users/forgotpass`, data)
 					} catch (error) {
-						console.log('cant send email',error)
+						console.log('cant send email', error)
 					}
 				}
 			} else {

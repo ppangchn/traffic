@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Modal, ModalHeader, ModalBody, Input, FormFeedback, ModalFooter } from 'reactstrap'
+import { Form, Button, Modal, ModalHeader, ModalBody, Input, FormFeedback, ModalFooter } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import './ResetPassword.css'
 import { Key } from 'styled-icons/fa-solid/Key'
@@ -24,8 +24,32 @@ export default class ResetPassword extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			token: []
+			token: '',
+			fpass: '',
+			spass: ''
 		}
+	}
+
+	submit = e => {
+		e.preventDefault()
+		try {
+			const data = {
+				resetToken: this.state.token,
+				password: this.state.spass
+			}
+			if (this.state.fpass == this.state.spass) {
+				axios.post(`${url}/users/resetpass`, data)
+				this.props.history.push(`/login`)
+			}
+		} catch (error) {
+			console.log('Cant Change Password -> ', error)
+		}
+	}
+
+	handleInputChange = e => {
+		const { name, value } = e.target
+		this.setState({ [name]: value })
+		console.log({ [name]: value })
 	}
 
 	componentDidMount = () => {
@@ -52,30 +76,29 @@ export default class ResetPassword extends Component {
 					ResetPassword <br />
 					<div class="please">Please enter your new password</div>
 					{/* <Input placeholder="example@pirsquare.net"/> */}
-					<input
-						style={{ fontSize: '8px !important' }}
-						name="name"
-						type="password"
-						className="inputform"
-						placeholder="New Password"
-						// onChange={this.handleInputChangeEmail}
-						// value={this.state.email}
-						// invalid={this.state.invalidemail}
-					/>
-					{/* <Input placeholder="example@pirsquare.net"/> */}
-					<input
-						style={{ fontSize: '8px !important' }}
-						name="password"
-						type="password"
-						className="inputform"
-						placeholder="Confirm Password"
-						// onChange={this.handleInputChangeEmail}
-						// value={this.state.email}
-						// invalid={this.state.invalidemail}
-					/>
-					<Button color="submit" size="lg" block>
-						Submit
-					</Button>
+					<Form onSubmit={this.submit}>
+						<input
+							style={{ fontSize: '8px !important' }}
+							name="fpass"
+							type="password"
+							className="inputform"
+							placeholder="New Password"
+							onChange={this.handleInputChange}
+							value={this.state.fpass}
+						/>
+						<input
+							style={{ fontSize: '8px !important' }}
+							name="spass"
+							type="password"
+							className="inputform"
+							placeholder="Confirm Password"
+							onChange={this.handleInputChange}
+							value={this.state.spass}
+						/>
+						<Button color="submit" size="lg" block>
+							Submit
+						</Button>
+					</Form>
 				</div>
 			</Container>
 		)
