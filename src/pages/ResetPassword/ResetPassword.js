@@ -41,9 +41,7 @@ export default class ResetPassword extends Component {
 				axios.post(`${url}/users/resetpass`, data)
 				this.props.history.push(`/login`)
 			}
-		} catch (error) {
-			console.log('Cant Change Password -> ', error)
-		}
+		} catch (error) {}
 	}
 
 	handleInputChange = e => {
@@ -53,19 +51,9 @@ export default class ResetPassword extends Component {
 	}
 
 	componentDidMount = () => {
-		// try {
-		//   axios.get(`${url}/auth`).then(res => {
-		//     const { data } = res
-		//     console.log('Date Token', data)
-		//     this.setState({ token: data })
-		//   })
-		// } catch (error) {
-		//   console.log('fail ', error)
-		// }
 		if (this.props.match.params.token) {
 			this.setState({ token: this.props.match.params.token })
 		}
-		console.log(this.props)
 	}
 	render() {
 		return (

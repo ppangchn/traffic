@@ -34,7 +34,7 @@ class AddMember extends Component {
 			roles: '',
 			name: '',
 			email: '',
-			tags: [{ id: '1', name: 'pm' }, { id: '2', name: 'dev' }],
+			tags: [],
 			suggestions: [
 				{ id: '1', name: 'pm' },
 				{ id: '2', name: 'dev' },

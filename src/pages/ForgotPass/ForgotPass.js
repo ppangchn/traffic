@@ -2,11 +2,16 @@ import React, { Component } from 'react'
 import { Button, Form, Modal, ModalHeader, ModalBody, Input, FormFeedback, ModalFooter } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import './Login.css'
+import '../Login/Login'
 import url from '../../url'
 import axios from 'axios'
+import { Lock } from 'styled-icons/material/Lock'
 
-
+const KeyReset = Lock.extend`
+	width: 100px;
+	height: 100px;
+	color: #5bc2e1;
+`
 
 const Container = styled.div`
 	width: 100vw;
@@ -17,20 +22,16 @@ const Container = styled.div`
 	justify-content: center;
 	background-color: white;
 `
-export default class Login extends Component {
+export default class ForgotPass extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
 			email: '',
-			password: '',
-			invalidpassword: false,
 			invalidemail: false
 		}
 
 		// this.handleSubmit = this.handleSubmit.bind(this)
 	}
-
-
 
 	handleInputChange = e => {
 		const { name, value } = e.target
@@ -40,19 +41,19 @@ export default class Login extends Component {
 	handleSubmit = e => {
 		try {
 			const data = {
-				email: this.state.email,
-				password: this.state.password
+				email: this.state.email
 			}
 
-			if (this.state.email && this.state.password) {
-				axios.post(`${url}/users/login`, data).then($res => {
-					console.log('RESPONSE',$res)
-					this.props.history.push(`/overview`)
-				})
-			}
-			else{
-				console.log('cant login');
-				
+			if (this.state.email) {
+				try {
+					axios.post(`${url}/users/forgotpass`, data).then($res => {
+						this.props.history.push(`/login`)
+					})
+				} catch (error) {
+					console.log('cant send email', error)
+				}
+			} else {
+				console.log('cant sned mail!')
 			}
 
 			e.preventDefault()
@@ -61,12 +62,20 @@ export default class Login extends Component {
 		}
 	}
 
-
 	render() {
 		return (
 			<Container>
 				<div style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}>
-					<div className="iconTraffic">traffic.</div>
+					<center>
+						{' '}
+						<KeyReset />
+					</center>
+					<br />
+					Forgot Password?<br />
+					<div class="des">
+						We just need your registered email address
+						<br />to send you password reset
+					</div>
 					<Form onSubmit={this.handleSubmit}>
 						<div className="ipp">
 							<input
@@ -81,27 +90,11 @@ export default class Login extends Component {
 								required
 							/>
 						</div>
-						<div className="ipp">
-							<input
-								className="inputform"
-								style={{ fontSize: '8px !important' }}
-								name="password"
-								type="password"
-								placeholder="Password"
-								onChange={this.handleInputChange}
-								value={this.state.password}
-								invalid={this.state.invalidpassword}
-							/>
-						</div>
 						<Button color="submit" size="lg" block>
-							Sign In
+							Reset password
 						</Button>
 					</Form>
-					<div className="btsave">
-						<Link className="des" to={`/forgotpass`} style={{textDecoration: 'none'}}>
-							Forgot password?
-						</Link>
-					</div>
+					<div />
 				</div>
 			</Container>
 		)
