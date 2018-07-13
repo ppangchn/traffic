@@ -107,7 +107,6 @@ class ProjectSidebar extends Component {
                       })}
                     </div>
                   </Item>
-                  <hr className="horizonlinepersonalproject"/>
                 </div>
               )
             }

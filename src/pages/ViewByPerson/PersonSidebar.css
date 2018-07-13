@@ -3,83 +3,6 @@
   text-align: center;
   color: #8c8c8c;
 }
-.horizonline0 {
-  position: relative;
-    color: #dfdfdf;
-    width: 100vw;
-    top: 35px;
-    right: 30px;
-}
-.horizonline1 {
-  position: relative;
-    color: #dfdfdf;
-    width: 100vw;
-    top: 43.5px;
-    right: 30px;
-}
-.horizonline2 {
-  position: relative;
-    color: #dfdfdf;
-    width: 100vw;
-    top: 43px;
-    right: 30px;
-}
-.horizonline3 {
-  position: relative;
-    color: #dfdfdf;
-    width: 100vw;
-    top: 86px;
-    right: 30px;
-}
-.horizonline4 {
-  position: relative;
-    color: #dfdfdf;
-    width: 100vw;
-    top: 119px;
-    right: 30px;
-}
-.horizonline5 {
-  position: relative;
-    color: #dfdfdf;
-    width: 100vw;
-    top:162px;
-    right: 30px;
-}
-.horizonline6 {
-  position: relative;
-    color: #dfdfdf;
-    width: 100vw;
-    top: 205px;
-    right: 30px;
-}
-.horizonline7 {
-  position: relative;
-    color: #dfdfdf;
-    width: 100vw;
-    top: 248px;
-    right: 30px;
-}
-.horizonline8 {
-  position: relative;
-    color: #dfdfdf;
-    width: 100vw;
-    top: 293px;
-    right: 30px;
-}
-.horizonline9 {
-  position: relative;
-    color: #dfdfdf;
-    width: 100vw;
-    top: 338px;
-    right: 30px;
-}
-.horizonline10 {
-  position: relative;
-    color: #dfdfdf;
-    width: 100vw;
-    top: 383px;
-    right: 30px;
-}
 @media (min-width: 321px) and (max-width: 575.98px) {
   .personheadcontainer {
     padding-top: 5px;
@@ -481,5 +404,4 @@
     padding-right: 25px;
     padding-bottom: 5px;
   }
-  
 }

@@ -397,15 +397,7 @@
   text-align: center;
   position: relative;
 }
-.horizonlineproject {
-  position: relative;
-    color: #dfdfdf;
-    width: 100vw;
-    top: -1px;
-    right: 30px;
-    margin-top: 0;
-    margin-bottom: 0;
-}
+
 @media (min-width: 321px) and (max-width: 575.98px) {
   .headcontainer {
     font-size: 20px;
@@ -421,7 +413,7 @@
     bottom: 3px;
   }
   .projectitem {
-    padding-bottom: 6px;
+    padding-bottom: 10px;
     padding-right: 0.5rem;
   }
   .pmname {
@@ -432,6 +424,8 @@
     padding-right: 0.3125rem;
     margin-right: 2px;
     margin-bottom: 1px;
+    top: 3px;
+    position: relative;
   }
   .projectname {
     padding-top: 15px;
@@ -475,7 +469,7 @@
     bottom: 3px;
   }
   .projectitem {
-    padding-bottom: 6px;
+    padding-bottom: 10px;
     padding-right: 0.5rem;
   }
   .pmname {
@@ -528,7 +522,7 @@
     bottom: 3px;
   }
   .projectitem {
-    padding-bottom: 6px;
+    padding-bottom: 10px;
     padding-right: 0.5rem;
   }
   .pmname {
