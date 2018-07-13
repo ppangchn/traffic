@@ -11,7 +11,6 @@ import Percent from '../../components/Views/ViewByProject/Percent'
 
 const Item = styled.div`
   background-color: #ffffff;
-  border-bottom: 0.5px solid #dfdfdf;
 `
 const FolderIcon = FolderOpen.extend`
   color: #5bc2e1;
@@ -34,10 +33,10 @@ class ProjectSidebar extends Component {
       weight: 0,
       message: 'ReactInline demo'
     }
-    this.update = this.update.bind(this);
+    this.update = this.update.bind(this)
   }
   update() {
-    this.props.updateHeader();
+    this.props.updateHeader()
   }
   componentDidMount() {
     try {
@@ -67,7 +66,11 @@ class ProjectSidebar extends Component {
                   <Link
                     className={'linkprojectname-' + project.color.substring(1)}
                     to={`/project/${project.id}`}
-                    style={{ textOverflow: 'ellipsis', overflow: 'hidden' ,textDecoration: 'none'}}
+                    style={{
+                      textOverflow: 'ellipsis',
+                      overflow: 'hidden',
+                      textDecoration: 'none'
+                    }}
                     onClick={this.update}
                   >
                     {project.name}
@@ -92,6 +95,7 @@ class ProjectSidebar extends Component {
                   })}
                 </div>
               </Item>
+              <hr className="horizonlineproject" />
             </div>
           )
         })}

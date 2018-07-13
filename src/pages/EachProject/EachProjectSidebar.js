@@ -36,7 +36,6 @@ const Head = styled.div`
 `
 const HeadContainer = styled.div`
   background-color: #ffffff;
-  border-bottom: 0.5px solid #dfdfdf;
   border-right: 0.5px solid #dfdfdf;
   padding-top: 5px;
   padding-bottom: 14px;
@@ -229,6 +228,7 @@ class EachProjectSidebar extends Component {
               value={project.process}
             />
           </ProgressContainer>
+          <hr className="horizonlineeachprojecthead"/>
         </div>
         {timeline.map(timeline => {
           if (timeline) {
@@ -264,6 +264,7 @@ class EachProjectSidebar extends Component {
                     )
                   })}
                 </div>
+                <hr className="horizonlineeachproject"/>
               </div>
             )
           }

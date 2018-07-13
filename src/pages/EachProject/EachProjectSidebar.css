@@ -64,8 +64,6 @@
 }
 .eachprojectitem {
   background-color: #ffffff;
-  font-family: Prompt;
-  border-bottom: 0.5px solid #dfdfdf;
 }
 .membertag {
   background-color: #e4e4e4;
@@ -82,6 +80,24 @@
 .rct-label {
   background-color: white !important;
 }
+.horizonlineeachproject {
+  position: relative;
+    color: #dfdfdf;
+    width: 100vw;
+    top: 45px;
+    right: 30px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.horizonlineeachprojecthead {
+  position: relative;
+    color: #dfdfdf;
+    width: 100vw;
+    top: 25px;
+    right: 30px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
 @media (max-width: 575.98px) {
   .eachprojectname {
     margin-left: 15px;
@@ -90,12 +106,10 @@
     font-size: 20px;
   }
   .eachprojecthead {
-    border-bottom: 0.5px solid #dfdfdf;
     padding-bottom: 34px;
   }
   .eachprojectitem {
     padding-left: 20px;
-    border-bottom: 0.5px solid #dfdfdf;
     padding-bottom: 47.5px;
   }
   .membername {
@@ -119,12 +133,10 @@
     font-size: 20px;
   }
   .eachprojecthead {
-    border-bottom: 0.5px solid #dfdfdf;
     padding-bottom: 34px;
   }
   .eachprojectitem {
     padding-left: 20px;
-    border-bottom: 0.5px solid #dfdfdf;
     padding-bottom: 47.5px;
   }
   .membername {
@@ -149,12 +161,10 @@
     font-size: 20px;
   }
   .eachprojecthead {
-    border-bottom: 0.5px solid #dfdfdf;
     padding-bottom: 34px;
   }
   .eachprojectitem {
     padding-left: 20px;
-    border-bottom: 0.5px solid #dfdfdf;
     padding-bottom: 47.5px;
   }
   .membername {
@@ -179,12 +189,10 @@
     font-size: 20px;
   }
   .eachprojecthead {
-    border-bottom: 0.5px solid #dfdfdf;
     padding-bottom: 34px;
   }
   .eachprojectitem {
     padding-left: 20px;
-    border-bottom: 0.5px solid #dfdfdf;
     padding-bottom: 47.5px;
   }
   .membername {
@@ -208,12 +216,10 @@
     font-size: 30px;
   }
   .eachprojecthead {
-    border-bottom: 0.5px solid #dfdfdf;
     padding-bottom: 25px;
   }
   .eachprojectitem {
     padding-left: 20px;
-    border-bottom: 0.5px solid #dfdfdf;
     padding-bottom: 47.5px;
   }
   .membername {

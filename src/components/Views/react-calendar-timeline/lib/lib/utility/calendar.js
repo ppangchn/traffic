@@ -240,7 +240,7 @@ function stack(items, groupOrders, lineHeight, force) {
       items[i].dimensions.top = null;
     }
   }
-
+  
   groupedItems.forEach(function (group) {
     // calculate new, non-overlapping positions
     groupTops.push(totalHeight);
@@ -251,7 +251,7 @@ function stack(items, groupOrders, lineHeight, force) {
       var item = group[i];
       verticalMargin = lineHeight - item.dimensions.height - 50;
 
-      if (item.dimensions.stack && item.dimensions.top === null) {
+      if (item.dimensions.stack) {
         item.dimensions.top = totalHeight + 30;
         groupHeight = Math.max(groupHeight, lineHeight);
         do {
@@ -274,9 +274,9 @@ function stack(items, groupOrders, lineHeight, force) {
         } while (collidingItem);
       }
     }
-
     groupHeights.push(Math.max(groupHeight + verticalMargin, lineHeight))
     totalHeight+=(Math.max(groupHeight + verticalMargin, lineHeight))
+    console.log('groupheight',groupHeights)
   });
   return {
     height: totalHeight,

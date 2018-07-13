@@ -7,6 +7,7 @@ import '../ViewByProject/ProjectSidebar.css'
 import GraphBox from '../../components/Views/GraphBox'
 import url from '../../url'
 
+
 class PersonTimeline extends Component {
   constructor() {
     super()

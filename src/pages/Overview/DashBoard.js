@@ -19,6 +19,7 @@ const Container = styled.div`
   flex-direction: column;
 `
 const UserContainer = styled.div`
+  overflow-y: hidden;
   overflow-x: scroll;
   display: flex;
   height: 100vh;

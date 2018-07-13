@@ -8,7 +8,6 @@ import './PersonSidebar.css'
 import { max } from '../../../node_modules/moment'
 const Item = styled.div`
   background-color: #ffffff;
-  border-bottom: 0.5px solid #dfdfdf;
   display: flex;
   flex-direction: column;
 `
@@ -123,6 +122,7 @@ class PersonSidebar extends Component {
                   )
                 })}
               </div>
+              <hr className={`horizonline${this.state.length[index]}`}/>
             </Item>
           )
         })}

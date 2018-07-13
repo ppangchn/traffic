@@ -167,7 +167,7 @@
 
 .react-calendar-timeline .rct-horizontal-lines .rct-hl-even,
 .react-calendar-timeline .rct-horizontal-lines .rct-hl-odd {
-  border-bottom: 1px solid #bbb;
+  /* border-bottom: 1px solid #bbb; */
   box-sizing: content-box;
   z-index: 40; }
 

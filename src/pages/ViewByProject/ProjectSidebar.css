@@ -397,7 +397,15 @@
   text-align: center;
   position: relative;
 }
-
+.horizonlineproject {
+  position: relative;
+    color: #dfdfdf;
+    width: 100vw;
+    top: -1px;
+    right: 30px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
 @media (min-width: 321px) and (max-width: 575.98px) {
   .headcontainer {
     font-size: 20px;

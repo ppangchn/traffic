@@ -916,7 +916,6 @@ var _initialiseProps = function _initialiseProps() {
     var newZoom = visibleTimeEnd - visibleTimeStart;
     var items = updatedItems || _this4.props.items;
     var groups = updatedGroups || _this4.props.groups;
-
     var newState = {
       visibleTimeStart: visibleTimeStart,
       visibleTimeEnd: visibleTimeEnd
@@ -949,7 +948,6 @@ var _initialiseProps = function _initialiseProps() {
 
     if (resetCanvas || forceUpdateDimensions) {
       var canvasTimeStart = newState.canvasTimeStart ? newState.canvasTimeStart : oldCanvasTimeStart;
-
       var _stackItems3 = _this4.stackItems(items, groups, canvasTimeStart, visibleTimeStart, visibleTimeEnd, _this4.state.width),
           dimensionItems = _stackItems3.dimensionItems,
           height = _stackItems3.height,
@@ -961,7 +959,6 @@ var _initialiseProps = function _initialiseProps() {
       newState.groupHeights = groupHeights;
       newState.groupTops = groupTops;
     }
-
     _this4.setState(newState, function () {
       // are we changing zoom? Well then let's report it
       // need to wait until state is set so that we get current
