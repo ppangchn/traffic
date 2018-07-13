@@ -66,13 +66,11 @@ class PersonTimeline extends Component {
         <Timeline
           groups={this.state.groups}
           items={this.state.items}
-          visibleTimeStart={moment().add(7*4,'day')}
-          visibleTimeEnd={moment().add(7*9, 'day')}
+          visibleTimeStart={new Date(moment().add(7*4,'day')).getTime()}
+          visibleTimeEnd={new Date(moment().add(7*9, 'day')).getTime()}
           sidebarWidth={0}
           lineHeight={102}
           stickyHeader={true}
-          minZoom="2592000000" //4 month
-          maxZoom="9676800000"
           timeSteps={{ day: 7 }}
           itemHeightRatio={0.3}
           stackItems={true}

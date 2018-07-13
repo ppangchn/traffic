@@ -373,7 +373,6 @@ class AddProject extends Component {
 
     return (
       <Container>
-        {/* {console.log('invalid',this.state.invalid)} */}
         <Modal
           size="5"
           isOpen={this.state.open}
@@ -394,7 +393,9 @@ class AddProject extends Component {
                     onChange={this.handleInputChange}
                     value={this.state.projectname}
                   />
-                  <FormFeedback tooltip>Can't send empty name!</FormFeedback>
+                  <FormFeedback tooltip="true">
+                    Can't send empty name!
+                  </FormFeedback>
                 </Col>
                 <Col xs="4">
                   <div className="projectweighttext">Project Weight</div>
@@ -422,7 +423,7 @@ class AddProject extends Component {
               <Row className="pd10">
                 {this.state.color.map(c => {
                   return (
-                    <Col className="pd5" md={1} sm={1} xs={2}>
+                    <Col key={c} className="pd5" md={1} sm={1} xs={2}>
                       <ColorButton
                         color={c}
                         setCheckedColor={this.setCheckColor}
@@ -452,6 +453,7 @@ class AddProject extends Component {
               </Row>
               {this.state.pm.map((pm, index) => (
                 <SelectPm
+                  key={pm.value}
                   id={index} //start at 0
                   pm={pm}
                   listpm={this.state.listpm}

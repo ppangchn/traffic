@@ -76,13 +76,11 @@ class EachProjectTimeline extends Component {
         <Timeline
           groups={this.state.groups}
           items={this.state.items}
-          visibleTimeStart={moment().add(-7,'day')}
-          visibleTimeEnd={moment().add(7*7, 'day')}
+          visibleTimeStart={new Date(moment().add(-7,'day')).getTime()}
+          visibleTimeEnd={new Date(moment().add(7*7, 'day')).getTime()}
           sidebarWidth={0}
           lineHeight={115}
           stickyHeader={false}
-          minZoom="2592000000" //4 month
-          maxZoom="9676800000"
           timeSteps={{ day: 7 }}
           itemHeightRatio={0.3}
         />

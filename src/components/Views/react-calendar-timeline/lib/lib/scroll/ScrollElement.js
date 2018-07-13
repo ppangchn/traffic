@@ -261,8 +261,6 @@ ScrollElement.propTypes = {
   onMouseMove: _propTypes2.default.func.isRequired,
   onMouseLeave: _propTypes2.default.func.isRequired,
   onContextMenu: _propTypes2.default.func.isRequired,
-  onZoom: _propTypes2.default.func.isRequired,
-  onWheelZoom: _propTypes2.default.func.isRequired,
   onScroll: _propTypes2.default.func.isRequired
 };
 exports.default = ScrollElement;

@@ -757,7 +757,7 @@ ReactCalendarTimeline.defaultProps = {
   dragSnap: 1000 * 60 * 15, // 15min
   minResizeWidth: 20,
   stickyOffset: 0,
-  stickyHeader: false,
+  stickyHeader: true,
   lineHeight: 30,
   headerLabelGroupHeight: 30,
   headerLabelHeight: 30,
@@ -971,6 +971,7 @@ var _initialiseProps = function _initialiseProps() {
       }
     });
   };
+
 
   this.showPeriod = function (from, unit) {
 

@@ -1,11 +1,6 @@
 import React, { Component } from 'react'
 
 import {
-  DropdownToggle,
-  Edit,
-  DropdownMenu,
-  DropdownItem,
-  ButtonDropdown,
   Container,
   TabContent,
   TabPane,
@@ -13,18 +8,12 @@ import {
   NavItem,
   NavLink,
   Card,
-  CardBody,
-  Button,
-  CardTitle,
-  CardText,
   Row,
   Col
 } from 'reactstrap'
 import classnames from 'classnames'
 import './Setting.css'
 import { PersonAdd } from 'styled-icons/material/PersonAdd'
-import { MoreHoriz } from 'styled-icons/material/MoreHoriz'
-import { Link } from 'react-router-dom'
 import UserSettings from '../../components/UserSettings/UserSettings'
 import AddMember from '../AddMember/AddMember'
 import url from '../../url'
@@ -48,7 +37,7 @@ class Setting extends Component {
       roles: [],
       tags: [],
       toggleAddModal: false,
-      add: <IconAdd className="iconadd"/>
+      add: <IconAdd className="iconadd" />
     }
     this.toggle = this.toggle.bind(this)
     this.handleInputChange = this.handleInputChange.bind(this)
@@ -187,22 +176,19 @@ class Setting extends Component {
               <TabPane tabId="1">
                 <Row>
                   <Col md={4} sm={4} className="mb-4">
-                    <Card body className="h-150">
-                      <CardBody className="add">
-                        <div>
-                            <NavLink onClick={e => this.toggleAddModal(true)}>
-                              <div className="addmembericon">
-                                {this.state.add}
-                              </div>
-                            </NavLink>
-                        </div>
-                      </CardBody>
+                    <Card body className="h-150 iconcontainer">
+                      <div>
+                        <NavLink onClick={e => this.toggleAddModal(true)}>
+                          <div className="addmembericon">{this.state.add}</div>
+                        </NavLink>
+                      </div>
                     </Card>
                   </Col>
 
                   {this.state.users.map((users, index) => {
                     return (
                       <UserSettings
+                        key={users.id}
                         id={users.id}
                         getData={() => this.selectURL(this.state.activeTab)}
                         users={users}
@@ -216,22 +202,19 @@ class Setting extends Component {
 
               <TabPane tabId="2">
                 <Row>
-                  <Col className="mb-4">
-                    <Card body className="h-150">
-                      <CardBody className="add">
-                        <div>
-                          <center>
-                            <NavLink onClick={e => this.toggleAddModal(true)}>
-                              {this.state.add}
-                            </NavLink>
-                          </center>
-                        </div>
-                      </CardBody>
+                  <Col md={4} sm={4} className="mb-4">
+                    <Card body className="h-150 iconcontainer">
+                      <div>
+                        <NavLink onClick={e => this.toggleAddModal(true)}>
+                          <div className="addmembericon">{this.state.add}</div>
+                        </NavLink>
+                      </div>
                     </Card>
                   </Col>
                   {this.state.users.map((users, index) => {
                     return (
                       <UserSettings
+                        key={users.id}
                         id={users.id}
                         getData={() => this.selectURL(this.state.activeTab)}
                         users={users}
@@ -245,22 +228,19 @@ class Setting extends Component {
 
               <TabPane tabId="3">
                 <Row>
-                  <Col className="mb-4">
-                    <Card body className="h-150">
-                      <CardBody className="add">
-                        <div>
-                          <center>
-                            <NavLink onClick={e => this.toggleAddModal(true)}>
-                              {this.state.add}
-                            </NavLink>
-                          </center>
-                        </div>
-                      </CardBody>
+                  <Col md={4} sm={4} className="mb-4">
+                    <Card body className="h-150 iconcontainer">
+                      <div>
+                        <NavLink onClick={e => this.toggleAddModal(true)}>
+                          <div className="addmembericon">{this.state.add}</div>
+                        </NavLink>
+                      </div>
                     </Card>
                   </Col>
                   {this.state.users.map((users, index) => {
                     return (
                       <UserSettings
+                        key={users.id}
                         id={users.id}
                         getData={() => this.selectURL(this.state.activeTab)}
                         users={users}

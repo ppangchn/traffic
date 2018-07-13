@@ -46,28 +46,34 @@ class PersonSidebar extends Component {
   getData() {
     axios.get(`${url}/users/person`).then(res => {
       const { data } = res
-      console.log('Data Project', data)
       let users = []
       let roles = []
       let tags = []
       let listmember = []
       let length = []
-      let start = 0
-      let end = 0
-      let startmillisecond = 0
-      let endmillisecond = 0
       data.map(user => {
         users.push(user.name)
         roles.push(user.roles.name)
         tags.push(user.tags)
         listmember.push({ value: user.id, label: user.name })
         let count = 0
+        let start = 10000000000000000000000
+        let end = 0
+        let startmillisecond = 0
+        let endmillisecond = 0
         user.projectTimeline.map(timeline => {
           if (!timeline.project.isDisable && timeline.start && timeline.end) {
-            startmillisecond = timeline.start.getMilliseconds();;
-            endmillisecond = timeline.end.getMilliseconds();;
-            if (startmillisecond >= start || endmillisecond <= end) count++
-            start = Math.max(start, startmillisecond)
+            startmillisecond = new Date(timeline.start).getTime()
+            endmillisecond = new Date(timeline.end).getTime()
+            if (
+              !(
+                (start < startmillisecond && end < startmillisecond) ||
+                (start > endmillisecond && end > endmillisecond)
+              )
+            ) {
+              count++
+            }
+            start = Math.min(start, startmillisecond)
             end = Math.max(end, endmillisecond)
           }
         })
@@ -92,7 +98,10 @@ class PersonSidebar extends Component {
         </HeadContainer>
         {this.state.users.map((user, index) => {
           return (
-            <Item className={`personitem${this.state.length[index]}`}>
+            <Item
+              key={user.email}
+              className={`personitem${this.state.length[index]}`}
+            >
               <User className="personname">{user}</User>
               <div
                 className="persontagcontainer"
@@ -104,7 +113,14 @@ class PersonSidebar extends Component {
               >
                 <div className="persontag">{this.state.roles[index]}</div>
                 {this.state.tags[index].map(tag => {
-                  return <div className="persontag">{tag.name}</div>
+                  return (
+                    <div
+                      
+                      className="persontag"
+                    >
+                      {tag.name}
+                    </div>
+                  )
                 })}
               </div>
             </Item>

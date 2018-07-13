@@ -7,7 +7,6 @@ import {
 	ButtonDropdown,
 	Card,
 	CardTitle,
-	CardText,
 	Col
 } from 'reactstrap'
 import axios from 'axios'
@@ -105,14 +104,12 @@ export default class UserSettings extends Component {
 							</ButtonDropdown>
 						</div>
 					</CardTitle>
-					<CardText>
 						<div style={{ display: 'flex', flexDirection: 'row' ,flexWrap: 'wrap' }}>
 							<div className="persontag">{roles.name} </div>
 							{tags.map(tag => {
-								return <div className="persontag">{tag.name}</div>
+								return <div key={tag.id} className="persontag">{tag.name}</div>
 							})}
 						</div>
-					</CardText>
 				</Card>
 
 				{this.state.modalDeleteOpen && (

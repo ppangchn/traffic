@@ -70,7 +70,7 @@ class UserDetail extends Component {
         {projectTimeline.map(project => {
           if (!project.project.isDisable) {
             return (
-              <Item className="overviewprojectitem">
+              <Item key={project.id} className="overviewprojectitem">
                 <div className="overviewprojectname">
                   <Link
                     className={

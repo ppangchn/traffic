@@ -10,7 +10,7 @@ import { ListAlt } from 'styled-icons/fa-regular/ListAlt'
 import { ListAlt as ListSolid } from 'styled-icons/fa-solid/ListAlt'
 import { Navbar, NavLink } from 'reactstrap'
 import { AddCircleOutline } from 'styled-icons/material/AddCircleOutline'
-import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import AddProject from '../../pages/AddProject/AddProject'
 
 const Container = styled.div`
@@ -153,19 +153,23 @@ class Header extends Component {
   changeFolderIcon() {
     this.clear()
     this.setState({ folder: <FolderSolid /> })
+    this.props.history.push('/project')
   }
 
   changePersonIcon() {
     this.clear()
     this.setState({ person: <PersonSolid /> })
+    this.props.history.push('/person')
   }
   changeSettingIcon() {
     this.clear()
     this.setState({ setting: <SettingSolid /> })
+    this.props.history.push('/setting')
   }
   changeListIcon() {
     this.clear()
     this.setState({ list: <ListAltSolidz /> })
+    this.props.history.push('/overview')
   }
   clear() {
     let def = this.state.icondefault
@@ -207,46 +211,38 @@ class Header extends Component {
     return (
       <Container>
         <Navbar>
-          <Link to="/overview">
-            <NavLink
-              onClick={() => {
-                this.changeListIcon()
-              }}
-            >
-              {this.state.list}
-            </NavLink>
-          </Link>
-          <Link to="/project">
-            <NavLink
-              onClick={() => {
-                this.changeFolderIcon()
-              }}
-            >
-              {this.state.folder}
-            </NavLink>
-          </Link>
-          <Link to="/person">
-            <NavLink
-              onClick={() => {
-                this.changePersonIcon()
-              }}
-            >
-              {this.state.person}
-            </NavLink>
-          </Link>
+          <NavLink
+            onClick={() => {
+              this.changeListIcon()
+            }}
+          >
+            {this.state.list}
+          </NavLink>
+          <NavLink
+            onClick={() => {
+              this.changeFolderIcon()
+            }}
+          >
+            {this.state.folder}
+          </NavLink>
+          <NavLink
+            onClick={() => {
+              this.changePersonIcon()
+            }}
+          >
+            {this.state.person}
+          </NavLink>
           <Navbar className="ml-auto">
             <NavLink onClick={e => this.toggleAddModal(true)}>
               {this.state.add}
             </NavLink>
-            <Link to="/setting">
-              <NavLink
-                onClick={() => {
-                  this.changeSettingIcon()
-                }}
-              >
-                {this.state.setting}
-              </NavLink>
-            </Link>
+            <NavLink
+              onClick={() => {
+                this.changeSettingIcon()
+              }}
+            >
+              {this.state.setting}
+            </NavLink>
           </Navbar>
         </Navbar>
         {toggleAddModal && (
@@ -257,4 +253,4 @@ class Header extends Component {
   }
 }
 
-export default Header
+export default withRouter(Header)

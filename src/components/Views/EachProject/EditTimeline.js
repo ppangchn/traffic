@@ -6,6 +6,7 @@ import url from '../../../url'
 import axios from 'axios'
 import './EditTimeline.css'
 import * as moment from 'moment'
+
 const Calendar = CalendarIcon.extend`
   width: 1rem;
   height: 1rem;
@@ -32,8 +33,7 @@ class EditTimeline extends Component {
     })
   }
   setStartTime(start) {
-    this.setState({ start }, () => {
-    })
+    this.setState({ start }, () => {})
   }
   setEndTime(end) {
     this.setState({ end })
@@ -41,8 +41,12 @@ class EditTimeline extends Component {
   sendData() {
     const data = {
       id: this.props.id,
-      start: moment(this.state.start).startOf('day').format(),
-      end: moment(this.state.end).startOf('day').format()
+      start: moment(this.state.start)
+        .startOf('day')
+        .format(),
+      end: moment(this.state.end)
+        .startOf('day')
+        .format()
     }
     try {
       axios.put(`${url}/timeline`, data).then(() => {
@@ -58,7 +62,7 @@ class EditTimeline extends Component {
 
   componentDidMount() {
     try {
-      this.setStartTime(this.props.start);
+      this.setStartTime(this.props.start)
       this.setEndTime(this.props.end)
     } catch (error) {
       console.log('error getdata edittimeline', error)

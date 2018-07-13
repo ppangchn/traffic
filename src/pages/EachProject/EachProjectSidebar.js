@@ -233,7 +233,11 @@ class EachProjectSidebar extends Component {
         {timeline.map(timeline => {
           if (timeline) {
             return (
-              <div id={timeline.id} className="eachprojectitem">
+              <div
+                key={timeline.id}
+                id={timeline.id}
+                className="eachprojectitem"
+              >
                 <div className="membername">
                   {timeline.users.name}
                   <EditTimeline
@@ -253,7 +257,11 @@ class EachProjectSidebar extends Component {
                 <div style={{ display: 'flex', flexDirection: 'row' }}>
                   <div className="membertag">{timeline.users.roles.name}</div>
                   {timeline.users.tags.map(tag => {
-                    return <div className="membertag">{tag.name}</div>
+                    return (
+                      <div key={timeline.id} className="membertag">
+                        {tag.name}
+                      </div>
+                    )
                   })}
                 </div>
               </div>
@@ -261,7 +269,7 @@ class EachProjectSidebar extends Component {
           }
         })}
         <Popover
-          placement="bottom !important"
+          placement="bottom"
           isOpen={this.state.popoverOpen}
           target="Popover"
           toggle={this.togglePopOver}

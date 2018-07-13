@@ -14,7 +14,7 @@ const Timeline = TimelineIcon.extend`
 const Container = styled.div`
   background-color: #f1f5f8;
   -webkit-background-size: cover;
-	background-size: cover;
+  background-size: cover;
   display: flex;
   flex-direction: column;
 `
@@ -22,7 +22,6 @@ const UserContainer = styled.div`
   overflow-x: scroll;
   display: flex;
   height: 100vh;
-  
 `
 class DashBoard extends Component {
   constructor(props) {
@@ -46,7 +45,7 @@ class DashBoard extends Component {
                 graph.push(timeline.project.process)
             })
             return (
-              <div>
+              <div key={user.id}>
                 <UserDetail
                   name={user.name}
                   graph={graph}
@@ -57,11 +56,11 @@ class DashBoard extends Component {
             )
           })}
         </UserContainer>
-          <Link to="/overview/compare">
-            <Button color="compare">
-              <Timeline className="timelineicon" /> Compare
-            </Button>
-          </Link>
+        <Link to="/overview/compare">
+          <Button color="compare">
+            <Timeline className="timelineicon" /> Compare
+          </Button>
+        </Link>
       </Container>
     )
   }
