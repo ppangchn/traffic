@@ -17,12 +17,14 @@ const Exit = X.extend`
 class SelectPm extends Component {
   constructor(props) {
     super(props)
-    const { value, label, weight } = this.props.pm
-    this.state = { pm: value, listpm: [], choseweight: weight, disabled: true }
+    const { value,label, weight } = this.props.pm
+    this.state = { pm: value, choseweight: weight, disabled: true ,value,label}
     this.handleChange = this.handleChange.bind(this)
+    this.slideChange = this.slideChange.bind(this)
   }
-  handleChange = selectedOption => {
-    this.setState({ pm: selectedOption })
+  handleChange = (selectedOption) => {
+    this.setState({ pm: selectedOption,value:selectedOption.value })
+    console.log(this.state.pm)
     if (selectedOption) this.setState({ disabled: false })
     else this.setState({ disabled: true })
     this.props.setPm(this.props.id, {
@@ -36,8 +38,8 @@ class SelectPm extends Component {
       choseweight: value
     })
     this.props.setPm(this.props.id, {
-      value: this.state.pm.value,
-      label: this.state.pm.label,
+      value: this.state.value,
+      label: this.state.label,
       weight: value
     })
   }
@@ -56,7 +58,7 @@ class SelectPm extends Component {
             ClassName="selectbox"
             style={{borderColor: '#5ac2e2 '}}
             placeholder="All"
-            value={this.state.pm}
+            value={this.state.value}
             onChange={this.handleChange}
             options={this.props.listpm}
             trimFilter

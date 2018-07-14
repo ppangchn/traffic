@@ -235,7 +235,7 @@ class AddProject extends Component {
               listTimeline.push({
                 users: {
                   id: $objPM.value
-                }
+                },
               })
             }
           })
@@ -251,6 +251,7 @@ class AddProject extends Component {
               }
 
               let findPM = this.state.filteredPM.find($fndPM => {
+                pm.weight = $fndPM.weight
                 return $fndPM.value == $objPM.users.id
               })
 
@@ -261,7 +262,7 @@ class AddProject extends Component {
               if (!!$objPM.id) {
                 pm.id = $objPM.id
               }
-
+              
               return pm
             })
           }
@@ -306,7 +307,7 @@ class AddProject extends Component {
           projectTimeline: listTimeline,
           weight: this.state.choseweight
         }
-
+        console.log(data.projectManagement)
         if (!!this.props.id) {
           data.id = this.props.id
         }
