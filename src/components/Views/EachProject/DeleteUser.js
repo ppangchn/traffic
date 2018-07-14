@@ -12,6 +12,7 @@ import {
 } from 'reactstrap'
 import url from '../../../url'
 import './DeleteUser.css'
+
 const Exit = X.extend`
   color: #a0a0a0;
   width: 1rem;
@@ -45,7 +46,7 @@ class DeleteUser extends Component {
   }
   render() {
     return (
-      <div className="deleteuser">
+      <div style={{position: 'absolute'}} className="deleteuserbox">
         {this.props.roles !== 'PM' &&
           this.props.roles !== 'SA' &&
           this.props.roles !== 'PC' &&
@@ -53,7 +54,7 @@ class DeleteUser extends Component {
           this.props.roles !== 'TS' &&
           this.props.roles !== 'PD' &&
           this.props.roles !== 'BD' && (
-            <Exit id={`Popover${this.props.id}`} onClick={this.toggleModal} />
+            <Exit className="deleteusericon" id={`Popover${this.props.id}`} onClick={this.toggleModal} />
           )}
         <Modal
           isOpen={this.state.modalOpen}

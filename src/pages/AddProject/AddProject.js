@@ -71,10 +71,15 @@ class AddProject extends Component {
       ],
       choseweight: 0,
       invalid: false,
+      invalidprojectname: "Can't send empty name!",
       invalidpm: 'Please select at least one pm.',
       invalidcolor: 'Please select one color for this project.',
+      invalidweight: 'Please choose weight more than 0',
+      invalidaddpm: 'Please fill the latest fill before adding new pm',
       isinvalidcolor: false,
       isinvalidpm: false,
+      isinvalidweight: false,
+      isinvalidaddpm: false,
       header: 'New Project'
     }
     this.toggle = this.toggle.bind(this)
@@ -171,18 +176,28 @@ class AddProject extends Component {
     this.setState({ listpm: [], projectname: '', color: '', invalidpm: '' })
   }
   addPM() {
+    let currentpm = this.state.pm
     let pm = this.state.pm.map(i => i)
-    pm.push({
-      value: null,
-      label: '',
-      weight: 0
-    })
+    if (!currentpm[currentpm.length - 1].value) {
+      this.setState({ isinvalidaddpm: true })
+    } else {
+      pm.push({
+        value: null,
+        label: '',
+        weight: 0
+      })
+    }
+
     this.setState({ pm })
   }
   slideChange = value => {
     this.setState({
-      choseweight: value
+      choseweight: value,
+      isinvalidweight: false
     })
+  }
+  setInvalidAddPm(state) {
+    this.setState({ isinvalidaddpm: state })
   }
   sendData = async () => {
     try {
@@ -190,7 +205,8 @@ class AddProject extends Component {
         this.state.projectname &&
         (this.state.filteredPM.length !== 0 &&
           this.state.filteredPM[0].value) &&
-        this.state.checkedcolor
+        this.state.checkedcolor &&
+        this.state.choseweight
       ) {
         let listTimeline = await []
         let listPM = []
@@ -313,6 +329,9 @@ class AddProject extends Component {
         if (!this.state.checkedcolor) {
           this.setState({ isinvalidcolor: true })
         }
+        if (!this.state.choseweight) {
+          this.setState({ isinvalidweight: true })
+        }
       }
     } catch (error) {
       console.log('error addproject', error)
@@ -322,7 +341,7 @@ class AddProject extends Component {
     try {
       if (this.props.id) {
         axios.get(`${url}/project/${this.props.id}`).then(res => {
-          console.log('add project -> ', res)
+          // console.log('add project -> ', res)
           const { data } = res
           const pm = data.project.projectManagement.map(pm => ({
             value: pm.users.id,
@@ -393,9 +412,10 @@ class AddProject extends Component {
                     onChange={this.handleInputChange}
                     value={this.state.projectname}
                   />
-                  <FormFeedback tooltip="true">
+                  {/* <FormFeedback tooltip="true">
                     Can't send empty name!
-                  </FormFeedback>
+                  </FormFeedback> */}
+                  <Col />
                 </Col>
                 <Col xs="4">
                   <div className="projectweighttext">Project Weight</div>
@@ -414,6 +434,27 @@ class AddProject extends Component {
                   <div className="weightproject">
                     {this.state.choseweight} %
                   </div>
+                </Col>
+              </Row>
+              <Row
+                className="pd10"
+                style={{
+                  color: '#da3849',
+                  fontSize: '80%',
+                  position: 'relative',
+                  bottom: '3px'
+                }}
+              >
+                <Col
+                  style={{
+                    paddingLeft: '8px',
+                    paddingRight: '0'
+                  }}
+                >
+                  {this.state.invalid && this.state.invalidprojectname}
+                </Col>
+                <Col style={{ paddingLeft: '10px' }}>
+                  {this.state.isinvalidweight && this.state.invalidweight}
                 </Col>
               </Row>
               <Row>
@@ -459,8 +500,19 @@ class AddProject extends Component {
                   listpm={this.state.listpm}
                   setPm={this.setPm}
                   delete={this.deletePm}
+                  setInvalidAddPm={() => this.setInvalidAddPm(false)}
                 />
               ))}
+              <Row>
+                <Col
+                  style={{
+                    color: '#da3849',
+                    fontSize: '80%',
+                  }}
+                >
+                  {this.state.isinvalidpm && this.state.invalidpm}
+                </Col>
+              </Row>
               <Row>
                 <Col
                   style={{
@@ -469,7 +521,7 @@ class AddProject extends Component {
                     marginBottom: '10px'
                   }}
                 >
-                  {this.state.isinvalidpm && this.state.invalidpm}
+                  {this.state.isinvalidaddpm && this.state.invalidaddpm}
                 </Col>
               </Row>
               <Row>

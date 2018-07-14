@@ -4,7 +4,7 @@
     left: 10px;
     display: flex;
     flex-direction: row;
-    bottom: 3px;
+    top: 2px;
     font-size: 10px;
   }
   .editbox {
@@ -29,8 +29,8 @@
     left: 10px;
     display: flex;
     flex-direction: row;
-    bottom: 3px;
     font-size: 10px;
+    top: 2px;
   }
   .editbox {
     position: relative;
@@ -54,7 +54,7 @@
     left: 10px;
     display: flex;
     flex-direction: row;
-    bottom: 3px;
+    top: 2px;
     font-size: 10px;
   }
   .editbox {

@@ -82,21 +82,23 @@
 .rct-label {
   background-color: white !important;
 }
-@media (min-width: 321px) and (max-width: 575.98px) {
+
+
+@media (min-width: 321px) and (max-width: 499.98px) {
   .eachprojectname {
     margin-left: 15px;
     padding-top: 24px;
     margin-bottom: 5px;
-    font-size: 30px;
+    font-size: 11px;
   }
   .eachprojecthead {
     border-bottom: 0.5px solid #dfdfdf;
-    padding-bottom: px;
+    padding-bottom: 60px;
   }
   .eachprojectitem {
     padding-left: 20px;
     border-bottom: 0.5px solid #dfdfdf;
-    padding-bottom: 47.5px;
+    padding-bottom: 59.5px;
   }
   .membername {
     padding-top: 15px;
@@ -121,8 +123,9 @@
     width: 250px;
     height: 260px;
   }
-  .eachprojectweight {
-    font-size: 22px;
+  .eachprojectprocess {
+    font-size: 9px;
+    top: 1px;
     position: relative;
     left: 38px;
   }
@@ -133,24 +136,99 @@
   }
   .cancelbutton {
     top: 280px;
+    position: relative;
+  }
+  .membername {
+    font-size: 10px
+  }
+  .progress {
+    top: 5px;
+    position: relative;
+  }
+  .membertag {
+    font-size: 6px;
+    padding-left: 4px;
+    padding-top: 1px;
+    padding-right: 4px;
+  }
+}
+@media (min-width: 500px) and (max-width: 518.98px) {
+  .eachprojectname {
+    margin-left: 15px;
+    padding-top: 24px;
+    margin-bottom: 5px;
+    font-size: 11px;
+  }
+  .eachprojecthead {
+    border-bottom: 0.5px solid #dfdfdf;
+    padding-bottom: 60px;
+  }
+  .eachprojectitem {
+    padding-left: 20px;
+    border-bottom: 0.5px solid #dfdfdf;
+    padding-bottom: 52.5px;
+  }
+  .membername {
+    padding-top: 15px;
+    padding-right: 25px;
+    padding-bottom: 5px;
+  }
+  .membertag {
+    font-size: 10px;
+    margin-right: 3px;
+    margin-top: 8px;
+    border-radius: 3px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .error {
+    font-size: 14px;
+  }
+  .buttoncontainer {
+    margin: 15px 5px 300px 5px;
+  }
+  .addmemberpopover {
+    width: 250px;
+    height: 260px;
+  }
+  .eachprojectprocess {
+    font-size: 9px;
+    top: 1px;
+    position: relative;
+    left: 38px;
+  }
+  .eachprojectedit {
+    bottom: 10px;
+    left: 5px;
+    position: relative;
+  }
+  .cancelbutton {
+    top: 280px;
+    position: relative;
+  }
+  .membername {
+    font-size: 13px
+  }
+  .progress {
+    top: 5px;
     position: relative;
   }
 }
-@media (min-width: 576px) and (max-width: 767.98px) {
+@media (min-width: 519px) and (max-width: 620.98px) {
   .eachprojectname {
     margin-left: 15px;
     padding-top: 24px;
     margin-bottom: 5px;
-    font-size: 30px;
+    font-size: 11px;
   }
   .eachprojecthead {
     border-bottom: 0.5px solid #dfdfdf;
-    padding-bottom: 31px;
+    padding-bottom: 60px;
   }
   .eachprojectitem {
     padding-left: 20px;
     border-bottom: 0.5px solid #dfdfdf;
-    padding-bottom: 47.5px;
+    padding-bottom: 52.5px;
   }
   .membername {
     padding-top: 15px;
@@ -175,8 +253,9 @@
     width: 250px;
     height: 260px;
   }
-  .eachprojectweight {
-    font-size: 22px;
+  .eachprojectprocess {
+    font-size: 9px;
+    top: 1px;
     position: relative;
     left: 38px;
   }
@@ -188,19 +267,154 @@
   .cancelbutton {
     top: 280px;
     position: relative;
+  }
+  .membername {
+    font-size: 13px
+  }
+  .progress {
+    top: 5px;
+    position: relative;
+  }
+}
+@media (min-width: 621px) and (max-width: 680.98px) {
+  .eachprojectname {
+    margin-left: 15px;
+    padding-top: 24px;
+    margin-bottom: 5px;
+    font-size: 13px;
+  }
+  .eachprojecthead {
+    border-bottom: 0.5px solid #dfdfdf;
+    padding-bottom: 57px;
+  }
+  .eachprojectitem {
+    padding-left: 20px;
+    border-bottom: 0.5px solid #dfdfdf;
+    padding-bottom: 52.5px;
+  }
+  .membername {
+    padding-top: 15px;
+    padding-right: 25px;
+    padding-bottom: 5px;
+  }
+  .membertag {
+    font-size: 10px;
+    margin-right: 3px;
+    margin-top: 8px;
+    border-radius: 3px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .error {
+    font-size: 14px;
+  }
+  .buttoncontainer {
+    margin: 15px 5px 300px 5px;
+  }
+  .addmemberpopover {
+    width: 250px;
+    height: 260px;
+  }
+  .eachprojectprocess {
+    font-size: 10px;
+    position: relative;
+    left: 38px;
+  }
+  .eachprojectedit {
+    bottom: 10px;
+    left: 5px;
+    position: relative;
+  }
+  .cancelbutton {
+    top: 280px;
+    position: relative;
+  }
+  .membername {
+    font-size: 13px
+  }
+  .progress {
+    top: 5px;
+    position: relative;
+  }
+  .progress {
+    width: 100%
+  }
+}
+@media (min-width: 681px) and (max-width: 799.98px) {
+  .eachprojectname {
+    margin-left: 15px;
+    padding-top: 24px;
+    margin-bottom: 5px;
+    font-size: 15px;
+  }
+  .eachprojecthead {
+    border-bottom: 0.5px solid #dfdfdf;
+    padding-bottom: 54px;
+  }
+  .eachprojectitem {
+    padding-left: 20px;
+    border-bottom: 0.5px solid #dfdfdf;
+    padding-bottom: 50.5px;
+  }
+  .membername {
+    padding-top: 15px;
+    padding-right: 25px;
+    padding-bottom: 5px;
+  }
+  .membertag {
+    font-size: 10px;
+    margin-right: 3px;
+    margin-top: 8px;
+    border-radius: 3px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .error {
+    font-size: 14px;
+  }
+  .buttoncontainer {
+    margin: 15px 5px 300px 5px;
+  }
+  .addmemberpopover {
+    width: 250px;
+    height: 260px;
+  }
+  .eachprojectprocess {
+    font-size: 12px;
+    position: relative;
+    left: 38px;
+  }
+  .eachprojectedit {
+    bottom: 10px;
+    left: 5px;
+    position: relative;
+  }
+  .membername {
+    font-size: 14px;
+  }
+  .cancelbutton {
+    top: 280px;
+    position: relative;
+  }
+  .progress {
+    top: 5px;
+    position: relative;
+  }
+  .progress {
+    width: 100%
   }
 }
 
-@media (min-width: 768px) and (max-width: 991.98px) {
+@media (min-width: 800px) and (max-width: 991.98px) {
   .eachprojectname {
     margin-left: 15px;
     padding-top: 24px;
     margin-bottom: 5px;
-    font-size: 30px;
+    font-size: 18px;
   }
   .eachprojecthead {
     border-bottom: 0.5px solid #dfdfdf;
-    padding-bottom: 31px;
+    padding-bottom: 49px;
   }
   .eachprojectitem {
     padding-left: 20px;
@@ -230,8 +444,8 @@
     width: 250px;
     height: 260px;
   }
-  .eachprojectweight {
-    font-size: 22px;
+  .eachprojectprocess {
+    font-size: 17px;
     position: relative;
     left: 38px;
   }
@@ -243,6 +457,13 @@
   .cancelbutton {
     top: 280px;
     position: relative;
+  }
+  .progress {
+    top: 5px;
+    position: relative;
+  }
+  .progress {
+    width: 100%
   }
 }
 
@@ -251,11 +472,11 @@
     margin-left: 15px;
     padding-top: 24px;
     margin-bottom: 5px;
-    font-size: 30px;
+    font-size: 25px;
   }
   .eachprojecthead {
     border-bottom: 0.5px solid #dfdfdf;
-    padding-bottom: 25px;
+    padding-bottom: 33px;
   }
   .eachprojectitem {
     padding-left: 20px;
@@ -285,7 +506,7 @@
     width: 250px;
     height: 260px;
   }
-  .eachprojectweight {
+  .eachprojectprocess {
     font-size: 22px;
     position: relative;
     left: 38px;
@@ -298,6 +519,9 @@
   .cancelbutton {
     top: 280px;
     position: relative;
+  }
+  .progress {
+    width: 100%
   }
 }
 @media (min-width: 1200px) {
@@ -339,7 +563,7 @@
     width: 250px;
     height: 260px;
   }
-  .eachprojectweight {
+  .eachprojectprocess {
     font-size: 22px;
     position: relative;
     left: 38px;
@@ -352,5 +576,8 @@
   .cancelbutton {
     top: 280px;
     position: relative;
+  }
+  .progress {
+    width: 100%
   }
 }

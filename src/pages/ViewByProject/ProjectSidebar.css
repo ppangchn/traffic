@@ -407,8 +407,8 @@
     padding-top: 17px;
   }
   .foldericon {
-    width: 26px;
-    margin-left: 20px;
+    width: 21px;
+    margin-left: 13px;
     position: relative;
     bottom: 3px;
   }
@@ -417,14 +417,14 @@
     padding-right: 0.5rem;
   }
   .pmname {
-    font-size: 7px;
-    border: 0.125rem solid #c6c6c6;
+    font-size: 6px;
+    border: 1px solid #c6c6c6;
     border-radius: 0.625rem;
-    padding-left: 0.3125rem;
-    padding-right: 0.3125rem;
+    padding-left: 3px;
+    padding-right: 3px;
     margin-right: 2px;
     margin-bottom: 1px;
-    top: 3px;
+    top: 10px;
     position: relative;
   }
   .projectname {
@@ -463,8 +463,8 @@
     padding-top: 17px;
   }
   .foldericon {
-    width: 26px;
-    margin-left: 20px;
+    width: 21px;
+    margin-left: 13px;
     position: relative;
     bottom: 3px;
   }
@@ -473,13 +473,15 @@
     padding-right: 0.5rem;
   }
   .pmname {
-    font-size: 7px;
-    border: 0.125rem solid #c6c6c6;
+    font-size: 6px;
+    border: 1px solid #c6c6c6;
     border-radius: 0.625rem;
-    padding-left: 0.3125rem;
-    padding-right: 0.3125rem;
+    padding-left: 3px;
+    padding-right: 3px;
     margin-right: 2px;
     margin-bottom: 1px;
+    position: relative;
+    top: 10px;
   }
   .projectname {
     padding-top: 15px;
@@ -533,6 +535,8 @@
     padding-right: 0.3125rem;
     margin-right: 2px;
     margin-bottom: 1px;
+    position: relative;
+    top: 10px;
   }
   .projectname {
     padding-top: 15px;

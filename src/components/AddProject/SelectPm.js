@@ -29,6 +29,7 @@ class SelectPm extends Component {
       ...selectedOption,
       weight: this.state.choseweight
     })
+    this.props.setInvalidAddPm();
   }
   slideChange = value => {
     this.setState({

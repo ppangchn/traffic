@@ -221,7 +221,7 @@ class EachProjectSidebar extends Component {
             <div style={{ textOverflow: 'ellipsis', overflow: 'hidden' }}>
               {project.name}
             </div>
-            <div className="eachprojectweight">{project.process}%</div>
+            <div className="eachprojectprocess">{project.process}%</div>
           </div>
           <ProgressContainer>
             <Progress
@@ -238,8 +238,13 @@ class EachProjectSidebar extends Component {
                 id={timeline.id}
                 className="eachprojectitem"
               >
-                <div className="membername">
-                  {timeline.users.name}
+                <div
+                  className="membername"
+                  style={{ display: 'flex', justifyContent: 'flex-end' }}
+                >
+                  <div style={{ width: '100%', float: 'left' }}>
+                    {timeline.users.name}
+                  </div>
                   <EditTimeline
                     id={timeline.id}
                     start={timeline.start}
@@ -269,7 +274,7 @@ class EachProjectSidebar extends Component {
           }
         })}
         <Popover
-          placement="bottom"
+          placement="bottom !important"
           isOpen={this.state.popoverOpen}
           target="Popover"
           toggle={this.togglePopOver}

@@ -71,7 +71,7 @@ class EditTimeline extends Component {
   render() {
     return (
       <div className="calendar">
-        <Calendar id={'popover' + this.props.id} onClick={this.toggle} />
+        <Calendar  className="calendaricon" id={'popover' + this.props.id} onClick={this.toggle} />
         <Popover
           placement="bottom !important"
           isOpen={this.state.popoverOpen}
