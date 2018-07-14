@@ -7,7 +7,7 @@
   color: white;
 }
 .btn-secondary {
-  background-color: white !important;
+  background-color: transparent !important;
   border: none !important;
   float: right;
 }

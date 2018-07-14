@@ -46,15 +46,19 @@ class DeleteUser extends Component {
   }
   render() {
     return (
-      <div style={{position: 'absolute'}} className="deleteuserbox">
-        {this.props.roles !== 'PM' &&
+      <div style={{ position: 'absolute' }} className="deleteuserbox">
+        {this.props.roles !== 'ADMIN' &&
+          this.props.roles !== 'PM' &&
           this.props.roles !== 'SA' &&
           this.props.roles !== 'PC' &&
           this.props.roles !== 'BM' &&
-          this.props.roles !== 'TS' &&
           this.props.roles !== 'PD' &&
           this.props.roles !== 'BD' && (
-            <Exit className="deleteusericon" id={`Popover${this.props.id}`} onClick={this.toggleModal} />
+            <Exit
+              className="deleteusericon"
+              id={`Popover${this.props.id}`}
+              onClick={this.toggleModal}
+            />
           )}
         <Modal
           isOpen={this.state.modalOpen}

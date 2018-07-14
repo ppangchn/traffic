@@ -214,8 +214,8 @@ class AddProject extends Component {
           if (!!this.state.timeline) {
             listTimeline = await this.state.timeline.map($objTimeline => {
               if (
-                $objTimeline.users.roles.id >= 2 &&
-                $objTimeline.users.roles.id <= 8
+                $objTimeline.users.roles.id >= 1 &&
+                $objTimeline.users.roles.id <= 6
               ) {
                 $objTimeline.isDisable = true
               }
