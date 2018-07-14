@@ -60,6 +60,7 @@ class SelectPm extends Component {
             onChange={this.handleChange}
             options={this.props.listpm}
             trimFilter
+            clearable={false}
           />
         </Col>
         <Col className="sliderboxpm" xs="4">
