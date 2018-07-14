@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Container, Row, Col } from 'reactstrap'
-import { Button, Modal, ModalHeader, ModalBody, Input, FormFeedback, ModalFooter } from 'reactstrap'
+import { Button, Form, Modal, ModalHeader, ModalBody, Input, FormFeedback, ModalFooter } from 'reactstrap'
 import Select from 'react-select'
 import 'react-select/dist/react-select.css'
 import axios from 'axios'
@@ -94,7 +94,6 @@ class AddMember extends Component {
 	handleCheckboxChange = e => {
 		this.setState({
 			[e.target.name]: e.target.checked
-			// checked : !this.statesendResetPass
 		})
 		console.log([e.target.name], e.target.checked)
 		console.log('wow', this.state.sendResetPass)
@@ -178,7 +177,6 @@ class AddMember extends Component {
 					email: this.state.email
 				}
 				await axios.put(`${url}/users`, data).then($res => {
-					console.log('send member', $res)
 					this.toggleSave()
 					this.props.getData()
 					this.props.onClose()
@@ -274,95 +272,101 @@ class AddMember extends Component {
 					<ModalHeader toggle={onClose}>{this.state.header}</ModalHeader>
 					<ModalBody>
 						<Container>
-							<Row className="btsave">
-								<Col>
-									Name
-									<Input
-										style={{ fontSize: '8px !important' }}
-										name="name"
-										style={{ backgroundColor: '#f1f1f1' }}
-										placeholder="Type your name"
-										onChange={this.handleInputChange}
-										value={this.state.name}
-										invalid={this.state.invalidname}
-										trimFilter
-									/>
-									<FormFeedback tooltip>Can't send empty name!</FormFeedback>
-								</Col>
-							</Row>
-
-							<Row className="btsave">
-								<Col>Roles</Col>
-							</Row>
-							<Select
-								placeholder="Select role"
-								value={this.state.roles}
-								onChange={this.handleChange}
-								options={this.state.listroles}
-								trimFilter
-							/>
-							<div className="invalid">{this.state.invalidroles && this.state.invalidrolesmessage}</div>
-
-							<Row className="btsave">
-								<Col>
-									Tags
-									<div>
-										<ReactTags
-											tags={tags}
-											labelField={'name'}
-											// suggestions={suggestions}
-											handleDelete={this.handleDelete}
-											handleAddition={this.handleAddition}
-											delimiters={delimiters}
+							<Form onSubmit={this.sendDataMember}>
+								<Row className="btsave">
+									<Col>
+										Name
+										<input
+											style={{ fontSize: '8px !important' }}
+											name="name"
+											className="inputform2"
+											style={{ backgroundColor: '#f1f1f1' }}
+											placeholder="Type your name"
+											onChange={this.handleInputChange}
+											value={this.state.name}
+											invalid={this.state.invalidname}
+											trimFilter
+											required
 										/>
-									</div>
-								</Col>
-							</Row>
+										<FormFeedback tooltip>Can't send empty name!</FormFeedback>
+									</Col>
+								</Row>
 
-							<Row className="btsave">
-								<Col>
-									Email
-									<Input
-										style={{ fontSize: '8px !important' }}
-										name="name"
-										style={{ backgroundColor: '#f1f1f1' }}
-										placeholder="example@pirsquare.net"
-										onChange={this.handleInputChangeEmail}
-										value={this.state.email}
-										invalid={this.state.invalidemail}
-									/>
-									<FormFeedback tooltip>Can't send empty e-mail!</FormFeedback>
-								</Col>
-							</Row>
+								<Row className="btsave">
+									<Col>Roles</Col>
+								</Row>
+								<Select
+									placeholder="Select role"
+									value={this.state.roles}
+									onChange={this.handleChange}
+									options={this.state.listroles}
+									trimFilter
+									required
+								/>
+								<div className="invalid">{this.state.invalidroles && this.state.invalidrolesmessage}</div>
 
-							{['DEV', 'DSN'].indexOf(this.state.roles.label) === -1 && (
-								<div className="checkbox">
-									<label>
+								<Row className="btsave">
+									<Col>
+										Tags
+										<div>
+											<ReactTags
+												tags={tags}
+												labelField={'name'}
+												// suggestions={suggestions}
+												handleDelete={this.handleDelete}
+												handleAddition={this.handleAddition}
+												delimiters={delimiters}
+											/>
+										</div>
+									</Col>
+								</Row>
+
+								<Row className="btsave">
+									<Col>
+										Email
+										<input
+											style={{ fontSize: '8px !important' }}
+											name="name"
+											className="inputform2"
+											type="email"
+											style={{ backgroundColor: '#f1f1f1' }}
+											placeholder="example@pirsquare.net"
+											onChange={this.handleInputChangeEmail}
+											value={this.state.email}
+											invalid={this.state.invalidemail}
+											required
+										/>
+										<FormFeedback tooltip>Can't send empty e-mail!</FormFeedback>
+									</Col>
+								</Row>
+
+								{['DEV', 'DSN'].indexOf(this.state.roles.label) === -1 && (
+									<div className="checkbox">
 										<input
 											type="checkbox"
-											class="input"
+											className="mr-3"
 											checked={this.state.sendResetPass}
 											name="sendResetPass"
 											onChange={this.handleCheckboxChange}
 										/>
 										Send Reset Password
-									</label>
-								</div>
-							)}
-							<Row className="btsave">
-								<Col>
-									<Button
-										color="5bc2e1"
-										size="lg"
-										block
-										onClick={() => {
-											this.sendDataMember()
-										}}
-									>
-										Save
-									</Button>
-								</Col>
-							</Row>
+									</div>
+								)}
+								<Row className="btsave">
+									<Col>
+										<Button
+											color="5bc2e1"
+											size="lg"
+											block
+											// onClick={() => {
+											// 	this.sendDataMember()
+											// }}
+										>
+											Save
+										</Button>
+									</Col>
+								</Row>
+							</Form>
 						</Container>
 					</ModalBody>
 				</Modal>
