@@ -56,9 +56,9 @@ class Setting extends Component {
       case '1':
         return this.fetchData(`${url}/users`)
       case '2':
-        return this.fetchData(`${url}/users/pm`)
+        return this.fetchData(`${url}/users/findPM`)
       case '3':
-        return this.fetchData(`${url}/users/pd`)
+        return this.fetchData(`${url}/users/findPD`)
       default:
         return this.fetchData(`${url}/users`)
     }
