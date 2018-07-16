@@ -62,7 +62,8 @@ class PersonSidebar extends Component {
         let startmillisecond = 0
         let endmillisecond = 0
         user.projectTimeline.map(timeline => {
-          if (!timeline.project.isDisable && timeline.start && timeline.end) {
+          if (!timeline.project.isDisable && !timeline.isDisable && timeline.start && timeline.end) {
+            console.log('name->>>',user.name,timeline.project.name)
             startmillisecond = new Date(timeline.start).getTime()
             endmillisecond = new Date(timeline.end).getTime()
             if (
