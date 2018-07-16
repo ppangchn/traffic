@@ -178,7 +178,7 @@ class Setting extends Component {
                   <Col md={4} sm={4} className="mb-4">
                     <Card body className="h-150 iconcontainer">
                       <div>
-                        <NavLink  href="./Setting.css" onClick={e => this.toggleAddModal(true)}>
+                        <NavLink  className="nav-link-addicon" href="Setting.css" onClick={e => this.toggleAddModal(true)}>
                           <div className="addmembericon">{this.state.add}</div>
                         </NavLink>
                       </div>
