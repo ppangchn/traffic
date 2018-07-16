@@ -65,6 +65,7 @@ class AddMember extends Component {
 		this.handleInputChangeEmail = this.handleInputChangeEmail.bind(this)
 		this.handleChange = this.handleChange.bind(this)
 		this.handleInputChangeTags = this.handleInputChangeTags.bind(this)
+		this.sendDataMember = this.sendDataMember.bind(this)
 
 		// lib tag
 		this.handleDelete = this.handleDelete.bind(this)
@@ -164,7 +165,8 @@ class AddMember extends Component {
 		this.setState({ listroles: [], usersname: '', tags: '' })
 	}
 
-	async sendDataMember() {
+	async sendDataMember(e) {
+		e.preventDefault();
 		try {
 			if (this.state.name && this.state.roles && this.state.email) {
 				const data = {
@@ -176,18 +178,18 @@ class AddMember extends Component {
 					}),
 					email: this.state.email
 				}
-				await axios.put(`${url}/users`, data).then($res => {
-					this.toggleSave()
-					this.props.getData()
-					this.props.onClose()
-				})
+				await axios.put(`${url}/users`, data)
+				await axios.put(`${url}/users/person`, data)
 				if (this.state.sendResetPass) {
 					try {
-						axios.post(`${url}/users/forgotpass`, data)
+						axios.post(`${url}/users/forgotpass`, data).then()
 					} catch (error) {
 						console.log('cant send email', error)
 					}
 				}
+				this.toggleSave()
+				this.props.getData()
+				this.props.onClose()
 			} else {
 				if (!this.state.name) this.setState({ invalidname: true })
 				if (!this.state.roles) this.setState({ invalidroles: true })
@@ -196,6 +198,7 @@ class AddMember extends Component {
 		} catch (error) {
 			console.log('fail to send data add member', error)
 		}
+		
 	}
 
 	componentDidMount() {
@@ -288,7 +291,6 @@ class AddMember extends Component {
 											trimFilter
 											required
 										/>
-										<FormFeedback tooltip>Can't send empty name!</FormFeedback>
 									</Col>
 								</Row>
 
@@ -336,7 +338,6 @@ class AddMember extends Component {
 											invalid={this.state.invalidemail}
 											required
 										/>
-										<FormFeedback tooltip>Can't send empty e-mail!</FormFeedback>
 									</Col>
 								</Row>
 
@@ -358,9 +359,6 @@ class AddMember extends Component {
 											color="5bc2e1"
 											size="lg"
 											block
-											// onClick={() => {
-											// 	this.sendDataMember()
-											// }}
 										>
 											Save
 										</Button>
