@@ -17,6 +17,7 @@
     "next": "^6.0.3",
     "rc-slider": "^8.6.1",
     "react": "^16.4.0",
+    "react-calendar-timeline": "^0.17.3",
     "react-chartjs-2": "^2.7.2",
     "react-day-picker": "^7.1.9",
     "react-dom": "^16.4.0",

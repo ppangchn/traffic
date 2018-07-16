@@ -50,7 +50,6 @@ var Header = function (_Component) {
       var headerStyle = {
         top: stickyHeader ? stickyOffset || 0 : 0
       };
-
       var headerClass = stickyHeader ? 'header-sticky' : '';
 
       return _react2.default.createElement(

@@ -50,6 +50,7 @@ const PersonReg = PersonOutline.extend`
   width: 1.5rem;
   height: 1.5rem;
   color: white;
+  cursor: pointer;
   &:hover ${PersonReg} {
     transition-duration: 300ms;
     position: relative;
@@ -63,6 +64,7 @@ const PersonSolid = Person.extend`
   width: 1.5rem;
   height: 1.5rem;
   color: white;
+  cursor: pointer;
   display: inline-block;
   border-radius: 25%;
 `

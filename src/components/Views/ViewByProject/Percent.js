@@ -71,7 +71,8 @@ class Percent extends Component {
             stopPropagation={true}
           />&nbsp;%
         </div>
-        {this.props.role=="ADMIN" &&
+        {
+          // this.props.role=="ADMIN" &&
         <div
           className="editbox"
           onClick={() => this.setState({ isedited: !this.state.isedited })}
