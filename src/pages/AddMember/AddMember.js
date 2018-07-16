@@ -339,7 +339,7 @@ class AddMember extends Component {
 									</Col>
 								</Row>
 
-								{['DEV', 'DSN'].indexOf(this.state.roles.label) === -1 && (
+								{['DEV', 'DSN','QA','TS'].indexOf(this.state.roles.label) === -1 && (
 									<div className="checkbox">
 										<input
 											type="checkbox"
