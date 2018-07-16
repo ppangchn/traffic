@@ -179,7 +179,6 @@ class AddMember extends Component {
 					email: this.state.email
 				}
 				await axios.put(`${url}/users`, data)
-				await axios.put(`${url}/users/person`, data)
 				if (this.state.sendResetPass) {
 					try {
 						axios.post(`${url}/users/forgotpass`, data).then()
@@ -314,7 +313,6 @@ class AddMember extends Component {
 											<ReactTags
 												tags={tags}
 												labelField={'name'}
-												// suggestions={suggestions}
 												handleDelete={this.handleDelete}
 												handleAddition={this.handleAddition}
 												delimiters={delimiters}

@@ -6,8 +6,6 @@ import './Login.css'
 import url from '../../url'
 import axios from 'axios'
 
-
-
 const Container = styled.div`
 	width: 100vw;
 	height: 100vh;
@@ -24,17 +22,17 @@ export default class Login extends Component {
 			email: '',
 			password: '',
 			invalidpassword: false,
-			invalidemail: false
+			invalidemail: false,
+			message: ''
 		}
 
 		// this.handleSubmit = this.handleSubmit.bind(this)
 	}
 
-
-
 	handleInputChange = e => {
 		const { name, value } = e.target
 		this.setState({ [name]: value })
+		this.setState({ message: '' })
 	}
 
 	handleSubmit = e => {
@@ -46,13 +44,14 @@ export default class Login extends Component {
 
 			if (this.state.email && this.state.password) {
 				axios.post(`${url}/users/login`, data).then($res => {
-					console.log('RESPONSE',$res)
-					this.props.history.push(`/overview`)
+					const { data } = $res
+					this.setState({ message: data.message })
+					if (data.message != 'Email or Password Invalid') {
+						this.props.history.push(`/overview`)
+					}
 				})
-			}
-			else{
-				console.log('cant login');
-				
+			} else {
+				console.log('cant login')
 			}
 
 			e.preventDefault()
@@ -60,7 +59,6 @@ export default class Login extends Component {
 			console.error('on error ->', error)
 		}
 	}
-
 
 	render() {
 		return (
@@ -98,9 +96,10 @@ export default class Login extends Component {
 						</Button>
 					</Form>
 					<div className="btsave">
-						<Link className="des" to={`/forgotpass`} style={{textDecoration: 'none'}}>
+						<Link className="des" to={`/forgotpass`} style={{ textDecoration: 'none' }}>
 							Forgot password?
 						</Link>
+						<div className="err">{this.state.message}</div>
 					</div>
 				</div>
 			</Container>

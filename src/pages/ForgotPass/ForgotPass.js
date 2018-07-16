@@ -27,7 +27,8 @@ export default class ForgotPass extends Component {
 		super(props)
 		this.state = {
 			email: '',
-			invalidemail: false
+			invalidemail: false,
+			message: ''
 		}
 
 		// this.handleSubmit = this.handleSubmit.bind(this)
@@ -36,6 +37,7 @@ export default class ForgotPass extends Component {
 	handleInputChange = e => {
 		const { name, value } = e.target
 		this.setState({ [name]: value })
+		this.setState({ message: '' })
 	}
 
 	handleSubmit = e => {
@@ -47,7 +49,11 @@ export default class ForgotPass extends Component {
 			if (this.state.email) {
 				try {
 					axios.post(`${url}/users/forgotpass`, data).then($res => {
-						this.props.history.push(`/login`)
+						const { data } = $res
+						this.setState({ message: data.message })
+						if (data.message!="Email not found!") {
+							this.props.history.push(`/`)
+						}
 					})
 				} catch (error) {
 					console.log('cant send email', error)
@@ -94,7 +100,7 @@ export default class ForgotPass extends Component {
 							Reset password
 						</Button>
 					</Form>
-					<div />
+					<div className="err">{this.state.message}</div>
 				</div>
 			</Container>
 		)
