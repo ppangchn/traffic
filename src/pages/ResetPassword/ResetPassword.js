@@ -39,7 +39,7 @@ export default class ResetPassword extends Component {
 			}
 			if (this.state.fpass == this.state.spass) {
 				axios.post(`${url}/users/resetpass`, data)
-				this.props.history.push(`/login`)
+				this.props.history.push(`/`)
 			}
 		} catch (error) {}
 	}
