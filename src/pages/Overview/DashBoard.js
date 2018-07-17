@@ -22,6 +22,7 @@ const UserContainer = styled.div`
   overflow-y: hidden;
   overflow-x: scroll;
   display: flex;
+  height: 100vh;
 `
 class DashBoard extends Component {
   constructor(props) {
