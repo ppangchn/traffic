@@ -402,6 +402,7 @@
   .headcontainer {
     font-size: 20px;
     padding-bottom: 12.5px;
+    width: 150px;
   }
   .head {
     padding-top: 17px;
@@ -450,8 +451,7 @@
     position: relative;
     margin-left: 15px;
     line-height: 10px;
-    width: 120px;
-    
+
   }
 }
 
