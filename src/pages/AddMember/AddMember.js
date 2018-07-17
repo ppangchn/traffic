@@ -88,7 +88,7 @@ class AddMember extends Component {
 	handleInputChange(e) {
 		if (e) this.setState({ invalidname: false })
 		let { name } = this.state
-		console.log(e.target.value)
+
 		this.setState({ name: e.target.value })
 	}
 
@@ -96,14 +96,13 @@ class AddMember extends Component {
 		this.setState({
 			[e.target.name]: e.target.checked
 		})
-		console.log([e.target.name], e.target.checked)
-		console.log('wow', this.state.sendResetPass)
+
 	}
 
 	handleInputChangeEmail(e) {
 		if (e) this.setState({ invalidemail: false })
 		let { email } = this.state
-		console.log(e.target.value)
+
 		this.setState({ email: e.target.value })
 	}
 
@@ -111,7 +110,7 @@ class AddMember extends Component {
 		let { tags } = this.state
 		this.setState({ tags: e.target.value })
 		if (tags.length > 0) this.setState({ invalid: false })
-		console.log('tags', this.state, e.target.value)
+
 	}
 
 	handleChange = selectedOption => {
@@ -166,7 +165,7 @@ class AddMember extends Component {
 	}
 
 	async sendDataMember(e) {
-		e.preventDefault();
+		e.preventDefault()
 		try {
 			if (this.state.name && this.state.roles && this.state.email) {
 				const data = {
@@ -183,7 +182,7 @@ class AddMember extends Component {
 					try {
 						axios.post(`${url}/users/forgotpass`, data).then()
 					} catch (error) {
-						console.log('cant send email', error)
+
 					}
 				}
 				this.toggleSave()
@@ -195,9 +194,8 @@ class AddMember extends Component {
 				if (!this.state.email) this.setState({ invalidemail: true })
 			}
 		} catch (error) {
-			console.log('fail to send data add member', error)
+
 		}
-		
 	}
 
 	componentDidMount() {
@@ -207,7 +205,7 @@ class AddMember extends Component {
 					const { data } = res
 					data.map(user => {
 						if (user.id === this.props.id) {
-							console.log('roles -> ', user.roles.name.toString())
+
 							this.setState({
 								id: user.id,
 								name: user.name,
@@ -223,7 +221,7 @@ class AddMember extends Component {
 					})
 				})
 			}
-			console.log('Set default roles' + this.state.roles)
+
 			axios.get(`${url}/roles`).then(res => {
 				const { data } = res
 				let listroles = []
@@ -235,7 +233,7 @@ class AddMember extends Component {
 				})
 			})
 		} catch (error) {
-			console.log('fail to get data at AddMember', error)
+
 		}
 	}
 
@@ -282,7 +280,6 @@ class AddMember extends Component {
 											style={{ fontSize: '8px !important' }}
 											name="name"
 											className="inputform2"
-											style={{ backgroundColor: '#f1f1f1' }}
 											placeholder="Type your name"
 											onChange={this.handleInputChange}
 											value={this.state.name}
@@ -311,6 +308,7 @@ class AddMember extends Component {
 										Tags
 										<div>
 											<ReactTags
+												className="taginput"
 												tags={tags}
 												labelField={'name'}
 												handleDelete={this.handleDelete}
@@ -329,7 +327,6 @@ class AddMember extends Component {
 											name="name"
 											className="inputform2"
 											type="email"
-											style={{ backgroundColor: '#f1f1f1' }}
 											placeholder="example@pirsquare.net"
 											onChange={this.handleInputChangeEmail}
 											value={this.state.email}
@@ -339,7 +336,7 @@ class AddMember extends Component {
 									</Col>
 								</Row>
 
-								{['DEV', 'DSN','QA','TS'].indexOf(this.state.roles.label) === -1 && (
+								{['DEV', 'DSN', 'QA', 'TS'].indexOf(this.state.roles.label) === -1 && (
 									<div className="checkbox">
 										<input
 											type="checkbox"
@@ -353,11 +350,7 @@ class AddMember extends Component {
 								)}
 								<Row className="btsave">
 									<Col>
-										<Button
-											color="5bc2e1"
-											size="lg"
-											block
-										>
+										<Button color="5bc2e1" size="lg" block>
 											Save
 										</Button>
 									</Col>
