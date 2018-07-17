@@ -169,49 +169,6 @@ class EachProjectSidebar extends Component {
           <Head>&emsp;Name</Head>
         </HeadContainer>
         <div className="eachprojecthead">
-          <div>
-            <ButtonDropdown
-              className="btn-secondary"
-              isOpen={this.state.btnDropright}
-              toggle={() => {
-                this.setState({ btnDropright: !this.state.btnDropright })
-              }}
-            >
-              <DropdownMenu className="dropdown-menu">
-                <DropdownItem
-                  className="dropdownitem"
-                  style={{
-                    borderBottom: '1px solid #5bc2e1',
-                    borderRadius: '0.2rem 0.2rem 0 0'
-                  }}
-                >
-                  {/* <div
-                    style={{
-                      position: 'absolute',
-                      zIndex: '1',
-                      left: '4.27rem',
-                      bottom: '72px'
-                    }}
-                  >
-                    <WhiteTriangle />
-                  </div>
-                  <div className="bottomtriangle">_</div> */}
-                  <div onClick={() => this.toggleModal(true)}>Edit Project</div>
-                </DropdownItem>
-                <DropdownItem
-                  onClick={this.toggleModalDelete}
-                  className="dropdowndeleteitem"
-                  style={{
-                    color: '#f67879',
-                    borderRadius: '0 0 0.2rem 0.2rem'
-                  }}
-                >
-                  Delete
-                </DropdownItem>
-              </DropdownMenu>
-            </ButtonDropdown>
-          </div>
-
           <div className="eachprojectname">
             <div
               style={{
@@ -225,7 +182,51 @@ class EachProjectSidebar extends Component {
             </div>
             <div className="eachprojectprocess">{project.process}%</div>
             <div className="eachprojectedit">
-              <Edit className="eachprojectediticon"/>
+              <ButtonDropdown
+                className="btn-secondary"
+                isOpen={this.state.btnDropright}
+                toggle={() => {
+                  this.setState({ btnDropright: !this.state.btnDropright })
+                }}
+              >
+                <DropdownToggle style={{paddingBottom: '0'}}>
+                  <Edit className="eachprojectediticon" />
+                </DropdownToggle>
+                <DropdownMenu className="dropdown-menu">
+                  <DropdownItem
+                    className="dropdownitem"
+                    style={{
+                      borderBottom: '1px solid #5bc2e1',
+                      borderRadius: '0.2rem 0.2rem 0 0'
+                    }}
+                  >
+                    {/* <div
+                    style={{
+                      position: 'absolute',
+                      zIndex: '1',
+                      left: '4.27rem',
+                      bottom: '72px'
+                    }}
+                  >
+                    <WhiteTriangle />
+                  </div>
+                  <div className="bottomtriangle">_</div> */}
+                    <div onClick={() => this.toggleModal(true)}>
+                      Edit Project
+                    </div>
+                  </DropdownItem>
+                  <DropdownItem
+                    onClick={this.toggleModalDelete}
+                    className="dropdowndeleteitem"
+                    style={{
+                      color: '#f67879',
+                      borderRadius: '0 0 0.2rem 0.2rem'
+                    }}
+                  >
+                    Delete
+                  </DropdownItem>
+                </DropdownMenu>
+              </ButtonDropdown>
             </div>
           </div>
           <ProgressContainer>

@@ -57,10 +57,6 @@
   background-color: white !important;
   color: '#f67879' !important;
 }
-.eachprojectedit {
-  right: 10px;
-  position: relative;
-}
 .eachprojectname {
   display: flex;
   justify-content: flex-end;
@@ -90,12 +86,11 @@
   .eachprojectname {
     margin-left: 15px;
     padding-top: 17px;
-    margin-bottom: 5px;
     font-size: 13px;
   }
   .eachprojecthead {
     border-bottom: 0.5px solid #dfdfdf;
-    padding-bottom: 26px;
+    padding-bottom: 20px;
   }
   .eachprojectedit {
     bottom: 1px;
@@ -150,20 +145,24 @@
   .progress {
     width: 100%;
   }
+  .eachprojectedit {
+    bottom: 4.5px;
+    position: relative;
+  }
 }
 @media (min-width: 576px) and (max-width: 767.98px) {
   .eachprojectname {
     margin-left: 15px;
     padding-top: 17px;
-    margin-bottom: 5px;
-    font-size: 13px;
+    font-size: 17px;
   }
   .eachprojecthead {
     border-bottom: 0.5px solid #dfdfdf;
-    padding-bottom: 26px;
+    padding-bottom: 20px;
   }
   .eachprojectedit {
-    bottom: 2px;
+    bottom: 5px;
+    position: relative
   }
   .eachprojectediticon {
     width: 1rem;
@@ -200,7 +199,7 @@
   .eachprojectprocess {
     font-size: 10px;
     position: relative;
-    right: 20px;
+    right: 10px;
   }
   .cancelbutton {
     top: 280px;
@@ -218,7 +217,6 @@
   .eachprojectname {
     margin-left: 15px;
     padding-top: 12px;
-    margin-bottom: 5px;
     font-size: 18px;
   }
   .eachprojecthead {
@@ -230,7 +228,8 @@
     height: 1.5625rem;
   }
   .eachprojectedit {
-    bottom: 2px;
+    bottom: 4px;
+    position: relative;
   }
   .eachprojectitem {
     padding-left: 20px;
@@ -261,8 +260,6 @@
   }
   .eachprojectprocess {
     font-size: 14px;
-    position: relative;
-    right: 20px;
   }
   .cancelbutton {
     top: 280px;
@@ -286,7 +283,7 @@
   }
   .eachprojecthead {
     border-bottom: 0.5px solid #dfdfdf;
-    padding-bottom: 22px;
+    padding-bottom: 20px;
     padding-top: 5px;
   }
   .eachprojectediticon {
@@ -323,7 +320,6 @@
   .eachprojectprocess {
     font-size: 14px;
     position: relative;
-    right: 30px;
     top: 3px;
   }
   .cancelbutton {
@@ -332,6 +328,10 @@
   }
   .progress {
     width: 100%;
+  }
+  .eachprojectedit {
+    bottom: 2px;
+    position: relative;
   }
 }
 @media (min-width: 1200px) {
@@ -343,12 +343,13 @@
   }
   .eachprojecthead {
     border-bottom: 0.5px solid #dfdfdf;
-    padding-bottom: 20px;
+    padding-bottom: 18px;
     padding-top: 5px;
   }
   .eachprojectediticon {
     width: 1.5625rem;
     height: 1.5625rem;
+    padding-bottom: 0;
   }
   .eachprojectitem {
     padding-left: 20px;
@@ -381,7 +382,6 @@
   .eachprojectprocess {
     font-size: 14px;
     position: relative;
-    right: 30px;
     top: 3px;
   }
   .cancelbutton {
@@ -390,5 +390,9 @@
   }
   .progress {
     width: 100%;
+  }
+  .eachprojectedit {
+    bottom: 1px;
+    position: relative;
   }
 }
