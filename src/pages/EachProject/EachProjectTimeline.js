@@ -79,7 +79,7 @@ class EachProjectTimeline extends Component {
           visibleTimeStart={new Date(moment().add(-7*2,'day')).getTime()}
           visibleTimeEnd={new Date(moment().add(7*4, 'day')).getTime()}
           sidebarWidth={0}
-          lineHeight={115}
+          lineHeight={77}
           stickyHeader={false}
           timeSteps={{ day: 7 }}
           itemHeightRatio={0.3}

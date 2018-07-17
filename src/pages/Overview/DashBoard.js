@@ -22,7 +22,6 @@ const UserContainer = styled.div`
   overflow-y: hidden;
   overflow-x: scroll;
   display: flex;
-  height: 100vh;
 `
 class DashBoard extends Component {
   constructor(props) {
@@ -48,6 +47,7 @@ class DashBoard extends Component {
             return (
               <div key={user.id}>
                 <UserDetail
+                  id={user.id}
                   name={user.name}
                   graph={graph}
                   projectTimeline={user.projectTimeline}

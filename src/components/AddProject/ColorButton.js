@@ -1,14 +1,22 @@
 import React, { Component } from 'react'
 import { Check } from 'styled-icons/material/Check'
+import { Star } from 'styled-icons/fa-solid/Star'
 
 import './ColorButton.css'
 const Checkz = Check.extend`
     position: absolute;
     bottom: 1.5px; !important;
 `
-
-//เรียก function ใน layout และส่งขึันไป
+const Starz = Star.extend`
+    position: absolute;
+    bottom: 1.5px; !important;
+    padding: 1px;
+`
 class ColorButton extends Component {
+  constructor(props) {
+    super(props)
+  }
+
   render() {
     const { color, setCheckedColor, checkedColor } = this.props
     return (
@@ -16,11 +24,12 @@ class ColorButton extends Component {
         <div
           className="shape"
           onClick={() => {
-            setCheckedColor(color)
+            setCheckedColor(color,this.props.used)
           }}
           style={{ backgroundColor: color }}
         >
-          {checkedColor == color && <Checkz />}
+          {checkedColor == color && !this.props.used && <Checkz />}
+          {this.props.used && <Starz />}
         </div>
       </div>
     )

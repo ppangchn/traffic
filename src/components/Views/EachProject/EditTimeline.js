@@ -4,6 +4,7 @@ import { Popover, PopoverBody, Button } from 'reactstrap'
 import DatePicker from '../EachProject/DatePicker'
 import url from '../../../url'
 import axios from 'axios'
+import { CalendarCheck as Calendarz } from 'styled-icons/fa-regular/CalendarCheck'
 import './EditTimeline.css'
 import * as moment from 'moment'
 
@@ -14,7 +15,13 @@ const Calendar = CalendarIcon.extend`
     color: #5bc2e1;
   }
 `
-
+const CalendarCheck = Calendarz.extend`
+  width: 1.5rem;
+  height: 1.3rem;
+  color: #9c9c9c
+  margin-right: 15px;
+  margin-top: 3px;
+`
 class EditTimeline extends Component {
   constructor() {
     super()
@@ -26,6 +33,7 @@ class EditTimeline extends Component {
     }
     this.toggle = this.toggle.bind(this)
     this.sendData = this.sendData.bind(this)
+    this.clearData = this.clearData.bind(this)
   }
   toggle() {
     this.setState({
@@ -37,6 +45,23 @@ class EditTimeline extends Component {
   }
   setEndTime(end) {
     this.setState({ end })
+  }
+  clearData() {
+    const data = {
+      id: this.props.id,
+      start: null,
+      end: null
+    }
+    try {
+      axios.put(`${url}/timeline`, data).then(() => {
+        this.toggle()
+        this.props.updateData()
+        this.props.getData()
+      })
+      console.log('send!')
+    } catch (error) {
+      console.log('cant update timelineF', error)
+    }
   }
   sendData() {
     const data = {
@@ -71,7 +96,11 @@ class EditTimeline extends Component {
   render() {
     return (
       <div className="calendar">
-        <Calendar  className="calendaricon" id={'popover' + this.props.id} onClick={this.toggle} />
+        <Calendar
+          className="calendaricon"
+          id={'popover' + this.props.id}
+          onClick={this.toggle}
+        />
         <Popover
           placement="bottom !important"
           isOpen={this.state.popoverOpen}
@@ -79,14 +108,31 @@ class EditTimeline extends Component {
           toggle={this.toggle}
         >
           <PopoverBody>
-            <DatePicker
-              start={this.props.start}
-              end={this.props.end}
-              setStartTime={e => this.setStartTime(e)}
-              setEndTime={e => this.setEndTime(e)}
-            />
-            <div style={{ marginTop: '15px' }}>
-              <Button color="5bc2e1" block size="sm" onClick={this.sendData}>
+            <div style={{ display: 'flex' }}>
+              {/* <CalendarCheck /> */}
+              <DatePicker
+                start={this.props.start}
+                end={this.props.end}
+                setStartTime={e => this.setStartTime(e)}
+                setEndTime={e => this.setEndTime(e)}
+              />
+            </div>
+
+            <div style={{ display: 'flex' }}>
+              <Button
+                color="cleardata"
+                block
+                size="sm"
+                onClick={this.clearData}
+              >
+                Clear
+              </Button>
+              <Button
+                color="save5bc2e1"
+                block
+                size="sm"
+                onClick={this.sendData}
+              >
                 Save
               </Button>
             </div>

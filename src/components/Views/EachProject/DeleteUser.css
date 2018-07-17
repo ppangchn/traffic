@@ -1,5 +1,6 @@
 @media (min-width: 321px) and (max-width: 575.98px) {
   .deleteuserbox {
+    padding-bottom: 5px;
   }
   .deleteusericon {
     width: 10px;
@@ -9,5 +10,8 @@
 @media (min-width: 576px) and (max-width: 767.98px) {
   .deleteuserbox {
     padding-bottom: 3px;
+  }
+  .deleteusericon {
+    width: 10px;
   }
 }

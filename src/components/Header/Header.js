@@ -9,9 +9,11 @@ import { Gear } from 'styled-icons/octicons/Gear'
 import { ListAlt } from 'styled-icons/fa-regular/ListAlt'
 import { ListAlt as ListSolid } from 'styled-icons/fa-solid/ListAlt'
 import { Navbar, NavLink } from 'reactstrap'
-import { AddCircleOutline } from 'styled-icons/material/AddCircleOutline'
+import { Plus } from 'styled-icons/fa-solid/Plus'
+import { ExitToApp } from 'styled-icons/material/ExitToApp'
 import { withRouter } from 'react-router-dom'
 import AddProject from '../../pages/AddProject/AddProject'
+import './Header.css'
 
 const Container = styled.div`
     background-color: #5bc2e1
@@ -20,8 +22,8 @@ const Container = styled.div`
     border : none;
 `
 const FolderClose = Folder.extend`
-    width : 1.5rem;
-    height : 1.5rem;
+    width : 1.3rem;
+    height :1.3rem;
     color : white;
     &:hover ${FolderClose} {
         
@@ -35,8 +37,8 @@ const FolderClose = Folder.extend`
     position: relative;
 `
 const FolderSolid = FolderOpen.extend`
-    width : 1.5rem;
-    height : 1.5rem;
+    width : 1.3rem;
+    height : 1.3rem;
     color : white;
     display: inline-block;
     cursor: pointer;
@@ -47,8 +49,8 @@ const FolderSolid = FolderOpen.extend`
 `
 
 const PersonReg = PersonOutline.extend`
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.3rem;
+  height: 1.3rem;
   color: white;
   cursor: pointer;
   &:hover ${PersonReg} {
@@ -61,16 +63,16 @@ const PersonReg = PersonOutline.extend`
 `
 
 const PersonSolid = Person.extend`
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.3rem;
+  height: 1.3rem;
   color: white;
   cursor: pointer;
   display: inline-block;
   border-radius: 25%;
 `
 const SettingReg = Settings.extend`
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.3rem;
+  height: 1.3rem;
   color: white;
   &:hover ${SettingReg} {
     transition-duration: 300ms;
@@ -82,8 +84,8 @@ const SettingReg = Settings.extend`
   border-radius: 25%;
 `
 const SettingSolid = Gear.extend`
-    width : 1.5rem;
-    height : 1.5rem;
+    width : 1.3rem;
+    height : 1.3rem;
     color : white;
     display: inline-block;
     cursor: pointer;
@@ -94,8 +96,8 @@ const SettingSolid = Gear.extend`
 `
 
 const ListAltReg = ListAlt.extend`
-    width : 1.5rem;
-    height : 1.5rem;
+    width : 1.3rem;
+    height : 1.3rem;
     color : white;
     &:hover ${ListAltReg} {
       transition-duration: 300ms;
@@ -109,8 +111,8 @@ const ListAltReg = ListAlt.extend`
 `
 
 const ListAltSolidz = ListSolid.extend`
-    width : 1.5rem;
-    height : 1.5rem;
+    width : 1.3rem;
+    height : 1.3rem;
     color : white;
     display: inline-block;
     cursor: pointer;
@@ -118,9 +120,9 @@ const ListAltSolidz = ListSolid.extend`
     border-radius: 25%
     position: relative;
 `
-const AddReg = AddCircleOutline.extend`
-    width : 1.5rem;
-    height : 1.5rem;
+const AddReg = Plus.extend`
+    width : 1.3rem;
+    height : 1.3rem;
     color : white;
     &:hover ${AddReg} {
       transition-duration: 300ms;
@@ -132,45 +134,62 @@ const AddReg = AddCircleOutline.extend`
     border-radius: 25%
     position: relative;
 `
+const LogOut = ExitToApp.extend`
+    width : 1.3rem;
+    height : 1.3rem;
+    color : white;
+    &:hover ${LogOut} {
+      transition-duration: 300ms;
+      top: -1px;
+    } 
+    display: inline-block;
+    cursor: pointer;
+    line-height: 84px;
+    border-radius: 25%
+    position: relative;
+
+`
 class Header extends Component {
   constructor(props) {
     super(props)
-    // console.log('pang')
     this.state = {
-      folder: <FolderClose />,
-      person: <PersonReg />,
-      setting: <SettingReg />,
-      list: <ListAltReg />,
-      add: <AddReg />,
+      folder: <FolderClose className="icon"/>,
+      person: <PersonReg className="icon"/>,
+      setting: <SettingReg className="icon"/>,
+      list: <ListAltReg className="icon"/>,
+      add: <AddReg className="icon"/>,
+      logout: <LogOut className="icon"/>,
       icondefault: {
-        folder: <FolderClose />,
-        person: <PersonReg />,
-        setting: <SettingReg />,
-        list: <ListAltReg />,
-        add: <AddReg />
+        folder: <FolderClose className="icon"/>,
+        person: <PersonReg className="icon"/>,
+        setting: <SettingReg className="icon"/>,
+        list: <ListAltReg className="icon"/>,
+        add: <AddReg className="icon"/>,
+        logout: <LogOut className="icon"/>
       },
       toggleAddModal: false
     }
+    this.logOut = this.logOut.bind(this)
   }
   changeFolderIcon() {
     this.clear()
-    this.setState({ folder: <FolderSolid /> })
+    this.setState({ folder: <FolderSolid className="icon"/> })
     this.props.history.push('/project')
   }
 
   changePersonIcon() {
     this.clear()
-    this.setState({ person: <PersonSolid /> })
+    this.setState({ person: <PersonSolid className="icon"/> })
     this.props.history.push('/person')
   }
   changeSettingIcon() {
     this.clear()
-    this.setState({ setting: <SettingSolid /> })
+    this.setState({ setting: <SettingSolid className="icon"/> })
     this.props.history.push('/setting')
   }
   changeListIcon() {
     this.clear()
-    this.setState({ list: <ListAltSolidz /> })
+    this.setState({ list: <ListAltSolidz className="icon"/> })
     this.props.history.push('/overview')
   }
   clear() {
@@ -194,13 +213,16 @@ class Header extends Component {
   update() {
     this.clear()
     if (window.location.pathname == '/traffic-app/build/person')
-      this.setState({ person: <PersonSolid /> })
+      this.setState({ person: <PersonSolid className="icon"/> })
     if (window.location.pathname == '/traffic-app/build/project')
-      this.setState({ folder: <FolderSolid /> })
+      this.setState({ folder: <FolderSolid className="icon"/> })
     if (window.location.pathname == '/traffic-app/build/setting')
-      this.setState({ setting: <SettingSolid /> })
+      this.setState({ setting: <SettingSolid className="icon"/> })
     if (window.location.pathname == '/traffic-app/build/overview')
-      this.setState({ list: <ListAltSolidz /> })
+      this.setState({ list: <ListAltSolidz className="icon"/> })
+  }
+  logOut() {
+    this.props.history.push('/');
   }
   componentWillReceiveProps() {
     this.update()
@@ -212,7 +234,7 @@ class Header extends Component {
     const { toggleAddModal } = this.state
     return (
       <Container>
-        <Navbar>
+        <Navbar style={{ paddingBottom: '0', paddingTop: '0' ,paddingLeft:'5px',paddingRight:'5px'}}>
           <NavLink
             onClick={() => {
               this.changeListIcon()
@@ -234,7 +256,7 @@ class Header extends Component {
           >
             {this.state.person}
           </NavLink>
-          <Navbar className="ml-auto">
+          <Navbar className="ml-auto" style={{paddingRight:'0'}}>
             <NavLink onClick={e => this.toggleAddModal(true)}>
               {this.state.add}
             </NavLink>
@@ -245,6 +267,7 @@ class Header extends Component {
             >
               {this.state.setting}
             </NavLink>
+            <NavLink onClick={this.logOut}>{this.state.logout}</NavLink>
           </Navbar>
         </Navbar>
         {toggleAddModal && (

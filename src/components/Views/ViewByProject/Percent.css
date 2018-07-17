@@ -10,8 +10,8 @@
   .editbox {
     position: relative;
     left: 3px;
-    top: 4px;
-    width: 20px;
+    top: 8.5px;
+    width: 30px;
   }
   .Edit {
     width: 12px;
@@ -40,7 +40,7 @@
   }
   .Edit {
     width: 12px;
-    bottom: 13px;
+    bottom: 8.5px;
     left: 15px;
   }
   .editing {
@@ -60,7 +60,7 @@
   .editbox {
     position: relative;
     left: 3px;
-    top: 4px;
+    top: 8.5px;
     width: 20px;
   }
   .Edit {

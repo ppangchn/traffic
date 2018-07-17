@@ -48,8 +48,6 @@ const ProgressContainer = styled.div`
 `
 const Edit = MoreHoriz.extend`
   color: #5bc2e1;
-  width: 1.5625rem;
-  height: 1.5625rem;
 `
 const WhiteTriangle = TriangleUp.extend`
   color: white;
@@ -179,9 +177,6 @@ class EachProjectSidebar extends Component {
                 this.setState({ btnDropright: !this.state.btnDropright })
               }}
             >
-              <DropdownToggle>
-                <Edit />
-              </DropdownToggle>
               <DropdownMenu className="dropdown-menu">
                 <DropdownItem
                   className="dropdownitem"
@@ -218,10 +213,20 @@ class EachProjectSidebar extends Component {
           </div>
 
           <div className="eachprojectname">
-            <div style={{ textOverflow: 'ellipsis', overflow: 'hidden' }}>
+            <div
+              style={{
+                textOverflow: 'ellipsis',
+                overflow: 'hidden',
+                width: '100%',
+                float: 'left'
+              }}
+            >
               {project.name}
             </div>
             <div className="eachprojectprocess">{project.process}%</div>
+            <div className="eachprojectedit">
+              <Edit className="eachprojectediticon"/>
+            </div>
           </div>
           <ProgressContainer>
             <Progress
@@ -259,7 +264,14 @@ class EachProjectSidebar extends Component {
                     getData={() => this.getData()}
                   />
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'row' }}>
+                <div
+                  className="persontagcontainer"
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    overflowX: 'hidden'
+                  }}
+                >
                   <div className="membertag">{timeline.users.roles.name}</div>
                   {timeline.users.tags.map(tag => {
                     return (

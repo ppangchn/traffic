@@ -58,6 +58,7 @@ class AddProject extends Component {
         '#EC407A',
         '#F48FB1'
       ],
+      usedcolor: [],
       projectname: '',
       checkedcolor: '',
       pm: [],
@@ -105,10 +106,11 @@ class AddProject extends Component {
       dropdownOpen: !this.state.dropdownOpen
     })
   }
-  setCheckColor = c => {
-    console.log(c)
+  setCheckColor = (c,used) => {
     if (c) this.setState({ isinvalidcolor: false })
-    this.setState({ checkedcolor: c })
+    if (!used) this.setState({ checkedcolor: c })
+    console.log(c)
+    
   }
 
   handleInputChange(e) {
@@ -360,7 +362,19 @@ class AddProject extends Component {
           })
           this.setCheckColor(data.project.color)
         })
+      } else if (this.props.userid && this.props.username) {
+        
+        const pm = [
+          {
+            value: this.props.userid,
+            label: this.props.username,
+            weight: 0
+          }
+        ]
+        this.setState({ pm })
+        console.log(pm)
       } else {
+        console.log('no props')
         this.setState({
           pm: [
             {
@@ -371,9 +385,17 @@ class AddProject extends Component {
           ]
         })
       }
+      let usedcolor = [];
+      axios.get(`${url}/project`).then(res => {
+        const project= res.data;
+        project.map((e) => {
+          usedcolor.push(e.color);
+        })
+        this.setState({usedcolor})
+      })
       axios.get(`${url}/users/pm`).then(res => {
         const { data } = res
-        console.log('Data', data)
+        // console.log('Data', data)
         let listpm = []
         data.map(data => {
           listpm.push({ value: data.id, label: data.name })
@@ -459,13 +481,15 @@ class AddProject extends Component {
               <Row>
                 <Col>Project color</Col>
               </Row>
-              {/* {() => this.setChecked()} */}
               <Row className="pd10">
                 {this.state.color.map(c => {
+                  let used = false;
+                  if (this.state.usedcolor.includes(c)) used = true;
                   return (
                     <Col key={c} className="pd5" md={1} sm={1} xs={2}>
                       <ColorButton
                         color={c}
+                        used={used}
                         setCheckedColor={this.setCheckColor}
                         checkedColor={this.state.checkedcolor}
                       />

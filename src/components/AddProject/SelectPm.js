@@ -62,7 +62,9 @@ class SelectPm extends Component {
             onChange={this.handleChange}
             options={this.props.listpm}
             trimFilter
+            autoFocus={true}
             clearable={false}
+            scrollMenuIntoView={false}
           />
         </Col>
         <Col className="sliderboxpm" xs="4">
@@ -71,7 +73,7 @@ class SelectPm extends Component {
               className="slider"
               min={0}
               max={100}
-              step={25}
+              step={5}
               onChange={this.slideChange}
               value={this.state.choseweight}
               disabled={this.state.disabled}

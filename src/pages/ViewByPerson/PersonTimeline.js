@@ -56,8 +56,6 @@ class PersonTimeline extends Component {
           items
         })
       })
-      console.log('items na ->', items)
-      console.log('groups na ->', groups)
     } catch (error) {
       console.log('fail to get data at PersonTimeline')
     }
@@ -68,13 +66,13 @@ class PersonTimeline extends Component {
         <Timeline
           groups={this.state.groups}
           items={this.state.items}
-          visibleTimeStart={new Date(moment().add(7*1,'day')).getTime()}
-          visibleTimeEnd={new Date(moment().add(7*4, 'day')).getTime()}
+          visibleTimeStart={new Date(moment().add(7*5,'day')).getTime()}
+          visibleTimeEnd={new Date(moment().add(7*12, 'day')).getTime()}
           sidebarWidth={0}
-          lineHeight={102}
+          lineHeight={60.5}
           stickyHeader={true}
           timeSteps={{ day: 7 }}
-          itemHeightRatio={0.3}
+          itemHeightRatio={0.4}
           stackItems={true}
         />
       </GraphBox>

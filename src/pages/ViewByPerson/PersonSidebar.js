@@ -57,25 +57,31 @@ class PersonSidebar extends Component {
         tags.push(user.tags)
         listmember.push({ value: user.id, label: user.name })
         let count = 0
-        let start = 10000000000000000000000
-        let end = 0
-        let startmillisecond = 0
-        let endmillisecond = 0
+        let alltimeline = []
         user.projectTimeline.map(timeline => {
-          if (!timeline.project.isDisable && !timeline.isDisable && timeline.start && timeline.end) {
-            console.log('name->>>',user.name,timeline.project.name)
-            startmillisecond = new Date(timeline.start).getTime()
-            endmillisecond = new Date(timeline.end).getTime()
-            if (
-              !(
-                (start < startmillisecond && end < startmillisecond) ||
-                (start > endmillisecond && end > endmillisecond)
-              )
-            ) {
-              count++
-            }
-            start = Math.min(start, startmillisecond)
-            end = Math.max(end, endmillisecond)
+          if (
+            !timeline.project.isDisable &&
+            !timeline.isDisable &&
+            timeline.start &&
+            timeline.end
+          ) {
+            alltimeline.push({
+              start: new Date(timeline.start).getTime(),
+              end: new Date(timeline.end).getTime()
+            })
+            let start = new Date(timeline.start).getTime()
+            let end = new Date(timeline.end).getTime()
+            let add = true
+            alltimeline.map(eachtimeline => {
+              if (
+                (start < eachtimeline.start && end < eachtimeline.start) ||
+                (start > eachtimeline.end && end > eachtimeline.end)
+              ) {
+                add = false
+              }
+            })
+
+            if (add) count++
           }
         })
         length.push(count)
@@ -109,19 +115,12 @@ class PersonSidebar extends Component {
                 style={{
                   display: 'flex',
                   flexDirection: 'row',
-                  flexWrap: 'wrap'
+                  overflowX: 'hidden'
                 }}
               >
                 <div className="persontag">{this.state.roles[index]}</div>
                 {this.state.tags[index].map(tag => {
-                  return (
-                    <div
-                      
-                      className="persontag"
-                    >
-                      {tag.name}
-                    </div>
-                  )
+                  return <div className="persontag">{tag.name}</div>
                 })}
               </div>
             </Item>

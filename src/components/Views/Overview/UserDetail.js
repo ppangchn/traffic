@@ -33,7 +33,7 @@ class UserDetail extends Component {
   }
   componentDidMount() {
     const data = {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
       datasets: [
         {
           label: 'Burn',
@@ -66,7 +66,6 @@ class UserDetail extends Component {
       <Card className="userdetail">
         {this.props.name}
         <Line data={this.state.data} />
-        {/* <Scatter data={data}/> */}
         {projectTimeline.map(project => {
           if (!project.project.isDisable) {
             return (
@@ -99,11 +98,15 @@ class UserDetail extends Component {
             )
           }
         })}
-        <Button onClick={() => this.toggleAddModal(true)} color="5bc2e1">
+        <Button onClick={() => this.toggleAddModal(true)} color="newproject5bc2e1">
           + New Project
         </Button>
         {this.state.toggleAddModal && (
-          <AddProject onClose={() => this.toggleAddModal(false)} />
+          <AddProject
+            onClose={() => this.toggleAddModal(false)}
+            userid={this.props.id}
+            username={this.props.name}
+          />
         )}
       </Card>
     )

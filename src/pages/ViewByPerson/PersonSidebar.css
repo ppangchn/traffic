@@ -6,89 +6,73 @@
 @media (min-width: 321px) and (max-width: 575.98px) {
   .personheadcontainer {
     padding-top: 5px;
-    padding-bottom: 14.5px;
-  }
-  .personhead {
-    font-size: 20px;
+    padding-bottom: 20.5px;
+    padding-right: 5px;
   }
   .personitem0 {
-    padding-bottom: 19px;
-    padding-left: 20px;
-    height: 102px;
-    width: 135px;
+    padding-bottom: 26px;
+    padding-left: 16px;
   }
   .personitem1 {
-    padding-bottom: 19px;
-    padding-left: 20px;
-    height: 123.4px;
-    width: 135px;
+    padding-bottom: 26px;
+    padding-left: 16px;
   }
   .personitem2 {
-    padding-bottom: 19px;
-    padding-left: 20px;
-    height: 124px;
-    width: 135px;
+    padding-bottom: 57.5px;
+    padding-left: 16px;
   }
   .personitem3 {
-    padding-bottom: 19px;
-    padding-left: 20px;
-    height: 166px;
-    width: 135px;
+    padding-bottom: 88px;
+    padding-left: 16px;
   }
   .personitem4 {
-    padding-bottom: 19px;
-    padding-left: 20px;
-    height: 208px;
-    width: 135px;
+    padding-bottom: 118.5px;
+    padding-left: 16px;
   }
   .personitem5 {
-    padding-bottom: 19px;
-    padding-left: 20px;
-    height: 250px;
-    width: 135px;
+    padding-bottom: 149px;
+    padding-left: 16px;
   }
   .personitem6 {
-    padding-bottom: 19px;
-    padding-left: 20px;
-    height: 292px;
-    width: 135px;
+    padding-bottom: 179.5px;
+    padding-left: 16px;
   }
   .personitem7 {
-    padding-bottom: 19px;
-    padding-left: 20px;
-    height: 334px;
-    width: 135px;
+    padding-bottom: 210px;
+    padding-left: 16px;
   }
   .personitem8 {
-    padding-bottom: 19px;
-    padding-left: 20px;
-    height: 376px;
-    width: 135px;
+    padding-bottom: 240.5px;
+    padding-left: 16px;
   }
   .personitem9 {
-    padding-bottom: 19px;
-    padding-left: 20px;
-    height: 418px;
-    width: 135px;
+    padding-bottom: 271px;
+    padding-left: 16px;
   }
   .personitem10 {
-    padding-bottom: 19px;
-    padding-left: 20px;
-    height: 460px;
-    width: 135px;
+    padding-bottom: 301.5px;
+    padding-left: 16px;
   }
   .persontag {
-    font-size: 7px;
+    font-size: 5px;
     width: auto;
     margin-right: 3px;
     margin-top: 4px;
     border-radius: 2px;
-    padding: 0 6px;
+    padding: 0 3px;
   }
   .personname {
-    padding-top: 15px;
+    padding-top: 2px;
     padding-right: 25px;
     padding-bottom: 5px;
+    font-size: 11px;
+    width: 100px;
+  }
+  .persontagcontainer {
+    width: 100px;
+  }
+  .persontagcontainer {
+    width: 80px;
   }
 }
 @media (min-width: 576px) and (max-width: 767.98px) {
@@ -98,62 +82,50 @@
   }
   .personhead {
     font-size: 20px;
-    padding-left: 10px;
   }
   .personitem0 {
-    padding-bottom: 19px;
-    padding-left: 30px;
-    height: 102px;
+    padding-bottom: 10px;
+    padding-left: 20px;
   }
   .personitem1 {
-    padding-bottom: 19px;
-    padding-left: 30px;
-    height: 123.4px;
+    padding-bottom: 10px;
+    padding-left: 20px;
   }
   .personitem2 {
-    padding-bottom: 19px;
-    padding-left: 30px;
-    height: 124px;
+    padding-bottom: 41.5px;
+    padding-left: 20px;
   }
   .personitem3 {
-    padding-bottom: 19px;
-    padding-left: 30px;
-    height: 166px;
+    padding-bottom: 72px;
+    padding-left: 20px;
   }
   .personitem4 {
-    padding-bottom: 19px;
-    padding-left: 30px;
-    height: 208px;
+    padding-bottom: 102.5px;
+    padding-left: 20px;
   }
   .personitem5 {
-    padding-bottom: 19px;
-    padding-left: 30px;
-    height: 250px;
+    padding-bottom: 133px;
+    padding-left: 20px;
   }
   .personitem6 {
-    padding-bottom: 19px;
-    padding-left: 30px;
-    height: 292px;
+    padding-bottom: 163.5px;
+    padding-left: 20px;
   }
   .personitem7 {
-    padding-bottom: 19px;
-    padding-left: 30px;
-    height: 334px;
+    padding-bottom: 194px;
+    padding-left: 20px;
   }
   .personitem8 {
-    padding-bottom: 19px;
-    padding-left: 30px;
-    height: 376px;
+    padding-bottom: 224.5px;
+    padding-left: 20px;
   }
   .personitem9 {
-    padding-bottom: 19px;
-    padding-left: 30px;
-    height: 418px;
+    padding-bottom: 255px;
+    padding-left: 20px;
   }
   .personitem10 {
-    padding-bottom: 19px;
-    padding-left: 30px;
-    height: 460px;
+    padding-bottom: 285.5px;
+    padding-left: 20px;
   }
   .persontag {
     font-size: 7px;
@@ -164,9 +136,13 @@
     padding: 0 6px;
   }
   .personname {
-    padding-top: 15px;
+    padding-top: 10px;
     padding-right: 25px;
     padding-bottom: 5px;
+    font-size: 14px;
+  }
+  .persontagcontainer {
+    width: 120px;
   }
 }
 
@@ -177,65 +153,53 @@
   }
   .personhead {
     font-size: 20px;
-    padding-left: 10px;
   }
   .personitem0 {
-    padding-bottom: 19px;
-    padding-left: 30px;
-    height: 102px;
+    padding-bottom: 17px;
+    padding-left: 20px;
   }
   .personitem1 {
-    padding-bottom: 19px;
-    padding-left: 30px;
-    height: 123.4px;
+    padding-bottom: 17px;
+    padding-left: 20px;
   }
   .personitem2 {
-    padding-bottom: 19px;
-    padding-left: 30px;
-    height: 124px;
+    padding-bottom: 48.5px;
+    padding-left: 20px;
   }
   .personitem3 {
-    padding-bottom: 19px;
-    padding-left: 30px;
-    height: 166px;
+    padding-bottom: 79px;
+    padding-left: 20px;
   }
   .personitem4 {
-    padding-bottom: 19px;
-    padding-left: 30px;
-    height: 208px;
+    padding-bottom: 109.5px;
+    padding-left: 20px;
   }
   .personitem5 {
-    padding-bottom: 19px;
-    padding-left: 30px;
-    height: 250px;
+    padding-bottom: 140px;
+    padding-left: 20px;
   }
   .personitem6 {
-    padding-bottom: 19px;
-    padding-left: 30px;
-    height: 292px;
+    padding-bottom: 170.5px;
+    padding-left: 20px;
   }
   .personitem7 {
-    padding-bottom: 19px;
-    padding-left: 30px;
-    height: 334px;
+    padding-bottom: 201px;
+    padding-left: 20px;
   }
   .personitem8 {
-    padding-bottom: 19px;
-    padding-left: 30px;
-    height: 376px;
+    padding-bottom: 231.5px;
+    padding-left: 20px;
   }
   .personitem9 {
-    padding-bottom: 19px;
-    padding-left: 30px;
-    height: 418px;
+    padding-bottom: 262px;
+    padding-left: 20px;
   }
   .personitem10 {
-    padding-bottom: 19px;
-    padding-left: 30px;
-    height: 460px;
+    padding-bottom: 292.5px;
+    padding-left: 20px;
   }
   .persontag {
-    font-size: 10px;
+    font-size: 7px;
     width: auto;
     margin-right: 3px;
     margin-top: 4px;
@@ -243,9 +207,13 @@
     padding: 0 6px;
   }
   .personname {
-    padding-top: 15px;
+    padding-top: 4px;
     padding-right: 25px;
-    padding-bottom: 5px;
+    padding-bottom: 3px;
+    font-size: 15px;
+  }
+  .persontagcontainer {
+    width: 150px;
   }
 }
 @media (min-width: 992px) and (max-width: 1199.98px) {
@@ -255,65 +223,53 @@
   }
   .personhead {
     font-size: 20px;
-    padding-left: 10px;
   }
   .personitem0 {
-    padding-bottom: 19px;
-    padding-left: 30px;
-    height: 102px;
+    padding-bottom: 13px;
+    padding-left: 20px;
   }
   .personitem1 {
-    padding-bottom: 19px;
-    padding-left: 30px;
-    height: 123.4px;
+    padding-bottom: 13px;
+    padding-left: 20px;
   }
   .personitem2 {
-    padding-bottom: 19px;
-    padding-left: 30px;
-    height: 124px;
+    padding-bottom: 44.5px;
+    padding-left: 20px;
   }
   .personitem3 {
-    padding-bottom: 19px;
-    padding-left: 30px;
-    height: 166px;
+    padding-bottom: 75px;
+    padding-left: 20px;
   }
   .personitem4 {
-    padding-bottom: 19px;
-    padding-left: 30px;
-    height: 208px;
+    padding-bottom: 105.5px;
+    padding-left: 20px;
   }
   .personitem5 {
-    padding-bottom: 19px;
-    padding-left: 30px;
-    height: 250px;
+    padding-bottom: 136px;
+    padding-left: 20px;
   }
   .personitem6 {
-    padding-bottom: 19px;
-    padding-left: 30px;
-    height: 292px;
+    padding-bottom: 166.5px;
+    padding-left: 20px;
   }
   .personitem7 {
-    padding-bottom: 19px;
-    padding-left: 30px;
-    height: 334px;
+    padding-bottom: 197px;
+    padding-left: 20px;
   }
   .personitem8 {
-    padding-bottom: 19px;
-    padding-left: 30px;
-    height: 376px;
+    padding-bottom: 227.5px;
+    padding-left: 20px;
   }
   .personitem9 {
-    padding-bottom: 19px;
-    padding-left: 30px;
-    height: 418px;
+    padding-bottom: 258px;
+    padding-left: 20px;
   }
   .personitem10 {
-    padding-bottom: 19px;
-    padding-left: 30px;
-    height: 460px;
+    padding-bottom: 288.5px;
+    padding-left: 20px;
   }
   .persontag {
-    font-size: 10px;
+    font-size: 8px;
     width: auto;
     margin-right: 3px;
     margin-top: 4px;
@@ -321,9 +277,12 @@
     padding: 0 6px;
   }
   .personname {
-    padding-top: 15px;
+    padding-top: 2px;
     padding-right: 25px;
     padding-bottom: 5px;
+  }
+  .persontagcontainer {
+    width: 200px;
   }
 }
 @media (min-width: 1200px) {
@@ -336,59 +295,48 @@
     padding-left: 10px;
   }
   .personitem0 {
-    padding-bottom: 19px;
+    padding-bottom: 10px;
     padding-left: 30px;
-    height: 102px;
   }
   .personitem1 {
-    padding-bottom: 19px;
+    padding-bottom: 10px;
     padding-left: 30px;
-    height: 123.4px;
   }
   .personitem2 {
-    padding-bottom: 19px;
+    padding-bottom: 41.5px;
     padding-left: 30px;
-    height: 124px;
   }
   .personitem3 {
-    padding-bottom: 19px;
+    padding-bottom: 72px;
     padding-left: 30px;
-    height: 166px;
   }
   .personitem4 {
-    padding-bottom: 19px;
+    padding-bottom: 102.5px;
     padding-left: 30px;
-    height: 208px;
   }
   .personitem5 {
-    padding-bottom: 19px;
+    padding-bottom: 133px;
     padding-left: 30px;
-    height: 250px;
   }
   .personitem6 {
-    padding-bottom: 19px;
+    padding-bottom: 163.5px;
     padding-left: 30px;
-    height: 292px;
   }
   .personitem7 {
-    padding-bottom: 19px;
+    padding-bottom: 194px;
     padding-left: 30px;
-    height: 334px;
   }
   .personitem8 {
-    padding-bottom: 19px;
+    padding-bottom: 224.5px;
     padding-left: 30px;
-    height: 376px;
   }
   .personitem9 {
-    padding-bottom: 19px;
+    padding-bottom: 255px;
     padding-left: 30px;
-    height: 418px;
   }
   .personitem10 {
-    padding-bottom: 19px;
+    padding-bottom: 285.5px;
     padding-left: 30px;
-    height: 460px;
   }
   .persontag {
     font-size: 10px;
@@ -400,8 +348,15 @@
     padding: 0 6px;
   }
   .personname {
-    padding-top: 15px;
+    padding-top: 2px;
     padding-right: 25px;
     padding-bottom: 5px;
   }
+  .persontagcontainer {
+    width: 250px;
+  }
 }
+.persontagcontainer:hover {
+  overflow-x: visible !important;
+}
+

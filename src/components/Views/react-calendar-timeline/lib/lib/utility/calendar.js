@@ -226,41 +226,46 @@ function collision(a, b, lineHeight) {
 }
 
 function stack(items, groupOrders, lineHeight, force) {
-  var i, iMax;
-  var totalHeight = 0;
+  var i, iMax
+  var totalHeight = 0
 
-  var groupHeights = [];
-  var groupTops = [];
+  var groupHeights = []
+  var groupTops = []
 
-  var groupedItems = getGroupedItems(items, groupOrders);
+  var groupedItems = getGroupedItems(items, groupOrders)
 
   if (force) {
     // reset top position of all items
     for (i = 0, iMax = items.length; i < iMax; i++) {
-      items[i].dimensions.top = null;
+      items[i].dimensions.top = null
     }
   }
-  
-  groupedItems.forEach(function (group) {
+
+  groupedItems.forEach(function(group) {
     // calculate new, non-overlapping positions
-    groupTops.push(totalHeight);
+    groupTops.push(totalHeight)
 
-    var groupHeight = 0;
-    var verticalMargin = 0;
+    var groupHeight = 0
+    var verticalMargin = 0
     for (i = 0, iMax = group.length; i < iMax; i++) {
-      var item = group[i];
-      verticalMargin = lineHeight - item.dimensions.height - 50;
+      var item = group[i]
+      verticalMargin = lineHeight - item.dimensions.height // from top of the box
 
-      if (item.dimensions.stack) {
-        item.dimensions.top = totalHeight + 30;
-        groupHeight = Math.max(groupHeight, lineHeight);
+      if (item.dimensions.stack && item.dimensions.top === null) {
+        item.dimensions.top = totalHeight + verticalMargin - 18
+        groupHeight = Math.max(groupHeight, lineHeight)
         do {
-          var collidingItem = null;
+          var collidingItem = null
           for (var j = 0, jj = group.length; j < jj; j++) {
-            var other = group[j];
-            if (other.dimensions.top !== null && other !== item && other.dimensions.stack && collision(item.dimensions, other.dimensions, lineHeight)) {
-              collidingItem = other;
-              break;
+            var other = group[j]
+            if (
+              other.dimensions.top !== null &&
+              other !== item &&
+              other.dimensions.stack &&
+              collision(item.dimensions, other.dimensions, lineHeight)
+            ) {
+              collidingItem = other
+              break
             } else {
               // console.log('dont test', other.top !== null, other !== item, other.stack);
             }
@@ -268,21 +273,24 @@ function stack(items, groupOrders, lineHeight, force) {
 
           if (collidingItem != null) {
             // There is a collision. Reposition the items above the colliding element
-            item.dimensions.top = collidingItem.dimensions.top + lineHeight - 60;
-            groupHeight = Math.max(groupHeight, item.dimensions.top + item.dimensions.height - totalHeight);
+            item.dimensions.top = collidingItem.dimensions.top + lineHeight - 30 // between items
+            groupHeight = Math.max(
+              groupHeight + verticalMargin - 33,
+              item.dimensions.top + item.dimensions.height - totalHeight + 19
+            )
           }
-        } while (collidingItem);
+        } while (collidingItem)
       }
     }
-    groupHeights.push(Math.max(groupHeight + verticalMargin, lineHeight))
-    totalHeight+=(Math.max(groupHeight + verticalMargin, lineHeight))
-    console.log('groupheight',groupHeights)
-  });
+
+    groupHeights.push(Math.max(groupHeight, lineHeight))
+    totalHeight+=(Math.max(groupHeight, lineHeight))
+  })
   return {
     height: totalHeight,
-    groupHeights: groupHeights,
-    groupTops: groupTops
-  };
+    groupHeights,
+    groupTops
+  }
 }
 
 function nostack(items, groupOrders, lineHeight, force) {
