@@ -418,6 +418,7 @@ class AddProject extends Component {
           isOpen={this.state.open}
           toggle={onClose}
           onExit={() => this.clear()}
+          autoFocus={true}
         >
           <ModalHeader toggle={onClose}>{this.state.header}</ModalHeader>
           <ModalBody>
