@@ -15,6 +15,8 @@ import { withRouter } from 'react-router-dom'
 import AddProject from '../../pages/AddProject/AddProject'
 import './Header.css'
 
+import auth from '../../service/index'
+
 const Container = styled.div`
     background-color: #5bc2e1
     padding : 0px;
@@ -218,7 +220,7 @@ class Header extends Component {
 		if (window.location.pathname == '/traffic-app/build/overview') this.setState({ list: <ListAltSolidz className="icon" /> })
 	}
 	logOut() {
-		// localStorage.clearToken('token', data.token)
+		auth.clearToken()
 		this.props.history.push('/')
 	}
 	componentWillReceiveProps() {

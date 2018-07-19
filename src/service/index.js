@@ -42,8 +42,7 @@ export const auth = {
 
 	isAuthenticated(fromStorage = APP_PERSIST_STORES_TYPES[0], tokenKey = TOKEN_KEY) {
 		return !!this.getToken(fromStorage, tokenKey)
-  },
-  
+	},
 
 	clearToken(storage = APP_PERSIST_STORES_TYPES[0], tokenKey = TOKEN_KEY) {
 		// localStorage:
