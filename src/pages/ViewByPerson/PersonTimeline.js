@@ -75,6 +75,7 @@ class PersonTimeline extends Component {
           itemHeightRatio={0.4}
           stackItems={true}
           isFixedSizeRender={true}
+          isGrid={true}
         />
       </GraphBox>
     )

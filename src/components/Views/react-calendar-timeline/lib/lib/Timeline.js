@@ -100,6 +100,7 @@ var ReactCalendarTimeline = function (_Component) {
     _initialiseProps.call(_this);
 
     var isFixedSizeRender = (!!_this.props.isFixedSizeRender)? _this.props.isFixedSizeRender : false
+    var isGrid = (!!_this.props.isGrid)? _this.props.isGrid : false
 
     var visibleTimeStart = null;
     var visibleTimeEnd = null;
@@ -129,7 +130,8 @@ var ReactCalendarTimeline = function (_Component) {
       topOffset: 0,
       resizingItem: null,
       resizingEdge: null,
-      isFixedSizeRender: isFixedSizeRender
+      isFixedSizeRender: isFixedSizeRender,
+      isGrid: isGrid
     };
 
     var _this$stackItems = _this.stackItems(props.items, props.groups, _this.state.canvasTimeStart, _this.state.visibleTimeStart, _this.state.visibleTimeEnd, _this.state.width),
@@ -241,13 +243,18 @@ var ReactCalendarTimeline = function (_Component) {
   }, {
     key: 'verticalLines',
     value: function verticalLines(canvasTimeStart, canvasTimeEnd, canvasWidth, minUnit, timeSteps, height) {
+      let result = timeSteps
+
+      if (this.state.isGrid) {
+        result = 5
+      }
       return _react2.default.createElement(_VerticalLines2.default, {
         canvasTimeStart: canvasTimeStart,
         canvasTimeEnd: canvasTimeEnd,
         canvasWidth: canvasWidth,
         lineCount: (0, _generic._length)(this.props.groups),
         minUnit: minUnit,
-        timeSteps: timeSteps,
+        timeSteps: result,
         height: height
       });
     }
