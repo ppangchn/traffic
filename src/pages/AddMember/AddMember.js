@@ -242,174 +242,6 @@ class AddMember extends Component {
     } catch (error) {
 			console.log('cant get member at addmember',error)
 		}
-<<<<<<< HEAD
-	}
-
-	componentDidMount() {
-		try {
-			if (this.props.id) {
-				axios.get(`${url}/users`).then(res => {
-					const { data } = res
-					data.map(user => {
-						if (user.id === this.props.id) {
-
-							this.setState({
-								id: user.id,
-								name: user.name,
-								roles: {
-									value: user.roles.id,
-									label: user.roles.name
-								},
-								tags: user.tags,
-								email: user.email,
-								header: 'Edit Member'
-							})
-						}
-					})
-				})
-			}
-
-			axios.get(`${url}/roles`).then(res => {
-				const { data } = res
-				let listroles = []
-				data.map(data => {
-					listroles.push({ value: data.id, label: data.name })
-				})
-				this.setState({
-					listroles
-				})
-			})
-		} catch (error) {
-
-		}
-	}
-
-	handleDelete(i) {
-		const { tags } = this.state
-		this.setState({
-			tags: tags.filter((tag, index) => index !== i)
-		})
-	}
-
-	handleAddition(tag) {
-		this.setState(state => ({
-			tags: [...state.tags, { id: tag.id, name: tag.text }]
-		}))
-	}
-
-	handleDrag(tag, currPos, newPos) {
-		const tags = [...this.state.tags]
-		const newTags = tags.slice()
-
-		newTags.splice(currPos, 1)
-		newTags.splice(newPos, 0, tag)
-
-		// re-render
-		this.setState({ tags: newTags })
-	}
-
-	render() {
-		console.log('Current roles', this.state.roles)
-		const { onClose } = this.props
-		const { tags, suggestions } = this.state
-
-		return (
-			<Container>
-				<Modal style={{ fontSize: '1rem' }} size="5" isOpen={this.state.open} toggle={onClose}>
-					<ModalHeader toggle={onClose}>{this.state.header}</ModalHeader>
-					<ModalBody>
-						<Container>
-							<Form onSubmit={this.sendDataMember}>
-								<Row className="btsave">
-									<Col>
-										Name
-										<input
-											style={{ fontSize: '8px !important' }}
-											name="name"
-											className="inputform2"
-											placeholder="Type your name"
-											onChange={this.handleInputChange}
-											value={this.state.name}
-											invalid={this.state.invalidname}
-											trimFilter
-											required
-										/>
-									</Col>
-								</Row>
-
-								<Row className="btsave">
-									<Col>Roles</Col>
-								</Row>
-								<Select
-									placeholder="Select role"
-									value={this.state.roles}
-									onChange={this.handleChange}
-									options={this.state.listroles}
-									trimFilter
-									required
-								/>
-								<div className="invalid">{this.state.invalidroles && this.state.invalidrolesmessage}</div>
-
-								<Row className="btsave">
-									<Col>
-										Tags
-										<div>
-											<ReactTags
-												// className="taginput"
-												tags={tags}
-												labelField={'name'}
-												handleDelete={this.handleDelete}
-												handleAddition={this.handleAddition}
-												delimiters={delimiters}
-											/>
-										</div>
-									</Col>
-								</Row>
-
-								<Row className="btsave">
-									<Col>
-										Email
-										<input
-											style={{ fontSize: '8px !important' }}
-											name="name"
-											className="inputform2"
-											type="email"
-											placeholder="example@pirsquare.net"
-											onChange={this.handleInputChangeEmail}
-											value={this.state.email}
-											invalid={this.state.invalidemail}
-											required
-										/>
-									</Col>
-								</Row>
-
-								{['DEV', 'DSN', 'QA', 'TS'].indexOf(this.state.roles.label) === -1 && (
-									<div className="checkbox">
-										<input
-											type="checkbox"
-											className="mr-3"
-											checked={this.state.sendResetPass}
-											name="sendResetPass"
-											onChange={this.handleCheckboxChange}
-										/>
-										Send Reset Password
-									</div>
-								)}
-								<Row className="btsave">
-									<Col>
-										<Button color="5bc2e1" size="lg" block>
-											Save
-										</Button>
-									</Col>
-								</Row>
-							</Form>
-						</Container>
-					</ModalBody>
-				</Modal>
-			</Container>
-		)
-	}
-=======
   }
 
   handleDelete(i) {
@@ -452,8 +284,8 @@ class AddMember extends Component {
           <ModalBody>
             <Container>
               <Form onSubmit={this.sendDataMember}>
-                <Row className="btsave">
-                  <Col>
+                <Row >
+                  <Col className="mb-3">
                     Name
                     <input
                       style={{ fontSize: '8px !important' }}
@@ -469,9 +301,9 @@ class AddMember extends Component {
                   </Col>
                 </Row>
 
-                <Row className="btsave">
-                  <Col>Roles</Col>
-                </Row>
+                <Row >
+                  <Col className="mb-3">Roles
+
                 <Select
                   placeholder="Select role"
                   value={this.state.roles}
@@ -481,12 +313,15 @@ class AddMember extends Component {
                   required
                   clearable={false}
                 />
+                </Col>
+                </Row>
+
                 <div className="invalid">
                   {this.state.invalidroles && this.state.invalidrolesmessage}
                 </div>
 
-                <Row className="btsave">
-                  <Col>
+                <Row >
+                  <Col className="mb-3">
                     Tags
                     <div>
                       <ReactTags
@@ -501,8 +336,8 @@ class AddMember extends Component {
                   </Col>
                 </Row>
 
-                <Row className="btsave">
-                  <Col>
+                <Row >
+                  <Col className="mb-3">
                     Email
                     <input
                       style={{ fontSize: '8px !important' }}
@@ -534,8 +369,8 @@ class AddMember extends Component {
                     </div>
                   </div>
                 )}
-                <Row className="btsave">
-                  <Col>
+                <Row>
+                  <Col className="btsave">
                     <Button color="5bc2e1" size="lg" block>
                       Save
                     </Button>
@@ -548,6 +383,5 @@ class AddMember extends Component {
       </Container>
     )
   }
->>>>>>> 987800d4f9cc4f88f8f54a756d2a5af1c2f45bac
 }
 export default withRouter(AddMember)

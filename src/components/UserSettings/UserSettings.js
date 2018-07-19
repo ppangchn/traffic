@@ -104,10 +104,10 @@ export default class UserSettings extends Component {
 							</ButtonDropdown>
 						</div>
 					</CardTitle>
-						<div className="persontagcontainer" style={{ display: 'flex', flexDirection: 'row' ,flexWrap: 'wrap' ,position:'relative'}}>
-							<div className="persontag">{roles.name} </div>
+						<div className="SettingPersonTagContainer" style={{ display: 'flex', flexDirection: 'row' ,flexWrap: 'wrap' ,position:'relative'}}>
+							<div className="SettingPersonTag">{roles.name} </div>
 							{tags.map(tag => {
-								return <div key={tag.id} className="persontag">{tag.name}</div>
+								return <div key={tag.id} className="SettingPersonTag">{tag.name}</div>
 							})}
 						</div>
 				</Card>
