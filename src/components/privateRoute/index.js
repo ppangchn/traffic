@@ -5,7 +5,6 @@ import { Route, Redirect, withRouter } from 'react-router-dom'
 export class PrivateRoute extends Component {
 	isAuthen = () => {
 		let token = auth.getToken()
-
 		let user = auth.decodeToken(token)
 
 		if (auth.isExpiredToken(token)) {

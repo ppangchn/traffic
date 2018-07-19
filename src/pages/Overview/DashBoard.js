@@ -44,8 +44,8 @@ class DashBoard extends Component {
 				<UserContainer>
 					{this.state.data.map(user => {
 						let graph = []
-						user.projectTimeline.map(timeline => {
-							if (!timeline.project.isDisable) graph.push(timeline.project.process)
+						user.projectManagement.map(timeline => {
+							if (!timeline.project.isDisable) graph.push(timeline.weight)
 						})
 						return (
 							<div key={user.id}>
@@ -53,7 +53,7 @@ class DashBoard extends Component {
 									id={user.id}
 									name={user.name}
 									graph={graph}
-									projectTimeline={user.projectTimeline}
+									projectManagement={user.projectManagement}
 									updateHeader={this.props.updateHeader}
 								/>
 							</div>
@@ -65,6 +65,7 @@ class DashBoard extends Component {
 						<Timeline className="timelineicon" /> Compare
 					</Button>
 				</Link>
+        
 			</Container>
 		)
 	}
