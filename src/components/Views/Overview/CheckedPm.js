@@ -3,72 +3,79 @@ import './CheckedPm.css'
 class CheckedPm extends Component {
   constructor(props) {
     super(props)
-    this.state = { checked: false, order: 0, currentorder: 0 }
+    this.state = { checked: false, index: 0 }
     this.handleChange = this.handleChange.bind(this)
   }
   handleChange(e) {
-    console.log('order na ja ->', this.props.order + 1)
     const checked = e.target.checked
-    const order = this.props.order + 1
-    let { currentorder } = this.state
-    if (this.props.order < 5) {
+    let { index } = this.state
+    let canSetDataColor = this.props.usedcolor.includes(false)
+    if (canSetDataColor) {
       if (checked) {
-        if (
-          currentorder != 0 && (currentorder + 1 != order ||
-          currentorder - 1 != order)
-        )
-          this.setState({ order: currentorder })
-        else {
-          this.props.setOrder(true)
-          this.setState({ order })
-          this.setState({ currentorder: order })
-        }
-        console.log(this.props.color[order])
+        index = this.update()
+        this.props.setUsedColor(index)
         console.log(this.props.weight)
         const data = {
-          label: 'Burn',
+          label: this.props.pm,
           fill: false,
           lineTension: 0.1,
-          backgroundColor: this.props.color[order].bg,
-          borderColor: this.props.color[order].line,
+          backgroundColor: this.props.color[index].bg,
+          borderColor: this.props.color[index].line,
           borderCapStyle: 'butt',
           borderDash: [],
           borderDashOffset: 0.0,
           borderJoinStyle: 'miter',
-          pointBorderColor: this.props.color[order].pointborder,
-          pointBackgroundColor: this.props.color[order].point,
-          pointBorderWidth: 10,
+          pointBorderColor: this.props.color[index].pointborder,
+          pointBackgroundColor: this.props.color[index].point,
+          pointBorderWidth: 4,
           pointHoverRadius: 5,
-          pointHoverBackgroundColor: '#20aadb',
-          pointHoverBorderColor: '#20aadb',
-          pointHoverBorderWidth: 2,
-          pointRadius: 1,
+          pointHoverBackgroundColor: this.props.color[index].point,
+          pointHoverBorderColor: this.props.color[index].point,
+          pointHoverBorderWidth: 7,
+          pointRadius: 7,
           pointHitRadius: 10,
           data: this.props.weight
         }
-        this.props.updateGraph(data) 
+        console.log(data)
+        this.props.updateGraph(data,index)
       } else {
-        this.props.setOrder(false)
-        this.setState({ order: 0 })
+        this.props.setUnUsedColor(index)
+        this.props.updateGraph(null,index)
+        this.setState({ index: 0 })
+        
       }
       this.setState({ checked })
     } else {
       if (!checked) {
-        this.props.setOrder(false)
-        this.setState({ order: 0 })
+        this.props.setUnUsedColor(index)
+        this.props.updateGraph(null,index)
+        this.setState({index:0})
         this.setState({ checked })
       }
     }
+    
+  }
+  update() {
+    let index = 0
+    this.props.usedcolor.some((c, i) => {
+      if (!c) {
+        index = i
+        return true
+      }
+    })
+    this.setState({ index })
+    return index
   }
   render() {
     const { pm, id, color } = this.props
-    const { order } = this.state
+    const { index } = this.state
     return (
       <div
         className="pmcheckboxcontainer"
         style={{
-          backgroundColor: color[order].bg,
-          borderColor: color[order].bg
+          backgroundColor: color[index].bg,
+          borderColor: color[index].bg,
+          color: this.state.checked ? 'white' : 'black'
         }}
       >
         <div
@@ -82,7 +89,15 @@ class CheckedPm extends Component {
             checked={this.state.checked}
             onChange={this.handleChange}
           />
-          <label for={`checkInput${id}`} />
+          <label
+            for={`checkInput${id}`}
+            style={{
+              border: this.state.checked
+                ? `2px solid ${color[index].checkedbox}`
+                : '2px solid #5bc2e1',
+              backgroundColor: this.state.checked ? color[index].checkedbox : 'white'
+            }}
+          />
           <div className="pmcheckboxname">{pm}</div>
         </div>
       </div>

@@ -44,12 +44,15 @@ input[type='checkbox'] {
   .selectmanagerhead {
     padding-left: 12px;
   }
+  .selectmanagertext {
+    font-size: 23px;
+  }
   .viewstatistics {
-    font-size: 9px;
+    font-size: 14px;
     color: #e0e0e0;
     position: relative;
-    left: 8px;
-    bottom: 5px;
+    left: 12px;
+    bottom: 13px;
   }
   
 

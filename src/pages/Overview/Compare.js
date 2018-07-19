@@ -31,89 +31,85 @@ class Compare extends Component {
           bg: null,
           point: null,
           pointborder: null,
-          line: null
+          line: null,
+          checkedbox: null
         },
         {
           bg: '#81D827',
           point: '#81D827',
           pointborder: '#C9E9A9',
-          line: '#E1F5CD'
+          line: '#E1F5CD',
+          checkedbox: '#77C824'
         },
         {
           bg: '#20AADB',
           point: '#20AADB',
           pointborder: '#87CCE6',
-          line: '#B5E8FB'
+          line: '#B5E8FB',
+          checkedbox: '#1D9ECB'
         },
         {
           bg: '#F48F8F',
           point: '#F48F8F',
           pointborder: '#FFBBBB',
-          line: '#FFDDDD'
+          line: '#FFDDDD',
+          checkedbox: '#E28484'
         },
         {
           bg: '#FFCC80',
           point: '#FFCC80',
           pointborder: '#FFE0B2',
-          line: '#FFEDD2'
+          line: '#FFEDD2',
+          checkedbox: '#EDBD76'
         },
         {
           bg: '#B180FC',
           point: '#B180FC',
           pointborder: '#D2B5FF',
-          line: '#E9DBFF'
+          line: '#E9DBFF',
+          checkedbox: '#A476EA'
         }
       ],
-      order: 0,
+      usedcolor: [true, false, false, false, false, false],
       data: {
         labels: ['', 'WEEK 1', 'WEEK 2', 'WEEK 3', 'WEEK 4', ''],
-        datasets: [
-          {
-            label: 'Burn',
-            fill: false,
-            lineTension: 0.1,
-            backgroundColor: '#20aadb',
-            borderColor: '#98e3ff',
-            borderCapStyle: 'butt',
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: 'miter',
-            pointBorderColor: 'mix(#20aadb+white)',
-            pointBackgroundColor: '#20aadb',
-            pointBorderWidth: 10,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: '#20aadb',
-            pointHoverBorderColor: '#20aadb',
-            pointHoverBorderWidth: 2,
-            pointRadius: 1,
-            pointHitRadius: 10,
-            data: [null, 1, 2, 3, 4, null]
-          }
-        ]
+        datasets: []
       }
     }
   }
-  updateGraph(pmdata) {
-    console.log(pmdata)
-    let {data} = this.state;
-    let { datasets } = this.state.data
-    datasets.push(pmdata)
-    const finalData = {
-      labels: data.labels,
-      datasets: datasets
+  updateGraph(pmdata, index) {
+    let { data } = this.state
+    if (pmdata) {
+      if (data.datasets[index - 1]) data.datasets[index - 1] = pmdata
+      else data.datasets.push(pmdata)
+    } else {
+      if (index > 0) data.datasets.splice(index - 1, index - 1)
+      else data.datasets.splice(index - 1, index)
     }
-    this.setState({data})
-
+    this.setState({ data })
+  }
+  setUsedColor(index) {
+    let { usedcolor } = this.state
+    usedcolor[index] = true
+    this.setState({ usedcolor })
+  }
+  setUnUsedColor(index) {
+    let { usedcolor } = this.state
+    usedcolor[index] = false
+    this.setState({ usedcolor })
   }
   componentDidMount() {
     try {
       let listpm = []
-      let data = []
       axios.get(`${url}/users/pm`).then(res => {
         const { data } = res
         data.map(pm => {
-          let weight = []
-          pm.projectManagement.map(w => weight.push(w.weight))
+          let weight = [null]
+          pm.projectManagement.map(pmdetail => {
+            if (!pmdetail.isDisable && !pmdetail.project.isDisable)
+              weight.push(pmdetail.weight)
+          })
+          weight.push(null)
           listpm.push({
             name: pm.name,
             id: pm.id,
@@ -128,14 +124,7 @@ class Compare extends Component {
       console.log('cant get list of pm at Compare', error)
     }
   }
-  async setOrder(isInCrease) {
-    let order = this.state.order
-    if (isInCrease) order++
-    else order--
-    if (order >= 6) order = 5
-    if (order <= 5) await this.setState({ order })
-    console.log(order)
-  }
+
   render() {
     return (
       <Box>
@@ -157,7 +146,7 @@ class Compare extends Component {
                 style={{ display: 'flex', flexDirection: 'column' }}
               >
                 <div className="selectmanagerhead">
-                  <div>&ensp;Select Manager</div>
+                  <div className="selectmanagertext">&ensp;Select Manager</div>
                   {/* <div className="compareclear">CLEAR</div> */}
                   <div className="viewstatistics">View statistics.</div>
                 </div>
@@ -165,11 +154,15 @@ class Compare extends Component {
                   return (
                     <CheckedPm
                       pm={pm.name}
-                      order={this.state.order}
                       id={pm.id}
+                      weight={pm.weight}
                       color={this.state.color}
-                      setOrder={state => this.setOrder(state)}
-                      updateGraph={() => this.updateGraph()}
+                      usedcolor={this.state.usedcolor}
+                      setUsedColor={index => this.setUsedColor(index)}
+                      setUnUsedColor={index => this.setUnUsedColor(index)}
+                      updateGraph={(data, index) =>
+                        this.updateGraph(data, index)
+                      }
                     />
                   )
                 })}
