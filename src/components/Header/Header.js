@@ -49,39 +49,39 @@ const FolderSolid = FolderOpen.extend`
 `
 
 const PersonReg = PersonOutline.extend`
-  width: 1.3rem;
-  height: 1.3rem;
-  color: white;
-  cursor: pointer;
-  &:hover ${PersonReg} {
-    transition-duration: 300ms;
-    position: relative;
-    top: -1px;
-  }
-  display: inline-block;
-  border-radius: 25%;
+	width: 1.3rem;
+	height: 1.3rem;
+	color: white;
+	cursor: pointer;
+	&:hover ${PersonReg} {
+		transition-duration: 300ms;
+		position: relative;
+		top: -1px;
+	}
+	display: inline-block;
+	border-radius: 25%;
 `
 
 const PersonSolid = Person.extend`
-  width: 1.3rem;
-  height: 1.3rem;
-  color: white;
-  cursor: pointer;
-  display: inline-block;
-  border-radius: 25%;
+	width: 1.3rem;
+	height: 1.3rem;
+	color: white;
+	cursor: pointer;
+	display: inline-block;
+	border-radius: 25%;
 `
 const SettingReg = Settings.extend`
-  width: 1.3rem;
-  height: 1.3rem;
-  color: white;
-  &:hover ${SettingReg} {
-    transition-duration: 300ms;
-    position: relative;
-    top: -1px;
-  }
-  display: inline-block;
-  cursor: pointer;
-  border-radius: 25%;
+	width: 1.3rem;
+	height: 1.3rem;
+	color: white;
+	&:hover ${SettingReg} {
+		transition-duration: 300ms;
+		position: relative;
+		top: -1px;
+	}
+	display: inline-block;
+	cursor: pointer;
+	border-radius: 25%;
 `
 const SettingSolid = Gear.extend`
     width : 1.3rem;
@@ -150,132 +150,125 @@ const LogOut = ExitToApp.extend`
 
 `
 class Header extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      folder: <FolderClose className="icon"/>,
-      person: <PersonReg className="icon"/>,
-      setting: <SettingReg className="icon"/>,
-      list: <ListAltReg className="icon"/>,
-      add: <AddReg className="icon"/>,
-      logout: <LogOut className="icon"/>,
-      icondefault: {
-        folder: <FolderClose className="icon"/>,
-        person: <PersonReg className="icon"/>,
-        setting: <SettingReg className="icon"/>,
-        list: <ListAltReg className="icon"/>,
-        add: <AddReg className="icon"/>,
-        logout: <LogOut className="icon"/>
-      },
-      toggleAddModal: false
-    }
-    this.logOut = this.logOut.bind(this)
-  }
-  changeFolderIcon() {
-    this.clear()
-    this.setState({ folder: <FolderSolid className="icon"/> })
-    this.props.history.push('/project')
-  }
+	constructor(props) {
+		super(props)
+		this.state = {
+			folder: <FolderClose className="icon" />,
+			person: <PersonReg className="icon" />,
+			setting: <SettingReg className="icon" />,
+			list: <ListAltReg className="icon" />,
+			add: <AddReg className="icon" />,
+			logout: <LogOut className="icon" />,
+			icondefault: {
+				folder: <FolderClose className="icon" />,
+				person: <PersonReg className="icon" />,
+				setting: <SettingReg className="icon" />,
+				list: <ListAltReg className="icon" />,
+				add: <AddReg className="icon" />,
+				logout: <LogOut className="icon" />
+			},
+			toggleAddModal: false
+		}
+		this.logOut = this.logOut.bind(this)
+	}
+	changeFolderIcon() {
+		this.clear()
+		this.setState({ folder: <FolderSolid className="icon" /> })
+		this.props.history.push('/project')
+	}
 
-  changePersonIcon() {
-    this.clear()
-    this.setState({ person: <PersonSolid className="icon"/> })
-    this.props.history.push('/person')
-  }
-  changeSettingIcon() {
-    this.clear()
-    this.setState({ setting: <SettingSolid className="icon"/> })
-    this.props.history.push('/setting')
-  }
-  changeListIcon() {
-    this.clear()
-    this.setState({ list: <ListAltSolidz className="icon"/> })
-    this.props.history.push('/overview')
-  }
-  clear() {
-    let def = this.state.icondefault
-    this.setState({
-      folder: def.folder,
-      person: def.person,
-      setting: def.setting,
-      list: def.list,
-      add: def.add
-    })
-  }
-  toggleAddModal = state => {
-    this.setState({
-      toggleAddModal: state
-    })
-    if (!state) {
-      this.clear()
-    }
-  }
-  update() {
-    this.clear()
-    if (window.location.pathname == '/traffic-app/build/person')
-      this.setState({ person: <PersonSolid className="icon"/> })
-    if (window.location.pathname == '/traffic-app/build/project')
-      this.setState({ folder: <FolderSolid className="icon"/> })
-    if (window.location.pathname == '/traffic-app/build/setting')
-      this.setState({ setting: <SettingSolid className="icon"/> })
-    if (window.location.pathname == '/traffic-app/build/overview')
-      this.setState({ list: <ListAltSolidz className="icon"/> })
-  }
-  logOut() {
-    this.props.history.push('/');
-  }
-  componentWillReceiveProps() {
-    this.update()
-  }
-  componentDidMount() {
-    this.update()
-  }
-  render() {
-    const { toggleAddModal } = this.state
-    return (
-      <Container>
-        <Navbar style={{ paddingBottom: '0', paddingTop: '0' ,paddingLeft:'5px',paddingRight:'5px'}}>
-          <NavLink
-            onClick={() => {
-              this.changeListIcon()
-            }}
-          >
-            {this.state.list}
-          </NavLink>
-          <NavLink
-            onClick={() => {
-              this.changeFolderIcon()
-            }}
-          >
-            {this.state.folder}
-          </NavLink>
-          <NavLink
-            onClick={() => {
-              this.changePersonIcon()
-            }}
-          >
-            {this.state.person}
-          </NavLink>
-          <Navbar className="ml-auto" style={{paddingRight:'0'}}>
-            <NavLink onClick={e => this.toggleAddModal(true)}>
-              {this.state.add}
-            </NavLink>
-            <NavLink
-              onClick={() => {
-                this.changeSettingIcon()
-              }}
-            >
-              {this.state.setting}
-            </NavLink>
-            <NavLink onClick={this.logOut}>{this.state.logout}</NavLink>
-          </Navbar>
-        </Navbar>
-        {toggleAddModal && (
-          <AddProject onClose={() => this.toggleAddModal(false)} />
-        )}
-      </Container>
-    )
-  }
+	changePersonIcon() {
+		this.clear()
+		this.setState({ person: <PersonSolid className="icon" /> })
+		this.props.history.push('/person')
+	}
+	changeSettingIcon() {
+		this.clear()
+		this.setState({ setting: <SettingSolid className="icon" /> })
+		this.props.history.push('/setting')
+	}
+	changeListIcon() {
+		this.clear()
+		this.setState({ list: <ListAltSolidz className="icon" /> })
+		this.props.history.push('/overview')
+	}
+	clear() {
+		let def = this.state.icondefault
+		this.setState({
+			folder: def.folder,
+			person: def.person,
+			setting: def.setting,
+			list: def.list,
+			add: def.add
+		})
+	}
+	toggleAddModal = state => {
+		this.setState({
+			toggleAddModal: state
+		})
+		if (!state) {
+			this.clear()
+		}
+	}
+	update() {
+		this.clear()
+		if (window.location.pathname == '/traffic-app/build/person') this.setState({ person: <PersonSolid className="icon" /> })
+		if (window.location.pathname == '/traffic-app/build/project') this.setState({ folder: <FolderSolid className="icon" /> })
+		if (window.location.pathname == '/traffic-app/build/setting') this.setState({ setting: <SettingSolid className="icon" /> })
+		if (window.location.pathname == '/traffic-app/build/overview') this.setState({ list: <ListAltSolidz className="icon" /> })
+	}
+	logOut() {
+		// localStorage.clearToken('token', data.token)
+		this.props.history.push('/')
+	}
+	componentWillReceiveProps() {
+		this.update()
+	}
+	componentDidMount() {
+		this.update()
+	}
+	render() {
+		const { toggleAddModal } = this.state
+		return (
+			<Container>
+				<Navbar style={{ paddingBottom: '0', paddingTop: '0', paddingLeft: '5px', paddingRight: '5px' }}>
+					<NavLink
+						onClick={() => {
+							this.changeListIcon()
+						}}
+					>
+						{this.state.list}
+					</NavLink>
+					<NavLink
+						onClick={() => {
+							this.changeFolderIcon()
+						}}
+					>
+						{this.state.folder}
+					</NavLink>
+					<NavLink
+						onClick={() => {
+							this.changePersonIcon()
+						}}
+					>
+						{this.state.person}
+					</NavLink>
+					<Navbar className="ml-auto" style={{ paddingRight: '0' }}>
+						<NavLink onClick={e => this.toggleAddModal(true)}>{this.state.add}</NavLink>
+						<NavLink
+							onClick={() => {
+								this.changeSettingIcon()
+							}}
+						>
+							{this.state.setting}
+						</NavLink>
+						<NavLink onClick={this.logOut}>{this.state.logout}</NavLink>
+					</Navbar>
+				</Navbar>
+				{toggleAddModal && <AddProject onClose={() => this.toggleAddModal(false)} />}
+			</Container>
+		)
+	}
 }
 
 export default withRouter(Header)
