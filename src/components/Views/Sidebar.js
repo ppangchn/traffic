@@ -7,6 +7,7 @@ const Container = styled.div`
   height: 200%;
   padding-left: 0px !important;
   padding-right: 0px !important;
+  // z-index: -1;
 `
 
 class Sidebar extends Component {

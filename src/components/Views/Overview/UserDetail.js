@@ -20,6 +20,7 @@ const Item = styled.div`
 `
 
 class UserDetail extends Component {
+<<<<<<< HEAD
 	constructor(props) {
 		super(props)
 		this.state = { toggleAddModal: false, data: {} }
@@ -100,6 +101,86 @@ class UserDetail extends Component {
 				<Button onClick={() => this.toggleAddModal(true)} color="newproject5bc2e1">
 					+ New Project
 				</Button>
+=======
+  constructor(props) {
+    super(props)
+    this.state = { toggleAddModal: false, data: {} }
+    this.update = this.update.bind(this)
+  }
+  update() {
+    this.props.updateHeader()
+  }
+  toggleAddModal(state) {
+    this.setState({ toggleAddModal: state })
+  }
+  componentDidMount() {
+    const data = {
+      labels: ['Week 1', 'Week 2', 'Week 3','Week 4'],
+      datasets: [
+        {
+          label: 'Burn',
+          fill: false,
+          lineTension: 0.1,
+          backgroundColor: '#20aadb',
+          borderColor: '#98e3ff',
+          borderCapStyle: 'butt',
+          borderDash: [],
+          borderDashOffset: 0.0,
+          borderJoinStyle: 'miter',
+          pointBorderColor: '#20aadb',
+          pointBackgroundColor: '#20aadb',
+          pointBorderWidth: 5,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: '#20aadb',
+          pointHoverBorderColor: '#20aadb',
+          pointHoverBorderWidth: 2,
+          pointRadius: 1,
+          pointHitRadius: 10,
+          data: this.props.graph
+        }
+      ]
+    }
+    this.setState({ data })
+  }
+  render() {
+    const { projectTimeline } = this.props
+    return (
+      <Card className="userdetail">
+        {this.props.name}
+        <Line data={this.state.data} height={250}/>
+        {projectTimeline.map(project => {
+          if (!project.project.isDisable) {
+            return (
+              <Item key={project.id} className="overviewprojectitem">
+                <div className="overviewprojectname">
+                  <Link
+                    className={
+                      'linkprojectname-' + project.project.color.substring(1)
+                    }
+                    to={`/project/${project.project.id}`}
+                    style={{
+                      textOverflow: 'ellipsis',
+                      overflow: 'hidden',
+                      textDecoration: 'none'
+                    }}
+                    onClick={this.update}
+                  >
+                    {project.project.name}
+                  </Link>
+                  <div style={{ float: 'right' }}>
+                    {project.project.process}%
+                  </div>
+                  <Progress
+                    className="overviewprogress"
+                    color={String(project.project.color).substring(1)}
+                    value={project.project.process}
+                  />
+                </div>
+              </Item>
+            )
+          }
+        })}
+>>>>>>> 987800d4f9cc4f88f8f54a756d2a5af1c2f45bac
 
 				{this.state.toggleAddModal && (
 					<AddProject onClose={() => this.toggleAddModal(false)} userid={this.props.id} username={this.props.name} />

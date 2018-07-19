@@ -16,13 +16,13 @@ const Container = styled.div`
 	-webkit-background-size: cover;
 	background-size: cover;
 	display: flex;
-	flex-direction: column;
+  flex-direction: column;
+  height: 100vh;
 `
 const UserContainer = styled.div`
 	overflow-y: hidden;
 	overflow-x: scroll;
 	display: flex;
-	height: 100vh;
 `
 class DashBoard extends Component {
 	constructor(props) {

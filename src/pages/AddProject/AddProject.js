@@ -124,15 +124,63 @@ class AddProject extends Component {
   }
   handleChange = selectedOption => {
     this.setState({ choseweight: selectedOption })
-    // selectedOption can be null when the `x` (close) button is clicked
     if (selectedOption) {
       console.log(`Selected: ${selectedOption.label}`)
     }
   }
   setPm = (index, data) => {
+    let pm = this.state.pm
+    let timeline = this.state.timeline
+
+    if (!!this.state.pm[index].value) {
+      data.id = this.state.pm[index].id
+
+      let findCurrentPM = pm.find(($fndPm) => {
+        return $fndPm.value == data.value
+      })
+
+      if (!!findCurrentPM) {
+        let findIndexPM = pm.findIndex(($fndPm) => {
+          return $fndPm.value == data.value
+        })
+        let tempData = this.state.pm[index]
+
+        tempData.id = findCurrentPM.id
+        findCurrentPM = tempData
+  
+        pm[findIndexPM] = findCurrentPM
+      }
+      
+      let currentPM = this.state.pm[index]
+
+      let findOldTimeline = timeline.find(($fndTimeline) => {
+        return $fndTimeline.users.id == currentPM.value
+      })
+
+      let findCurrentTimelime = timeline.find(($fndTimeline) => {
+        return $fndTimeline.users.id == data.value
+      })
+
+      if (!!findCurrentTimelime) {
+        findCurrentTimelime.users = {
+          id: findOldTimeline.users.id,
+          roles: findOldTimeline.users.roles
+        }
+      }
+
+      if (!!findOldTimeline) {
+        findOldTimeline.users = {
+          id: data.value,
+          roles: data.roles
+        }
+      }
+
+      pm[index] = data
+    } else {
+      pm[index] = data
+    }    
+
     this.setState({ isinvalidpm: false })
-    let pm = this.state.pm.map(i => i)
-    pm[index] = data
     this.setState(
       {
         pm
@@ -141,6 +189,9 @@ class AddProject extends Component {
         this.filterPM()
       }
     )
+    this.setState({timeline})
+
+    return pm
   }
   deletePm = index => {
     let pm = this.state.pm.filter((pm, i) => {
@@ -152,7 +203,6 @@ class AddProject extends Component {
       },
       () => this.filterPM()
     )
-    console.log('pm', pm)
   }
   filterPM = () => {
     let pm = this.state.pm.map(i => i)
@@ -203,6 +253,7 @@ class AddProject extends Component {
     this.setState({ isinvalidaddpm: state })
   }
   sendData = async () => {
+    console.log(this.state.filteredPM)
     if (
       this.state.projectname &&
       (this.state.filteredPM.length !== 0 && this.state.filteredPM[0].value) &&
@@ -213,6 +264,7 @@ class AddProject extends Component {
       let listPM = []
       if (this.props.id) {
         if (!!this.state.timeline) {
+          
           listTimeline = await this.state.timeline.map($objTimeline => {
             if (
               $objTimeline.users.roles.id >= 1 &&
@@ -242,29 +294,15 @@ class AddProject extends Component {
         })
 
         if (!!this.state.project.projectManagement) {
-          listPM = await this.state.project.projectManagement.map($objPM => {
-            let pm = {
+          listPM = await this.state.filteredPM.map(($objPM) => {
+            return {
+              id: $objPM.id,
               users: {
-                id: $objPM.users.id
+                id: $objPM.value
               },
               weight: $objPM.weight,
               isDisable: false
             }
-
-            let findPM = this.state.filteredPM.find($fndPM => {
-              pm.weight = $fndPM.weight
-              return $fndPM.value == $objPM.users.id
-            })
-
-            if (!!!findPM) {
-              pm.isDisable = true
-            }
-
-            if (!!$objPM.id) {
-              pm.id = $objPM.id
-            }
-
-            return pm
           })
         }
 
@@ -349,7 +387,8 @@ class AddProject extends Component {
             value: pm.users.id,
             label: pm.users.name,
             weight: pm.weight,
-            id: pm.id
+            id: pm.id,
+            roles: pm.users.roles
           }))
           this.setState({
             projectname: data.project.name,
@@ -368,7 +407,9 @@ class AddProject extends Component {
           {
             value: this.props.userid,
             label: this.props.username,
-            weight: 0
+            weight: 0,
+            id: null,
+            roles: {}
           }
         ]
         this.setState({ pm })
@@ -380,7 +421,9 @@ class AddProject extends Component {
             {
               value: null,
               label: '',
-              weight: 0
+              weight: 0,
+              id: null,
+              roles: {}
             }
           ]
         })
@@ -398,7 +441,7 @@ class AddProject extends Component {
         // console.log('Data', data)
         let listpm = []
         data.map(data => {
-          listpm.push({ value: data.id, label: data.name })
+          listpm.push({ value: data.id, label: data.name , roles: data.roles})
         })
         this.setState({
           listpm
@@ -516,11 +559,14 @@ class AddProject extends Component {
                   Manager weight
                 </Col>
               </Row>
+              {console.log('update eiei')}
+              {console.log(this.state.pm)}
               {this.state.pm.map((pm, index) => (
                 <SelectPm
                   key={pm.value}
                   id={index} //start at 0
                   pm={pm}
+                  roles={pm.roles}
                   listpm={this.state.listpm}
                   setPm={this.setPm}
                   delete={this.deletePm}

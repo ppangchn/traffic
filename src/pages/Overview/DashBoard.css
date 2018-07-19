@@ -8,11 +8,6 @@
 	bottom: 50px;
 }
 
-
-/* ::-webkit-scrollbar {
-  display: none;
-  } */
-
 @media (min-width: 321px) and (max-width: 575.98px) {
 	.comparecontainer {
 		height: 100px;
