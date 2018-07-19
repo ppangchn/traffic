@@ -1,7 +1,13 @@
-@import url('https://fonts.googleapis.com/css?family=Prompt');
+/* @import url('https://fonts.googleapis.com/css?family=Prompt'); */
+@font-face {
+	font-family: 'DB Helvethaica X';
+	font-style: normal;
+	font-weight: 700;
+	src: url('./fonts/DB Helvethaica X/DB Helvethaica X Ext v3.2.ttf');
 
+}
 body {
-	font-family: 'Prompt' !important;
+	font-family: 'DB Helvethaica X' !important;
 	background-color: #eaf9fe;
 	-webkit-background-size: cover;
 	background-size: cover;
