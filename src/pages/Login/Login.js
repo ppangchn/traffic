@@ -47,6 +47,7 @@ export default class Login extends Component {
 					const { data } = $res
 					this.setState({ message: data.message })
 					if (data.message != 'Email or Password Invalid') {
+						localStorage.setItem('token', data.token)
 						this.props.history.push(`/overview`)
 					}
 				})
@@ -89,6 +90,7 @@ export default class Login extends Component {
 								onChange={this.handleInputChange}
 								value={this.state.password}
 								invalid={this.state.invalidpassword}
+								required
 							/>
 						</div>
 						<Button color="submit" size="lg" block>

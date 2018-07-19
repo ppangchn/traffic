@@ -6,10 +6,14 @@ import Login from './pages/Login/Login'
 import ResetPassword from './pages/ResetPassword/ResetPassword'
 import ForgotPass from './pages/ForgotPass/ForgotPass'
 
+
+
 class App extends Component {
 	constructor() {
 		super()
-		this.state = { update: Date.now() }
+		this.state = {
+			update: Date.now()
+		}
 	}
 	updateHeader() {
 		this.setState({ update: Date.now() })

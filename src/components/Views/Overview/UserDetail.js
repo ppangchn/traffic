@@ -65,7 +65,7 @@ class UserDetail extends Component {
     return (
       <Card className="userdetail">
         {this.props.name}
-        <Line data={this.state.data} />
+        <Line data={this.state.data} height={250}/>
         {projectTimeline.map(project => {
           if (!project.project.isDisable) {
             return (
@@ -98,9 +98,11 @@ class UserDetail extends Component {
             )
           }
         })}
+
         <Button onClick={() => this.toggleAddModal(true)} color="newproject5bc2e1">
           + New Project
         </Button>
+        
         {this.state.toggleAddModal && (
           <AddProject
             onClose={() => this.toggleAddModal(false)}
