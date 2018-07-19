@@ -66,6 +66,8 @@ var _generic = require('./utility/generic');
 
 var _defaultConfig = require('./default-config');
 
+var firstGroupHeight = null;
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -140,7 +142,6 @@ var ReactCalendarTimeline = function (_Component) {
     _this.state.height = height;
     _this.state.groupHeights = groupHeights;
     _this.state.groupTops = groupTops;
-
     /* eslint-enable */
     return _this;
   }
@@ -250,10 +251,20 @@ var ReactCalendarTimeline = function (_Component) {
   }, {
     key: 'horizontalLines',
     value: function horizontalLines(canvasWidth, groupHeights) {
+      let result = groupHeights
+      if (!(!!firstGroupHeight) && groupHeights.length > 0) {
+        firstGroupHeight = groupHeights
+
+        console.log('firstGroupHeight', firstGroupHeight)
+      }
+
+      if (!!firstGroupHeight) {
+        result = firstGroupHeight
+      }
       return _react2.default.createElement(_GroupRows2.default, {
         canvasWidth: canvasWidth,
         lineCount: (0, _generic._length)(this.props.groups),
-        groupHeights: groupHeights,
+        groupHeights: result,
         clickTolerance: this.props.clickTolerance,
         onRowClick: this.handleRowClick,
         onRowDoubleClick: this.handleRowDoubleClick
