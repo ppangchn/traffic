@@ -18,7 +18,9 @@ class MainRoute extends Component {
       return <ViewByProject updateHeader={this.props.updateHeader} />
     }
     return (
-      <div>
+      <div 
+      // style={{position:'relative',zIndex:'-1'}}
+      >
         <Route exact path="/overview" component={withRouter(DashBoard)} />
         <Route path="/overview/compare" component={withRouter(Compare)} />
         <Route exact path="/project" component={withRouter(viewbyproject)} />

@@ -20,6 +20,9 @@ const Container = styled.div`
     padding : 0px;
     margin : 0px;
     border : none;
+    // position: sticky;
+    // position: -webkit-sticky;
+    // top: 0;
 `
 const FolderClose = Folder.extend`
     width : 1.3rem;

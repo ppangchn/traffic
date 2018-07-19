@@ -1,0 +1,67 @@
+.pmcheckboxcontainer {
+  padding: 12px 10px 12px 5px;
+  border-top: 1px solid #f1f5f8;
+}
+.pmcheckboxcontainer1 {
+  padding: 12px 10px 12px 5px;
+  border-top: 1px solid #f1f5f8;
+}
+.pmcheckboxcontainer2 {
+  padding: 12px 10px 12px 5px;
+  border-top: 1px solid #f1f5f8;
+}
+.pmcheckboxcontainer3 {
+  padding: 12px 10px 12px 5px;
+  border-top: 1px solid #f1f5f8;
+}
+.pmcheckboxcontainer4 {
+  padding: 12px 10px 12px 5px;
+  border-top: 1px solid #f1f5f8;
+}
+.pmcheckboxcontainer5 {
+  padding: 12px 10px 12px 5px;
+  border-top: 1px solid #f1f5f8;
+}
+.pmcheckboxname {
+  position: relative;
+  left: 15px;
+  display: flex;
+  align-items: center
+}
+.pmcheckbox label {
+  cursor: pointer;
+  position: absolute;
+  width: 17px;
+  height: 17px;
+  background-color: white;
+  border: 2px solid #5bc2e1;
+  border-radius: 6px;
+}
+.pmcheckbox label:hover::after {
+  opacity: 0.2;
+  content: '';
+  position: absolute;
+  width: 9px;
+  height: 5px;
+  background: transparent;
+  top: 3px;
+  left: 2px;
+  border: 2.2px solid #333;
+  border-top: none;
+  border-right: none;
+  transform: rotate(-45deg);
+}
+.pmcheckbox input[type='checkbox']:checked + label:after {
+  opacity: 1;
+  content: '';
+  position: absolute;
+  width: 9px;
+  height: 5px;
+  background: transparent;
+  top: 3px;
+  left: 2px;
+  border: 2.2px solid #333;
+  border-top: none;
+  border-right: none;
+  transform: rotate(-45deg);
+}

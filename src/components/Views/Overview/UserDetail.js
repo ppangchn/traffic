@@ -33,7 +33,7 @@ class UserDetail extends Component {
   }
   componentDidMount() {
     const data = {
-      labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+      labels: ['Week 1', 'Week 2', 'Week 3','Week 4'],
       datasets: [
         {
           label: 'Burn',

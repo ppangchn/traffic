@@ -17,22 +17,40 @@ const Exit = X.extend`
 class SelectPm extends Component {
   constructor(props) {
     super(props)
-    const { value,label, weight } = this.props.pm
-    this.state = { pm: value, choseweight: weight, disabled: true ,value,label}
+    const { value, label, weight } = this.props.pm
+    this.state = {
+      pm: value,
+      choseweight: weight,
+      disabled: true,
+      value,
+      label
+    }
     this.handleChange = this.handleChange.bind(this)
     this.slideChange = this.slideChange.bind(this)
   }
-  handleChange = (selectedOption) => {
-    this.setState({ pm: selectedOption,value:selectedOption.value })
+  handleChange = selectedOption => {
+    this.setState({ pm: selectedOption, value: selectedOption.value })
     console.log(this.state.pm)
     if (selectedOption) this.setState({ disabled: false })
     else this.setState({ disabled: true })
     this.props.setPm(this.props.id, {
       ...selectedOption,
-      weight: this.state.choseweight
+      weight: this.state.choseweight,
+      roles: this.props.roles
     })
-    this.props.setInvalidAddPm();
+    this.props.setInvalidAddPm()
   }
+
+  componentWillReceiveProps(props) {
+    console.log('all props', props)
+    console.log(this.state)
+    this.setState({
+      value: props.pm.value,
+      label: props.pm.label,
+      pm: props.pm.value
+    })
+  }
+
   slideChange = value => {
     this.setState({
       choseweight: value
@@ -40,12 +58,16 @@ class SelectPm extends Component {
     this.props.setPm(this.props.id, {
       value: this.state.value,
       label: this.state.label,
-      weight: value
+      weight: value,
+      roles: this.props.roles
     })
   }
   delete = e => {
     console.log('delete user!')
     this.props.delete(this.props.id)
+  }
+  componentWillReceiveProps(props) {
+    this.setState({ value: props.pm.value })
   }
   componentDidMount() {
     if (this.state.pm) this.setState({ disabled: false })
@@ -56,7 +78,7 @@ class SelectPm extends Component {
         <Col xs="4">
           <Select
             ClassName="selectbox"
-            style={{borderColor: '#5ac2e2 '}}
+            style={{ borderColor: '#5ac2e2 ' }}
             placeholder="All"
             value={this.state.value}
             onChange={this.handleChange}
