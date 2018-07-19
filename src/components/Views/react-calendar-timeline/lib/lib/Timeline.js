@@ -99,6 +99,8 @@ var ReactCalendarTimeline = function (_Component) {
 
     _initialiseProps.call(_this);
 
+    var isFixedSizeRender = (!!_this.props.isFixedSizeRender)? _this.props.isFixedSizeRender : false
+
     var visibleTimeStart = null;
     var visibleTimeEnd = null;
 
@@ -126,7 +128,8 @@ var ReactCalendarTimeline = function (_Component) {
       resizeTime: null,
       topOffset: 0,
       resizingItem: null,
-      resizingEdge: null
+      resizingEdge: null,
+      isFixedSizeRender: isFixedSizeRender
     };
 
     var _this$stackItems = _this.stackItems(props.items, props.groups, _this.state.canvasTimeStart, _this.state.visibleTimeStart, _this.state.visibleTimeEnd, _this.state.width),
@@ -252,15 +255,20 @@ var ReactCalendarTimeline = function (_Component) {
     key: 'horizontalLines',
     value: function horizontalLines(canvasWidth, groupHeights) {
       let result = groupHeights
-      if (!(!!firstGroupHeight) && groupHeights.length > 0) {
-        firstGroupHeight = groupHeights
+      console.log(this.state.isFixedSizeRender)
 
-        console.log('firstGroupHeight', firstGroupHeight)
+      if (this.state.isFixedSizeRender) {
+        if (!(!!firstGroupHeight) && groupHeights.length > 0) {
+          firstGroupHeight = groupHeights
+
+          console.log('firstGroupHeight', firstGroupHeight)
+        }
+
+        if (!!firstGroupHeight) {
+          result = firstGroupHeight
+        }
       }
 
-      if (!!firstGroupHeight) {
-        result = firstGroupHeight
-      }
       return _react2.default.createElement(_GroupRows2.default, {
         canvasWidth: canvasWidth,
         lineCount: (0, _generic._length)(this.props.groups),

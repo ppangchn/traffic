@@ -74,6 +74,7 @@ class PersonTimeline extends Component {
           timeSteps={{ day: 7 }}
           itemHeightRatio={0.4}
           stackItems={true}
+          isFixedSizeRender={true}
         />
       </GraphBox>
     )
