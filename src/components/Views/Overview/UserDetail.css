@@ -1,7 +1,7 @@
 .btn-newproject5bc2e1 {
 	background-color: #5bc2e1;
 	color: white;
-	margin: 10px 0px 10px 0px;
+	margin: 10px 0px 5px 0px;
 	font-size: 12px !important;
 }
 .eachItem {
@@ -10,8 +10,8 @@
 @media (min-width: 321px) and (max-width: 575.98px) {
 	.userdetail {
 		width: 100px;
-		margin: 30px 0 30px 20px;
-		padding: 6px 6px 6px 6px;
+		margin: 20px 0 20px 20px;
+		padding: 6px 11px 6px 11px;
 		font-size: 10px;
 
 		max-height: 85%;
@@ -20,7 +20,7 @@
 		padding-bottom: 10px;
 	}
 	.overviewprojectname {
-		padding-top: 15px;
+		padding-top: 10px;
 		font-size: 7px;
 		padding-bottom: 2px;
 	}
@@ -29,7 +29,7 @@
 		height: 3px !important;
 	}
 	.btn-newproject5bc2e1 {
-		font-size: 4px !important;
+		font-size: 6px !important;
 		align-items: center !important;
 	}
 }
@@ -37,8 +37,8 @@
 @media (min-width: 576px) and (max-width: 767.98px) {
 	.userdetail {
 		width: 120px;
-		margin: 30px 0 30px 20px;
-		padding: 7px 7px 7px 7px;
+		margin: 20px 0 20px 20px;
+		padding: 7px 12px 7px 12px;
 		font-size: 13px;
 
 		max-height: 85%;
@@ -47,7 +47,7 @@
 		padding-bottom: 10px;
 	}
 	.overviewprojectname {
-		padding-top: 15px;
+		padding-top: 10px;
 		font-size: 8px;
 		padding-bottom: 2px;
 	}
@@ -64,8 +64,8 @@
 @media (min-width: 768px) and (max-width: 991.98px) {
 	.userdetail {
 		width: 150px;
-		margin: 30px 0 30px 20px;
-		padding: 10px 10px 10px 10px;
+		margin: 20px 0 20px 20px;
+		padding: 10px 15px 10px 15px;
 		font-size: 15px;
 
 		max-height: 85%;
@@ -74,7 +74,7 @@
 		padding-bottom: 10px;
 	}
 	.overviewprojectname {
-		padding-top: 15px;
+		padding-top: 10px;
 		font-size: 8px;
 		padding-bottom: 2px;
 	}
@@ -91,8 +91,8 @@
 @media (min-width: 992px) and (max-width: 1199.98px) {
 	.userdetail {
 		width: 180px;
-		margin: 30px 0 30px 20px;
-		padding: 20px 20px 20px 20px;
+		margin: 20px 0 20px 20px;
+		padding: 20px 25px 20px 25px;
 		font-size: 17px;
 
 		max-height: 85%;
@@ -101,7 +101,7 @@
 		padding-bottom: 10px;
 	}
 	.overviewprojectname {
-		padding-top: 15px;
+		padding-top: 10px;
 		font-size: 10px;
 		padding-bottom: 2px;
 	}
@@ -119,17 +119,16 @@
 @media (min-width: 1200px) {
 	.userdetail {
 		width: 200px;
-		margin: 30px 0 30px 20px;
-		padding: 20px 20px 20px 20px;
+		margin: 20px 0 20px 20px;
+		padding: 20px 25px 20px 25px;
 		font-size: 20px;
-
 		max-height: 85%;
 	}
 	.overviewprojectitem {
 		padding-bottom: 10px;
 	}
 	.overviewprojectname {
-		padding-top: 15px;
+		padding-top: 10px;
 		font-size: 12px;
 		padding-bottom: 2px;
 	}

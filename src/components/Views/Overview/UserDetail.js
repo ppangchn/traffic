@@ -33,10 +33,10 @@ class UserDetail extends Component {
 	}
 	componentDidMount() {
 		const data = {
-			labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+			labels: ['Week 1','Week 2','Week 3','Week 4'],
 			datasets: [
 				{
-					label: 'Burn',
+					label: '',
 					fill: false,
 					lineTension: 0.1,
 					backgroundColor: '#20aadb',
@@ -54,7 +54,8 @@ class UserDetail extends Component {
 					pointHoverBorderWidth: 2,
 					pointRadius: 1,
 					pointHitRadius: 10,
-					data: this.props.graph
+          data: this.props.graph,
+          responsive: true,
 				}
 			]
 		}
@@ -66,37 +67,36 @@ class UserDetail extends Component {
 			// <div>
 			<Card className="userdetail">
 				{this.props.name}
-				<Line data={this.state.data} height={250} />
-        <div className="eachItem">
-				{projectManagement.map(project => {
-					if (!project.isDisable) {
-						return (
-							<Item key={project.id} className="overviewprojectitem">
-								<div className="overviewprojectname">
-									<Link
-										className={'linkprojectname-' + project.project.color.substring(1)}
-										to={`/project/${project.project.id}`}
-										style={{
-											textOverflow: 'ellipsis',
-											overflow: 'hidden',
-											textDecoration: 'none'
-										}}
-										onClick={this.update}
-									>
-										{project.project.name}
-									</Link>
-									<div style={{ float: 'right' }}>
-										{project.weight}%
-										{/* /// */}
+				<Line data={this.state.data} height={350} />
+				<div className="eachItem">
+					{projectManagement.map(project => {
+						if (!project.isDisable) {
+							return (
+								<Item key={project.id} className="overviewprojectitem">
+									<div className="overviewprojectname">
+										<Link
+											className={'linkprojectname-' + project.project.color.substring(1)}
+											to={`/project/${project.project.id}`}
+											style={{
+												textOverflow: 'ellipsis',
+												overflow: 'hidden',
+												textDecoration: 'none'
+											}}
+											onClick={this.update}
+										>
+											{project.project.name}
+										</Link>
+										<div style={{ float: 'right' }}>
+											{project.weight}%
+											{/* /// */}
+										</div>
+										<Progress className="overviewprogress" color={String(project.project.color).substring(1)} value={project.weight} />
 									</div>
-									<Progress className="overviewprogress" color={String(project.project.color).substring(1)} value={project.weight} />
-								</div>
-							</Item>
-						)
-					}
-				})}
-
-        </div>
+								</Item>
+							)
+						}
+					})}
+				</div>
 				<Button onClick={() => this.toggleAddModal(true)} color="newproject5bc2e1">
 					+ New Project
 				</Button>

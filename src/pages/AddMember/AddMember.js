@@ -308,7 +308,7 @@ class AddMember extends Component {
 										Tags
 										<div>
 											<ReactTags
-												className="taginput"
+												// className="taginput"
 												tags={tags}
 												labelField={'name'}
 												handleDelete={this.handleDelete}
