@@ -8,7 +8,7 @@
 }
 
 .inputform {
-  width: 100% !important;
+  width: 250px !important;
   margin-top: 15px !important;
   margin-bottom: 15px !important;
   border-radius: 20px !important;
@@ -29,7 +29,7 @@ color: #3a3a3a !important;
 
 .des {
 	color: gray !important;
-	font-size: 14px;
+	font-size: 20px;
 	margin-bottom: 20px;
   margin-top: 10px;
   
