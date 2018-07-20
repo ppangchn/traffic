@@ -6,6 +6,7 @@
 	position: fixed;
 	right: 50px;
 	bottom: 50px;
+	font-size: 16px !important;
 }
 
 @media (min-width: 321px) and (max-width: 575.98px) {
@@ -20,7 +21,7 @@
 		width: 12px;
   }
   .btn-compare {
-    font-size: 0.3rem !important;
+    font-size: 14px !important;
     right: 10px;
     bottom: 10px;
     width: 90px;
@@ -39,7 +40,7 @@
 		width: 14px;
   }
   .btn-compare {
-    font-size: 0.5rem !important;
+    font-size: 14px !important;
     right: 15px;
     bottom: 15px;
 
@@ -58,7 +59,7 @@
 		width: 16px;
   }
   .btn-compare {
-    font-size: 0.7rem !important;
+    font-size: 15px !important;
     right: 20px;
     bottom: 20px;
     width: 100px;
@@ -78,7 +79,7 @@
   }
   
   .btn-compare {
-    font-size: 0.9rem !important;
+    font-size: 15px !important;
     right: 25px;
     bottom: 25px;
     width: 112px;
