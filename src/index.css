@@ -12,7 +12,11 @@ body {
 	-webkit-background-size: cover;
 	background-size: cover;
 }
-
+/* .navbar {
+	position: sticky;
+	position: -webkit-sticky;
+	top: 0;
+} */
 /* .rct-day-6 {
 	border-right: 1px solid red;
 } */

@@ -17,6 +17,7 @@ const Box = styled.div`
   -webkit-background-size: cover;
   background-size: cover;
   flex-direction: column;
+  overflow:hidden;
 `
 const Card = styled.div`
   background-color: white;
@@ -80,13 +81,22 @@ class Compare extends Component {
   updateGraph(pmdata, index) {
     let { data } = this.state
     if (pmdata) {
-      if (data.datasets[index - 1]) data.datasets[index - 1] = pmdata
-      else data.datasets.push(pmdata)
+      if (index > 0) data.datasets[index - 1] = pmdata
+      else data.datasets[index] = pmdata
+      // if (data.datasets[index - 1]) data.datasets[index - 1] = pmdata
+      // else data.datasets.push(pmdata)
     } else {
-      if (index > 0) data.datasets.splice(index - 1, index - 1)
-      else data.datasets.splice(index - 1, index)
+      if (index > 0) {
+        data.datasets[index - 1].label = '';
+        data.datasets[index-1].data = [];
+      } else {
+        data.datasets[index].label = '';
+        data.datasets[index].data = [];
+      }
     }
     this.setState({ data })
+    console.log('index', index)
+    console.log('data', data)
   }
   setUsedColor(index) {
     let { usedcolor } = this.state
@@ -101,6 +111,7 @@ class Compare extends Component {
   componentDidMount() {
     try {
       let listpm = []
+
       axios.get(`${url}/users/pm`).then(res => {
         const { data } = res
         data.map(pm => {
@@ -123,6 +134,30 @@ class Compare extends Component {
     } catch (error) {
       console.log('cant get list of pm at Compare', error)
     }
+    let datasets = []
+    this.state.color.map(c => {
+      datasets.push({
+        label: '',
+        fill: false,
+        lineTension: 0.1,
+        backgroundColor: c.bg,
+        borderColor: c.line,
+        borderCapStyle: 'butt',
+        borderDash: [],
+        borderDashOffset: 0.0,
+        borderJoinStyle: 'miter',
+        pointBorderColor: c.pointborder,
+        pointBackgroundColor: c.point,
+        pointBorderWidth: 4,
+        pointHoverRadius: 5,
+        pointHoverBackgroundColor: c.point,
+        pointHoverBorderColor: c.point,
+        pointHoverBorderWidth: 7,
+        pointRadius: 7,
+        pointHitRadius: 10,
+        data: []
+      })
+    })
   }
 
   render() {

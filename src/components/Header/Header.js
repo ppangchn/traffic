@@ -17,15 +17,6 @@ import './Header.css'
 
 import auth from '../../service/index'
 
-const Container = styled.div`
-    background-color: #5bc2e1
-    padding : 0px;
-    margin : 0px;
-    border : none;
-    // position: sticky;
-    // position: -webkit-sticky;
-    // top: 0;
-`
 const FolderClose = Folder.extend`
     width : 1.3rem;
     height :1.3rem;
@@ -235,8 +226,8 @@ class Header extends Component {
 	render() {
 		const { toggleAddModal } = this.state
 		return (
-			<Container>
-				<Navbar style={{ paddingBottom: '0', paddingTop: '0', paddingLeft: '5px', paddingRight: '5px' }}>
+			<div>
+				<Navbar fixed="top" style={{ paddingBottom: '0', paddingTop: '0', paddingLeft: '5px', paddingRight: '5px' ,backgroundColor:"#5bc2e1"}}>
 					<NavLink
 						onClick={() => {
 							this.changeListIcon()
@@ -271,7 +262,7 @@ class Header extends Component {
 					</Navbar>
 				</Navbar>
 				{toggleAddModal && <AddProject onClose={() => this.toggleAddModal(false)} />}
-			</Container>
+			</div>
 		)
 	}
 }

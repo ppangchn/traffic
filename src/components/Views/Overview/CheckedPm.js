@@ -14,7 +14,6 @@ class CheckedPm extends Component {
       if (checked) {
         index = this.update()
         this.props.setUsedColor(index)
-        console.log(this.props.weight)
         const data = {
           label: this.props.pm,
           fill: false,
@@ -36,7 +35,6 @@ class CheckedPm extends Component {
           pointHitRadius: 10,
           data: this.props.weight
         }
-        console.log(data)
         this.props.updateGraph(data,index)
       } else {
         this.props.setUnUsedColor(index)

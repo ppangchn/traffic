@@ -17,39 +17,29 @@ const Exit = X.extend`
 class SelectPm extends Component {
   constructor(props) {
     super(props)
-    const { value, label, weight } = this.props.pm
+    const { value, label, weight , roles } = this.props.pm
     this.state = {
       pm: value,
       choseweight: weight,
       disabled: true,
       value,
-      label
+      label,
+      roles
     }
     this.handleChange = this.handleChange.bind(this)
     this.slideChange = this.slideChange.bind(this)
   }
   handleChange = selectedOption => {
     this.setState({ pm: selectedOption, value: selectedOption.value })
-    console.log(this.state.pm)
     if (selectedOption) this.setState({ disabled: false })
     else this.setState({ disabled: true })
     this.props.setPm(this.props.id, {
       ...selectedOption,
-      weight: this.state.choseweight,
-      roles: this.props.roles
+      weight: this.state.choseweight
     })
     this.props.setInvalidAddPm()
   }
 
-  componentWillReceiveProps(props) {
-    console.log('all props', props)
-    console.log(this.state)
-    this.setState({
-      value: props.pm.value,
-      label: props.pm.label,
-      pm: props.pm.value
-    })
-  }
 
   slideChange = value => {
     this.setState({
@@ -59,16 +49,21 @@ class SelectPm extends Component {
       value: this.state.value,
       label: this.state.label,
       weight: value,
-      roles: this.props.roles
     })
   }
   delete = e => {
-    console.log('delete user!')
     this.props.delete(this.props.id)
   }
   componentWillReceiveProps(props) {
-    this.setState({ value: props.pm.value })
+    console.log('allprops',props)
+    this.setState({
+      value: props.pm.value,
+      label: props.pm.label,
+      pm: props.pm.value,
+      roles: props.roles
+    })
   }
+
   componentDidMount() {
     if (this.state.pm) this.setState({ disabled: false })
   }

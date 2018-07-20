@@ -51,7 +51,8 @@ class DashBoard extends Component {
 							<div key={user.id}>
 								<UserDetail
 									id={user.id}
-									name={user.name}
+                  name={user.name}
+                  roles={user.roles}
 									graph={graph}
 									projectManagement={user.projectManagement}
 									updateHeader={this.props.updateHeader}

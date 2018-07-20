@@ -106,11 +106,10 @@ class AddProject extends Component {
       dropdownOpen: !this.state.dropdownOpen
     })
   }
-  setCheckColor = (c,used) => {
+  setCheckColor = (c, used) => {
     if (c) this.setState({ isinvalidcolor: false })
     if (!used) this.setState({ checkedcolor: c })
     console.log(c)
-    
   }
 
   handleInputChange(e) {
@@ -135,29 +134,29 @@ class AddProject extends Component {
     if (!!this.state.pm[index].value) {
       data.id = this.state.pm[index].id
 
-      let findCurrentPM = pm.find(($fndPm) => {
+      let findCurrentPM = pm.find($fndPm => {
         return $fndPm.value == data.value
       })
 
       if (!!findCurrentPM) {
-        let findIndexPM = pm.findIndex(($fndPm) => {
+        let findIndexPM = pm.findIndex($fndPm => {
           return $fndPm.value == data.value
         })
         let tempData = this.state.pm[index]
 
         tempData.id = findCurrentPM.id
         findCurrentPM = tempData
-  
+
         pm[findIndexPM] = findCurrentPM
       }
-      
+
       let currentPM = this.state.pm[index]
 
-      let findOldTimeline = timeline.find(($fndTimeline) => {
+      let findOldTimeline = timeline.find($fndTimeline => {
         return $fndTimeline.users.id == currentPM.value
       })
 
-      let findCurrentTimelime = timeline.find(($fndTimeline) => {
+      let findCurrentTimelime = timeline.find($fndTimeline => {
         return $fndTimeline.users.id == data.value
       })
 
@@ -178,18 +177,18 @@ class AddProject extends Component {
       pm[index] = data
     } else {
       pm[index] = data
-    }    
+    }
 
-    this.setState({ isinvalidpm: false })
     this.setState(
       {
-        pm
+        pm,
+        isinvalidpm: false,
+        timeline
       },
       () => {
         this.filterPM()
       }
     )
-    this.setState({timeline})
 
     return pm
   }
@@ -264,7 +263,6 @@ class AddProject extends Component {
       let listPM = []
       if (this.props.id) {
         if (!!this.state.timeline) {
-          
           listTimeline = await this.state.timeline.map($objTimeline => {
             if (
               $objTimeline.users.roles.id >= 1 &&
@@ -294,7 +292,7 @@ class AddProject extends Component {
         })
 
         if (!!this.state.project.projectManagement) {
-          listPM = await this.state.filteredPM.map(($objPM) => {
+          listPM = await this.state.filteredPM.map($objPM => {
             return {
               id: $objPM.id,
               users: {
@@ -355,6 +353,7 @@ class AddProject extends Component {
           const newUser = response.data
           this.props.onClose()
           this.toggleSave()
+          if (this.props.id) this.props.getData();
           console.log('send!')
           this.props.history.push(`/project/${newUser.id}`)
         })
@@ -402,14 +401,13 @@ class AddProject extends Component {
           this.setCheckColor(data.project.color)
         })
       } else if (this.props.userid && this.props.username) {
-        
         const pm = [
           {
             value: this.props.userid,
             label: this.props.username,
             weight: 0,
-            id: null,
-            roles: {}
+            id: 1,
+            roles: this.props.roles
           }
         ]
         this.setState({ pm })
@@ -428,20 +426,20 @@ class AddProject extends Component {
           ]
         })
       }
-      let usedcolor = [];
+      let usedcolor = []
       axios.get(`${url}/project`).then(res => {
-        const project= res.data;
-        project.map((e) => {
-          usedcolor.push(e.color);
+        const project = res.data
+        project.map(e => {
+          usedcolor.push(e.color)
         })
-        this.setState({usedcolor})
+        this.setState({ usedcolor })
       })
       axios.get(`${url}/users/pm`).then(res => {
         const { data } = res
         // console.log('Data', data)
         let listpm = []
-        data.map(data => {
-          listpm.push({ value: data.id, label: data.name , roles: data.roles})
+        data.map(user => {
+          listpm.push({ value: user.id, label: user.name, roles: user.roles })
         })
         this.setState({
           listpm
@@ -527,8 +525,8 @@ class AddProject extends Component {
               </Row>
               <Row className="pd10">
                 {this.state.color.map(c => {
-                  let used = false;
-                  if (this.state.usedcolor.includes(c)) used = true;
+                  let used = false
+                  if (this.state.usedcolor.includes(c)) used = true
                   return (
                     <Col key={c} className="pd5" md={1} sm={1} xs={2}>
                       <ColorButton

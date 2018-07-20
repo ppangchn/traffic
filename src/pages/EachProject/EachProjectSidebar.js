@@ -328,6 +328,7 @@ class EachProjectSidebar extends Component {
           <AddProject
             onClose={() => this.toggleModal(false)}
             id={this.props.id}
+            getData={() => this.getData()}
           />
         )}
         {this.state.modalDeleteOpen && (

@@ -102,7 +102,7 @@ class UserDetail extends Component {
 				</Button>
 
 				{this.state.toggleAddModal && (
-					<AddProject onClose={() => this.toggleAddModal(false)} userid={this.props.id} username={this.props.name} />
+					<AddProject onClose={() => this.toggleAddModal(false)} userid={this.props.id} username={this.props.name} roles={this.props.roles}/>
 				)}
 			</Card>
 			// </div>
