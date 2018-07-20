@@ -16,6 +16,7 @@ input[type='checkbox'] {
     padding: 10px;
     padding-top: 0;
     height: 290px;
+    overflow-y: scroll;
   }
   .selectmanagerbox {
     background-color: #fafbfd;
