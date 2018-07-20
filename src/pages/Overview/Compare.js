@@ -107,12 +107,13 @@ class Compare extends Component {
     usedcolor[index] = false
     this.setState({ usedcolor })
   }
-  async clearData() {
+  clearData() {
     let { data, defaultdatasets } = this.state
-    data.datasets = defaultdatasets
-    let defaultusedcolor = [true, false, false, false, false]
+    let tmp = defaultdatasets.slice();
+    data.datasets = tmp;
+    let defaultusedcolor = [true, false, false, false, false, false]
     this.setState({ data, usedcolor: defaultusedcolor })
-    await this.setClear(true)
+    this.setClear(true)
   }
   async setClear(state) {
     await this.setState({ isclear: state })

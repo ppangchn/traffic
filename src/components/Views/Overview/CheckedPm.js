@@ -62,9 +62,8 @@ class CheckedPm extends Component {
     this.setState({ index })
     return index
   }
-  componentWillReceiveProps() {
-    console.log('clear',this.props.isclear)
-    if (this.props.isclear) {
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.isclear) {
       this.setState({ index: 0, checked: false })
       this.props.setClear(false)
     }
