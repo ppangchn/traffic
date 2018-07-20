@@ -40,7 +40,7 @@ export default class ResetPassword extends Component {
 			}
 			if (this.state.fpass.length > 5 && this.state.spass.length > 5) {
 				if (this.state.fpass == this.state.spass) {
-					// axios.post(`${url}/users/resetpass`, data)
+					axios.post(`${url}/users/resetpass`, data)
 					this.props.history.push(`/`)
 				} else {
 					this.setState({ massage: 'Please fill in the same password' })
