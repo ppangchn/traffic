@@ -2,6 +2,10 @@
 	padding-left: 0px;
 	padding-right: 0px;
 }
+.title {
+	font-size: 24px !important;
+}
+
 .pd5 {
 	padding-left: 5px !important;
 	padding-right: 5px !important;
@@ -41,13 +45,12 @@
 	color: #dc3545;
 }
 
-
 .input {
 	margin-right: 10px;
 }
 
 input::-webkit-input-placeholder {
-	font-size: 0.875rem;
+	font-size: 20px;
 }
 
 .btn-5bc2e1 {
@@ -77,9 +80,9 @@ input::-webkit-input-placeholder {
 }
 
 .Select-placeholder {
-  border-color: #5ac2e2 !important;
-  font-size: 14px !important;
-		padding: 0px 0px 5px 19px;
+	border-color: #5ac2e2 !important;
+	font-size: 20px !important;
+	padding: 0px 0px 5px 19px;
 }
 
 .inputform2 {
@@ -88,7 +91,7 @@ input::-webkit-input-placeholder {
 	border-radius: 5px !important;
 	border: 0.5px solid #d2d2d2;
 	padding: 5px 0px 5px 19px;
-	font-size: 14px;
+	font-size: 20px;
 }
 .inputform2:focus {
 	/* border: 0.5px solid #d2d2d2; */
@@ -96,67 +99,83 @@ input::-webkit-input-placeholder {
 	outline-width: 0px;
 }
 
-
-.ReactTags__tagInputField {
-  height: 31px!important;
-  margin: 0!important;
-  font-size: 14px!important;
-  width: 218%!important;
-  border: 1px solid #eee!important;
-  padding: 5px 0px 5px 19px !important;
-}
 .checkbox {
 	position: relative;
 }
 .checkbox label {
-  cursor: pointer;
-  position: absolute;
-  width: 17px;
-  height: 17px;
-  background-color: white;
-  border: 2px solid #5bc2e1;
+	cursor: pointer;
+	position: absolute;
+	width: 17px;
+	height: 17px;
+	background-color: white;
+	border: 2px solid #5bc2e1;
 	border-radius: 6px;
-
+	margin: 9px 5px 0px 0px;
 }
 .checkbox label:hover::after {
-  opacity: 0.2;
-  content: '';
-  position: absolute;
-  width: 9px;
-  height: 5px;
-  background: transparent;
-  top: 3px;
-  left: 2px;
-  border: 2.2px solid #333;
-  border-top: none;
-  border-right: none;
+	opacity: 0.2;
+	content: '';
+	position: absolute;
+	width: 9px;
+	height: 5px;
+	background: transparent;
+	top: 3px;
+	left: 2px;
+	border: 2.2px solid #333;
+	border-top: none;
+	border-right: none;
 	transform: rotate(-45deg);
+	margin-top: 10px;
 }
 .checkbox input[type='checkbox']:checked + label:after {
-  opacity: 1;
-  content: '';
-  position: absolute;
-  width: 9px;
-  height: 5px;
-  background: transparent;
-  top: 3px;
-  left: 2px;
-  border: 2.2px solid #333;
-  border-top: none;
-  border-right: none;
-  transform: rotate(-45deg);
+	opacity: 1;
+	content: '';
+	position: absolute;
+	width: 9px;
+	height: 5px;
+	background: transparent;
+	top: 3px;
+	left: 2px;
+	border: 2.2px solid #333;
+	border-top: none;
+	border-right: none;
+	transform: rotate(-45deg);
 }
 .sendresetpasswordtext {
 	position: relative;
-	bottom: 4px;
-
+	/* margin-left: 10px; */
+	font-size: 24px !important;
 }
 
-.settingTags{
+/* .settingTags {
 	font-size: 5px;
 	width: auto;
 	margin-right: 3px;
 	margin-top: 4px;
 	border-radius: 2px;
 	padding: 0 3px;
+} */
+
+.tag-full-w .ReactTags__tagInput {
+	width: 100% !important;
+	height: 100% !important;
+	font-size: 20px !important;
+}
+.tag-full-w div.ReactTags__selected span.ReactTags__tag {
+	margin: 0 5px 5px 0 !important;
+}
+
+.tag-full-w .ReactTags__tagInputField{
+	height: 50px !important;
+}
+
+.tag-full-w .ReactTags__tagInputField {
+	width: 100% !important;
+	/* height: 50px !important; */
+	display: block;
+	float: left;
+	border-radius: 5px !important;
+	border: 0.5px solid #d2d2d2 !important;
+	padding: 5px 0px 5px 19px !important;
+	font-size: 20px !important;
 }

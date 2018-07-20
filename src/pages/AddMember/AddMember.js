@@ -280,11 +280,11 @@ class AddMember extends Component {
           isOpen={this.state.open}
           toggle={onClose}
         >
-          <ModalHeader toggle={onClose}>{this.state.header}</ModalHeader>
+          <ModalHeader toggle={onClose}><div className="title">{this.state.header}</div></ModalHeader>
           <ModalBody>
             <Container>
               <Form onSubmit={this.sendDataMember}>
-                <Row >
+                <Row className="title">
                   <Col className="mb-3">
                     Name
                     <input
@@ -301,7 +301,7 @@ class AddMember extends Component {
                   </Col>
                 </Row>
 
-                <Row >
+                <Row className="title" >
                   <Col className="mb-3">Roles
 
                 <Select
@@ -320,10 +320,10 @@ class AddMember extends Component {
                   {this.state.invalidroles && this.state.invalidrolesmessage}
                 </div>
 
-                <Row >
+                <Row className="title" >
                   <Col className="mb-3">
                     Tags
-                    <div>
+                    <div className='tag-full-w'>
                       <ReactTags
                         className="taginput"
                         tags={tags}
@@ -336,11 +336,11 @@ class AddMember extends Component {
                   </Col>
                 </Row>
 
-                <Row >
+                <Row className="title">
                   <Col className="mb-3">
                     Email
                     <input
-                      style={{ fontSize: '8px !important' }}
+                      style={{ fontSize: '20px !important' }}
                       name="name"
                       className="inputform2"
                       type="email"
@@ -369,8 +369,8 @@ class AddMember extends Component {
                     </div>
                   </div>
                 )}
-                <Row>
-                  <Col className="btsave">
+                <Row className="title">
+                  <Col className="mb-3">
                     <Button color="5bc2e1" size="lg" block>
                       Save
                     </Button>
