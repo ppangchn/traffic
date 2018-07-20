@@ -1,62 +1,59 @@
 .font {
-  color: #504f4f !important;
+	color: #504f4f !important;
 }
 
-.SettingPersonTag{
-  font-size: 14px;
+.SettingPersonTag {
+	font-size: 14px;
 	width: auto;
 	margin-right: 3px;
 	margin-top: 4px;
 	border-radius: 2px;
-  padding: 0 3px;
-  background-color: #e4e4e4;
-  text-align: center;
-  color: #8c8c8c;
+	padding: 0 3px;
+	background-color: #e4e4e4;
+	text-align: center;
+	color: #8c8c8c;
 }
-
-
 
 @media (min-width: 321px) and (max-width: 575.98px) {
-  .font {
-    font-size: 30px;
-  }
-  .SettingPersonTag{
-    font-size: 14px;
-    width: auto;
-    margin-right: 3px;
-    margin-top: 4px;
-    border-radius: 2px;
-    padding: 0 3px;
-  }
+	.font {
+		font-size: 30px;
+	}
+	.SettingPersonTag {
+		font-size: 14px;
+		width: auto;
+		margin-right: 3px;
+		margin-top: 4px;
+		border-radius: 2px;
+		padding: 0 3px;
+	}
 }
 @media (min-width: 576px) and (max-width: 767.98px) {
-  .font {
-    font-size: 13px;
-  }
-  .editmembercontainer {
-    position: relative;
-    bottom: 12px;
-  }
-  .SettingPersonTagContainer {
-    bottom: 30px;
-  }
-
+	.font {
+		font-size: 13px;
+	}
+	.editmembercontainer {
+		position: relative;
+		bottom: 12px;
+	}
+	.SettingPersonTagContainer {
+		bottom: 30px;
+	}
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
-  .font {
-    font-size: 30px;
-  }
+	.font {
+		font-size: 30px;
+	}
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
-  .font {
-    font-size: 30px;
-  }
+	.font {
+		font-size: 30px;
+	}
 }
 
 @media (min-width: 1200px) {
-  .font {
-    font-size: 30px;
-  }
+	.font {
+		font-size: 30px;
+	}
 }

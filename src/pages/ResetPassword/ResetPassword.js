@@ -26,7 +26,8 @@ export default class ResetPassword extends Component {
 		this.state = {
 			token: '',
 			fpass: '',
-			spass: ''
+			spass: '',
+			massage: ''
 		}
 	}
 
@@ -37,9 +38,15 @@ export default class ResetPassword extends Component {
 				resetToken: this.state.token,
 				password: this.state.spass
 			}
-			if (this.state.fpass == this.state.spass) {
-				axios.post(`${url}/users/resetpass`, data)
-				this.props.history.push(`/`)
+			if (this.state.fpass.length > 5 && this.state.spass.length > 5) {
+				if (this.state.fpass == this.state.spass) {
+					// axios.post(`${url}/users/resetpass`, data)
+					this.props.history.push(`/`)
+				} else {
+					this.setState({ massage: 'Please fill in the same password' })
+				}
+			} else {
+				this.setState({ massage: 'Password should contain at least 6 characters' })
 			}
 		} catch (error) {}
 	}
@@ -47,6 +54,7 @@ export default class ResetPassword extends Component {
 	handleInputChange = e => {
 		const { name, value } = e.target
 		this.setState({ [name]: value })
+		this.setState({ massage: '' })
 		console.log({ [name]: value })
 	}
 
@@ -87,6 +95,7 @@ export default class ResetPassword extends Component {
 							Submit
 						</Button>
 					</Form>
+					<div className="err">{this.state.massage}</div>
 				</div>
 			</Container>
 		)
