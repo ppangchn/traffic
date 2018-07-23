@@ -256,12 +256,8 @@ class AddProject extends Component {
 						if ($objTimeline.users.roles.id >= 1 && $objTimeline.users.roles.id <= 6) {
 							$objTimeline.isDisable = true
 						}
-
 						return $objTimeline
-          })
-
-          
-          
+					})
 				}
 
 				await this.state.filteredPM.map($objPM => {
@@ -291,19 +287,8 @@ class AddProject extends Component {
 							isDisable: false
 						}
 					})
-        }
-        // else{
-        //   listPM = await this.state.filteredPM.map($objPM =>{
-        //     return {
-        //       id: $objPM.id,
-				// 			users: {
-				// 				id: $objPM.value
-				// 			},
-				// 			weight: $objPM.weight,
-				// 			isDisable: true
-        //     }
-        //   })
-        // }
+				}
+
 
 				await this.state.filteredPM.map($objPM => {
 					let findPM = listPM.find($fndPM => {

@@ -33,7 +33,7 @@ class UserDetail extends Component {
 	}
 	componentDidMount() {
 		const data = {
-			labels: ['Week 1','Week 2','Week 3','Week 4'],
+			labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
 			datasets: [
 				{
 					label: '',
@@ -54,8 +54,8 @@ class UserDetail extends Component {
 					pointHoverBorderWidth: 2,
 					pointRadius: 1,
 					pointHitRadius: 10,
-          data: this.props.graph,
-          responsive: true,
+					data: this.props.graph,
+					responsive: true
 				}
 			]
 		}
@@ -66,7 +66,7 @@ class UserDetail extends Component {
 		return (
 			// <div>
 			<Card className="userdetail">
-				<div className="" >{this.props.name}</div>
+				{this.props.name}
 				<Line data={this.state.data} height={350} />
 				<div className="eachItem">
 					{projectManagement.map(project => {
@@ -86,10 +86,7 @@ class UserDetail extends Component {
 										>
 											{project.project.name}
 										</Link>
-										<div style={{ float: 'right' }}>
-											{project.weight}%
-											{/* /// */}
-										</div>
+										<div style={{ float: 'right' }}>{project.weight}%</div>
 										<Progress className="overviewprogress" color={String(project.project.color).substring(1)} value={project.weight} />
 									</div>
 								</Item>
@@ -102,7 +99,12 @@ class UserDetail extends Component {
 				</Button>
 
 				{this.state.toggleAddModal && (
-					<AddProject onClose={() => this.toggleAddModal(false)} userid={this.props.id} username={this.props.name} roles={this.props.roles}/>
+					<AddProject
+						onClose={() => this.toggleAddModal(false)}
+						userid={this.props.id}
+						username={this.props.name}
+						roles={this.props.roles}
+					/>
 				)}
 			</Card>
 			// </div>
