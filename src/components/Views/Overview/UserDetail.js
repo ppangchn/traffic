@@ -66,7 +66,7 @@ class UserDetail extends Component {
 		return (
 			// <div>
 			<Card className="userdetail">
-				{this.props.name}
+				<div className="" >{this.props.name}</div>
 				<Line data={this.state.data} height={350} />
 				<div className="eachItem">
 					{projectManagement.map(project => {
