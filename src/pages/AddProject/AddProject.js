@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
 import { Container, Row, Col } from 'reactstrap'
-import { Button, Modal, ModalHeader, ModalBody, Input, FormFeedback } from 'reactstrap'
+import {
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  Input,
+  FormFeedback
+} from 'reactstrap'
 import ColorButton from '../../components/AddProject/ColorButton'
 import './AddProject.css'
 import SelectPm from '../../components/AddProject/SelectPm'
@@ -115,26 +122,27 @@ class AddProject extends Component {
   }
   setPm = (index, data) => {
     let pm = this.state.pm
+    console.log('pm ->',pm)
     let timeline = this.state.timeline
 
-		if (!!this.state.pm[index].value) {
-			data.id = this.state.pm[index].id
+    if (!!this.state.pm[index].value) {
+      data.id = this.state.pm[index].id
 
-			let findCurrentPM = pm.find($fndPm => {
-				return $fndPm.value == data.value
-			})
+      let findCurrentPM = pm.find($fndPm => {
+        return $fndPm.value == data.value
+      })
 
-			if (!!findCurrentPM) {
-				let findIndexPM = pm.findIndex($fndPm => {
-					return $fndPm.value == data.value
-				})
-				let tempData = this.state.pm[index]
+      if (!!findCurrentPM) {
+        let findIndexPM = pm.findIndex($fndPm => {
+          return $fndPm.value == data.value
+        })
+        let tempData = this.state.pm[index]
 
-				tempData.id = findCurrentPM.id
-				findCurrentPM = tempData
+        tempData.id = findCurrentPM.id
+        findCurrentPM = tempData
 
-				pm[findIndexPM] = findCurrentPM
-			}
+        pm[findIndexPM] = findCurrentPM
+      }
 
       let currentPM = this.state.pm[index]
       if (timeline) {
@@ -165,27 +173,28 @@ class AddProject extends Component {
     } else {
       pm[index] = data
     }
-    let {listpm} = this.state;
+    let { listpm } = this.state
     let namelistpm = this.state.namelistpm
-    listpm.forEach((e) => {
-      e.disabled = false;
+    listpm.forEach(e => {
+      e.disabled = false
     })
     pm.forEach(e => {
       let index = namelistpm.indexOf(e.label)
-        listpm[index].disabled = true;
+      if (index!==-1) {
+        listpm[index].disabled = true
+      }
     })
     this.setState(
       {
         pm,
         isinvalidpm: false,
         timeline,
-        listpm,
+        listpm
       },
       () => {
         this.filterPM()
       }
     )
-    
 
     return pm
   }
@@ -199,15 +208,22 @@ class AddProject extends Component {
       },
       () => this.filterPM()
     )
-    let {listpm} = this.state;
+    let { listpm } = this.state
     let namelistpm = this.state.namelistpm
-    listpm.forEach((e) => {
-      e.disabled = false;
+    listpm.forEach(e => {
+      e.disabled = false
     })
     pm.forEach(e => {
-      let index = namelistpm.indexOf(e.label)
-        listpm[index].disabled = true;
+      if (e.label) {
+        let index = namelistpm.indexOf(e.label)
+        console.log('index->',index)
+        if (index!==-1) {
+          listpm[index].disabled = true
+        }
+        
+      }
     })
+    console.log('delete leaw pm ->',pm)
   }
   filterPM = () => {
     let pm = this.state.pm.map(i => i)
@@ -243,10 +259,12 @@ class AddProject extends Component {
         value: null,
         label: '',
         weight: 0,
+        disabled: false
       })
     }
 
     this.setState({ pm })
+    console.log('add pm->',pm)
   }
   slideChange(value) {
     this.setState({
@@ -276,86 +294,83 @@ class AddProject extends Component {
               $objTimeline.isDisable = true
             }
 
-						return $objTimeline
+            return $objTimeline
+          })
+        }
+
+        await this.state.filteredPM.map($objPM => {
+          let findTimeline = listTimeline.find($fndTimeline => {
+            return $fndTimeline.users.id == $objPM.value
           })
 
-          
-          
-				}
+          if (!!findTimeline) {
+            findTimeline.isDisable = false
+          } else {
+            listTimeline.push({
+              users: {
+                id: $objPM.value
+              }
+            })
+          }
+        })
 
-				await this.state.filteredPM.map($objPM => {
-					let findTimeline = listTimeline.find($fndTimeline => {
-						return $fndTimeline.users.id == $objPM.value
-					})
-
-					if (!!findTimeline) {
-						findTimeline.isDisable = false
-					} else {
-						listTimeline.push({
-							users: {
-								id: $objPM.value
-							}
-						})
-					}
-				})
-
-				if (!!this.state.project.projectManagement) {
-					listPM = await this.state.filteredPM.map($objPM => {
-						return {
-							id: $objPM.id,
-							users: {
-								id: $objPM.value
-							},
-							weight: $objPM.weight,
-							isDisable: false
-						}
-					})
+        if (!!this.state.project.projectManagement) {
+          listPM = await this.state.filteredPM.map($objPM => {
+            return {
+              id: $objPM.id,
+              users: {
+                id: $objPM.value
+              },
+              weight: $objPM.weight,
+              isDisable: false
+            }
+          })
         }
         // else{
         //   listPM = await this.state.filteredPM.map($objPM =>{
         //     return {
         //       id: $objPM.id,
-				// 			users: {
-				// 				id: $objPM.value
-				// 			},
-				// 			weight: $objPM.weight,
-				// 			isDisable: true
+        // 			users: {
+        // 				id: $objPM.value
+        // 			},
+        // 			weight: $objPM.weight,
+        // 			isDisable: true
         //     }
         //   })
         // }
 
-				await this.state.filteredPM.map($objPM => {
-					let findPM = listPM.find($fndPM => {
-						return $fndPM.users.id == $objPM.value
-					})
+        await this.state.filteredPM.map($objPM => {
+          let findPM = listPM.find($fndPM => {
+            return $fndPM.users.id == $objPM.value
+          })
 
-					if (!!!findPM) {
-						listPM.push({
-							users: {
-								id: $objPM.value
-							},
-							weight: $objPM.weight,
-							isDisable: false
-						})
-					}
-				})
-			} else {
-				listPM = this.state.filteredPM.map(pm => {
-					return {
-						users: {
-							id: pm.value
-						},
-						weight: pm.weight
-					}
-				})
-				listTimeline = this.state.filteredPM.map($objPM => {
-					return {
-						users: {
-							id: $objPM.value
-						}
-					}
-				})
-			}
+          if (!!!findPM) {
+            listPM.push({
+              users: {
+                id: $objPM.value
+              },
+              weight: $objPM.weight,
+              isDisable: false
+            })
+          }
+        })
+      } else {
+        listPM = this.state.filteredPM.map(pm => {
+          return {
+            users: {
+              id: pm.value
+            },
+            weight: pm.weight
+          }
+        })
+        listTimeline = this.state.filteredPM.map($objPM => {
+          return {
+            users: {
+              id: $objPM.value
+            }
+          }
+        })
+      }
 
       let data = {
         name: this.state.projectname,
@@ -459,7 +474,12 @@ class AddProject extends Component {
         let listpm = []
         let namelistpm = []
         data.map(user => {
-          listpm.push({ value: user.id, label: user.name, roles: user.roles, disabled:false })
+          listpm.push({
+            value: user.id,
+            label: user.name,
+            roles: user.roles,
+            disabled: false
+          })
           namelistpm.push(user.name)
         })
         this.setState({
@@ -474,24 +494,30 @@ class AddProject extends Component {
   render() {
     const { onClose } = this.props
 
-		return (
-			<Container>
-				<Modal size="5" isOpen={this.state.open} toggle={onClose} onExit={() => this.clear()} autoFocus={true}>
-					<ModalHeader toggle={onClose}>{this.state.header}</ModalHeader>
-					<ModalBody>
-						<Container className="addprojectbox">
-							<Row>
-								<Col className="projectnamebox">
-									Project name
-									<Input
-										className="fontinput"
-										name="projectname"
-										invalid={this.state.invalid}
-										placeholder="Type your project name"
-										onChange={this.handleInputChange}
-										value={this.state.projectname}
-									/>
-									{/* <FormFeedback tooltip="true">
+    return (
+      <Container>
+        <Modal
+          size="5"
+          isOpen={this.state.open}
+          toggle={onClose}
+          onExit={() => this.clear()}
+          autoFocus={true}
+        >
+          <ModalHeader toggle={onClose}>{this.state.header}</ModalHeader>
+          <ModalBody>
+            <Container className="addprojectbox">
+              <Row>
+                <Col className="projectnamebox">
+                  Project name
+                  <Input
+                    className="fontinput"
+                    name="projectname"
+                    invalid={this.state.invalid}
+                    placeholder="Type your project name"
+                    onChange={this.handleInputChange}
+                    value={this.state.projectname}
+                  />
+                  {/* <FormFeedback tooltip="true">
                     Can't send empty name!
                   </FormFeedback> */}
                   <Col />
