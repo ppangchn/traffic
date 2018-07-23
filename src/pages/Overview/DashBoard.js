@@ -16,8 +16,9 @@ const Container = styled.div`
 	-webkit-background-size: cover;
 	background-size: cover;
 	display: flex;
-  flex-direction: column;
-  height: 100vh;
+	flex-direction: column;
+	height: 100vh;
+	overflow-x: hidden !important;
 `
 const UserContainer = styled.div`
 	overflow-y: hidden;
@@ -51,8 +52,8 @@ class DashBoard extends Component {
 							<div key={user.id}>
 								<UserDetail
 									id={user.id}
-                  name={user.name}
-                  roles={user.roles}
+									name={user.name}
+									roles={user.roles}
 									graph={graph}
 									projectManagement={user.projectManagement}
 									updateHeader={this.props.updateHeader}
@@ -66,7 +67,6 @@ class DashBoard extends Component {
 						<Timeline className="timelineicon" /> Compare
 					</Button>
 				</Link>
-        
 			</Container>
 		)
 	}

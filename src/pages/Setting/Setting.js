@@ -114,7 +114,8 @@ class Setting extends Component {
 	render() {
 		const { toggleAddModal } = this.state
 		return (
-			<Container className="mt-5">
+		<div className="mtTab">
+			<Container>
 				<Row>
 					<Col md={12}>
 						<Nav tabs className="mx-1">
@@ -244,6 +245,7 @@ class Setting extends Component {
 
 				{toggleAddModal && <AddMember getData={() => this.selectURL(this.state.activeTab)} onClose={() => this.toggleAddModal(false)} />}
 			</Container>
+			</div>
 		)
 	}
 }

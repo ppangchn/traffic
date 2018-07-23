@@ -5,6 +5,7 @@ import { Switch, Route, withRouter } from 'react-router-dom'
 import Login from './pages/Login/Login'
 import ResetPassword from './pages/ResetPassword/ResetPassword'
 import ForgotPass from './pages/ForgotPass/ForgotPass'
+import styled from 'styled-components'
 
 
 
@@ -20,14 +21,16 @@ class App extends Component {
 	}
 	render() {
 		return (
-			<Router basename={'/traffic-app/build'}>
-				<Switch>
-					<Route exact path="/" component={withRouter(Login)} />
-					<Route exact path="/resetpassword/:token" component={withRouter(ResetPassword)} />
-					<Route exact path="/forgotpass" component={withRouter(ForgotPass)} />
-					<Main updateHeader={() => this.updateHeader()} />
-				</Switch>
-			</Router>
+
+				<Router basename={'/traffic-app/build'}>
+					<Switch>
+						<Route exact path="/" component={withRouter(Login)} />
+						<Route exact path="/resetpassword/:token" component={withRouter(ResetPassword)} />
+						<Route exact path="/forgotpass" component={withRouter(ForgotPass)} />
+						<Main updateHeader={() => this.updateHeader()} />
+					</Switch>
+				</Router>
+
 		)
 	}
 }
