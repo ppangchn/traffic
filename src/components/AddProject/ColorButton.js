@@ -12,6 +12,10 @@ const Starz = Star.extend`
     bottom: 1.5px; !important;
     padding: 1px;
 `
+// const Used = X.extend`
+//     position: absolute;
+    
+// `
 class ColorButton extends Component {
   constructor(props) {
     super(props)

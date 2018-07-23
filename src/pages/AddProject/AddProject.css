@@ -148,14 +148,14 @@
 }
 @media (min-width: 576px) and (max-width: 767.98px) {
   .addprojectbox {
-    font-size: 10px;
+    font-size: 15px;
   }
   .sliderbox {
     margin-top: 10px;
   }
   .weightproject {
-    font-size: 12px;
-    width: 48px;
+    font-size: 18px;
+    line-height: 17px;
   }
   .weightbox {
     margin-right: 5px;
@@ -180,15 +180,17 @@
 
 @media (min-width: 768px) and (max-width: 991.98px) {
   .addprojectbox {
-    font-size: 15px;
+    font-size: 16px;
   }
   .sliderbox {
     margin-top: 10px;
   }
   .weightproject {
-    font-size: 12px;
-    width: 48px;
-    margin-top: 6px;
+    font-size: 18px;
+    line-height: 17px;
+    position: relative;
+    top: 7px;
+    width: 3.125rem;
   }
   .weightbox {
     margin-right: 5px;
@@ -217,15 +219,16 @@
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
   .addprojectbox {
-    font-size: 15px;
+    font-size: 20px;
   }
   .sliderbox {
     margin-top: 12px;
   }
   .weightproject {
-    font-size: 12px;
-    top: 9px;
+    font-size: 18px;
+    line-height: 17px;
     position: relative;
+    top: 17px;
     width: 3.125rem;
   }
   .weightbox {
@@ -252,15 +255,16 @@
 }
 @media (min-width: 1200px) {
   .addprojectbox {
-    font-size: 15px;
+    font-size: 20px;
   }
   .sliderbox {
     margin-top: 12px;
   }
   .weightproject {
-    font-size: 12px;
+    font-size: 18px;
+    line-height: 17px;
     position: relative;
-    top: 8px;
+    top: 17px;
     width: 3.125rem;
   }
   .weightbox {

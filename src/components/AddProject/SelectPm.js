@@ -24,22 +24,22 @@ class SelectPm extends Component {
       disabled: true,
       value,
       label,
-      roles
+      roles,
+      selectedOption: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.slideChange = this.slideChange.bind(this)
   }
   handleChange = selectedOption => {
-    this.setState({ pm: selectedOption, value: selectedOption.value })
+    this.setState({ pm: selectedOption,value: selectedOption.value})
     if (selectedOption) this.setState({ disabled: false })
     else this.setState({ disabled: true })
     this.props.setPm(this.props.id, {
       ...selectedOption,
-      weight: this.state.choseweight
+      weight: this.state.choseweight,
     })
     this.props.setInvalidAddPm()
   }
-
 
   slideChange = value => {
     this.setState({
@@ -55,7 +55,6 @@ class SelectPm extends Component {
     this.props.delete(this.props.id)
   }
   componentWillReceiveProps(props) {
-    console.log('allprops',props)
     this.setState({
       value: props.pm.value,
       label: props.pm.label,
@@ -68,6 +67,7 @@ class SelectPm extends Component {
     if (this.state.pm) this.setState({ disabled: false })
   }
   render() {
+
     return (
       <Row className="selectpmbox">
         <Col xs="4">
@@ -79,9 +79,7 @@ class SelectPm extends Component {
             onChange={this.handleChange}
             options={this.props.listpm}
             trimFilter
-            autoFocus={true}
             clearable={false}
-            scrollMenuIntoView={false}
           />
         </Col>
         <Col className="sliderboxpm" xs="4">

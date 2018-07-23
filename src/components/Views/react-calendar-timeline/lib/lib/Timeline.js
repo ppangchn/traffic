@@ -268,7 +268,7 @@ var ReactCalendarTimeline = function (_Component) {
         if (!(!!firstGroupHeight) && groupHeights.length > 0) {
           firstGroupHeight = groupHeights
 
-          console.log('firstGroupHeight', firstGroupHeight)
+          // console.log('firstGroupHeight', firstGroupHeight)
         }
 
         if (!!firstGroupHeight) {
