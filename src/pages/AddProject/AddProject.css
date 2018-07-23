@@ -55,52 +55,6 @@
 .weightpm {
   border-color: #5ac2e2 !important;
 }
-/* @media (max-width: 320px) {
-  .addprojectbox {
-    font-size: 8px;
-  }
-  .sliderbox {
-    margin-top: 10px;
-    margin-left: 4px;
-  }
-  .weightproject {
-    font-size: 12px;
-    width: 48px;
-    bottom: 4px;
-    position: relative;
-  }
-  .weightbox {
-    margin-right: 5px;
-    bottom: 8px;
-    margin-top: 30px;
-    right: 8px;
-  }
-  .form-control {
-    font-size: 6px !important;
-    top: 6px;
-    position: relative;
-  }
-  .addpmbox {
-    margin-bottom: 7px;
-    bottom: 5px;
-    padding-left: 0 !important;
-  }
-  .Select-placeholder {
-    font-size: 12px;
-  }
-  .Select-control {
-    top: 5px;
-  }
-  .form-control {
-    font-size: 7px !important;
-    top: 5px;
-    position: relative;
-    width: 85%;
-  }
-  .fontinput::placeholder {
-    font-size: 7px !important;
-  }
-} */
 @media (min-width: 321px) and (max-width: 575.98px) {
   .addprojectbox {
     font-size: 10px;
@@ -272,7 +226,8 @@
     margin-top: 21px;
   }
   .fontinput::placeholder {
-    font-size: 14px !important;
+    font-size: 17px !important;
+    padding: 0;
   }
   .addpmbox {
     margin-bottom: 10px;

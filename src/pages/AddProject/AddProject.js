@@ -120,9 +120,15 @@ class AddProject extends Component {
     })
     if (name.length > 0) this.setState({ invalid: false })
   }
+  slideChange(value) {
+    this.setState({
+      choseweight: value,
+      isinvalidweight: false
+    })
+  }
   setPm = (index, data) => {
     let pm = this.state.pm
-    console.log('pm ->',pm)
+    console.log('pm ->', pm)
     let timeline = this.state.timeline
 
     if (!!this.state.pm[index].value) {
@@ -173,23 +179,12 @@ class AddProject extends Component {
     } else {
       pm[index] = data
     }
-    let { listpm } = this.state
-    let namelistpm = this.state.namelistpm
-    listpm.forEach(e => {
-      e.disabled = false
-    })
-    pm.forEach(e => {
-      let index = namelistpm.indexOf(e.label)
-      if (index!==-1) {
-        listpm[index].disabled = true
-      }
-    })
+    this.updateListPm(pm)
     this.setState(
       {
         pm,
         isinvalidpm: false,
-        timeline,
-        listpm
+        timeline
       },
       () => {
         this.filterPM()
@@ -208,22 +203,8 @@ class AddProject extends Component {
       },
       () => this.filterPM()
     )
-    let { listpm } = this.state
-    let namelistpm = this.state.namelistpm
-    listpm.forEach(e => {
-      e.disabled = false
-    })
-    pm.forEach(e => {
-      if (e.label) {
-        let index = namelistpm.indexOf(e.label)
-        console.log('index->',index)
-        if (index!==-1) {
-          listpm[index].disabled = true
-        }
-        
-      }
-    })
-    console.log('delete leaw pm ->',pm)
+    this.updateListPm(pm)
+    console.log('delete leaw pm ->', pm)
   }
   filterPM = () => {
     let pm = this.state.pm.map(i => i)
@@ -246,9 +227,6 @@ class AddProject extends Component {
       }
     )
   }
-  clear() {
-    this.setState({ listpm: [], projectname: '', color: '', invalidpm: '' })
-  }
   addPM() {
     let currentpm = this.state.pm
     let pm = this.state.pm.map(i => i)
@@ -264,13 +242,29 @@ class AddProject extends Component {
     }
 
     this.setState({ pm })
-    console.log('add pm->',pm)
+    console.log('add pm->', pm)
   }
-  slideChange(value) {
-    this.setState({
-      choseweight: value,
-      isinvalidweight: false
+  updateListPm(pm) {
+    let { listpm } = this.state
+    console.log('pm -> ', pm)
+    console.log('list pm ->', listpm)
+    let namelistpm = this.state.namelistpm
+    listpm.forEach(e => {
+      e.disabled = false
     })
+    pm.forEach(e => {
+      if (e.label) {
+        let index = namelistpm.indexOf(e.label)
+        console.log('index->', index)
+        if (index !== -1) {
+          listpm[index].disabled = true
+        }
+      }
+    })
+    this.setState({ listpm })
+  }
+  clear() {
+    this.setState({ listpm: [], projectname: '', color: '', invalidpm: '' })
   }
   setInvalidAddPm(state) {
     this.setState({ isinvalidaddpm: state })
@@ -288,6 +282,7 @@ class AddProject extends Component {
         if (!!this.state.timeline) {
           listTimeline = await this.state.timeline.map($objTimeline => {
             if (
+              $objTimeline.users.roles &&
               $objTimeline.users.roles.id >= 1 &&
               $objTimeline.users.roles.id <= 6
             ) {
@@ -326,19 +321,6 @@ class AddProject extends Component {
             }
           })
         }
-        // else{
-        //   listPM = await this.state.filteredPM.map($objPM =>{
-        //     return {
-        //       id: $objPM.id,
-        // 			users: {
-        // 				id: $objPM.value
-        // 			},
-        // 			weight: $objPM.weight,
-        // 			isDisable: true
-        //     }
-        //   })
-        // }
-
         await this.state.filteredPM.map($objPM => {
           let findPM = listPM.find($fndPM => {
             return $fndPM.users.id == $objPM.value
@@ -412,10 +394,11 @@ class AddProject extends Component {
   }
   componentDidMount() {
     try {
+      let pm = []
       if (this.props.id) {
         axios.get(`${url}/project/${this.props.id}`).then(res => {
           const { data } = res
-          const pm = data.project.projectManagement.map(pm => {
+          pm = data.project.projectManagement.map(pm => {
             if (!pm.isDisable) {
               return {
                 value: pm.users.id,
@@ -438,7 +421,7 @@ class AddProject extends Component {
           this.setCheckColor(data.project.color)
         })
       } else if (this.props.userid && this.props.username) {
-        const pm = [
+        pm = [
           {
             value: this.props.userid,
             label: this.props.username,
@@ -449,16 +432,17 @@ class AddProject extends Component {
         ]
         this.setState({ pm })
       } else {
+        pm = [
+          {
+            value: null,
+            label: '',
+            weight: 0,
+            id: null,
+            roles: {}
+          }
+        ]
         this.setState({
-          pm: [
-            {
-              value: null,
-              label: '',
-              weight: 0,
-              id: null,
-              roles: {}
-            }
-          ]
+          pm
         })
       }
       let usedcolor = []
@@ -485,8 +469,9 @@ class AddProject extends Component {
         this.setState({
           listpm,
           namelistpm
-        })
+        }, () => this.updateListPm(pm))
       })
+      
     } catch (error) {
       console.log('fail to get data at AddProject', error)
     }
