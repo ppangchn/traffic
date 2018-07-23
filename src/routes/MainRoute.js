@@ -8,6 +8,7 @@ import AddProject from '../pages/AddProject/AddProject'
 import EachProject from '../pages/EachProject/EachProject'
 import PersonalProject from '../pages/PersonalProject/PersonalProject'
 import PrivateRoute from '../../src/components/privateRoute/index'
+import './MainRoute.css'
 
 class MainRoute extends Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class MainRoute extends Component {
       return <ViewByProject updateHeader={this.props.updateHeader} />
     }
     return (
-      <div style={{ position: 'relative', top: '56px' }}>
+      <div className="positionheader" style={{ position: 'relative' }}>
         <PrivateRoute exact path="/overview" component={DashBoard} />
         <PrivateRoute path="/overview/compare" component={Compare} />
         <PrivateRoute exact path="/project" component={viewbyproject} />

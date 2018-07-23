@@ -35,23 +35,21 @@ class CheckedPm extends Component {
           pointHitRadius: 10,
           data: this.props.weight
         }
-        this.props.updateGraph(data,index)
+        this.props.updateGraph(data, index)
       } else {
         this.props.setUnUsedColor(index)
-        this.props.updateGraph(null,index)
+        this.props.updateGraph(null, index)
         this.setState({ index: 0 })
-        
       }
       this.setState({ checked })
     } else {
       if (!checked) {
         this.props.setUnUsedColor(index)
-        this.props.updateGraph(null,index)
-        this.setState({index:0})
+        this.props.updateGraph(null, index)
+        this.setState({ index: 0 })
         this.setState({ checked })
       }
     }
-    
   }
   update() {
     let index = 0
@@ -63,6 +61,12 @@ class CheckedPm extends Component {
     })
     this.setState({ index })
     return index
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.isclear) {
+      this.setState({ index: 0, checked: false })
+      this.props.setClear(false)
+    }
   }
   render() {
     const { pm, id, color } = this.props
@@ -93,7 +97,9 @@ class CheckedPm extends Component {
               border: this.state.checked
                 ? `2px solid ${color[index].checkedbox}`
                 : '2px solid #5bc2e1',
-              backgroundColor: this.state.checked ? color[index].checkedbox : 'white'
+              backgroundColor: this.state.checked
+                ? color[index].checkedbox
+                : 'white'
             }}
           />
           <div className="pmcheckboxname">{pm}</div>

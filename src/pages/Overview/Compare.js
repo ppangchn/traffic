@@ -17,7 +17,7 @@ const Box = styled.div`
   -webkit-background-size: cover;
   background-size: cover;
   flex-direction: column;
-  overflow:hidden;
+  overflow: hidden;
 `
 const Card = styled.div`
   background-color: white;
@@ -75,28 +75,27 @@ class Compare extends Component {
       data: {
         labels: ['', 'WEEK 1', 'WEEK 2', 'WEEK 3', 'WEEK 4', ''],
         datasets: []
-      }
+      },
+      defaultdatasets: [],
+      isclear: false
     }
+    this.clearData = this.clearData.bind(this)
   }
   updateGraph(pmdata, index) {
     let { data } = this.state
     if (pmdata) {
       if (index > 0) data.datasets[index - 1] = pmdata
       else data.datasets[index] = pmdata
-      // if (data.datasets[index - 1]) data.datasets[index - 1] = pmdata
-      // else data.datasets.push(pmdata)
     } else {
       if (index > 0) {
-        data.datasets[index - 1].label = '';
-        data.datasets[index-1].data = [];
+        data.datasets[index - 1].label = ''
+        data.datasets[index - 1].data = []
       } else {
-        data.datasets[index].label = '';
-        data.datasets[index].data = [];
+        data.datasets[index].label = ''
+        data.datasets[index].data = []
       }
     }
     this.setState({ data })
-    console.log('index', index)
-    console.log('data', data)
   }
   setUsedColor(index) {
     let { usedcolor } = this.state
@@ -107,6 +106,17 @@ class Compare extends Component {
     let { usedcolor } = this.state
     usedcolor[index] = false
     this.setState({ usedcolor })
+  }
+  clearData() {
+    let { data, defaultdatasets } = this.state
+    let tmp = defaultdatasets.slice();
+    data.datasets = tmp;
+    let defaultusedcolor = [true, false, false, false, false, false]
+    this.setState({ data, usedcolor: defaultusedcolor })
+    this.setClear(true)
+  }
+  async setClear(state) {
+    await this.setState({ isclear: state })
   }
   componentDidMount() {
     try {
@@ -135,29 +145,34 @@ class Compare extends Component {
       console.log('cant get list of pm at Compare', error)
     }
     let datasets = []
+    let { data } = this.state
     this.state.color.map(c => {
-      datasets.push({
-        label: '',
-        fill: false,
-        lineTension: 0.1,
-        backgroundColor: c.bg,
-        borderColor: c.line,
-        borderCapStyle: 'butt',
-        borderDash: [],
-        borderDashOffset: 0.0,
-        borderJoinStyle: 'miter',
-        pointBorderColor: c.pointborder,
-        pointBackgroundColor: c.point,
-        pointBorderWidth: 4,
-        pointHoverRadius: 5,
-        pointHoverBackgroundColor: c.point,
-        pointHoverBorderColor: c.point,
-        pointHoverBorderWidth: 7,
-        pointRadius: 7,
-        pointHitRadius: 10,
-        data: []
-      })
+      if (c.bg) {
+        datasets.push({
+          label: '',
+          fill: false,
+          lineTension: 0.1,
+          backgroundColor: c.bg,
+          borderColor: c.line,
+          borderCapStyle: 'butt',
+          borderDash: [],
+          borderDashOffset: 0.0,
+          borderJoinStyle: 'miter',
+          pointBorderColor: c.pointborder,
+          pointBackgroundColor: c.point,
+          pointBorderWidth: 4,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: c.point,
+          pointHoverBorderColor: c.point,
+          pointHoverBorderWidth: 7,
+          pointRadius: 7,
+          pointHitRadius: 10,
+          data: []
+        })
+      }
     })
+    data.datasets = datasets
+    this.setState({ defaultdatasets: datasets, data })
   }
 
   render() {
@@ -169,20 +184,39 @@ class Compare extends Component {
               <ChartIcon className="charticon" />Compare
             </Col>
           </Row>
-          <Row>
-            <Col className="col-md-8">
+          <Row style={{ justifyContent: 'center' }}>
+            <Col className="col-md-7 col-sm-9 col-xs-12 px-0">
               <Card className="comparegraph">
-                <Line data={this.state.data} height={240} />
+                <Line
+                  data={this.state.data}
+                  height={225}
+                  options={{
+                    maintainAspectRatio: true,
+                    scales: {
+                      yAxes: [
+                        {
+                          display: true,
+                          ticks: {
+                            suggestedMin: 0,
+                            suggestedMax: 100
+                          }
+                        }
+                      ]
+                    }
+                  }}
+                />
               </Card>
             </Col>
-            <Col className="col-md-2 pl-0">
+            <Col className="col-md-3 pl-0 col-sm-3 col-xs-2 px-0">
               <div
                 className="selectmanagerbox"
                 style={{ display: 'flex', flexDirection: 'column' }}
               >
                 <div className="selectmanagerhead">
                   <div className="selectmanagertext">&ensp;Select Manager</div>
-                  {/* <div className="compareclear">CLEAR</div> */}
+                  <div className="compareclear" onClick={this.clearData}>
+                    &nbsp;CLEAR&nbsp;
+                  </div>
                   <div className="viewstatistics">View statistics.</div>
                 </div>
                 {this.state.listpm.map(pm => {
@@ -191,6 +225,8 @@ class Compare extends Component {
                       pm={pm.name}
                       id={pm.id}
                       weight={pm.weight}
+                      isclear={this.state.isclear}
+                      setClear={state => this.setClear(state)}
                       color={this.state.color}
                       usedcolor={this.state.usedcolor}
                       setUsedColor={index => this.setUsedColor(index)}
