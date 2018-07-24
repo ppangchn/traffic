@@ -1,12 +1,28 @@
 .shape {
-    height: 100%;
-    display: inline-block;
-    border-radius: 4px;
-    width: 100%;
-    padding-top: 100%;
-    margin: 5px 0;
-    position:relative;
+  height: 100%;
+  display: inline-block;
+  border-radius: 4px;
+  width: 100%;
+  padding-top: 100%;
+  margin: 5px 0;
+  position: relative;
 }
 .check {
-    position: absolute;
+  position: absolute;
+}
+
+@media (min-width: 321px) and (max-width: 575.98px) {
+  .xicon {
+    top: -16.5px !important;
+    right: -16px !important;
+    width: 73px;
+  }
+}
+
+@media (min-width: 576px) {
+  .xicon {
+    top: -9.5px !important;
+    right: -9px !important;
+    width: 45px;
+  }
 }

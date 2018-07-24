@@ -55,52 +55,6 @@
 .weightpm {
   border-color: #5ac2e2 !important;
 }
-/* @media (max-width: 320px) {
-  .addprojectbox {
-    font-size: 8px;
-  }
-  .sliderbox {
-    margin-top: 10px;
-    margin-left: 4px;
-  }
-  .weightproject {
-    font-size: 12px;
-    width: 48px;
-    bottom: 4px;
-    position: relative;
-  }
-  .weightbox {
-    margin-right: 5px;
-    bottom: 8px;
-    margin-top: 30px;
-    right: 8px;
-  }
-  .form-control {
-    font-size: 6px !important;
-    top: 6px;
-    position: relative;
-  }
-  .addpmbox {
-    margin-bottom: 7px;
-    bottom: 5px;
-    padding-left: 0 !important;
-  }
-  .Select-placeholder {
-    font-size: 12px;
-  }
-  .Select-control {
-    top: 5px;
-  }
-  .form-control {
-    font-size: 7px !important;
-    top: 5px;
-    position: relative;
-    width: 85%;
-  }
-  .fontinput::placeholder {
-    font-size: 7px !important;
-  }
-} */
 @media (min-width: 321px) and (max-width: 575.98px) {
   .addprojectbox {
     font-size: 10px;
@@ -148,14 +102,14 @@
 }
 @media (min-width: 576px) and (max-width: 767.98px) {
   .addprojectbox {
-    font-size: 10px;
+    font-size: 15px;
   }
   .sliderbox {
     margin-top: 10px;
   }
   .weightproject {
-    font-size: 12px;
-    width: 48px;
+    font-size: 18px;
+    line-height: 17px;
   }
   .weightbox {
     margin-right: 5px;
@@ -180,15 +134,17 @@
 
 @media (min-width: 768px) and (max-width: 991.98px) {
   .addprojectbox {
-    font-size: 15px;
+    font-size: 16px;
   }
   .sliderbox {
     margin-top: 10px;
   }
   .weightproject {
-    font-size: 12px;
-    width: 48px;
-    margin-top: 6px;
+    font-size: 18px;
+    line-height: 17px;
+    position: relative;
+    top: 7px;
+    width: 3.125rem;
   }
   .weightbox {
     margin-right: 5px;
@@ -217,15 +173,16 @@
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
   .addprojectbox {
-    font-size: 15px;
+    font-size: 20px;
   }
   .sliderbox {
     margin-top: 12px;
   }
   .weightproject {
-    font-size: 12px;
-    top: 9px;
+    font-size: 18px;
+    line-height: 17px;
     position: relative;
+    top: 17px;
     width: 3.125rem;
   }
   .weightbox {
@@ -252,15 +209,16 @@
 }
 @media (min-width: 1200px) {
   .addprojectbox {
-    font-size: 15px;
+    font-size: 20px;
   }
   .sliderbox {
     margin-top: 12px;
   }
   .weightproject {
-    font-size: 12px;
+    font-size: 18px;
+    line-height: 17px;
     position: relative;
-    top: 8px;
+    top: 17px;
     width: 3.125rem;
   }
   .weightbox {
@@ -268,7 +226,8 @@
     margin-top: 21px;
   }
   .fontinput::placeholder {
-    font-size: 14px !important;
+    font-size: 17px !important;
+    padding: 0;
   }
   .addpmbox {
     margin-bottom: 10px;

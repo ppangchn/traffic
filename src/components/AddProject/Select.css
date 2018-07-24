@@ -61,7 +61,7 @@
 }
 @media (min-width: 576px) and (max-width: 767.98px) {
   .weightpm {
-    font-size: 12px;
+    font-size: 10px;
     margin-top: 6px;
     width: 3.125rem;
     border-radius: 5px;
@@ -107,8 +107,9 @@
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
   .weightpm {
-    font-size: 12px;
-    margin-top: 9px;
+    font-size: 22px;
+    line-height: 18px;
+    margin-top: 3px;
     width: 3.125rem;
     border-radius: 5px;
     margin-left: 15px;
@@ -129,11 +130,14 @@
 }
 @media (min-width: 1200px) {
   .weightpm {
-    font-size: 12px;
+    font-size: 18px;
+    line-height: 18px;
     margin-top: 3px;
     width: 3.125rem;
     border-radius: 5px;
     margin-left: 15px;
+    top: 5px;
+    position: relative
   }
   .deletebox {
     margin-left: 23px;
@@ -149,9 +153,5 @@
     margin-top: 12px;
     margin-left: 10px;
 
-  }
-  .weightpm {
-    top: 5px;
-    position: relative
   }
 }

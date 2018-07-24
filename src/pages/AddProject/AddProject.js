@@ -19,6 +19,7 @@ class AddProject extends Component {
 			open: true,
 			dropdownOpen: false,
 			listpm: [],
+			namelistpm: [],
 			color: [
 				'#D50000',
 				'#F44336',
@@ -79,7 +80,6 @@ class AddProject extends Component {
 		this.toggle = this.toggle.bind(this)
 		this.toggledrop = this.toggledrop.bind(this)
 		this.handleInputChange = this.handleInputChange.bind(this)
-		this.handleChange = this.handleChange.bind(this)
 		this.slideChange = this.slideChange.bind(this)
 	}
 	toggle() {
@@ -100,7 +100,6 @@ class AddProject extends Component {
 		if (!used) this.setState({ checkedcolor: c })
 		console.log(c)
 	}
-
 	handleInputChange(e) {
 		const target = e.target
 		const value = target.type === 'checkbox' ? target.checked : target.value
@@ -110,14 +109,15 @@ class AddProject extends Component {
 		})
 		if (name.length > 0) this.setState({ invalid: false })
 	}
-	handleChange = selectedOption => {
-		this.setState({ choseweight: selectedOption })
-		if (selectedOption) {
-			console.log(`Selected: ${selectedOption.label}`)
-		}
+	slideChange(value) {
+		this.setState({
+			choseweight: value,
+			isinvalidweight: false
+		})
 	}
 	setPm = (index, data) => {
 		let pm = this.state.pm
+		console.log('pm ->', pm)
 		let timeline = this.state.timeline
 
 		if (!!this.state.pm[index].value) {
@@ -140,26 +140,27 @@ class AddProject extends Component {
 			}
 
 			let currentPM = this.state.pm[index]
+			if (timeline) {
+				let findOldTimeline = timeline.find($fndTimeline => {
+					return $fndTimeline.users.id == currentPM.value
+				})
 
-			let findOldTimeline = timeline.find($fndTimeline => {
-				return $fndTimeline.users.id == currentPM.value
-			})
+				let findCurrentTimelime = timeline.find($fndTimeline => {
+					return $fndTimeline.users.id == data.value
+				})
 
-			let findCurrentTimelime = timeline.find($fndTimeline => {
-				return $fndTimeline.users.id == data.value
-			})
-
-			if (!!findCurrentTimelime) {
-				findCurrentTimelime.users = {
-					id: findOldTimeline.users.id,
-					roles: findOldTimeline.users.roles
+				if (!!findCurrentTimelime) {
+					findCurrentTimelime.users = {
+						id: findOldTimeline.users.id,
+						roles: findOldTimeline.users.roles
+					}
 				}
-			}
 
-			if (!!findOldTimeline) {
-				findOldTimeline.users = {
-					id: data.value,
-					roles: data.roles
+				if (!!findOldTimeline) {
+					findOldTimeline.users = {
+						id: data.value,
+						roles: data.roles
+					}
 				}
 			}
 
@@ -167,7 +168,7 @@ class AddProject extends Component {
 		} else {
 			pm[index] = data
 		}
-
+		this.updateListPm(pm)
 		this.setState(
 			{
 				pm,
@@ -191,6 +192,8 @@ class AddProject extends Component {
 			},
 			() => this.filterPM()
 		)
+		this.updateListPm(pm)
+		console.log('delete leaw pm ->', pm)
 	}
 	filterPM = () => {
 		let pm = this.state.pm.map(i => i)
@@ -213,9 +216,6 @@ class AddProject extends Component {
 			}
 		)
 	}
-	clear() {
-		this.setState({ listpm: [], projectname: '', color: '', invalidpm: '' })
-	}
 	addPM() {
 		let currentpm = this.state.pm
 		let pm = this.state.pm.map(i => i)
@@ -225,23 +225,40 @@ class AddProject extends Component {
 			pm.push({
 				value: null,
 				label: '',
-				weight: 0
+				weight: 0,
+				disabled: false
 			})
 		}
 
 		this.setState({ pm })
+		console.log('add pm->', pm)
 	}
-	slideChange(value) {
-		this.setState({
-			choseweight: value,
-			isinvalidweight: false
+	updateListPm(pm) {
+		let { listpm } = this.state
+		console.log('pm -> ', pm)
+		console.log('list pm ->', listpm)
+		let namelistpm = this.state.namelistpm
+		listpm.forEach(e => {
+			e.disabled = false
 		})
+		pm.forEach(e => {
+			if (e.label) {
+				let index = namelistpm.indexOf(e.label)
+				console.log('index->', index)
+				if (index !== -1) {
+					listpm[index].disabled = true
+				}
+			}
+		})
+		this.setState({ listpm })
+	}
+	clear() {
+		this.setState({ listpm: [], projectname: '', color: '', invalidpm: '' })
 	}
 	setInvalidAddPm(state) {
 		this.setState({ isinvalidaddpm: state })
 	}
 	sendData = async () => {
-		console.log(this.state.filteredPM)
 		if (
 			this.state.projectname &&
 			(this.state.filteredPM.length !== 0 && this.state.filteredPM[0].value) &&
@@ -253,9 +270,10 @@ class AddProject extends Component {
 			if (this.props.id) {
 				if (!!this.state.timeline) {
 					listTimeline = await this.state.timeline.map($objTimeline => {
-						if ($objTimeline.users.roles.id >= 1 && $objTimeline.users.roles.id <= 6) {
+						if ($objTimeline.users.roles && $objTimeline.users.roles.id >= 1 && $objTimeline.users.roles.id <= 6) {
 							$objTimeline.isDisable = true
 						}
+
 						return $objTimeline
 					})
 				}
@@ -288,8 +306,6 @@ class AddProject extends Component {
 						}
 					})
 				}
-
-
 				await this.state.filteredPM.map($objPM => {
 					let findPM = listPM.find($fndPM => {
 						return $fndPM.users.id == $objPM.value
@@ -330,7 +346,6 @@ class AddProject extends Component {
 				projectTimeline: listTimeline,
 				weight: this.state.choseweight
 			}
-			console.log(data.projectManagement)
 			if (!!this.props.id) {
 				data.id = this.props.id
 			}
@@ -361,17 +376,21 @@ class AddProject extends Component {
 	}
 	componentDidMount() {
 		try {
+			let pm = []
 			if (this.props.id) {
 				axios.get(`${url}/project/${this.props.id}`).then(res => {
-					// console.log('add project -> ', res)
 					const { data } = res
-					const pm = data.project.projectManagement.map(pm => ({
-						value: pm.users.id,
-						label: pm.users.name,
-						weight: pm.weight,
-						id: pm.id,
-						roles: pm.users.roles
-					}))
+					pm = data.project.projectManagement.map(pm => {
+						if (!pm.isDisable) {
+							return {
+								value: pm.users.id,
+								label: pm.users.name,
+								weight: pm.weight,
+								id: pm.id,
+								roles: pm.users.roles
+							}
+						}
+					})
 					this.setState({
 						projectname: data.project.name,
 						choseweight: data.project.weight,
@@ -384,7 +403,7 @@ class AddProject extends Component {
 					this.setCheckColor(data.project.color)
 				})
 			} else if (this.props.userid && this.props.username) {
-				const pm = [
+				pm = [
 					{
 						value: this.props.userid,
 						label: this.props.username,
@@ -394,19 +413,18 @@ class AddProject extends Component {
 					}
 				]
 				this.setState({ pm })
-				console.log(pm)
 			} else {
-				console.log('no props')
+				pm = [
+					{
+						value: null,
+						label: '',
+						weight: 0,
+						id: null,
+						roles: {}
+					}
+				]
 				this.setState({
-					pm: [
-						{
-							value: null,
-							label: '',
-							weight: 0,
-							id: null,
-							roles: {}
-						}
-					]
+					pm
 				})
 			}
 			let usedcolor = []
@@ -419,14 +437,24 @@ class AddProject extends Component {
 			})
 			axios.get(`${url}/users/pm`).then(res => {
 				const { data } = res
-				// console.log('Data', data)
 				let listpm = []
+				let namelistpm = []
 				data.map(user => {
-					listpm.push({ value: user.id, label: user.name, roles: user.roles })
+					listpm.push({
+						value: user.id,
+						label: user.name,
+						roles: user.roles,
+						disabled: false
+					})
+					namelistpm.push(user.name)
 				})
-				this.setState({
-					listpm
-				})
+				this.setState(
+					{
+						listpm,
+						namelistpm
+					},
+					() => this.updateListPm(pm)
+				)
 			})
 		} catch (error) {
 			console.log('fail to get data at AddProject', error)
@@ -518,8 +546,6 @@ class AddProject extends Component {
 									Manager weight
 								</Col>
 							</Row>
-							{console.log('update eiei')}
-							{console.log(this.state.pm)}
 							{this.state.pm.map((pm, index) => (
 								<SelectPm
 									key={pm.value}

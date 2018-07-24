@@ -33,7 +33,7 @@ class UserDetail extends Component {
 	}
 	componentDidMount() {
 		const data = {
-			labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+			labels: ['W 1', 'W 2', 'W 3', 'W 4'],
 			datasets: [
 				{
 					label: '',
@@ -86,8 +86,8 @@ class UserDetail extends Component {
 										>
 											{project.project.name}
 										</Link>
-										<div style={{ float: 'right' }}>{project.weight}%</div>
-										<Progress className="overviewprogress" color={String(project.project.color).substring(1)} value={project.weight} />
+										<div style={{ float: 'right' }}>{project.processWeight}%</div>
+										<Progress className="overviewprogress" color={String(project.project.color).substring(1)} value={project.processWeight} />
 									</div>
 								</Item>
 							)
