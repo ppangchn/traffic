@@ -14,11 +14,11 @@ class EachProjectTimeline extends Component {
     super()
     this.state = { groups: [], items: [], id: '' }
   }
-  async getData() {
+  getData() {
     let items = []
     let groups = []
     let id = 1
-    await axios.get(`${url}/project/${this.props.id}`).then(res => {
+    axios.get(`${url}/project/${this.props.id}`).then(res => {
       const { data } = res // = res.data
       groups.push({ id: id, title: data.project.name })
       items.push({

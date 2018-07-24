@@ -262,7 +262,7 @@ var ReactCalendarTimeline = function (_Component) {
     key: 'horizontalLines',
     value: function horizontalLines(canvasWidth, groupHeights) {
       let result = groupHeights
-      console.log(this.state.isFixedSizeRender)
+      // console.log(this.state.isFixedSizeRender)
 
       if (this.state.isFixedSizeRender) {
         if (!(!!firstGroupHeight) && groupHeights.length > 0) {

@@ -84,7 +84,8 @@
 
 @media (min-width: 768px) and (max-width: 991.98px) {
   .weightpm {
-    font-size: 12px;
+    font-size: 18px;
+    line-height: 17px;
     margin-top: 9px;
     width: 3.125rem;
     border-radius: 5px;
@@ -107,16 +108,15 @@
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
   .weightpm {
-    font-size: 22px;
-    line-height: 18px;
-    margin-top: 3px;
+    font-size: 18px;
+    line-height: 17px;
+    margin-top: 8px;
     width: 3.125rem;
     border-radius: 5px;
     margin-left: 15px;
   }
   .deletebox {
     margin-left: 23px;
-    margin-top: 7px;
   }
   .Select-placeholder {
     font-size: 15px;
@@ -141,7 +141,7 @@
   }
   .deletebox {
     margin-left: 23px;
-    margin-top: 8px;
+    margin-top: 1px;
   }
   .Select-placeholder {
     font-size: 15px;

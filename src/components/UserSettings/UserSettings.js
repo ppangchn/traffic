@@ -43,7 +43,6 @@ export default class UserSettings extends Component {
 		this.setState({ modalDeleteOpen: !this.state.modalDeleteOpen })
 	}
 	toggleEditMember(state) {
-		console.log('toggle!')
 		this.setState({ editmember: state })
 	}
 	async deleteUser() {

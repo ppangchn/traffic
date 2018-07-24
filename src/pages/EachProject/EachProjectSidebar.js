@@ -127,22 +127,23 @@ class EachProjectSidebar extends Component {
     }
   }
 
-  async getData() {
-    await this.props.updateData()
-    await axios.get(`${url}/project/${this.props.id}`).then(res => {
+  getData() {
+    console.log('getdata')
+    axios.get(`${url}/project/${this.props.id}`).then(res => {
       const { data } = res
       let projectmember = []
       data.timeline.map(timeline => {
         projectmember.push(timeline.users.id)
       })
-
+      this.props.updateData();
       this.setState({
         timeline: data.timeline,
         project: data.project,
         projectmember: projectmember
       })
+      
     })
-    await axios.get(`${url}/users/pd`).then(res => {
+    axios.get(`${url}/users/pd`).then(res => {
       const { data } = res
       let allmember = []
       data.map(user => {
@@ -336,7 +337,6 @@ class EachProjectSidebar extends Component {
             isOpen={this.state.modalDeleteOpen}
             toggle={this.toggleModalDelete}
             centered={true}
-            // className={this.props.className}
           >
             <ModalHeader
               toggle={this.toggleModalDelete}

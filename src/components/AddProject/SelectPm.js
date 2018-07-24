@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { Container, Row, Col } from 'reactstrap'
 import Select from 'react-select'
-import './Select.css'
 import { X } from 'styled-icons/octicons/X'
 import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css'
 import '../../pages/AddProject/AddProject.css'
+import './SelectPm.css'
 const Exit = X.extend`
   color: #a0a0a0;
   width: 1rem;
@@ -38,7 +38,6 @@ class SelectPm extends Component {
       ...selectedOption,
       weight: this.state.choseweight,
     })
-    this.props.setInvalidAddPm()
   }
 
   slideChange = value => {

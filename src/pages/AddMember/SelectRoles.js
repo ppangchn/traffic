@@ -22,14 +22,14 @@ class SelectRoles extends Component {
 	}
 	handleChange = selectedOption => {
 		this.setState({ roles: selectedOption })
-		console.log('selected', selectedOption)
-		if (selectedOption) {
-			console.log(`Selected: ${selectedOption.label}`)
-			console.log('listroles -> ', this.state.listroles)
-		}
-		// this.props.SetRoles(this.props.id, {
-		// 	...selectedOption
-		// })
+		// console.log('selected', selectedOption)
+		// if (selectedOption) {
+		// 	console.log(`Selected: ${selectedOption.label}`)
+		// 	console.log('listroles -> ', this.state.listroles)
+		// }
+		this.props.SetRoles(this.props.id, {
+			...selectedOption
+		})
   }
 
 

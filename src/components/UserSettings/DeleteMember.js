@@ -21,7 +21,6 @@ class DeleteMember extends Component {
 		this.deleteUser = this.deleteUser.bind(this)
 	}
 	toggleModal() {
-    console.log('toggle!')
     this.setState({ modalOpen: !this.state.modalOpen })
     this.props.toggle();
 	}

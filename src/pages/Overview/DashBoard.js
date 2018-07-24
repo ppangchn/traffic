@@ -18,7 +18,6 @@ const Container = styled.div`
 	display: flex;
 	flex-direction: column;
 	height: 100vh;
-	overflow-x: hidden !important;
 `
 const UserContainer = styled.div`
 	overflow-y: hidden;
