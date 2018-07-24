@@ -11,17 +11,27 @@
 }
 
 @media (min-width: 321px) and (max-width: 575.98px) {
-  .xicon {
-    top: -16.5px !important;
-    right: -16px !important;
-    width: 73px;
+  .usedicon {
+    position: absolute;
+    width: 37px;
+    font-size: 30px;
+    bottom: 6px;
+    right: -26px;
   }
 }
-
-@media (min-width: 576px) {
-  .xicon {
-    top: -9.5px !important;
-    right: -9px !important;
-    width: 45px;
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .usedicon {
+    position: absolute;
+    width: 37px;
+    bottom: 6px;
+    right: -28px;
+  }
+}
+@media (min-width: 992px) {
+  .usedicon {
+    position: absolute;
+    width: 37px;
+    bottom: 3px;
+    right: -28px;
   }
 }

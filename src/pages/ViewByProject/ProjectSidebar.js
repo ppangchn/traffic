@@ -66,7 +66,7 @@ class ProjectSidebar extends Component {
               <Item className="projectitem">
                 <div className="projectname">
                   <Link
-                    className={'linkprojectname-' + project.color.substring(1)}
+                    className="linkprojectname"
                     to={`/project/${project.id}`}
                     style={{ textOverflow: 'ellipsis', overflow: 'hidden' ,textDecoration: 'none'}}
                     onClick={this.update}

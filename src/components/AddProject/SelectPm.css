@@ -6,47 +6,18 @@
   color: #a0a0a0;
   text-align: center;
 }
-
-@media (max-width: 320px) {
+@media (min-width: 321px) and (max-width: 575.98px) {
   .weightpm {
-    font-size: 12px;
-    margin-top: 13px;
+    font-size: 18px;
+    line-height: 17px;
     width: 3.125rem;
     border-radius: 5px;
     margin-left: 13px;
-  }
-  .deletebox {
-    margin-top: 15px;
-    left: 11px;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-  .Select-placeholder {
-    font-size: 13px;
-  }
-  .selectpmbox {
-    margin-bottom: 5px;
-  }
-  .Select-control {
-    width: 0;
-  }
-  .sliderboxpm {
-    padding-right: 0 !important;
-    margin-top: 15px;
-    left: 4px;
-  }
-}
-@media (min-width: 321px) and (max-width: 575.98px) {
-  .weightpm {
-    font-size: 12px;
-    margin-top: 6px;
-    width: 3.125rem;
-    border-radius: 5px;
-    margin-left: 15px;
-  }
-  .deletebox {
     margin-top: 7px;
+  }
+  .deletebox {
     padding-right: 0 !important;
+    margin-left: 38px;
   }
   .Select-placeholder {
     font-size: 10px;
@@ -61,15 +32,16 @@
 }
 @media (min-width: 576px) and (max-width: 767.98px) {
   .weightpm {
-    font-size: 10px;
+    font-size: 18px;
+    line-height: 17px;
     margin-top: 6px;
     width: 3.125rem;
     border-radius: 5px;
     margin-left: 15px;
   }
   .deletebox {
-    margin-left: 23px;
-    margin-top: 4px;
+    margin-top: 2px;
+    margin-left: 15px;
   }
   .Select-placeholder {
     font-size: 12px;
@@ -92,7 +64,6 @@
     margin-left: 15px;
   }
   .deletebox {
-    margin-left: 23px;
     margin-top: 7px;
   }
   .Select-placeholder {
@@ -116,7 +87,7 @@
     margin-left: 15px;
   }
   .deletebox {
-    margin-left: 23px;
+    margin-left: 14px;
   }
   .Select-placeholder {
     font-size: 15px;
@@ -137,10 +108,10 @@
     border-radius: 5px;
     margin-left: 15px;
     top: 5px;
-    position: relative
+    position: relative;
   }
   .deletebox {
-    margin-left: 23px;
+    margin-left: 9px;
     margin-top: 1px;
   }
   .Select-placeholder {
@@ -152,6 +123,5 @@
   .sliderboxpm {
     margin-top: 12px;
     margin-left: 10px;
-
   }
 }

@@ -17,7 +17,7 @@ const Exit = X.extend`
 class SelectPm extends Component {
   constructor(props) {
     super(props)
-    const { value, label, weight , roles } = this.props.pm
+    const { value, label, weight, roles } = this.props.pm
     this.state = {
       pm: value,
       choseweight: weight,
@@ -31,12 +31,12 @@ class SelectPm extends Component {
     this.slideChange = this.slideChange.bind(this)
   }
   handleChange = selectedOption => {
-    this.setState({ pm: selectedOption,value: selectedOption.value})
+    this.setState({ pm: selectedOption, value: selectedOption.value })
     if (selectedOption) this.setState({ disabled: false })
     else this.setState({ disabled: true })
     this.props.setPm(this.props.id, {
       ...selectedOption,
-      weight: this.state.choseweight,
+      weight: this.state.choseweight
     })
   }
 
@@ -47,7 +47,7 @@ class SelectPm extends Component {
     this.props.setPm(this.props.id, {
       value: this.state.value,
       label: this.state.label,
-      weight: value,
+      weight: value
     })
   }
   delete = e => {
@@ -66,10 +66,9 @@ class SelectPm extends Component {
     if (this.state.pm) this.setState({ disabled: false })
   }
   render() {
-
     return (
       <Row className="selectpmbox">
-        <Col xs="4">
+        <Col md="4" sm="4" xs="12">
           <Select
             ClassName="selectbox"
             style={{ borderColor: '#5ac2e2 ' }}
@@ -82,7 +81,7 @@ class SelectPm extends Component {
             scrollMenuIntoView={false}
           />
         </Col>
-        <Col className="sliderboxpm" xs="4">
+        <Col className="sliderboxpm" md="4" sm="4" xs="8">
           <div>
             <Slider
               className="slider"
@@ -92,16 +91,14 @@ class SelectPm extends Component {
               onChange={this.slideChange}
               value={this.state.choseweight}
               disabled={this.state.disabled}
-              
             />
           </div>
         </Col>
-        <Col className="px-0">
+        <Col className="px-0" md="2" sm="2" xs="1">
           <div className="weightpm">{this.state.choseweight} %</div>
         </Col>
-        <Col className="deletebox">
+        <Col className="deletebox" md="1" sm="1" xs="1">
           {this.props.id > 0 && (
-            // <Button size="sm" color="danger" onClick={this.delete}>delete</Button>
             <Exit onClick={this.delete} />
           )}
         </Col>

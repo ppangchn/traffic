@@ -57,17 +57,17 @@
 }
 @media (min-width: 321px) and (max-width: 575.98px) {
   .addprojectbox {
-    font-size: 10px;
+    font-size: 20px;
   }
   .weightproject {
-    font-size: 12px;
-    width: 48px;
+    font-size: 18px;
+    line-height: 17px;
+    width: 3.125rem;
   }
   .weightbox {
     margin-right: 5px;
-    bottom: 8px;
     right: 8px;
-    margin-top: 26px;
+    margin-top: 32px;
   }
   .form-control {
     font-size: 10px !important;
@@ -77,7 +77,7 @@
     bottom: 5px;
   }
   .Select-placeholder {
-    font-size: 5px;
+    font-size: 18px;
   }
   .sliderbox {
     margin-top: 7px;
@@ -92,17 +92,17 @@
     padding-left: 15px !important;
   }
   .form-control {
-    font-size: 7px !important;
+    font-size: 18px !important;
     position: relative;
     width: 85%;
   }
   .fontinput::placeholder {
-    font-size: 8px !important;
+    font-size: 18px !important;
   }
 }
 @media (min-width: 576px) and (max-width: 767.98px) {
   .addprojectbox {
-    font-size: 15px;
+    font-size: 17px;
   }
   .sliderbox {
     margin-top: 10px;
@@ -113,22 +113,46 @@
   }
   .weightbox {
     margin-right: 5px;
-    bottom: 8px;
     right: 8px;
     margin-top: 30px;
   }
   .addpmbox {
     margin-bottom: 7px;
-    bottom: 5px;
+    bottom:5px;
   }
   .form-control {
-    font-size: 7px !important;
+    font-size: 12px !important;
     top: 5px;
     position: relative;
     width: 85%;
   }
   .fontinput::placeholder {
-    font-size: 10px !important;
+    font-size: 17px !important;
+  }
+  .invalidprojectname {
+    font-size: 15px;
+    line-height: 24px;
+  }
+  .invalidprojectweight {
+    padding-left: 29px !important;
+  }
+  .invalidcolor {
+    font-size: 15px;
+    line-height: 13px;
+    bottom: 7px;
+  }
+  .invalidpm {
+    font-size: 15px;
+    margin-bottom: 10px;
+    line-height: 13px;
+    bottom: 3px;
+  }
+  .invalidweightpm {
+    font-size: 15px;
+    margin-bottom: 10px;
+    line-height: 13px;
+    bottom: 1px;
+    right: 80px;
   }
 }
 
@@ -163,18 +187,43 @@
     margin-bottom: 10px;
   }
   .projectweighttext {
-    right: 5px;
+    right: 0.5px;
     position: relative;
   }
   .pmweighttext {
-    padding-left: 10px !important;
+    right: 10px;
   }
   .fontinput::placeholder {
     font-size: 17px !important;
     padding: 0;
   }
+  .invalidprojectname {
+    font-size: 15px;
+    bottom: 8px;
+    line-height: 10px;
+  }
+  .invalidprojectweight {
+    padding-left: 19px !important;
+  }
+  .invalidcolor {
+    font-size: 15px;
+    line-height: 13px;
+    bottom: 7px;
+  }
+  .invalidpm {
+    font-size: 15px;
+    margin-bottom: 10px;
+    line-height: 13px;
+    bottom: 3px;
+  }
+  .invalidweightpm {
+    font-size: 15px;
+    margin-bottom: 10px;
+    line-height: 13px;
+    bottom: 1px;
+    right: 80px;
+  }
 }
-
 @media (min-width: 992px) and (max-width: 1199.98px) {
   .addprojectbox {
     font-size: 20px;
@@ -193,8 +242,9 @@
     margin-right: 10px;
     margin-top: 21px;
   }
-  .form-control {
-    font-size: 14px !important;
+  .fontinput::placeholder {
+    font-size: 19px !important;
+    padding: 0;
   }
   .addpmbox {
     margin-bottom: 10px;
@@ -203,15 +253,42 @@
   .projectnamebox {
     margin-bottom: 10px;
   }
+  .pmweighttext {
+    right: 6px
+  }
   .projectweighttext {
-    right: 5px;
+    margin-right: 5px;
+    right: 1px;
     position: relative;
   }
-  .pmweighttext {
-    right: 5px;
+  .invalidprojectname {
+    font-size: 80%;
+    bottom: 6px;
+    line-height: 10px;
+  }
+  .invalidprojectweight {
+    padding-left: 9px !important;
+  }
+  .invalidcolor {
+    font-size: 80%;
+    line-height: 13px;
+    bottom: 7px;
+  }
+  .invalidpm {
+    font-size: 80%;
+    margin-bottom: 10px;
+    line-height: 13px;
+    bottom: 2px;
+  }
+  .invalidweightpm {
+    font-size: 80%;
+    margin-bottom: 10px;
+    line-height: 13px;
+    bottom: 2px;
+    right: 83px;
   }
 }
-@media (min-width: 1200px) {
+@media (min-width: 1200px)  {
   .addprojectbox {
     font-size: 20px;
   }
@@ -245,7 +322,33 @@
   }
   .projectweighttext {
     margin-right: 5px;
-    right: 5px;
+    right: 1px;
     position: relative;
+  }
+  .invalidprojectname {
+    font-size: 80%;
+    bottom: 6px;
+    line-height: 10px;
+  }
+  .invalidprojectweight {
+    padding-left: 10px !important;
+  }
+  .invalidcolor {
+    font-size: 80%;
+    line-height: 13px;
+    bottom: 7px;
+  }
+  .invalidpm {
+    font-size: 80%;
+    margin-bottom: 10px;
+    line-height: 13px;
+    bottom: 1px;
+  }
+  .invalidweightpm {
+    font-size: 80%;
+    margin-bottom: 10px;
+    line-height: 13px;
+    bottom: 1px;
+    right: 70px;
   }
 }

@@ -31,9 +31,9 @@ class AddProject extends Component {
         '#FFCC80',
         '#FFC400',
         '#FDD835',
-        '#FFF176',
-        '#CCFF90',
+        '#FFEA30',
         '#B2FF59',
+        '#92DF38',
         '#76FF03',
         '#00E676',
         '#00C853',
@@ -68,8 +68,8 @@ class AddProject extends Component {
       invalidprojectname: "Can't send empty name!",
       invalidpm: 'Please select pm.',
       invalidcolor: 'Please select one color for this project.',
-      invalidweight: 'Please choose weight for this project',
-      invalidweightpm: 'Please choose weight for pm',
+      invalidweight: "Please choose project's weight",
+      invalidweightpm: "Please choose pm's weight",
       isinvalidcolor: false,
       isinvalidpm: false,
       isinvalidweight: false,
@@ -122,49 +122,49 @@ class AddProject extends Component {
     let pm = this.state.pm
     let timeline = this.state.timeline
 
-		if (!!this.state.pm[index].value) {
-			data.id = this.state.pm[index].id
+    if (!!this.state.pm[index].value) {
+      data.id = this.state.pm[index].id
 
-			let findCurrentPM = pm.find($fndPm => {
-				return $fndPm.value == data.value
-			})
+      let findCurrentPM = pm.find($fndPm => {
+        return $fndPm.value == data.value
+      })
 
-			if (!!findCurrentPM) {
-				let findIndexPM = pm.findIndex($fndPm => {
-					return $fndPm.value == data.value
-				})
-				let tempData = this.state.pm[index]
+      if (!!findCurrentPM) {
+        let findIndexPM = pm.findIndex($fndPm => {
+          return $fndPm.value == data.value
+        })
+        let tempData = this.state.pm[index]
 
-				tempData.id = findCurrentPM.id
-				findCurrentPM = tempData
+        tempData.id = findCurrentPM.id
+        findCurrentPM = tempData
 
-				pm[findIndexPM] = findCurrentPM
-			}
+        pm[findIndexPM] = findCurrentPM
+      }
 
-			let currentPM = this.state.pm[index]
-			if (timeline) {
-				let findOldTimeline = timeline.find($fndTimeline => {
-					return $fndTimeline.users.id == currentPM.value
-				})
+      let currentPM = this.state.pm[index]
+      if (timeline) {
+        let findOldTimeline = timeline.find($fndTimeline => {
+          return $fndTimeline.users.id == currentPM.value
+        })
 
-				let findCurrentTimelime = timeline.find($fndTimeline => {
-					return $fndTimeline.users.id == data.value
-				})
+        let findCurrentTimelime = timeline.find($fndTimeline => {
+          return $fndTimeline.users.id == data.value
+        })
 
-				if (!!findCurrentTimelime) {
-					findCurrentTimelime.users = {
-						id: findOldTimeline.users.id,
-						roles: findOldTimeline.users.roles
-					}
-				}
+        if (!!findCurrentTimelime) {
+          findCurrentTimelime.users = {
+            id: findOldTimeline.users.id,
+            roles: findOldTimeline.users.roles
+          }
+        }
 
-				if (!!findOldTimeline) {
-					findOldTimeline.users = {
-						id: data.value,
-						roles: data.roles
-					}
-				}
-			}
+        if (!!findOldTimeline) {
+          findOldTimeline.users = {
+            id: data.value,
+            roles: data.roles
+          }
+        }
+      }
 
       pm[index] = data
     } else {
@@ -173,11 +173,18 @@ class AddProject extends Component {
     this.updateListPm(pm)
     this.setState({
       pm,
-      isinvalidpm: false,
       timeline
     })
     if (pm[index].weight) this.setState({ isinvalidweightpm: false })
-    if (pm[index].value && pm[index].weight)
+    let isinvalidaddforallpm = false
+    let isinvalidpmforallpm = false
+    pm.forEach(e => {
+      if (e.weight === 0) isinvalidaddforallpm = true
+      if (!e.value) isinvalidpmforallpm = true
+    })
+    if (!isinvalidpmforallpm) this.setState({ isinvalidpm: false })
+    else this.setState({ isinvalidpm: true })
+    if (pm[index].value && !isinvalidaddforallpm)
       this.setState({ isinvalidaddpm: false })
     else this.setState({ isinvalidaddpm: true })
 
@@ -260,9 +267,9 @@ class AddProject extends Component {
               $objTimeline.isDisable = true
             }
 
-						return $objTimeline
-					})
-				}
+            return $objTimeline
+          })
+        }
 
         await this.state.pm.map($objPM => {
           let findTimeline = listTimeline.find($fndTimeline => {
@@ -467,17 +474,12 @@ class AddProject extends Component {
 
     return (
       <Container>
-        <Modal
-          size="5"
-          isOpen={this.state.open}
-          toggle={onClose}
-          autoFocus={true}
-        >
+        <Modal isOpen={this.state.open} toggle={onClose} autoFocus={true}>
           <ModalHeader toggle={onClose}>{this.state.header}</ModalHeader>
           <ModalBody>
             <Container className="addprojectbox">
               <Row className="rowcontainer">
-                <Col className="projectnamebox">
+                <Col className="projectnamebox" md="6" sm="6" xs="12">
                   Project name
                   <Input
                     className="fontinput"
@@ -487,38 +489,31 @@ class AddProject extends Component {
                     onChange={this.handleInputChange}
                     value={this.state.projectname}
                   />
-                  {/* <FormFeedback tooltip="true">
-                    Can't send empty name!
-                  </FormFeedback> */}
-                  <Col />
                 </Col>
-                <Col xs="4">
+                <Col md="4" sm="4" xs="10">
                   <div className="projectweighttext">Project Weight</div>
                   <div className="sliderbox">
                     <Slider
                       className="slider"
                       min={0}
                       max={100}
-                      step={25}
+                      step={5}
                       onChange={this.slideChange}
                       value={this.state.choseweight}
                     />
                   </div>
                 </Col>
-                <Col xs="2" className="weightbox">
+                <Col className="weightbox" md="1" sm="1" xs="1">
                   <div className="weightproject">
                     {this.state.choseweight} %
                   </div>
                 </Col>
               </Row>
               <Row
-                className="pd10"
+                className="pd10 invalidprojectname"
                 style={{
                   color: '#da3849',
-                  fontSize: '80%',
-                  position: 'relative',
-                  bottom: '6px',
-                  lineHeight: '10px'
+                  position: 'relative'
                 }}
               >
                 <Col
@@ -529,19 +524,19 @@ class AddProject extends Component {
                 >
                   {this.state.invalid && this.state.invalidprojectname}
                 </Col>
-                <Col style={{ paddingLeft: '10px' }}>
+                <Col className="invalidprojectweight">
                   {this.state.isinvalidweight && this.state.invalidweight}
                 </Col>
               </Row>
               <Row>
                 <Col>Project color</Col>
               </Row>
-              <Row className="pd10">
+              <Row className="pd10" style={{}}>
                 {this.state.color.map(c => {
                   let used = false
                   if (this.state.usedcolor.includes(c)) used = true
                   return (
-                    <Col key={c} className="pd5" md={1} sm={1} xs={2}>
+                    <Col key={c} className="pd5" md="1" sm="1" xs="2">
                       <ColorButton
                         color={c}
                         used={used}
@@ -553,13 +548,10 @@ class AddProject extends Component {
                 })}
               </Row>
               <Row
-                className="pd10"
+                className="pd10 invalidcolor"
                 style={{
                   color: '#da3849',
-                  fontSize: '80%',
-                  lineHeight: '13px',
-                  position: 'relative',
-                  bottom: '7px'
+                  position: 'relative'
                 }}
               >
                 <Col style={{ paddingLeft: '5px' }}>
@@ -567,11 +559,8 @@ class AddProject extends Component {
                 </Col>
               </Row>
               <Row>
-                <Col xs="4" md="4">
+                <Col md="4" sm="4" xs="6">
                   Project PM
-                </Col>
-                <Col className="pmweighttext" xs="5" md="5">
-                  Manager weight
                 </Col>
               </Row>
               {this.state.pm.map((pm, index) => (
@@ -588,34 +577,28 @@ class AddProject extends Component {
               ))}
               <Row>
                 <Col
+                  className="invalidpm"
                   style={{
                     color: '#da3849',
-                    fontSize: '80%',
-                    marginBottom: '10px',
-                    lineHeight: '13px',
-                    position: 'relative',
-                    bottom: '1px'
+                    position: 'relative'
                   }}
                 >
                   {this.state.isinvalidpm && this.state.invalidpm}
                 </Col>
                 <Col
+                  className="invalidweightpm"
                   style={{
                     color: '#da3849',
-                    fontSize: '80%',
-                    marginBottom: '10px',
-                    lineHeight: '13px',
-                    position: 'relative',
-                    bottom: '1px',
-                    right: '70px'
+                    position: 'relative'
                   }}
                 >
                   {this.state.isinvalidweightpm && this.state.invalidweightpm}
                 </Col>
               </Row>
               <Row>
-                <Col className="addpmbox">
+                <Col className="addpmbox" md="4" sm="4" xs="12">
                   <Button
+                    // style={{ width: '-webkit-fill-available' }}
                     outline
                     size="sm"
                     color="secondary"
