@@ -28,6 +28,7 @@
   .sliderboxpm {
     margin-top: 10px;
     left: 6px;
+    margin-bottom: 10px;
   }
 }
 @media (min-width: 576px) and (max-width: 767.98px) {

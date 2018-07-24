@@ -173,17 +173,17 @@ class AddProject extends Component {
     this.updateListPm(pm)
     this.setState({
       pm,
-      timeline
+      timeline,
+      isinvalidweight: false,
+      isinvalidpm: false
     })
-    if (pm[index].weight) this.setState({ isinvalidweightpm: false })
+    // if (pm[index].weight) this.setState({ isinvalidweightpm: false })
     let isinvalidaddforallpm = false
-    let isinvalidpmforallpm = false
     pm.forEach(e => {
       if (e.weight === 0) isinvalidaddforallpm = true
-      if (!e.value) isinvalidpmforallpm = true
     })
-    if (!isinvalidpmforallpm) this.setState({ isinvalidpm: false })
-    else this.setState({ isinvalidpm: true })
+    // if (!isinvalidpmforallpm) this.setState({ isinvalidpm: false })
+    // else this.setState({ isinvalidpm: true })
     if (pm[index].value && !isinvalidaddforallpm)
       this.setState({ isinvalidaddpm: false })
     else this.setState({ isinvalidaddpm: true })
@@ -194,12 +194,16 @@ class AddProject extends Component {
     let pm = this.state.pm.filter((pm, i) => {
       return i !== index
     })
+    let isinvalidaddforallpm = false
+    pm.forEach(e => {
+      if (e.weight === 0) isinvalidaddforallpm = true
+    })
     this.setState({
       pm,
       isinvalidweightpm: false,
       isinvalidpm: false,
-      isinvalidaddpm: false
     })
+    if (!isinvalidaddforallpm) this.setState({isinvalidaddpm:false})
     this.updateListPm(pm)
   }
   addPM() {
@@ -489,18 +493,35 @@ class AddProject extends Component {
                     onChange={this.handleInputChange}
                     value={this.state.projectname}
                   />
+                  <div
+                    className="invalidprojectname"
+                    style={{
+                      color: '#da3849',
+                      position: 'relative'
+                    }}
+                  >
+                    {this.state.invalid && this.state.invalidprojectname}
+                  </div>
                 </Col>
                 <Col md="4" sm="4" xs="10">
                   <div className="projectweighttext">Project Weight</div>
                   <div className="sliderbox">
                     <Slider
-                      className="slider"
                       min={0}
                       max={100}
                       step={5}
                       onChange={this.slideChange}
                       value={this.state.choseweight}
                     />
+                  </div>
+                  <div
+                    className="invalidprojectweight"
+                    style={{
+                      color: '#da3849',
+                      position: 'relative'
+                    }}
+                  >
+                    {this.state.isinvalidweight && this.state.invalidweight}
                   </div>
                 </Col>
                 <Col className="weightbox" md="1" sm="1" xs="1">
@@ -509,29 +530,10 @@ class AddProject extends Component {
                   </div>
                 </Col>
               </Row>
-              <Row
-                className="pd10 invalidprojectname"
-                style={{
-                  color: '#da3849',
-                  position: 'relative'
-                }}
-              >
-                <Col
-                  style={{
-                    paddingLeft: '5px',
-                    paddingRight: '0'
-                  }}
-                >
-                  {this.state.invalid && this.state.invalidprojectname}
-                </Col>
-                <Col className="invalidprojectweight">
-                  {this.state.isinvalidweight && this.state.invalidweight}
-                </Col>
-              </Row>
               <Row>
                 <Col>Project color</Col>
               </Row>
-              <Row className="pd10" style={{}}>
+              <Row className="pd10">
                 {this.state.color.map(c => {
                   let used = false
                   if (this.state.usedcolor.includes(c)) used = true
@@ -582,17 +584,9 @@ class AddProject extends Component {
                     color: '#da3849',
                     position: 'relative'
                   }}
+                  xs="12"
                 >
-                  {this.state.isinvalidpm && this.state.invalidpm}
-                </Col>
-                <Col
-                  className="invalidweightpm"
-                  style={{
-                    color: '#da3849',
-                    position: 'relative'
-                  }}
-                >
-                  {this.state.isinvalidweightpm && this.state.invalidweightpm}
+                  {(this.state.isinvalidpm && this.state.invalidpm) || (this.state.isinvalidweightpm && this.state.invalidweightpm)}
                 </Col>
               </Row>
               <Row>
