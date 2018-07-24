@@ -3,9 +3,15 @@
 	color: white;
 	margin: 10px 0px 5px 0px;
 	font-size: 16px !important;
+	width: 150px;
 }
 .eachItem {
 	overflow-y: scroll;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.boxButton {
+	margin: auto;
 }
 @media (min-width: 321px) and (max-width: 575.98px) {
 	.userdetail {
@@ -31,6 +37,7 @@
 	.btn-newproject5bc2e1 {
 		font-size: 12px !important;
 		align-items: center !important;
+		width: 95px;
 	}
 }
 
@@ -58,15 +65,16 @@
 	.btn-newproject5bc2e1 {
 		font-size: 12px !important;
 		align-items: center !important;
+		width: 100px;
 	}
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
-  .userdetail {
-    width: 150px;
-    margin: 20px 0 20px 20px;
-    padding: 10px 15px 10px 15px;
-    font-size: 15px;
+	.userdetail {
+		width: 150px;
+		margin: 20px 0 20px 20px;
+		padding: 10px 15px 10px 15px;
+		font-size: 15px;
 
 		max-height: 85%;
 	}
@@ -85,15 +93,16 @@
 	.btn-newproject5bc2e1 {
 		font-size: 12px !important;
 		align-items: center !important;
+		width: 110px;
 	}
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
-  .userdetail {
-    width: 180px;
-    margin: 20px 0 20px 20px;
-    padding: 20px 25px 20px 25px;
-    font-size: 17px;
+	.userdetail {
+		width: 180px;
+		margin: 20px 0 20px 20px;
+		padding: 20px 25px 20px 25px;
+		font-size: 17px;
 
 		max-height: 85%;
 	}
@@ -113,6 +122,8 @@
 	.btn-newproject5bc2e1 {
 		font-size: 12px !important;
 		align-items: center !important;
+		width: 130px;
+
 	}
 }
 

@@ -67,7 +67,24 @@ class UserDetail extends Component {
 			// <div>
 			<Card className="userdetail">
 				{this.props.name}
-				<Line data={this.state.data} height={350} />
+				<Line
+					data={this.state.data}
+					height={350}
+					options={{
+						maintainAspectRatio: true,
+						scales: {
+							yAxes: [
+								{
+									display: true,
+									ticks: {
+										suggestedMin: 0,
+										suggestedMax: 100
+									}
+								}
+							]
+						}
+					}}
+				/>
 				<div className="eachItem">
 					{projectManagement.map(project => {
 						if (!project.isDisable) {
@@ -86,18 +103,26 @@ class UserDetail extends Component {
 										>
 											{project.project.name}
 										</Link>
-										<div style={{ float: 'right' }}>{project.processWeight}%</div>
-										<Progress className="overviewprogress" color={String(project.project.color).substring(1)} value={project.processWeight} />
+										{/* <div style={{ float: 'right' }}>{100}%</div> */}
+										<div style={{ float: 'right' }}>{project.processWeight.processWeight}%</div>
+										<Progress
+											className="overviewprogress"
+											color={String(project.project.color).substring(1)}
+											// value={100}
+											value={project.processWeight.processWeight}
+										/>
 									</div>
 								</Item>
 							)
 						}
 					})}
 				</div>
-				<Button onClick={() => this.toggleAddModal(true)} color="newproject5bc2e1">
-					+ New Project
-				</Button>
 
+				<div className="boxButton">
+					<Button onClick={() => this.toggleAddModal(true)} color="newproject5bc2e1">
+						+ New Project
+					</Button>
+				</div>
 				{this.state.toggleAddModal && (
 					<AddProject
 						onClose={() => this.toggleAddModal(false)}
