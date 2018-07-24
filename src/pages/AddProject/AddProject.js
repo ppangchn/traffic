@@ -122,49 +122,49 @@ class AddProject extends Component {
     let pm = this.state.pm
     let timeline = this.state.timeline
 
-    if (!!this.state.pm[index].value) {
-      data.id = this.state.pm[index].id
+		if (!!this.state.pm[index].value) {
+			data.id = this.state.pm[index].id
 
-      let findCurrentPM = pm.find($fndPm => {
-        return $fndPm.value == data.value
-      })
+			let findCurrentPM = pm.find($fndPm => {
+				return $fndPm.value == data.value
+			})
 
-      if (!!findCurrentPM) {
-        let findIndexPM = pm.findIndex($fndPm => {
-          return $fndPm.value == data.value
-        })
-        let tempData = this.state.pm[index]
+			if (!!findCurrentPM) {
+				let findIndexPM = pm.findIndex($fndPm => {
+					return $fndPm.value == data.value
+				})
+				let tempData = this.state.pm[index]
 
-        tempData.id = findCurrentPM.id
-        findCurrentPM = tempData
+				tempData.id = findCurrentPM.id
+				findCurrentPM = tempData
 
-        pm[findIndexPM] = findCurrentPM
-      }
+				pm[findIndexPM] = findCurrentPM
+			}
 
-      let currentPM = this.state.pm[index]
-      if (timeline) {
-        let findOldTimeline = timeline.find($fndTimeline => {
-          return $fndTimeline.users.id == currentPM.value
-        })
+			let currentPM = this.state.pm[index]
+			if (timeline) {
+				let findOldTimeline = timeline.find($fndTimeline => {
+					return $fndTimeline.users.id == currentPM.value
+				})
 
-        let findCurrentTimelime = timeline.find($fndTimeline => {
-          return $fndTimeline.users.id == data.value
-        })
+				let findCurrentTimelime = timeline.find($fndTimeline => {
+					return $fndTimeline.users.id == data.value
+				})
 
-        if (!!findCurrentTimelime) {
-          findCurrentTimelime.users = {
-            id: findOldTimeline.users.id,
-            roles: findOldTimeline.users.roles
-          }
-        }
+				if (!!findCurrentTimelime) {
+					findCurrentTimelime.users = {
+						id: findOldTimeline.users.id,
+						roles: findOldTimeline.users.roles
+					}
+				}
 
-        if (!!findOldTimeline) {
-          findOldTimeline.users = {
-            id: data.value,
-            roles: data.roles
-          }
-        }
-      }
+				if (!!findOldTimeline) {
+					findOldTimeline.users = {
+						id: data.value,
+						roles: data.roles
+					}
+				}
+			}
 
       pm[index] = data
     } else {
@@ -260,9 +260,9 @@ class AddProject extends Component {
               $objTimeline.isDisable = true
             }
 
-            return $objTimeline
-          })
-        }
+						return $objTimeline
+					})
+				}
 
         await this.state.pm.map($objPM => {
           let findTimeline = listTimeline.find($fndTimeline => {

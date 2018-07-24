@@ -9,27 +9,28 @@ import EachProject from '../pages/EachProject/EachProject'
 import PersonalProject from '../pages/PersonalProject/PersonalProject'
 import PrivateRoute from '../../src/components/privateRoute/index'
 import './MainRoute.css'
+import styled from 'styled-components'
 
 class MainRoute extends Component {
-  constructor(props) {
-    super(props)
-  }
-  render() {
-    const viewbyproject = () => {
-      return <ViewByProject updateHeader={this.props.updateHeader} />
-    }
-    return (
-      <div className="positionheader" style={{ position: 'relative' }}>
-        <PrivateRoute exact path="/overview" component={DashBoard} />
-        <PrivateRoute path="/overview/compare" component={Compare} />
-        <PrivateRoute exact path="/project" component={viewbyproject} />
-        <PrivateRoute exact path="/person" component={ViewByPerson} />
-        <PrivateRoute path="/addproject" component={AddProject} />
-        <PrivateRoute path="/setting" component={Setting} />
-        <PrivateRoute path="/project/:id" component={EachProject} />
-        <PrivateRoute path="/person/:id" component={PersonalProject} />
-      </div>
-    )
-  }
+	constructor(props) {
+		super(props)
+	}
+	render() {
+		const viewbyproject = () => {
+			return <ViewByProject updateHeader={this.props.updateHeader} />
+		}
+		return (
+			<div className="positionheader" style={{ position: 'relative' }}>
+				<PrivateRoute exact path="/overview" component={DashBoard} />
+				<PrivateRoute path="/overview/compare" component={Compare} />
+				<PrivateRoute exact path="/project" component={viewbyproject} />
+				<PrivateRoute exact path="/person" component={ViewByPerson} />
+				<PrivateRoute path="/addproject" component={AddProject} />
+				<PrivateRoute path="/setting" component={Setting} />
+				<PrivateRoute path="/project/:id" component={EachProject} />
+				<PrivateRoute path="/person/:id" component={PersonalProject} />
+			</div>
+		)
+	}
 }
 export default MainRoute

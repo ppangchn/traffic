@@ -46,7 +46,7 @@ export default class Login extends Component {
 				axios.post(`${url}/users/login`, data).then($res => {
 					const { data } = $res
 					this.setState({ message: data.message })
-					if (data.message != 'Email or Password Invalid') {
+					if (data.message != 'Email or Password Invalid' && data.message != 'Invalid password' && data.message != 'Email not found') {
 						localStorage.setItem('token', data.token)
 						this.props.history.push(`/overview`)
 					}
