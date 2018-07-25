@@ -39,18 +39,20 @@ class ProjectSidebar extends Component {
     this.state = {
       data: {}
     }
+    this.getData = this.getData.bind(this);
   }
-
-  componentDidMount() {
+  async getData() {
     try {
-      axios.get(`${url}/users/${this.props.id}`).then(res => {
+      await axios.get(`${url}/users/${this.props.id}`).then(res => {
         const { data } = res
         this.setState({ data })
-        console.log('timeline --->', data.projectTimeline)
       })
     } catch (error) {
       console.log('fail to get data at PersonalProjectSidebar', error)
     }
+  }
+  componentDidMount() {
+    this.getData()
   }
 
   render() {
@@ -71,10 +73,7 @@ class ProjectSidebar extends Component {
                   <Item className="personalprojectitem">
                     <div className="personalprojectname">
                       <Link
-                        className={
-                          'linkprojectname-' +
-                          String(project.project.color).substring(1)
-                        }
+                        className="linkprojectname"
                         to={`/project/${project.project.id}`}
                         style={{
                           textOverflow: 'ellipsis',
@@ -98,6 +97,7 @@ class ProjectSidebar extends Component {
                                   color: 'black',
                                   textDecoration: 'none'
                                 }}
+                                // onClick={this.getData}
                               >
                                 {pm.users.name}
                               </Link>

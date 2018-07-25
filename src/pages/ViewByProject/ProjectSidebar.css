@@ -122,7 +122,12 @@
   color: black;
 }
 .linkprojectname:hover {
-  color: #54C2E1;
+  color: #54c2e1;
+}
+.headcontainer {
+  top: 56px;
+  z-index: 2;
+  position: sticky;
 }
 .projectname {
   display: flex;
@@ -139,6 +144,7 @@
     font-size: 20px;
     padding-bottom: 12.5px;
     width: 150px;
+    top: 46px;
   }
   .head {
     padding-top: 17px;
@@ -150,17 +156,17 @@
     bottom: 3px;
   }
   .projectitem {
-    padding-bottom: 6px;
+    padding-bottom: 8px;
     padding-right: 0.5rem;
   }
   .pmname {
-    font-size: 6px;
-    border: 1px solid #c6c6c6;
-    border-radius: 0.625rem;
-    padding-left: 3px;
-    padding-right: 3px;
+    font-size: 10px;
+    border: 2px solid #c6c6c6;
+    border-radius: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
     margin-right: 2px;
-    margin-bottom: 1px;
+    line-height: 10px;
     top: 10px;
     position: relative;
   }
@@ -168,7 +174,6 @@
     padding-top: 14px;
     margin-left: 15px;
     font-size: 13px;
-    padding-bottom: 2px;
   }
   .progresscontainer {
     margin-left: 15px;
@@ -187,7 +192,6 @@
     position: relative;
     margin-left: 15px;
     line-height: 10px;
-
   }
 }
 
@@ -210,13 +214,13 @@
     padding-right: 0.5rem;
   }
   .pmname {
-    font-size: 6px;
-    border: 1px solid #c6c6c6;
-    border-radius: 0.625rem;
-    padding-left: 3px;
-    padding-right: 3px;
+    font-size: 11px;
+    border: 2px solid #c6c6c6;
+    border-radius: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
     margin-right: 2px;
-    margin-bottom: 1px;
+    line-height: 10px;
     position: relative;
     top: 10px;
   }
@@ -260,17 +264,17 @@
     bottom: 3px;
   }
   .projectitem {
-    padding-bottom: 11px;
+    padding-bottom: 9px;
     padding-right: 0.5rem;
   }
   .pmname {
-    font-size: 7px;
-    border: 1px solid #c6c6c6;
-    border-radius: 0.625rem;
-    padding-left: 0.3125rem;
-    padding-right: 0.3125rem;
+    font-size: 11px;
+    border: 2px solid #c6c6c6;
+    border-radius: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
     margin-right: 2px;
-    margin-bottom: 1px;
+    line-height: 12px;
     position: relative;
     top: 10px;
   }
@@ -319,17 +323,18 @@
     padding-right: 0.5rem;
   }
   .pmname {
-    font-size: 10px;
-    border: 0.125rem solid #c6c6c6;
-    border-radius: 0.625rem;
-    padding-left: 0.3125rem;
-    padding-right: 0.3125rem;
+    font-size: 11px;
+    border: 2px solid #c6c6c6;
+    border-radius: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
     margin-right: 2px;
+    line-height: 12px;
   }
   .projectname {
-    padding-top: 7px;
+    padding-top: 5px;
     margin-left: 15px;
-    font-size: 15px;
+    font-size: 16px;
     padding-bottom: 2px;
   }
   .progresscontainer {
@@ -351,12 +356,12 @@
 }
 @media (min-width: 1200px) {
   .headcontainer {
-    font-size: 20px;
+    font-size: 23px;
     padding-left: 10px;
     padding-bottom: 12.5px;
   }
   .head {
-    padding-top: 17px;
+    padding-top: 13px;
   }
   .foldericon {
     width: 26px;
@@ -365,9 +370,8 @@
     bottom: 3px;
   }
   .projectitem {
-    padding-left: 0.5rem;
+    ft: 0.5rem;
     padding-right: 0.5rem;
-    padding-bottom: 2px;
   }
   .pmcontainer {
     margin-left: 15px;
@@ -375,17 +379,18 @@
     position: relative;
   }
   .pmname {
-    font-size: 10px;
-    border: 0.125rem solid #c6c6c6;
-    border-radius: 0.625rem;
-    padding-left: 0.3125rem;
-    padding-right: 0.3125rem;
+    font-size: 11px;
+    border: 2px solid #c6c6c6;
+    border-radius: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
     margin-right: 2px;
+    line-height: 12px;
   }
   .projectname {
     padding-top: 5px;
     margin-left: 15px;
-    font-size: 15px;
+    font-size: 16px;
     padding-bottom: 2px;
   }
   .progresscontainer {

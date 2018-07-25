@@ -166,13 +166,14 @@ class EachProjectSidebar extends Component {
     const { project, timeline } = this.state
     return (
       <Sidebar>
-        <HeadContainer>
+        <HeadContainer className="eachprojectheadcontainer">
           <Head>&emsp;Name</Head>
         </HeadContainer>
         <div className="eachprojecthead">
           <div className="eachprojectname">
             <div
               style={{
+                whiteSpace: 'nowrap',
                 textOverflow: 'ellipsis',
                 overflow: 'hidden',
                 width: '100%',
@@ -271,7 +272,6 @@ class EachProjectSidebar extends Component {
                   style={{
                     display: 'flex',
                     flexDirection: 'row',
-                    overflowX: 'hidden'
                   }}
                 >
                   <div className="membertag">{timeline.users.roles.name}</div>

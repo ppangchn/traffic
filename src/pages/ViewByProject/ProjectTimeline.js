@@ -60,6 +60,8 @@ class ProjectTimeline extends Component {
           stickyHeader={true}
           timeSteps={{ day: 7 }}
           itemHeightRatio={0.3}
+          isGrid={true}
+          autoFocus={false}
         />
       </GraphBox>
     )

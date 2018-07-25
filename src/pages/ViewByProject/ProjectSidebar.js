@@ -62,8 +62,7 @@ class ProjectSidebar extends Component {
         </HeadContainer>
         {this.state.projects.map(project => {
           return (
-            <div key={project.name}>
-              <Item className="projectitem">
+              <Item className="projectitem" key={project.id}>
                 <div className="projectname">
                   <Link
                     className="linkprojectname"
@@ -93,7 +92,6 @@ class ProjectSidebar extends Component {
                   })}
                 </div>
               </Item>
-            </div>
           )
         })}
       </Sidebar>

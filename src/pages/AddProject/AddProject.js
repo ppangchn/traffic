@@ -174,16 +174,13 @@ class AddProject extends Component {
     this.setState({
       pm,
       timeline,
-      isinvalidweight: false,
+      isinvalidweightpm: false,
       isinvalidpm: false
     })
-    // if (pm[index].weight) this.setState({ isinvalidweightpm: false })
     let isinvalidaddforallpm = false
     pm.forEach(e => {
       if (e.weight === 0) isinvalidaddforallpm = true
     })
-    // if (!isinvalidpmforallpm) this.setState({ isinvalidpm: false })
-    // else this.setState({ isinvalidpm: true })
     if (pm[index].value && !isinvalidaddforallpm)
       this.setState({ isinvalidaddpm: false })
     else this.setState({ isinvalidaddpm: true })
@@ -201,9 +198,9 @@ class AddProject extends Component {
     this.setState({
       pm,
       isinvalidweightpm: false,
-      isinvalidpm: false,
+      isinvalidpm: false
     })
-    if (!isinvalidaddforallpm) this.setState({isinvalidaddpm:false})
+    if (!isinvalidaddforallpm) this.setState({ isinvalidaddpm: false })
     this.updateListPm(pm)
   }
   addPM() {
@@ -561,8 +558,8 @@ class AddProject extends Component {
                 </Col>
               </Row>
               <Row>
-                <Col md="4" sm="4" xs="6">
-                  Project PM
+                <Col md="6" sm="6" xs="6">
+                  Member Arrangement
                 </Col>
               </Row>
               {this.state.pm.map((pm, index) => (
@@ -586,7 +583,9 @@ class AddProject extends Component {
                   }}
                   xs="12"
                 >
-                  {(this.state.isinvalidpm && this.state.invalidpm) || (this.state.isinvalidweightpm && this.state.invalidweightpm)}
+                  {(this.state.isinvalidpm && this.state.invalidpm) ||
+                    (this.state.isinvalidweightpm &&
+                      this.state.invalidweightpm)}
                 </Col>
               </Row>
               <Row>

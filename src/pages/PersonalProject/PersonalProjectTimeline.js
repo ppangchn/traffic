@@ -70,9 +70,10 @@ class ProjectTimeline extends Component {
           visibleTimeEnd={new Date(moment().add(7*4, 'day')).getTime()}
           sidebarWidth={0}
           lineHeight={75.5}
-          stickyHeader={true}
+          stickyHeader={false}
           timeSteps={{ day: 7 }}
           itemHeightRatio={0.4}
+          isGrid={true}
         />
       </GraphBox>
     )

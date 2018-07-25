@@ -5,7 +5,6 @@ import styled from 'styled-components'
 const Container = styled.div`
   display: flex;
   flex-direction: row;
-  overflow: hidden;
 `
 
 class ViewbyProject extends Component {

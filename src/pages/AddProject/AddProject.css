@@ -58,6 +58,12 @@
 .projectnamebox {
   padding-left: 13px !important;
 }
+.fontinput::placeholder {
+  color: #dfdfdf !important;
+}
+.Select-placeholder {
+  color: #dfdfdf !important;
+}
 @media (min-width: 321px) and (max-width: 575.98px) {
   .addprojectbox {
     font-size: 20px;
@@ -71,9 +77,6 @@
     margin-right: 5px;
     right: 8px;
     margin-top: 27px;
-  }
-  .form-control {
-    font-size: 10px !important;
   }
   .addpmbox {
     margin-bottom: 7px;

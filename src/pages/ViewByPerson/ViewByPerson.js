@@ -6,14 +6,20 @@ import styled from 'styled-components'
 const Container = styled.div`
   display: flex;
   flex-direction: row;
-  overflow: hidden;
 `
 class ViewByPerson extends Component {
+    constructor() {
+        super();
+        this.state = {roles: ['all']}
+    }
+    updateRoles(roles) {
+        this.setState({roles})
+    }
     render() {
         return (
             <Container>
-          <PersonSidebar/>
-          <PersonTimeline/>
+          <PersonSidebar updateRoles={(roles) => this.updateRoles(roles)}/>
+          <PersonTimeline roles={this.state.roles}/>
         </Container>
         );
     }

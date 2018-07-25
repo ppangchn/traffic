@@ -3,11 +3,25 @@
   text-align: center;
   color: #8c8c8c;
 }
+.personheadcontainer {
+  top: 56px;
+  z-index: 2;
+  position: sticky;
+}
+.personhead {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 10px;
+}
+input[type='radio'] {
+  visibility: hidden;
+}
 @media (min-width: 321px) and (max-width: 575.98px) {
   .personheadcontainer {
     padding-top: 5px;
     padding-bottom: 20.5px;
     padding-right: 5px;
+    top: 46px;
   }
   .personitem0 {
     padding-bottom: 26px;
@@ -54,7 +68,8 @@
     padding-left: 16px;
   }
   .persontag {
-    font-size: 5px;
+    font-size: 6px;
+    line-height: 10px;
     width: auto;
     margin-right: 3px;
     margin-top: 4px;
@@ -64,7 +79,7 @@
   .personname {
     padding-top: 2px;
     padding-right: 25px;
-    padding-bottom: 5px;
+    padding-bottom: 2px;
     font-size: 11px;
     width: 100px;
   }
@@ -134,11 +149,12 @@
     margin-top: 4px;
     border-radius: 2px;
     padding: 0 6px;
+    line-height: 11px;
   }
   .personname {
-    padding-top: 10px;
+    padding-top: 4px;
     padding-right: 25px;
-    padding-bottom: 5px;
+    padding-bottom: 10px;
     font-size: 14px;
   }
   .persontagcontainer {
@@ -205,9 +221,10 @@
     margin-top: 4px;
     border-radius: 2px;
     padding: 0 6px;
+    line-height: 11px;
   }
   .personname {
-    padding-top: 4px;
+    padding-top: 3px;
     padding-right: 25px;
     padding-bottom: 3px;
     font-size: 15px;
@@ -355,8 +372,49 @@
   .persontagcontainer {
     width: 250px;
   }
+  .radiotext {
+    font-size: 13px;
+    padding-right: 5px;
+    top: 8px;
+    position: relative;
+  }
+  .personhead label {
+    cursor: pointer;
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 10px;
+    top: 2px;
+    left: 1px;
+  }
+  .personhead label:hover::after {
+    opacity: 0.8;
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    top: 3px;
+    left: 3px;
+    border: 4px solid #dfdfdf;
+    border-radius: 2px;
+    border-top: none;
+    border-right: none;
+  }
+  .personhead input[type='radio']:checked + label:after {
+    opacity: 1;
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #5bc2e1;
+    top: 4px;
+    left: 4px;
+    border: 4px solid white;
+    border-radius: 2px;
+    border-top: none;
+    border-right: none;
+  }
 }
-.persontagcontainer:hover {
+/* .persontagcontainer:hover {
   overflow-x: visible !important;
-}
-
+} */

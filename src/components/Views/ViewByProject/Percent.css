@@ -21,6 +21,9 @@
   .editing {
     height: 20px;
   }
+  .progresscontainer {
+    bottom: 2px;
+  }
 }
 
 @media (min-width: 576px) and (max-width: 767.98px) {
@@ -29,14 +32,13 @@
     left: 10px;
     display: flex;
     flex-direction: row;
-    font-size: 10px;
-    top: 2px;
+    font-size: 13px;
   }
   .editbox {
     position: relative;
     left: 3px;
     top: 4px;
-    width: 20px;
+    width: 25px;
   }
   .Edit {
     width: 12px;
@@ -54,14 +56,13 @@
     left: 10px;
     display: flex;
     flex-direction: row;
-    top: 2px;
-    font-size: 10px;
+    font-size: 15px;
   }
   .editbox {
     position: relative;
     left: 3px;
-    top: 8.5px;
-    width: 20px;
+    top: 10.5px;
+    width: 25px;
   }
   .Edit {
     width: 12px;

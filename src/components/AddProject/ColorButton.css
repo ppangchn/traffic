@@ -14,36 +14,38 @@
   .usedicon {
     position: absolute;
     width: 37px;
-    font-size: 30px;
-    bottom: 6px;
-    right: -26px;
+    font-size: 40px;
+    bottom: 11px;
+    right: -22px;
   }
 }
-@media (min-width: 385px) and (max-width: 41298px) {
+@media (min-width: 385px) and (max-width: 412.98px) {
   .usedicon {
     position: absolute;
     width: 37px;
-    font-size: 30px;
-    bottom: 10px;
-    right: -25px;
+    font-size: 41px;
+    bottom: 16px;
+    right: -21px;
+
   }
 }
 @media (min-width: 413px) and (max-width: 450.98px) {
   .usedicon {
     position: absolute;
     width: 37px;
-    font-size: 30px;
-    bottom: 15px;
-    right: -24px;
+    font-size: 42px;
+    bottom: 23px;
+    right: -21px;
   }
 }
 @media (min-width: 451px) and (max-width: 490.98px) {
   .usedicon {
     position: absolute;
     width: 37px;
-    font-size: 30px;
-    bottom: 20px;
-    right: -23px;
+    font-size: 43px;
+    bottom: 22px;
+    right: -19px;
+
   }
 }
 @media (min-width: 491px) and (max-width: 519.98px) {
@@ -51,7 +53,7 @@
     position: absolute;
     width: 37px;
     font-size: 41px;
-    bottom: 15px;
+    bottom: 21px;
     right: -20px;
   }
 }
@@ -68,15 +70,16 @@
   .usedicon {
     position: absolute;
     width: 37px;
-    right: -26px;
-    top: -11px;
+    right: -27px;
+    top: -7px;
+    font-size: 22px;
   }
 }
 @media (min-width: 992px) {
   .usedicon {
     position: absolute;
     width: 37px;
-    bottom: -7px;
-    right: -26px;
+    bottom: 3px;
+    right: -28px;
   }
 }
