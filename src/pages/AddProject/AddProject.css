@@ -1,366 +1,64 @@
 .colorgrid {
-	padding-left: 0px;
-	padding-right: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 .pd5 {
-	padding-left: 5px !important;
-	padding-right: 5px !important;
+  padding-left: 5px !important;
+  padding-right: 5px !important;
 }
 .pd10 {
-	padding-left: 10px !important;
-	padding-right: 10px !important;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
 }
 .search {
-	color: rgb(51, 51, 51);
-	width: 100%;
-	line-height: 1.8em;
-	border-top-left-radius: 4px;
-	border-top-right-radius: 4px;
-	border-bottom-right-radius: 4px;
-	border-bottom-left-radius: 4px;
-	border: 0px;
-	padding: 0px 1em;
+  color: rgb(51, 51, 51);
+  width: 100%;
+  line-height: 1.8em;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  border: 0px;
+  padding: 0px 1em;
 }
 .weightproject {
-	border: 1px solid #a0a0a0;
-	border-radius: 5px;
-	color: #a0a0a0;
-	text-align: center;
+  border: 1px solid #a0a0a0;
+  border-radius: 5px;
+  color: #a0a0a0;
+  text-align: center;
 }
 .btn-5bc2e1 {
-	background-color: #5bc2e1;
-	color: white;
+  background-color: #5bc2e1;
+  color: white;
 }
 .savelink:hover {
-	color: white;
-	text-decoration: none;
+  color: white;
+  text-decoration: none;
 }
 .rc-slider-rail {
-	background-color: #d8d8d8 !important;
+  background-color: #d8d8d8 !important;
 }
 .rc-slider-track {
-	background-color: #5ac2e2 !important;
+  background-color: #5ac2e2 !important;
 }
 
 .rc-slider-handle {
-	background-color: #3d93a8 !important;
-	border-color: #fff !important;
+  background-color: #3d93a8 !important;
+  border-color: #fff !important;
 }
 .form-control {
-	border-color: #5ac2e2;
+  border-color: #5ac2e2;
 }
 .weightproject {
-	border-color: #5ac2e2 !important;
+  border-color: #5ac2e2 !important;
 }
 .weightpm {
-	border-color: #5ac2e2 !important;
+  border-color: #5ac2e2 !important;
 }
 .projectnamebox {
   padding-left: 13px !important;
 }
-.fontinput::placeholder {
-  color: #dfdfdf !important;
-}
-.Select-placeholder {
-  color: #dfdfdf !important;
-}
 @media (min-width: 321px) and (max-width: 575.98px) {
-	.addprojectbox {
-		font-size: 20px;
-	}
-	.weightproject {
-		font-size: 18px;
-		line-height: 17px;
-		width: 3.125rem;
-	}
-	.weightbox {
-		margin-right: 5px;
-		right: 8px;
-		margin-top: 32px;
-	}
-	.form-control {
-		font-size: 10px !important;
-	}
-	.addpmbox {
-		margin-bottom: 7px;
-		bottom: 5px;
-	}
-	.Select-placeholder {
-		font-size: 18px;
-	}
-	.sliderbox {
-		margin-top: 7px;
-		left: 3px;
-		position: relative;
-	}
-	.projectweighttext {
-		right: 2px;
-		position: relative;
-	}
-	.pmweighttext {
-		padding-left: 15px !important;
-	}
-	.form-control {
-		font-size: 18px !important;
-		position: relative;
-		width: 85%;
-	}
-	.fontinput::placeholder {
-		font-size: 18px !important;
-	}
-}
-@media (min-width: 576px) and (max-width: 767.98px) {
-	.addprojectbox {
-		font-size: 17px;
-	}
-	.sliderbox {
-		margin-top: 10px;
-	}
-	.weightproject {
-		font-size: 18px;
-    line-height: 17px;
-    width: 50px;
-	}
-	.weightbox {
-		margin-right: 5px;
-		right: 8px;
-		margin-top: 30px;
-	}
-	.addpmbox {
-		margin-bottom: 7px;
-		bottom: 5px;
-	}
-	.form-control {
-		font-size: 12px !important;
-		position: relative;
-		width: 85%;
-	}
-	.fontinput::placeholder {
-		font-size: 17px !important;
-	}
-	.invalidprojectname {
-		font-size: 15px;
-		line-height: 24px;
-	}
-	.invalidprojectweight {
-		padding-left: 29px !important;
-	}
-	.invalidcolor {
-		font-size: 15px;
-		line-height: 13px;
-		bottom: 7px;
-	}
-	.invalidpm {
-		font-size: 15px;
-		margin-bottom: 10px;
-		line-height: 13px;
-		bottom: 3px;
-	}
-	.invalidweightpm {
-		font-size: 15px;
-		margin-bottom: 10px;
-		line-height: 13px;
-		bottom: 1px;
-		right: 80px;
-	}
-}
-
-@media (min-width: 768px) and (max-width: 991.98px) {
-	.addprojectbox {
-		font-size: 16px;
-	}
-	.sliderbox {
-		margin-top: 10px;
-	}
-	.weightproject {
-		font-size: 18px;
-		line-height: 17px;
-		position: relative;
-		top: 7px;
-		width: 3.125rem;
-	}
-	.weightbox {
-		margin-right: 5px;
-		bottom: 8px;
-		margin-top: 30px;
-		right: 8px;
-	}
-	.form-control {
-		font-size: 12px !important;
-	}
-	.addpmbox {
-		margin-bottom: 7px;
-		bottom: 5px;
-	}
-	.projectnamebox {
-		margin-bottom: 10px;
-	}
-	.projectweighttext {
-		right: 0.5px;
-		position: relative;
-	}
-	.pmweighttext {
-		right: 10px;
-	}
-	.fontinput::placeholder {
-		font-size: 17px !important;
-		padding: 0;
-	}
-	.invalidprojectname {
-		font-size: 15px;
-		bottom: 8px;
-		line-height: 10px;
-	}
-	.invalidprojectweight {
-		padding-left: 19px !important;
-	}
-	.invalidcolor {
-		font-size: 15px;
-		line-height: 13px;
-		bottom: 7px;
-	}
-	.invalidpm {
-		font-size: 15px;
-		margin-bottom: 10px;
-		line-height: 13px;
-		bottom: 3px;
-	}
-	.invalidweightpm {
-		font-size: 15px;
-		margin-bottom: 10px;
-		line-height: 13px;
-		bottom: 1px;
-		right: 80px;
-	}
-}
-@media (min-width: 992px) and (max-width: 1199.98px) {
-	.addprojectbox {
-		font-size: 20px;
-	}
-	.sliderbox {
-		margin-top: 12px;
-	}
-	.weightproject {
-		font-size: 18px;
-		line-height: 17px;
-		position: relative;
-		top: 17px;
-		width: 3.125rem;
-	}
-	.weightbox {
-		margin-right: 10px;
-		margin-top: 21px;
-	}
-	.fontinput::placeholder {
-		font-size: 19px !important;
-		padding: 0;
-	}
-	.addpmbox {
-		margin-bottom: 10px;
-		bottom: 5px;
-	}
-	.projectnamebox {
-		margin-bottom: 10px;
-	}
-	.pmweighttext {
-		right: 6px;
-	}
-	.projectweighttext {
-		margin-right: 5px;
-		right: 1px;
-		position: relative;
-	}
-	.invalidprojectname {
-		font-size: 80%;
-		bottom: 6px;
-		line-height: 10px;
-	}
-	.invalidprojectweight {
-		padding-left: 9px !important;
-	}
-	.invalidcolor {
-		font-size: 80%;
-		line-height: 13px;
-		bottom: 7px;
-	}
-	.invalidpm {
-		font-size: 80%;
-		margin-bottom: 10px;
-		line-height: 13px;
-		bottom: 2px;
-	}
-	.invalidweightpm {
-		font-size: 80%;
-		margin-bottom: 10px;
-		line-height: 13px;
-		bottom: 2px;
-		right: 83px;
-	}
-}
-@media (min-width: 1200px) {
-	.addprojectbox {
-		font-size: 20px;
-	}
-	.sliderbox {
-		margin-top: 12px;
-	}
-	.weightproject {
-		font-size: 18px;
-		line-height: 17px;
-		position: relative;
-		top: 17px;
-		width: 3.125rem;
-	}
-	.weightbox {
-		margin-right: 10px;
-		margin-top: 21px;
-	}
-	.fontinput::placeholder {
-		font-size: 19px !important;
-		padding: 0;
-	}
-	.addpmbox {
-		margin-bottom: 10px;
-		bottom: 5px;
-	}
-	.projectnamebox {
-		margin-bottom: 10px;
-	}
-	.pmweighttext {
-		margin-left: 4px;
-	}
-	.projectweighttext {
-		margin-right: 5px;
-		right: 1px;
-		position: relative;
-	}
-	.invalidprojectname {
-		font-size: 80%;
-		bottom: 6px;
-		line-height: 10px;
-	}
-	.invalidprojectweight {
-		padding-left: 10px !important;
-	}
-	.invalidcolor {
-		font-size: 80%;
-		line-height: 13px;
-		bottom: 7px;
-	}
-	.invalidpm {
-		font-size: 80%;
-		margin-bottom: 10px;
-		line-height: 13px;
-		bottom: 1px;
-	}
-	.invalidweightpm {
-		font-size: 80%;
-		margin-bottom: 10px;
-		line-height: 13px;
-		bottom: 1px;
-		right: 70px;
-	}
-
   .addprojectbox {
     font-size: 20px;
   }
@@ -374,9 +72,13 @@
     right: 8px;
     margin-top: 27px;
   }
+  .form-control {
+    font-size: 10px !important;
+  }
   .addpmbox {
     margin-bottom: 7px;
     bottom: 5px;
+    margin-top: 5px;
   }
   .Select-placeholder {
     font-size: 18px;
