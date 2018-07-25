@@ -92,7 +92,7 @@ class UserDetail extends Component {
 								<Item key={project.id} className="overviewprojectitem">
 									<div className="overviewprojectname">
 										<Link
-											className={'linkprojectname-' + project.project.color.substring(1)}
+											className="linkprojectname"
 											to={`/project/${project.project.id}`}
 											style={{
 												textOverflow: 'ellipsis',

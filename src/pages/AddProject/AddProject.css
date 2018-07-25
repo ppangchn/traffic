@@ -55,7 +55,11 @@
 .weightpm {
 	border-color: #5ac2e2 !important;
 }
+.projectnamebox {
+  padding-left: 13px !important;
+}
 @media (min-width: 321px) and (max-width: 575.98px) {
+<<<<<<< HEAD
 	.addprojectbox {
 		font-size: 20px;
 	}
@@ -351,4 +355,339 @@
 		bottom: 1px;
 		right: 70px;
 	}
+=======
+  .addprojectbox {
+    font-size: 20px;
+  }
+  .weightproject {
+    font-size: 18px;
+    line-height: 17px;
+    width: 3.125rem;
+  }
+  .weightbox {
+    margin-right: 5px;
+    right: 8px;
+    margin-top: 27px;
+  }
+  .form-control {
+    font-size: 10px !important;
+  }
+  .addpmbox {
+    margin-bottom: 7px;
+    bottom: 5px;
+  }
+  .Select-placeholder {
+    font-size: 18px;
+  }
+  .sliderbox {
+    left: 3px;
+    position: relative;
+  }
+  .projectweighttext {
+    right: 2px;
+    position: relative;
+  }
+  .pmweighttext {
+    padding-left: 15px !important;
+  }
+  .form-control {
+    font-size: 18px !important;
+    position: relative;
+    width: 85%;
+  }
+  .fontinput::placeholder {
+    font-size: 18px !important;
+  }
+  .invalidprojectname {
+    font-size: 15px;
+    line-height: 19px;
+  }
+  .invalidprojectweight {
+    font-size: 15px;
+    line-height: 19px;
+    bottom: 3px;
+  }
+  .invalidcolor {
+    font-size: 15px;
+    line-height: 13px;
+    bottom: 7px;
+  }
+  .invalidpm {
+    font-size: 15px;
+    line-height: 3px;
+    bottom: 7px;
+  }
+  .invalidweightpm {
+    font-size: 15px;
+    margin-bottom: 10px;
+    line-height: 13px;
+    bottom: 1px;
+  }
+}
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .addprojectbox {
+    font-size: 17px;
+  }
+  .sliderbox {
+    margin-top: 10px;
+  }
+  .weightproject {
+    font-size: 18px;
+    line-height: 17px;
+    width: 50px;
+  }
+  .weightbox {
+    margin-right: 5px;
+    right: 8px;
+    margin-top: 30px;
+  }
+  .addpmbox {
+    margin-bottom: 7px;
+    bottom:5px;
+  }
+  .form-control {
+    font-size: 12px !important;
+    top: 5px;
+    position: relative;
+    width: 85%;
+  }
+  .fontinput::placeholder {
+    font-size: 17px !important;
+  }
+  .invalidprojectname {
+    font-size: 15px;
+    line-height: 24px;
+    top: 1px;
+  }
+  .invalidprojectweight {
+    font-size: 15px;
+    line-height: 24px;
+    width: 200px;
+    top: 9px;
+    right: 5px;
+  }
+  .invalidcolor {
+    font-size: 15px;
+    line-height: 13px;
+    bottom: 7px;
+  }
+  .invalidpm {
+    font-size: 15px;
+    margin-bottom: 10px;
+    line-height: 13px;
+    bottom: 3px;
+  }
+  .invalidweightpm {
+    font-size: 15px;
+    margin-bottom: 10px;
+    line-height: 13px;
+    bottom: 1px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .addprojectbox {
+    font-size: 16px;
+  }
+  .sliderbox {
+    margin-top: 10px;
+  }
+  .weightproject {
+    font-size: 18px;
+    line-height: 17px;
+    position: relative;
+    top: 7px;
+    width: 3.125rem;
+  }
+  .weightbox {
+    margin-right: 5px;
+    bottom: 8px;
+    margin-top: 30px;
+    right: 8px;
+  }
+  .form-control {
+    font-size: 12px !important;
+  }
+  .addpmbox {
+    margin-bottom: 7px;
+    bottom: 5px;
+  }
+  .projectnamebox {
+    margin-bottom: 10px;
+  }
+  .projectweighttext {
+    right: 0.5px;
+    position: relative;
+  }
+  .pmweighttext {
+    right: 10px;
+  }
+  .fontinput::placeholder {
+    font-size: 17px !important;
+    padding: 0;
+  }
+  .invalidprojectname {
+    font-size: 15px;
+    line-height: 10px;
+    top: 3px;
+  }
+  .invalidprojectweight {
+    font-size: 15px;
+    line-height: 10px;
+    width: 200px;
+    top: 11px;
+    right: 5px;
+  }
+  .invalidcolor {
+    font-size: 15px;
+    line-height: 13px;
+    bottom: 7px;
+  }
+  .invalidpm {
+    font-size: 15px;
+    margin-bottom: 10px;
+    line-height: 13px;
+    bottom: 3px;
+  }
+  .invalidweightpm {
+    font-size: 15px;
+    margin-bottom: 10px;
+    line-height: 13px;
+    bottom: 1px;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .addprojectbox {
+    font-size: 20px;
+  }
+  .sliderbox {
+    margin-top: 12px;
+  }
+  .weightproject {
+    font-size: 18px;
+    line-height: 17px;
+    position: relative;
+    top: 17px;
+    width: 3.125rem;
+  }
+  .weightbox {
+    margin-right: 10px;
+    margin-top: 21px;
+  }
+  .fontinput::placeholder {
+    font-size: 19px !important;
+    padding: 0;
+  }
+  .addpmbox {
+    margin-bottom: 10px;
+    bottom: 5px;
+  }
+  .projectnamebox {
+    margin-bottom: 10px;
+  }
+  .pmweighttext {
+    right: 6px
+  }
+  .projectweighttext {
+    margin-right: 5px;
+    right: 1px;
+    position: relative;
+  }
+  .invalidprojectname {
+    font-size: 80%;
+    line-height: 10px;
+    top: 3px;
+  }
+  .invalidprojectweight {
+    font-size: 80%;
+    line-height: 10px;
+    width: 200px;
+    top: 15px;
+    right: 5px;
+  }
+  .invalidcolor {
+    font-size: 80%;
+    line-height: 13px;
+    bottom: 7px;
+  }
+  .invalidpm {
+    font-size: 80%;
+    margin-bottom: 10px;
+    line-height: 13px;
+    bottom: 2px;
+  }
+  .invalidweightpm {
+    font-size: 80%;
+    margin-bottom: 10px;
+    line-height: 13px;
+    bottom: 2px;
+  }
+}
+@media (min-width: 1200px)  {
+  .addprojectbox {
+    font-size: 20px;
+  }
+  .sliderbox {
+    margin-top: 12px;
+  }
+  .weightproject {
+    font-size: 18px;
+    line-height: 17px;
+    position: relative;
+    top: 17px;
+    width: 3.125rem;
+  }
+  .weightbox {
+    margin-right: 10px;
+    margin-top: 21px;
+  }
+  .fontinput::placeholder {
+    font-size: 19px !important;
+    padding: 0;
+  }
+  .addpmbox {
+    margin-bottom: 10px;
+    bottom: 5px;
+  }
+  .projectnamebox {
+    margin-bottom: 10px;
+  }
+  .pmweighttext {
+    margin-left: 4px;
+  }
+  .projectweighttext {
+    margin-right: 5px;
+    right: 1px;
+    position: relative;
+  }
+  .invalidprojectname {
+    font-size: 80%;
+    line-height: 10px;
+    top: 3px;
+  }
+  .invalidprojectweight {
+    width: 200px;
+    font-size: 80%;
+    line-height: 10px;
+    top: 15px;
+    right: 5px;
+  }
+  .invalidcolor {
+    font-size: 80%;
+    line-height: 13px;
+    bottom: 7px;
+  }
+  .invalidpm {
+    font-size: 80%;
+    margin-bottom: 10px;
+    line-height: 13px;
+    bottom: 1px;
+  }
+  .invalidweightpm {
+    font-size: 80%;
+    margin-bottom: 10px;
+    line-height: 13px;
+    bottom: 1px;
+  }
+>>>>>>> a2391790f033022eea3fba22c7988980e0e50a07
 }
