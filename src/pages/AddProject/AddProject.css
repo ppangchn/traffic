@@ -118,7 +118,8 @@
 	}
 	.weightproject {
 		font-size: 18px;
-		line-height: 17px;
+    line-height: 17px;
+    width: 50px;
 	}
 	.weightbox {
 		margin-right: 5px;
@@ -131,7 +132,6 @@
 	}
 	.form-control {
 		font-size: 12px !important;
-		top: 5px;
 		position: relative;
 		width: 85%;
 	}
