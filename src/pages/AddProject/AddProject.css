@@ -65,7 +65,6 @@
   color: #dfdfdf !important;
 }
 @media (min-width: 321px) and (max-width: 575.98px) {
-<<<<<<< HEAD
 	.addprojectbox {
 		font-size: 20px;
 	}
@@ -361,7 +360,7 @@
 		bottom: 1px;
 		right: 70px;
 	}
-=======
+
   .addprojectbox {
     font-size: 20px;
   }
@@ -692,5 +691,4 @@
     line-height: 13px;
     bottom: 1px;
   }
->>>>>>> a2391790f033022eea3fba22c7988980e0e50a07
 }
