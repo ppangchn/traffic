@@ -103,13 +103,13 @@ class UserDetail extends Component {
 										>
 											{project.project.name}
 										</Link>
-										{/* <div style={{ float: 'right' }}>{100}%</div> */}
-										<div style={{ float: 'right' }}>{project.processWeight.processWeight}%</div>
+										<div style={{ float: 'right' }}>{100}%</div>
+										{/* <div style={{ float: 'right' }}>{project.processWeight.processWeight}%</div> */}
 										<Progress
 											className="overviewprogress"
 											color={String(project.project.color).substring(1)}
-											// value={100}
-											value={project.processWeight.processWeight}
+											value={100}
+											// value={project.processWeight.processWeight}
 										/>
 									</div>
 								</Item>

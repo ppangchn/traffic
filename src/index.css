@@ -4,14 +4,26 @@
 	font-style: normal;
 	font-weight: 700;
 	src: url('./fonts/DB Helvethaica X/DB Helvethaica X Ext v3.2.ttf');
+}
+html {
+	margin: 0;
+	padding: 0;
+	height: 100%;
 
 }
+
 body {
-	font-family: 'DB Helvethaica X' !important;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	max-height: 100% !important;
+	width: 100% !important;
+	float: left;
 	background-color: #eaf9fe;
-	-webkit-background-size: cover;
-	background-size: cover;
+	font-family: 'DB Helvethaica X' !important;
+
 }
+
 /* .navbar {
 	position: sticky;
 	position: -webkit-sticky;

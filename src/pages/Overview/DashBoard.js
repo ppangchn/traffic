@@ -31,8 +31,6 @@ class DashBoard extends Component {
 	}
 
 	componentDidMount() {
-		// let token = auth.getToken()
-		// let user = auth.decodeToken(token)
 		axios.get(`${url}/users/pm`).then(res => {
 			const { data } = res
 			this.setState({ data })
