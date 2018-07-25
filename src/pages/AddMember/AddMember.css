@@ -51,7 +51,7 @@
 
 input::-webkit-input-placeholder {
 	font-size: 20px;
-	color: #aaa;
+	color: #dfdfdf;
 }
 
 .btn-5bc2e1 {
@@ -84,6 +84,7 @@ input::-webkit-input-placeholder {
 	border-color: #5ac2e2 !important;
 	font-size: 20px !important;
 	padding: 0px 0px 5px 10px;
+	color: #dfdfdf
 }
 
 .inputform2 {
@@ -147,8 +148,9 @@ input::-webkit-input-placeholder {
 	/* margin-left: 10px; */
 	font-size: 24px !important;
 }
-.Select-placeholder, .Select--single > .Select-control .Select-value{
-/* padding-left: 19px; */
+.Select-placeholder,
+.Select--single > .Select-control .Select-value {
+	/* padding-left: 19px; */
 }
 
 .tag-full-w .ReactTags__tagInput {
