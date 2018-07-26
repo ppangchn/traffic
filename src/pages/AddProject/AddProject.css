@@ -86,10 +86,12 @@
   .sliderbox {
     left: 3px;
     position: relative;
+    margin-bottom: 12px;
   }
   .projectweighttext {
     right: 2px;
     position: relative;
+    margin-top: 12px;
   }
   .pmweighttext {
     padding-left: 15px !important;
