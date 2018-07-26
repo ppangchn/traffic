@@ -36,8 +36,8 @@ const Head = styled.div`
 `
 const HeadContainer = styled.div`
   background-color: #ffffff;
-  border-bottom: 0.5px solid #dfdfdf;
-  border-right: 0.5px solid #dfdfdf;
+  border-bottom: 0.5px solid #e4eaed;
+  border-right: 0.5px solid #e4eaed;
   padding-top: 5px;
   padding-bottom: 14px;
 `

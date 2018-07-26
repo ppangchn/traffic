@@ -14,6 +14,7 @@ class PersonTimeline extends Component {
     this.state = {
       groups: [],
       items: [],
+      data: {}
     }
   }
   getData() {
@@ -23,37 +24,32 @@ class PersonTimeline extends Component {
       axios.get(`${url}/users/person`).then(res => {
         const { data } = res // = res.data
         let count = 1
+        this.setState({ data })
         data.forEach(data => {
-          if (
-            this.props.roles[0] === 'all' ||
-            this.props.roles.indexOf(data.roles.name) !== -1
-          ) {
-            groups.push({ id: data.id, title: data.name })
-            if (data.projectTimeline) {
-              data.projectTimeline.forEach(timeline => {
-                if (!timeline.project.isDisable && !timeline.isDisable) {
-                  let start = null
-                  let end = null
-                  if (timeline.start && timeline.end) {
-                    start = moment(timeline.start).add(-1, 'day')
-                    end = moment(timeline.end).add(-1, 'day')
-                  }
-                  items.push({
-                    id: count,
-                    group: data.id,
-                    title: timeline.project.name,
-                    start_time: start,
-                    end_time: end,
-                    canMove: false,
-                    canResize: false,
-                    canChangeGroup: false,
-                    className:
-                      'bg-' + String(timeline.project.color).substring(1)
-                  })
-                  count++
+          groups.push({ id: data.id, title: data.name })
+          if (data.projectTimeline) {
+            data.projectTimeline.forEach(timeline => {
+              if (!timeline.project.isDisable && !timeline.isDisable) {
+                let start = null
+                let end = null
+                if (timeline.start && timeline.end) {
+                  start = moment(timeline.start).add(-1, 'day')
+                  end = moment(timeline.end).add(-1, 'day')
                 }
-              })
-            }
+                items.push({
+                  id: count,
+                  group: data.id,
+                  title: timeline.project.name,
+                  start_time: start,
+                  end_time: end,
+                  canMove: false,
+                  canResize: false,
+                  canChangeGroup: false,
+                  className: 'bg-' + String(timeline.project.color).substring(1)
+                })
+                count++
+              }
+            })
           }
         })
         this.setState({
@@ -65,11 +61,54 @@ class PersonTimeline extends Component {
       console.log('fail to get data at PersonTimeline')
     }
   }
+  updateData(roles) {
+    const { data } = this.state
+    let items = []
+    let groups = []
+    let count = 1
+    data.forEach(data => {
+      if (
+        roles[0] === 'all' ||
+        roles.indexOf(data.roles.name) !== -1
+      ) {
+        groups.push({ id: data.id, title: data.name })
+        if (data.projectTimeline) {
+          data.projectTimeline.forEach(timeline => {
+            if (!timeline.project.isDisable && !timeline.isDisable) {
+              let start = null
+              let end = null
+              if (timeline.start && timeline.end) {
+                start = moment(timeline.start).add(-1, 'day')
+                end = moment(timeline.end).add(-1, 'day')
+              }
+              items.push({
+                id: count,
+                group: data.id,
+                title: timeline.project.name,
+                start_time: start,
+                end_time: end,
+                canMove: false,
+                canResize: false,
+                canChangeGroup: false,
+                className: 'bg-' + String(timeline.project.color).substring(1)
+              })
+              count++
+            }
+          })
+        }
+      }
+    })
+    this.setState({
+      groups,
+      items
+    })
+  }
   componentDidMount = () => {
     this.getData()
   }
-  componentWillReceiveProps() {
-    this.getData()
+  componentWillReceiveProps(props) {
+    console.log(props)
+    this.updateData(props.roles)
   }
   render() {
     return (
@@ -77,8 +116,8 @@ class PersonTimeline extends Component {
         <Timeline
           groups={this.state.groups}
           items={this.state.items}
-          visibleTimeStart={new Date(moment().add(7 * 5, 'day')).getTime()}
-          visibleTimeEnd={new Date(moment().add(7 * 12, 'day')).getTime()}
+          visibleTimeStart={new Date(moment().add(7*6, 'day')).getTime()}
+          visibleTimeEnd={new Date(moment().add(7 * 14, 'day')).getTime()}
           sidebarWidth={0}
           lineHeight={60.5}
           stickyHeader={true}

@@ -10,21 +10,21 @@ import '../ViewByProject/ProjectSidebar.css'
 import './PersonalProjectSidebar.css'
 
 const UserName = styled.div`
-  border-right: 0.5px solid #dfdfdf;
-  border-bottom: 0.5px solid #dfdfdf;
+  border-right: 0.5px solid #e4eaed;
+  border-bottom: 0.5px solid #e4eaed;
 `
 const FolderIcon = FolderOpen.extend`
   color: #5bc2e1;
 `
 const HeadContainer = styled.div`
   background-color: #ffffff;
-  border-bottom: 0.5px solid #dfdfdf;
-  border-right: 0.5px solid #dfdfdf;
+  border-bottom: 0.5px solid #e4eaed;
+  border-right: 0.5px solid #e4eaed;
   background-color: #ececec;
 `
 const Item = styled.div`
   background-color: #ffffff;
-  border-bottom: 0.5px solid #dfdfdf;
+  border-bottom: 0.5px solid #e4eaed;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 `
