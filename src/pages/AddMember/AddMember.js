@@ -195,7 +195,8 @@ class AddMember extends Component {
           tags: this.state.tags.map($objTag => {
             return { name: $objTag.name }
           }),
-          email: this.state.email
+          email: this.state.email,
+          capacity: this.state.capacity
         }
         await axios.put(`${url}/users`, data)
         if (this.state.sendResetPass) {
@@ -234,7 +235,8 @@ class AddMember extends Component {
                 },
                 tags: user.tags,
                 email: user.email,
-                header: 'Edit Member'
+                header: 'Edit Member',
+                capacity: user.capacity
               })
             }
           })

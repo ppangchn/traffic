@@ -71,7 +71,7 @@ class UserDetail extends Component {
     const { projectManagement } = this.props
     return (
       <Card className="userdetail">
-        <div>
+        <div className="userdetailusername">
           <Dot className="dot" style={{ color: this.state.capacitycolor[0] }} />
           {this.props.name}
         </div>
