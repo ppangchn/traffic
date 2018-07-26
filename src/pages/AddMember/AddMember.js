@@ -21,6 +21,7 @@ import SelectRoles from './SelectRoles'
 import url from '../../url'
 import { WithContext as ReactTags } from 'react-tag-input'
 import './AddMember.css'
+import Slider from 'rc-slider'
 
 const KeyCodes = {
   comma: 188,
@@ -64,8 +65,11 @@ class AddMember extends Component {
       invalidname: false,
       invalidroles: false,
       invalidemail: false,
+      invalidcapacity: false,
       invalidrolesmessage: 'Please select one role for this member.',
-      sendResetPass: false
+      invalidcapacitymessage: 'Please choose capacity',
+      sendResetPass: false,
+      capacity: 100
     }
 
     this.toggle = this.toggle.bind(this)
@@ -128,6 +132,9 @@ class AddMember extends Component {
       this.setState({ invalidroles: false })
     }
   }
+  slideChange(value) {
+    this.setState({ capacity: value, invalidcapacity: false })
+  }
   setRoles = (index, data) => {
     this.setState({ invalidpm: false })
     let roles = this.state.roles.map(i => i)
@@ -175,7 +182,12 @@ class AddMember extends Component {
   async sendDataMember(e) {
     e.preventDefault()
     try {
-      if (this.state.name && this.state.roles && this.state.email) {
+      if (
+        this.state.name &&
+        this.state.roles &&
+        this.state.email &&
+        this.state.capacity
+      ) {
         const data = {
           id: this.state.id,
           name: this.state.name,
@@ -188,9 +200,8 @@ class AddMember extends Component {
         await axios.put(`${url}/users`, data)
         if (this.state.sendResetPass) {
           try {
-            axios
-              .post(`${url}/users/forgotpass`, data)
-              // .then(console.log('send resetpassword!'))
+            axios.post(`${url}/users/forgotpass`, data)
+            // .then(console.log('send resetpassword!'))
           } catch (error) {
             console.log('cant send member', error)
           }
@@ -199,6 +210,7 @@ class AddMember extends Component {
         this.props.getData()
         this.props.onClose()
       } else {
+        if (!this.state.capacity) this.setState({ invalidcapacity: true })
         if (!this.state.name) this.setState({ invalidname: true })
         if (!this.state.roles) this.setState({ invalidroles: true })
         if (!this.state.email) this.setState({ invalidemail: true })
@@ -267,7 +279,9 @@ class AddMember extends Component {
     // re-render
     this.setState({ tags: newTags })
   }
-
+  componentWillReceiveProps(props) {
+    console.log(props)
+  }
   render() {
     const { onClose } = this.props
     const { tags, suggestions } = this.state
@@ -302,7 +316,6 @@ class AddMember extends Component {
                     />
                   </Col>
                 </Row>
-
                 <Row>
                   <Col className="mb-3">
                     <div className="title">Roles</div>
@@ -319,9 +332,37 @@ class AddMember extends Component {
                     </div>
                   </Col>
                 </Row>
-
-                <div className="invalid">
-                  {this.state.invalidroles && this.state.invalidrolesmessage}
+                {!this.state.roles.label ||
+                  (['DEV', 'DSN', 'QA', 'TS'].indexOf(
+                    this.state.roles.label
+                  ) === -1 && (
+                    <Row className="title">
+                      <Col className="mb-3">
+                        Max Capacity : {this.state.capacity}
+                        <Slider
+                          trackStyle={{
+                            backgroundColor: '#5ac2e2'
+                          }}
+                          min={0}
+                          max={200}
+                          step={10}
+                          defaultValue={100}
+                          onChange={e => this.slideChange(e)}
+                          value={this.state.capacity}
+                        />
+                      </Col>
+                    </Row>
+                  ))}
+                <div
+                  className="invalid"
+                  style={{
+                    lineHeight: '0',
+                    position: 'relative',
+                    bottom: '8px'
+                  }}
+                >
+                  {this.state.invalidcapacity &&
+                    this.state.invalidcapacitymessage}
                 </div>
 
                 <Row className="title">
@@ -357,22 +398,24 @@ class AddMember extends Component {
                   </Col>
                 </Row>
 
-                {['DEV', 'DSN', 'QA', 'TS'].indexOf(this.state.roles.label) ===
-                  -1 && (
-                  <div className="checkbox" style={{ display: 'flex' }}>
-                    <input
-                      name="sendResetPass"
-                      type="checkbox"
-                      className="mr-3"
-                      onChange={this.handleCheckboxChange}
-                      id="resetpassword"
-                    />
-                    <label for="resetpassword" />
-                    <div className="sendresetpasswordtext">
-                      Send Reset Password
+                {!this.state.roles.label ||
+                  (['DEV', 'DSN', 'QA', 'TS'].indexOf(
+                    this.state.roles.label
+                  ) === -1 && (
+                    <div className="checkbox" style={{ display: 'flex' }}>
+                      <input
+                        name="sendResetPass"
+                        type="checkbox"
+                        className="mr-3"
+                        onChange={this.handleCheckboxChange}
+                        id="resetpassword"
+                      />
+                      <label for="resetpassword" />
+                      <div className="sendresetpasswordtext">
+                        Send Reset Password
+                      </div>
                     </div>
-                  </div>
-                )}
+                  ))}
                 <Row className="title">
                   <Col className="mb-3">
                     <Button color="5bc2e1" size="lg" block>

@@ -2,17 +2,13 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Button, Progress } from 'reactstrap'
 import AddProject from '../../../pages/AddProject/AddProject'
-import { Link } from 'react-router-dom'
 import { Line } from 'react-chartjs-2'
 import { PrimitiveDot } from 'styled-icons/octicons/PrimitiveDot'
+import ProcessWeight from './ProcessWeight'
 import './UserDetail.css'
 import '../../../pages/ViewByProject/ProjectSidebar.css'
 
-// const Dot = PrimitiveDot.extend`
-// 	width: 0.5rem;
-// 	position: relative;
-// 	bottom: 10px;
-// `
+const Dot = PrimitiveDot.extend``
 const Card = styled.div`
   background-color: white;
   display: flex;
@@ -28,7 +24,11 @@ const Item = styled.div`
 class UserDetail extends Component {
   constructor(props) {
     super(props)
-    this.state = { toggleAddModal: false, data: {} }
+    this.state = {
+      toggleAddModal: false,
+      data: {},
+      capacitycolor: ['#73d363', '#d7cd5c', '#c83131']
+    }
     this.update = this.update.bind(this)
   }
   update() {
@@ -70,57 +70,37 @@ class UserDetail extends Component {
   render() {
     const { projectManagement } = this.props
     return (
-      // <div>
       <Card className="userdetail">
-        <div style={{ display: 'flex' }}>
-          {/* <Dot /> */}
+        <div>
+          <Dot className="dot" style={{ color: this.state.capacitycolor[0] }} />
           {this.props.name}
         </div>
-        <Line
-          data={this.state.data}
-          height={350}
-          options={{
-            maintainAspectRatio: true,
-            scales: {
-              yAxes: [
-                {
-                  display: true,
-                  ticks: {
-                    suggestedMin: 0,
-                    suggestedMax: 100
+        <div>
+          <Line
+            data={this.state.data}
+            height={350}
+            options={{
+              maintainAspectRatio: true,
+              scales: {
+                yAxes: [
+                  {
+                    display: true,
+                    ticks: {
+                      suggestedMin: 0,
+                      suggestedMax: 100
+                    }
                   }
-                }
-              ]
-            }
-          }}
-        />
+                ]
+              }
+            }}
+          />
+        </div>
         <div className="eachItem">
           {projectManagement.map(project => {
             if (!project.isDisable) {
               return (
                 <Item key={project.id} className="overviewprojectitem">
-                  <div className="overviewprojectname">
-                    <Link
-                      className="linkprojectname"
-                      to={`/project/${project.project.id}`}
-                      style={{
-                        textOverflow: 'ellipsis',
-                        overflow: 'hidden',
-                        textDecoration: 'none'
-                      }}
-                      onClick={this.update}
-                    >
-                      {project.project.name}
-                    </Link>
-                    <div style={{ float: 'right' }}>{100}%</div>
-                    {/* <div style={{ float: 'right' }}>{project.processWeight.processWeight}%</div> */}
-                    <Progress
-                      className="overviewprogress"
-                      color={String(project.project.color).substring(1)}
-                      value={100}
-                      // value={project.processWeight.processWeight}
-                    />
-                  </div>
+                  <ProcessWeight projectID={project.project.id} projectName={project.project.name} color={project.project.color} allprocessweight={project.processWeight}/>
                 </Item>
               )
             }
@@ -144,7 +124,6 @@ class UserDetail extends Component {
           />
         )}
       </Card>
-      // </div>
     )
   }
 }

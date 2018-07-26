@@ -504,6 +504,9 @@ class AddProject extends Component {
                   <div className="projectweighttext">Project Weight</div>
                   <div className="sliderbox">
                     <Slider
+                    trackStyle = {{
+                      backgroundColor: '#5ac2e2'
+                    }}
                       min={0}
                       max={100}
                       step={5}

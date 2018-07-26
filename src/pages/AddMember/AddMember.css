@@ -61,11 +61,6 @@ input::-webkit-input-placeholder {
 .savelink:hover {
 	color: white;
 }
-
-.rc-slider-track {
-	background-color: #5ac2e2 !important;
-}
-
 .rc-slider-handle {
 	background-color: #3d93a8 !important;
 	border-color: #fff !important;

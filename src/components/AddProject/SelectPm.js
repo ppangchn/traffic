@@ -85,6 +85,9 @@ class SelectPm extends Component {
           <div>
             <Slider
               className="slider"
+              trackStyle={{
+                backgroundColor : '#5ac2e2'
+              }}
               min={0}
               max={100}
               step={5}
