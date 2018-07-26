@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import '../../components/Views/TimelineStyle.css'
 import Timeline from '../../components/Views/react-calendar-timeline/lib'
-// import Timeline from 'react-calendar-timeline/lib'
 import moment from 'moment'
 import '../ViewByProject/ProjectSidebar.css'
 import GraphBox from '../../components/Views/GraphBox'
@@ -14,7 +13,8 @@ class PersonTimeline extends Component {
     this.state = {
       groups: [],
       items: [],
-      data: {}
+      data: {},
+      isFixedSizeRender: true
     }
   }
   getData() {
@@ -62,53 +62,59 @@ class PersonTimeline extends Component {
     }
   }
   updateData(roles) {
+    console.log('pang ->', this.state.isFixedSizeRender)
     const { data } = this.state
     let items = []
     let groups = []
     let count = 1
     data.forEach(data => {
-      if (
-        roles[0] === 'all' ||
-        roles.indexOf(data.roles.name) !== -1
-      ) {
-        groups.push({ id: data.id, title: data.name })
-        if (data.projectTimeline) {
-          data.projectTimeline.forEach(timeline => {
-            if (!timeline.project.isDisable && !timeline.isDisable) {
-              let start = null
-              let end = null
-              if (timeline.start && timeline.end) {
-                start = moment(timeline.start).add(-1, 'day')
-                end = moment(timeline.end).add(-1, 'day')
+      if (roles[0] === 'all' || roles.indexOf(data.roles.name) !== -1) {
+        if (!data.isDisable) {
+          groups.push({ id: data.id, title: data.name })
+          if (data.projectTimeline) {
+            data.projectTimeline.forEach(timeline => {
+              if (!timeline.project.isDisable && !timeline.isDisable) {
+                let start = null
+                let end = null
+                if (timeline.start && timeline.end) {
+                  start = moment(timeline.start).add(-1, 'day')
+                  end = moment(timeline.end).add(-1, 'day')
+                }
+                items.push({
+                  id: count,
+                  group: data.id,
+                  title: timeline.project.name,
+                  start_time: start,
+                  end_time: end,
+                  canMove: false,
+                  canResize: false,
+                  canChangeGroup: false,
+                  className: 'bg-' + String(timeline.project.color).substring(1)
+                })
+                count++
               }
-              items.push({
-                id: count,
-                group: data.id,
-                title: timeline.project.name,
-                start_time: start,
-                end_time: end,
-                canMove: false,
-                canResize: false,
-                canChangeGroup: false,
-                className: 'bg-' + String(timeline.project.color).substring(1)
-              })
-              count++
-            }
-          })
+            })
+          }
         }
       }
     })
+    console.log('groups ->', groups)
+    console.log('items', items)
     this.setState({
       groups,
       items
     })
+    return true
   }
   componentDidMount = () => {
     this.getData()
   }
   componentWillReceiveProps(props) {
-    console.log(props)
-    this.updateData(props.roles)
+    this.setState({ isFixedSizeRender: false }, () => {
+      let isFinished = this.updateData(props.roles)
+      console.log('isFinshed', isFinished)
+      this.setState({ isFixedSizeRender: isFinished })
+    })
   }
   render() {
     return (
@@ -116,7 +122,7 @@ class PersonTimeline extends Component {
         <Timeline
           groups={this.state.groups}
           items={this.state.items}
-          visibleTimeStart={new Date(moment().add(7*6, 'day')).getTime()}
+          visibleTimeStart={new Date(moment().add(7 * 6, 'day')).getTime()}
           visibleTimeEnd={new Date(moment().add(7 * 13, 'day')).getTime()}
           sidebarWidth={0}
           lineHeight={60.5}

@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import {
-  Progress,
   Button,
-  Popover,
-  PopoverBody,
   Modal,
   ModalBody,
   ModalHeader,
@@ -18,7 +15,7 @@ import { Gear } from 'styled-icons/octicons/Gear'
 import { ListAlt } from 'styled-icons/fa-regular/ListAlt'
 import { ListAlt as ListSolid } from 'styled-icons/fa-solid/ListAlt'
 import { Navbar, NavLink } from 'reactstrap'
-import { Plus } from 'styled-icons/fa-solid/Plus'
+import { AddToPhotos } from 'styled-icons/material/AddToPhotos'
 import { ExitToApp } from 'styled-icons/material/ExitToApp'
 import { withRouter } from 'react-router-dom'
 import AddProject from '../../pages/AddProject/AddProject'
@@ -125,7 +122,7 @@ const ListAltSolidz = ListSolid.extend`
     border-radius: 25%
     position: relative;
 `
-const AddReg = Plus.extend`
+const AddReg = AddToPhotos.extend`
     width : 1.3rem;
     height : 1.3rem;
     color : white;

@@ -17,7 +17,7 @@ const Box = styled.div`
   -webkit-background-size: cover;
   background-size: cover;
   flex-direction: column;
-  overflow: hidden;
+  height: 100vh;
 `
 const Card = styled.div`
   background-color: white;

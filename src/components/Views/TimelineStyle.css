@@ -27,7 +27,6 @@
   position: absolute;
   box-sizing: border-box;
   font-size: 12px;
-  cursor: pointer;
   color: black !important;
   border: none !important;
   background: #2196f3;
@@ -61,7 +60,6 @@
   height: 100%;
   top: 0;
   left: 0;
-  cursor: pointer;
   z-index: 88;
 }
 .react-calendar-timeline .rct-item .rct-drag-right {
@@ -72,7 +70,6 @@
   height: 100%;
   top: 0;
   right: 0;
-  cursor: pointer;
   z-index: 88;
 }
 .react-calendar-timeline .rct-item:hover {
@@ -125,12 +122,10 @@
   top: 0;
   font-size: 14px;
   text-align: center;
-  cursor: pointer;
   border-left: 2px solid #bbb;
   color: black !important;
   background: white;
   border-bottom: 1px solid #e4eaed;
-  cursor: pointer;
 }
 .react-calendar-timeline .rct-header .rct-label-group.rct-has-right-sidebar {
   border-right: 1px solid #e4eaed;
@@ -144,11 +139,9 @@
 .react-calendar-timeline .rct-header .rct-label {
   position: absolute;
   text-align: center;
-  cursor: pointer;
   border-left: 1px solid #bbb;
   background: white;
   border-bottom: 1px solid #e4eaed;
-  cursor: pointer;
 }
 .react-calendar-timeline .rct-header .rct-label.rct-label-only {
   background: white;

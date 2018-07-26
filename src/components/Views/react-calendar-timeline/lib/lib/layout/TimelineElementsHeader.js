@@ -152,7 +152,6 @@ var TimelineElementsHeader = function (_Component) {
                 width: labelWidth + 'px',
                 height: headerLabelGroupHeight + 'px',
                 lineHeight: headerLabelGroupHeight + 'px',
-                cursor: 'pointer'
               }
             },
             _react2.default.createElement(
@@ -190,7 +189,6 @@ var TimelineElementsHeader = function (_Component) {
               height: (minUnit === 'year' ? headerLabelGroupHeight + headerLabelHeight : headerLabelHeight) + 'px',
               lineHeight: (minUnit === 'year' ? headerLabelGroupHeight + headerLabelHeight : headerLabelHeight) + 'px',
               fontSize: (labelWidth > 30 ? '14' : labelWidth > 20 ? '12' : '10') + 'px',
-              cursor: 'pointer'
             }
           },
           _this2.subHeaderLabel(timeNew, minUnit, labelWidth)

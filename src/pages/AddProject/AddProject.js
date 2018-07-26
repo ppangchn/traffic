@@ -558,7 +558,7 @@ class AddProject extends Component {
                 </Col>
               </Row>
               <Row>
-                <Col md="6" sm="6" xs="6">
+                <Col md="6" sm="6" xs="7">
                   Member Arrangement
                 </Col>
               </Row>

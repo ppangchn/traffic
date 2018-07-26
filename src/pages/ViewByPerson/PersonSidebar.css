@@ -17,6 +17,31 @@
 input[type='radio'] {
   visibility: hidden;
 }
+/* .persontagcontainer {
+  overflow-x: auto;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  border-radius: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+  height: 1px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #e8e8e8; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #bbb; 
+} */
 @media (min-width: 321px) and (max-width: 575.98px) {
   .personheadcontainer {
     padding-top: 5px;

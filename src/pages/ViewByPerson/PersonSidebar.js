@@ -250,7 +250,6 @@ class PersonSidebar extends Component {
                 style={{
                   display: 'flex',
                   flexDirection: 'row',
-                  overflowX: 'hidden'
                 }}
               >
                 <div className="persontag">{this.state.roles[index]}</div>

@@ -21,6 +21,8 @@ body {
 	float: left;
 	background-color: #eaf9fe;
 	font-family: 'DB Helvethaica X' !important;
+	/* overflow-x: hidden; */
+	/* overflow-y: scroll; */
 
 }
 

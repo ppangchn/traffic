@@ -20,11 +20,4 @@ class ViewByProject extends Component {
     )
   }
 }
-// const Folder = ({ setLink}) => {
-//     console.log(this.props)
-//     setLink();
-//     return (
-//         <div></div>
-//     )
-// }
 export default ViewByProject

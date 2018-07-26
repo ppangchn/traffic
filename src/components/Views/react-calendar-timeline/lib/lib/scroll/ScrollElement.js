@@ -164,7 +164,7 @@ var ScrollElement = function (_Component) {
         var parentPosition = (0, _domHelpers.getParentPosition)(e.currentTarget);
         var xPosition = (e.touches[0].screenX + e.touches[1].screenX) / 2 - parentPosition.x;
         if (touchDistance !== 0 && _this.lastTouchDistance !== 0) {
-          onZoom(_this.lastTouchDistance / touchDistance, xPosition / width);
+          // onZoom(_this.lastTouchDistance / touchDistance, xPosition / width);
           _this.lastTouchDistance = touchDistance;
         }
       } else if (_this.lastSingleTouch && e.touches.length === 1) {
