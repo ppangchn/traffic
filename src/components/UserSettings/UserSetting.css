@@ -19,24 +19,40 @@
 		font-size: 30px;
 	}
 	.SettingPersonTag {
-		font-size: 14px;
+		font-size: 12px;
 		width: auto;
 		margin-right: 3px;
 		margin-top: 4px;
 		border-radius: 2px;
 		padding: 0 3px;
+		bottom: 30px;
 	}
 }
 @media (min-width: 576px) and (max-width: 767.98px) {
 	.font {
-		font-size: 13px;
+		font-size: 24px;
 	}
 	.editmembercontainer {
 		position: relative;
 		bottom: 12px;
+		left: 15px;
 	}
+
 	.SettingPersonTagContainer {
 		bottom: 30px;
+	}
+	.SettingPersonTag {
+		font-size: 14px;
+		width: auto;
+		margin-right: 3px;
+		margin-top: 12px;
+		border-radius: 2px;
+		padding: 0 3px;
+		bottom: 30px;
+
+	}
+	.dropdown-menu.show{
+		margin: -20px 0px 0px 20px;
 	}
 }
 
@@ -44,12 +60,22 @@
 	.font {
 		font-size: 30px;
 	}
+	.SettingPersonTagContainer {
+		font-size: 10px;
+	}
+	.dropdown-menu.show{
+		margin: -10px 0px 0px 10px;
+	}
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
 	.font {
 		font-size: 30px;
 	}
+	.SettingPersonTagContainer {
+		font-size: 10px;
+	}
+	
 }
 
 @media (min-width: 1200px) {

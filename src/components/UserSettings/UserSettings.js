@@ -59,7 +59,7 @@ export default class UserSettings extends Component {
 	render() {
 		const { users, roles, tags } = this.props
 		return (
-			<Col md={4} sm={4}  className="mb-4" key={users.id}>
+			<Col md={4} sm={6}  className="mb-4" key={users.id}>
 				<Card body className="h-150">
 					<CardTitle>
 						<div className="font">
@@ -80,7 +80,8 @@ export default class UserSettings extends Component {
 										className="dropdownitem"
 										style={{
 											borderBottom: '1px solid #5bc2e1',
-											borderRadius: '0.2rem 0.2rem 0 0'
+											borderRadius: '0.2rem 0.2rem 0 0',
+
 										}}
 									>
 										<div onClick={() => this.toggleEditMember(true)}>Edit Member</div>

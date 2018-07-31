@@ -28,52 +28,50 @@ const UserContainer = styled.div`
 class DashBoard extends Component {
 	constructor(props) {
 		super(props)
-    this.state = { data: [] }
-    
-  }
+		this.state = { data: [] }
+	}
 
-  componentDidMount() {
-    axios.get(`${url}/users/pm`).then(res => {
-      const { data } = res
-      this.setState({ data })
-      const user = auth.getToken()
-      const userDecoded = auth.decodeToken(user)
-      this.setState({loginUser : userDecoded})
-    })
-  }
-  render() {
-    return (
-      <Container>
-        <UserContainer>
-          {this.state.data.map(user => {
-            let graph = []
-            user.projectManagement.map(timeline => {
-              if (!timeline.project.isDisable) graph.push(timeline.weight)
-            })
-            return (
-              <div key={user.id}>
-                <UserDetail
-                  id={user.id}
-                  name={user.name}
-                  roles={user.roles}
-                  graph={graph}
-                  projectManagement={user.projectManagement}
-                  updateHeader={this.props.updateHeader}
-                />
-              </div>
-            )
-          })}
-        </UserContainer>
-        <Link to="/overview/compare">
-          <Button color="compare">
-            <Timeline className="timelineicon" /> Compare
-          </Button>
-        </Link>
-      </Container>
-    )
-  }
-  
-  
+	componentDidMount() {
+		axios.get(`${url}/users/pm`).then(res => {
+			const { data } = res
+			this.setState({ data })
+			const user = auth.getToken()
+			const userDecoded = auth.decodeToken(user)
+			this.setState({ loginUser: userDecoded })
+		})
+	}
+	render() {
+		return (
+			<Container>
+				<UserContainer>
+					{this.state.data.map(user => {
+						let graph = []
+						user.projectManagement.map(timeline => {
+							if (!timeline.project.isDisable) graph.push(timeline.weight)
+						})
+						return (
+							<div key={user.id}>
+								<UserDetail
+									id={user.id}
+									name={user.name}
+									roles={user.roles}
+									graph={graph}
+									projectManagement={user.projectManagement}
+									updateHeader={this.props.updateHeader}
+								/>
+							</div>
+						)
+					})}
+				</UserContainer>
+				<Link to="/overview/compare">
+					<Button color="compare">
+						<Timeline className="timelineicon" /> Compare
+					</Button>
+				</Link>
+			</Container>
+		)
+	}
+
 	render() {
 		return (
 			<Container>
