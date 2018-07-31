@@ -109,6 +109,9 @@ input::-webkit-input-placeholder {
   border-radius: 6px;
   margin: 9px 5px 0px 0px;
 }
+.close{
+  font-size: 2.0rem !important;
+}
 @media (min-width: 992px) {
   .checkbox label:hover::after {
     opacity: 0.2;

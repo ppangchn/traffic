@@ -1,146 +1,153 @@
-.mtTab{
-  margin-top: 50px !important;
+.mtTab {
+	margin-top: 50px !important;
 }
 .card {
-  border: 0.5px solid #d43939;
-  border-radius: 50px;
-  padding: 1px 2px 1px 2px;
-  display: flex;
-  flex-wrap: wrap;
+	border: 0.5px solid #d43939;
+	border-radius: 50px;
+	padding: 1px 2px 1px 2px;
+	display: flex;
+	flex-wrap: wrap;
 }
 .h-150 {
-  width: auto;
-  box-shadow: 0px 2px 10px #84c5da;
-  margin-top: 40px;
-  padding-bottom: 3px;
+	width: auto;
+	box-shadow: 0px 2px 10px #84c5da;
+	margin-top: 40px;
+	padding-bottom: 3px;
 }
 .iconcontainer {
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 .add {
-  margin-top: 15px;
+	margin-top: 15px;
 }
 
 .nav-tabs {
-  border-bottom: 0px !important;
-  cursor: pointer !important;
-  border: none !important;
+	border-bottom: 0px !important;
+	cursor: pointer !important;
+	border: none !important;
 }
 .nav-item {
-  margin-right: 15px !important;
-  color: #5ac2e2 !important;
-  background: #fff !important;
-  box-shadow: 0px 2px 10px #84c5da;
+	margin-right: 15px !important;
+	color: #5ac2e2 !important;
+	background: #fff !important;
+	box-shadow: 0px 2px 10px #84c5da;
 
-  border-top-left-radius: 20px !important;
-  border-top-right-radius: 20px !important;
-  border-bottom-left-radius: 20px !important;
-  border-bottom-right-radius: 20px !important;
+	border-top-left-radius: 20px !important;
+	border-top-right-radius: 20px !important;
+	border-bottom-left-radius: 20px !important;
+	border-bottom-right-radius: 20px !important;
 }
 .nav-link.active {
-  color: #fff !important;
-  background-color: #5ac2e2 !important;
-  border-color: #5ac2e2 !important;
-  border-top-left-radius: 20px !important;
-  border-top-right-radius: 20px !important;
-  border-bottom-left-radius: 20px !important;
-  border-bottom-right-radius: 20px !important;
-  cursor: pointer !important;
+	color: #fff !important;
+	background-color: #5ac2e2 !important;
+	border-color: #5ac2e2 !important;
+	border-top-left-radius: 20px !important;
+	border-top-right-radius: 20px !important;
+	border-bottom-left-radius: 20px !important;
+	border-bottom-right-radius: 20px !important;
+	cursor: pointer !important;
 }
 .nav-link:hover {
-  border-color: transparent;
+	border-color: transparent;
 }
 .nav-link {
-  border: none !important;
+	border: none !important;
 }
 .tap {
-  background-color: #fff !important;
-  border-top-left-radius: 15px !important;
-  border-top-right-radius: 15px !important;
-  border-bottom-left-radius: 15px !important;
-  border-bottom-right-radius: 15px !important;
-  cursor: pointer !important;
+	background-color: #fff !important;
+	border-top-left-radius: 15px !important;
+	border-top-right-radius: 15px !important;
+	border-bottom-left-radius: 15px !important;
+	border-bottom-right-radius: 15px !important;
+	cursor: pointer !important;
 }
 
 .cardtitle {
-  height: 56px;
+	height: 56px;
 }
 @media (min-width: 321px) and (max-width: 575.98px) {
-  .nav-link {
-    border: none !important;
-    padding: 0.2rem 1rem !important;
-  }
+	.nav-link {
+		border: none !important;
+		padding: 0.2rem 1rem !important;
+	}
 
-  .mx-5 {
-    margin-left: 1rem !important;
-    margin-right: 1rem !important;
-  }
-  .nav {
-    display: flex !important;
-    padding-left: 0 !important;
-    margin-bottom: 0 !important;
-  }
+	.mx-5 {
+		margin-left: 1rem !important;
+		margin-right: 1rem !important;
+	}
+	.nav {
+		display: flex !important;
+		padding-left: 0 !important;
+		margin-bottom: 0 !important;
+	}
 
-  .nav-item {
-    margin-right: 12px !important;
-    border-top-left-radius: 20px !important;
-    border-top-right-radius: 20px !important;
-    border-bottom-left-radius: 20px !important;
-    border-bottom-right-radius: 20px !important;
-  }
+	.nav-item {
+		margin-right: 12px !important;
+		border-top-left-radius: 20px !important;
+		border-top-right-radius: 20px !important;
+		border-bottom-left-radius: 20px !important;
+		border-bottom-right-radius: 20px !important;
+	}
 
-  .h-150 {
-    height: auto !important;
-    width: auto !important;
-    box-shadow: 0px 2px 10px #84c5da !important;
-    margin-top: 20px !important;
-  }
-  .mtTab{
-    margin-top: 10px !important;
-  }
+	.h-150 {
+		height: auto !important;
+		width: auto !important;
+		box-shadow: 0px 2px 10px #84c5da !important;
+		margin-top: 20px !important;
+	}
+	.mtTab {
+		margin-top: 10px !important;
+	}
 }
 @media (min-width: 576px) and (max-width: 767.98px) {
-  .iconadd {
-    width: 60px !important;
-    height: 97px !important;
-    position: relative;
-    bottom: 4px;
-  }
-  .iconcontainer {
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-  }
-  .nav-link-addicon {
-    padding-bottom: 0 !important;
-  }
-  .mtTab{
-    margin-top: 20px !important;
-  }
+	.h-150 {
+		margin-top: 20px;
+		height: 160px;
+		width: 100%;
+	}
+	/* .col-md-12 {
+		padding-right: 0px !important;
+		padding-left: 0px !important;
+	} */
+	.iconadd {
+		width: 60px !important;
+		height: 100px !important;
+		position: relative;
+		bottom: 4px;
+	}
+	.iconcontainer {
+		padding-top: 0 !important;
+		padding-bottom: 0 !important;
+	}
+	.nav-link-addicon {
+		padding-bottom: 0 !important;
+	}
+	.mtTab {
+		margin-top: 20px !important;
+	}
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
-  .h-150 {
-    height: 210px;
-  }
-  .mtTab{
-    margin-top: 30px !important;
-  }
+	.h-150 {
+		height: 180px;
+	}
+	.mtTab {
+		margin-top: 30px !important;
+	}
 }
 @media (min-width: 992px) and (max-width: 1199.98px) {
-  .h-150 {
-    height: 210px;
-    margin-top: 20px;
-  }
-  .mtTab{
-    margin-top: 40px !important;
-  }
+	.h-150 {
+		height: 210px;
+		margin-top: 40px;
+	}
+	.mtTab {
+		margin-top: 40px !important;
+	}
 }
 
 @media (min-width: 1200px) {
-  .h-150 {
-    height: 210px;
-
-  }
-  
+	.h-150 {
+		height: 210px;
+	}
 }

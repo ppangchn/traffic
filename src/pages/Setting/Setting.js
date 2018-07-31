@@ -163,7 +163,7 @@ class Setting extends Component {
 						<TabContent activeTab={this.state.activeTab} className="mx-1">
 							<TabPane tabId="1">
 								<Row>
-									<Col md={4} sm={4} className="mb-4">
+									<Col md={4} sm={6} className="mb-4">
 										<Card body className="h-150 iconcontainer">
 											<div>
 												<NavLink className="nav-link-addicon" onClick={e => this.toggleAddModal(true)}>
@@ -190,10 +190,10 @@ class Setting extends Component {
 
 							<TabPane tabId="2">
 								<Row>
-									<Col md={4} sm={4} className="mb-4">
+									<Col md={4} sm={6} className="mb-4">
 										<Card body className="h-150 iconcontainer">
 											<div>
-												<NavLink onClick={e => this.toggleAddModal(true)}>
+												<NavLink className="nav-link-addicon" onClick={e => this.toggleAddModal(true)}>
 													<div className="addmembericon">{this.state.add}</div>
 												</NavLink>
 											</div>
@@ -216,10 +216,10 @@ class Setting extends Component {
 
 							<TabPane tabId="3">
 								<Row>
-									<Col md={4} sm={4} className="mb-4">
+									<Col md={4} sm={6} className="mb-4">
 										<Card body className="h-150 iconcontainer">
 											<div>
-												<NavLink onClick={e => this.toggleAddModal(true)}>
+												<NavLink className="nav-link-addicon" onClick={e => this.toggleAddModal(true)}>
 													<div className="addmembericon">{this.state.add}</div>
 												</NavLink>
 											</div>
