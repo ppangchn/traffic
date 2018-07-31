@@ -1,13 +1,21 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { Button, Progress } from 'reactstrap'
+import { Button } from 'reactstrap'
 import AddProject from '../../../pages/AddProject/AddProject'
 import { Line } from 'react-chartjs-2'
 import { PrimitiveDot } from 'styled-icons/octicons/PrimitiveDot'
 import ProcessWeight from './ProcessWeight'
+import { Edit as EditIcon } from 'styled-icons/material/Edit'
 import './UserDetail.css'
 import '../../../pages/ViewByProject/ProjectSidebar.css'
 
+const Edit = EditIcon.extend`
+  position: relative;
+  color: #d9d9d9;
+  :hover ${Edit} {
+    color: #5bc2e1;
+  }
+`
 const Dot = PrimitiveDot.extend``
 const Card = styled.div`
   background-color: white;
@@ -27,15 +35,20 @@ class UserDetail extends Component {
     this.state = {
       toggleAddModal: false,
       data: {},
-      capacitycolor: ['#73d363', '#d7cd5c', '#c83131']
+      capacitycolor: ['#73d363', '#d7cd5c', '#c83131'],
+      canEdit: false,
+      disableProcessWeight : true
     }
     this.update = this.update.bind(this)
+  }
+  toggleAddModal(state) {
+    this.setState({ toggleAddModal: state })
   }
   update() {
     this.props.updateHeader()
   }
-  toggleAddModal(state) {
-    this.setState({ toggleAddModal: state })
+  setEditProcessWeight() {
+    this.setState({disableProcessWeight : !this.state.disableProcessWeight});
   }
   componentDidMount() {
     const data = {
@@ -66,14 +79,41 @@ class UserDetail extends Component {
       ]
     }
     this.setState({ data })
+    if (this.props.loginUserId === this.props.id) {
+      this.setState({ canEdit: true })
+    }
   }
   render() {
     const { projectManagement } = this.props
     return (
-      <Card className="userdetail">
+      <Card
+        className="userdetail"
+        style={{
+          outline: this.state.canEdit ? '7px solid #5bc2e1' : '',
+          position: 'relative',
+          top: this.state.canEdit ? '7px' : '0',
+          marginRight: this.state.canEdit ? '7px' : '0',
+          paddingTop: this.state.canEdit ? '3px' : '10px'
+        }}
+      >
         <div className="userdetailusername">
-          <Dot className="dot" style={{ color: this.state.capacitycolor[0] }} />
+          <Dot
+            className="dot"
+            style={{ color: this.state.capacitycolor[0] }}
+            options={{
+              scales: {
+                xAxes: [
+                  {
+                    ticks: {
+                      display: false
+                    }
+                  }
+                ]
+              }
+            }}
+          />
           {this.props.name}
+          <div className="editprocessweightbox">{this.state.canEdit && <Edit className="editprocessweight" onClick={() => this.setEditProcessWeight()}/>}</div>
         </div>
         <div>
           <Line
@@ -91,7 +131,8 @@ class UserDetail extends Component {
                     }
                   }
                 ]
-              }
+              },
+              legend: { display: false }
             }}
           />
         </div>
@@ -100,7 +141,13 @@ class UserDetail extends Component {
             if (!project.isDisable) {
               return (
                 <Item key={project.id} className="overviewprojectitem">
-                  <ProcessWeight projectID={project.project.id} projectName={project.project.name} color={project.project.color} allprocessweight={project.processWeight}/>
+                  <ProcessWeight
+                    projectID={project.project.id}
+                    projectName={project.project.name}
+                    color={project.project.color}
+                    allprocessweight={project.processWeight}
+                    disableProcessWeight={this.state.disableProcessWeight}
+                  />
                 </Item>
               )
             }

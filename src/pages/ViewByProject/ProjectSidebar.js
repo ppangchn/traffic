@@ -35,16 +35,15 @@ class ProjectSidebar extends Component {
       weight: 0,
       message: 'ReactInline demo'
     }
-    this.update = this.update.bind(this);
+    this.update = this.update.bind(this)
   }
   update() {
-    this.props.updateHeader();
+    this.props.updateHeader()
   }
   componentDidMount() {
     try {
       axios.get(`${url}/project`).then(res => {
         const { data } = res
-        // console.log('Data Project', data)
         this.setState({ projects: data })
       })
     } catch (error) {
@@ -62,36 +61,49 @@ class ProjectSidebar extends Component {
         </HeadContainer>
         {this.state.projects.map(project => {
           return (
-              <Item className="projectitem" key={project.id}>
-                <div className="projectname">
-                  <Link
-                    className="linkprojectname"
-                    to={`/project/${project.id}`}
-                    style={{ textOverflow: 'ellipsis', overflow: 'hidden' ,textDecoration: 'none'}}
-                    onClick={this.update}
-                  >
-                    {project.name}
-                  </Link>
-                </div>
-                <Percent project={project} />
-                <div className="pmcontainer">
-                  {project.projectManagement.map(pm => {
-                    if (!pm.isDisable) {
-                      return (
-                        <Pm key={pm.id} className="pmname">
-                          <Link
-                            to={`/person/${pm.users.id}`}
-                            style={{ color: 'black', textDecoration: 'none' }}
-                            onClick={this.update}
-                          >
-                            {pm.users.name}
-                          </Link>
-                        </Pm>
-                      )
-                    }
-                  })}
-                </div>
-              </Item>
+            <Item className="projectitem" key={project.id}>
+            <div className="projectnamecontainer" style={{display:'flex'}}>
+            <div
+                className="projectname"
+                style={{
+                  width: '85%',
+                  whiteSpace: 'nowrap',
+                  textOverflow: 'ellipsis',
+                  overflow: 'hidden'
+                }}
+              >
+                <Link
+                  className="linkprojectname"
+                  to={`/project/${project.id}`}
+                  style={{
+                    textDecoration: 'none'
+                  }}
+                  onClick={this.update}
+                >
+                  {project.name}
+                </Link>
+              </div>
+            </div>
+              
+              <Percent project={project} />
+              <div className="pmcontainer">
+                {project.projectManagement.map(pm => {
+                  if (!pm.isDisable) {
+                    return (
+                      <Pm key={pm.id} className="pmname">
+                        <Link
+                          to={`/person/${pm.users.id}`}
+                          style={{ color: 'black', textDecoration: 'none' }}
+                          onClick={this.update}
+                        >
+                          {pm.users.name}
+                        </Link>
+                      </Pm>
+                    )
+                  }
+                })}
+              </div>
+            </Item>
           )
         })}
       </Sidebar>

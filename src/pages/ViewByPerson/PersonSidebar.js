@@ -3,16 +3,9 @@ import styled from 'styled-components'
 import Sidebar from '../../components/Views/Sidebar'
 import axios from 'axios'
 import url from '../../url'
-import Select from 'react-select'
+import PersonItem from '../../components/Views/ViewByPerson/PersonItem'
 import './PersonSidebar.css'
-import { max } from '../../../node_modules/moment'
-const Item = styled.div`
-  background-color: #ffffff;
-  border-bottom: 0.5px solid #e4eaed;
-  border-right: 0.5px solid #e4eaed;
-  display: flex;
-  flex-direction: column;
-`
+
 const Head = styled.div`
   padding-top: 10px;
 `
@@ -20,11 +13,6 @@ const HeadContainer = styled.div`
   background-color: #ffffff;
   border-bottom: 0.5px solid #e4eaed;
   border-right: 0.5px solid #e4eaed;
-`
-const User = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 `
 class PersonSidebar extends Component {
   constructor() {
@@ -180,7 +168,14 @@ class PersonSidebar extends Component {
         <HeadContainer className="personheadcontainer">
           <Head className="personhead">
             <div className="persontitle">Name</div>
-            <div className="radiobox" style={{display:'flex',justifyContent:'flex-end',width:'100%'}}>
+            <div
+              className="radiobox"
+              style={{
+                display: 'flex',
+                justifyContent: 'flex-end',
+                width: '100%'
+              }}
+            >
               <div className="radiotext">
                 <input
                   type="radio"
@@ -240,24 +235,13 @@ class PersonSidebar extends Component {
         </HeadContainer>
         {this.state.users.map((user, index) => {
           return (
-            <Item
+            <PersonItem
               key={user.email}
-              className={`personitem${this.state.length[index]}`}
-            >
-              <User className="personname">{user}</User>
-              <div
-                className="persontagcontainer"
-                style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                }}
-              >
-                <div className="persontag">{this.state.roles[index]}</div>
-                {this.state.tags[index].map(tag => {
-                  return <div className="persontag">{tag.name}</div>
-                })}
-              </div>
-            </Item>
+              name={user}
+              length={this.state.length[index]}
+              roles={this.state.roles[index]}
+              tags={this.state.tags[index]}
+            />
           )
         })}
       </Sidebar>

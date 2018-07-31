@@ -19,6 +19,7 @@ class App extends Component {
   }
   render() {
     return (
+      // <div style={{overflow: 'hidden'}}>
         <Router basename={'/traffic-app/build'}>
           <Switch>
             <Route exact path="/" component={withRouter(Login)} />
@@ -35,6 +36,7 @@ class App extends Component {
             <Main updateHeader={() => this.updateHeader()} />
           </Switch>
         </Router>
+      // </div>
     )
   }
 }

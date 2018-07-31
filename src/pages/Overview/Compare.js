@@ -201,7 +201,7 @@ class Compare extends Component {
                             suggestedMax: 100
                           }
                         }
-                      ]
+                      ],
                     }
                   }}
                 />

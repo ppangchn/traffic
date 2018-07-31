@@ -16,6 +16,7 @@
   font-size: 12px !important;
   background-color: #5bc2e1;
   color: white;
+  margin-left: 5px;
 }
 @media (min-width: 321px) and (max-width: 575.98px) {
   .calendar {

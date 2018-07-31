@@ -72,7 +72,8 @@ class EachProjectSidebar extends Component {
       modalOpen: false,
       modalDeleteOpen: false,
       updateTimeline: false,
-      tags: []
+      tags: [],
+      overflow : ''
     }
     this.toggle = this.toggle.bind(this)
     this.togglePopOver = this.togglePopOver.bind(this)
@@ -140,6 +141,7 @@ class EachProjectSidebar extends Component {
         project: data.project,
         projectmember: projectmember
       })
+      console.log(projectmember)
     })
     await axios.get(`${url}/users/pd`).then(res => {
       const { data } = res
@@ -152,6 +154,13 @@ class EachProjectSidebar extends Component {
       })
       this.setState({ allmember })
     })
+    this.state.timeline.forEach((timeline) => {
+      const id = "eachprojectpersontag"+timeline.id
+      const x = document.getElementById(id)
+      console.log(x)
+      console.log(x.scrollWidth,x.scrollWidth)
+      if (x.scrollWidth > x.clientWidth) this.setState({overflow : 'overflow'})
+    })
   }
   componentDidMount() {
     try {
@@ -159,6 +168,7 @@ class EachProjectSidebar extends Component {
     } catch (error) {
       console.log('fail to get data at EachProjectSidebar')
     }
+    
   }
   render() {
     const { project, timeline } = this.state
@@ -242,7 +252,7 @@ class EachProjectSidebar extends Component {
               <div
                 key={timeline.id}
                 id={timeline.id}
-                className="eachprojectitem"
+                className={`eachprojectitem${this.state.overflow}`}
               >
                 <div
                   className="membername"
@@ -267,9 +277,12 @@ class EachProjectSidebar extends Component {
                 </div>
                 <div
                   className="persontagcontainer"
+                  id={"eachprojectpersontag"+timeline.id}
                   style={{
                     display: 'flex',
-                    flexDirection: 'row'
+                    flexDirection: 'row',
+                    overflowX: 'auto',
+                    overflowY: 'hidden'
                   }}
                 >
                   <div className="membertag">{timeline.users.roles.name}</div>

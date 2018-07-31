@@ -18,7 +18,7 @@ input[type='radio'] {
   visibility: hidden;
 }
 .persontagcontainer {
-  overflow: hidden;
+  width: 90%;
 }
 /* 
 ::-webkit-scrollbar {
@@ -52,53 +52,69 @@ input[type='radio'] {
   .personhead {
     padding-top: 13px;
   }
+  .persontagcontainer {
+    width: 100px;
+    width: 50%;
+  }
   .persontitle {
     padding-left: 16px;
     font-size: 15px;
   }
-  .personitem0 {
-    padding-bottom: 26px;
+  .personitem0overflow {
+    height: 60.5px;
     padding-left: 16px;
+  }
+  .personitem1overflow {
+    height: 60.5px;
+    padding-left: 16px;
+  }
+  .personitem2overflow {
+    height: 91.5px;
+    padding-left: 16px;
+  }
+  .personitem0 {
+    height: 60.5px;
+    padding-left: 20px;
   }
   .personitem1 {
-    padding-bottom: 26px;
-    padding-left: 16px;
+    height: 60.5px;
+    padding-left: 20px;
   }
   .personitem2 {
-    padding-bottom: 57.5px;
-    padding-left: 16px;
+    height: 92px;
+    padding-left: 20px;
   }
   .personitem3 {
-    padding-bottom: 88px;
-    padding-left: 16px;
+    height: 122.5px;
+    padding-left: 20px;
   }
   .personitem4 {
-    padding-bottom: 118.5px;
-    padding-left: 16px;
+    height: 153px;
+    padding-left: 20px;
   }
   .personitem5 {
-    padding-bottom: 149px;
-    padding-left: 16px;
+    height: 183.5px;
+    padding-left: 20px;
   }
   .personitem6 {
-    padding-bottom: 179.5px;
-    padding-left: 16px;
+    height: 214px;
+    padding-left: 20px;
   }
   .personitem7 {
-    padding-bottom: 210px;
-    padding-left: 16px;
+    height: 244.5px;
+    padding-left: 20px;
   }
   .personitem8 {
-    padding-bottom: 240.5px;
-    padding-left: 16px;
+    height: 275px;
+    padding-left: 20px;
   }
   .personitem9 {
-    padding-bottom: 271px;
-    padding-left: 16px;
+    height: 305.5px;
+    padding-left: 20px;
   }
   .personitem10 {
-    padding-bottom: 301.5px;
-    padding-left: 16px;
+    height: 336px;
+    padding-left: 20px;
   }
   .persontag {
     font-size: 6px;
@@ -115,12 +131,6 @@ input[type='radio'] {
     padding-bottom: 2px;
     font-size: 11px;
     width: 100px;
-  }
-  .persontagcontainer {
-    width: 100px;
-  }
-  .persontagcontainer {
-    width: 80px;
   }
   .radiobox {
     left: 15px;
@@ -168,48 +178,60 @@ input[type='radio'] {
   .persontitle {
     padding-left: 15px;
   }
+  .personitem0overflow {
+    height: 60.5px;
+    padding-left: 15px;
+  }
+  .personitem1overflow {
+    height: 60.5px;
+    padding-left: 15px;
+  }
+  .personitem2overflow {
+    height: 91.5px;
+    padding-left: 15px;
+  }
   .personitem0 {
-    padding-bottom: 10px;
+    height: 60.5px;
     padding-left: 15px;
   }
   .personitem1 {
-    padding-bottom: 10px;
+    height: 60.5px;
     padding-left: 15px;
   }
   .personitem2 {
-    padding-bottom: 41.5px;
+    height: 92px;
     padding-left: 15px;
   }
   .personitem3 {
-    padding-bottom: 72px;
+    height: 122.5px;
     padding-left: 15px;
   }
   .personitem4 {
-    padding-bottom: 102.5px;
+    height: 153px;
     padding-left: 15px;
   }
   .personitem5 {
-    padding-bottom: 133px;
+    height: 183.5px;
     padding-left: 15px;
   }
   .personitem6 {
-    padding-bottom: 163.5px;
+    height: 214px;
     padding-left: 15px;
   }
   .personitem7 {
-    padding-bottom: 194px;
+    height: 244.5px;
     padding-left: 15px;
   }
   .personitem8 {
-    padding-bottom: 224.5px;
+    height: 275px;
     padding-left: 15px;
   }
   .personitem9 {
-    padding-bottom: 255px;
+    height: 305.5px;
     padding-left: 15px;
   }
   .personitem10 {
-    padding-bottom: 285.5px;
+    height: 336px;
     padding-left: 15px;
   }
   .persontag {
@@ -226,9 +248,6 @@ input[type='radio'] {
     padding-right: 25px;
     padding-bottom: 10px;
     font-size: 14px;
-  }
-  .persontagcontainer {
-    width: 120px;
   }
   .radiotext {
     font-size: 11px;
@@ -273,48 +292,60 @@ input[type='radio'] {
   .persontitle {
     padding-left: 20px;
   }
+  .personitem0overflow {
+    height: 60.5px;
+    padding-left: 20px;
+  }
+  .personitem1overflow {
+    height: 60.5px;
+    padding-left: 20px;
+  }
+  .personitem2overflow {
+    height: 91.5px;
+    padding-left: 20px;
+  }
   .personitem0 {
-    padding-bottom: 17px;
+    height: 60.5px;
     padding-left: 20px;
   }
   .personitem1 {
-    padding-bottom: 17px;
+    height: 60.5px;
     padding-left: 20px;
   }
   .personitem2 {
-    padding-bottom: 48.5px;
+    height: 92px;
     padding-left: 20px;
   }
   .personitem3 {
-    padding-bottom: 79px;
+    height: 122.5px;
     padding-left: 20px;
   }
   .personitem4 {
-    padding-bottom: 109.5px;
+    height: 153px;
     padding-left: 20px;
   }
   .personitem5 {
-    padding-bottom: 140px;
+    height: 183.5px;
     padding-left: 20px;
   }
   .personitem6 {
-    padding-bottom: 170.5px;
+    height: 214px;
     padding-left: 20px;
   }
   .personitem7 {
-    padding-bottom: 201px;
+    height: 244.5px;
     padding-left: 20px;
   }
   .personitem8 {
-    padding-bottom: 231.5px;
+    height: 275px;
     padding-left: 20px;
   }
   .personitem9 {
-    padding-bottom: 262px;
+    height: 305.5px;
     padding-left: 20px;
   }
   .personitem10 {
-    padding-bottom: 292.5px;
+    height: 336px;
     padding-left: 20px;
   }
   .persontag {
@@ -331,9 +362,6 @@ input[type='radio'] {
     padding-right: 25px;
     padding-bottom: 3px;
     font-size: 15px;
-  }
-  .persontagcontainer {
-    width: 150px;
   }
   .radiotext {
     font-size: 13px;
@@ -376,48 +404,59 @@ input[type='radio'] {
   .persontitle {
     padding-left: 20px;
   }
+  .personitem0overflow {
+    padding-left: 20px;
+  }
+   .personitem1overflow {
+     height: 61px;
+    padding-left: 20px;
+  }
+  .personitem2overflow {
+    height: 92px;
+    padding-left: 20px;
+  }
   .personitem0 {
-    padding-bottom: 13px;
+    height: 60.5px;
     padding-left: 20px;
   }
   .personitem1 {
-    padding-bottom: 13px;
+    height: 60.5px;
     padding-left: 20px;
   }
   .personitem2 {
-    padding-bottom: 44.5px;
+    height: 92px;
     padding-left: 20px;
   }
   .personitem3 {
-    padding-bottom: 75px;
+    height: 122.5px;
     padding-left: 20px;
   }
   .personitem4 {
-    padding-bottom: 105.5px;
+    height: 153px;
     padding-left: 20px;
   }
   .personitem5 {
-    padding-bottom: 136px;
+    height: 183.5px;
     padding-left: 20px;
   }
   .personitem6 {
-    padding-bottom: 166.5px;
+    height: 214px;
     padding-left: 20px;
   }
   .personitem7 {
-    padding-bottom: 197px;
+    height: 244.5px;
     padding-left: 20px;
   }
   .personitem8 {
-    padding-bottom: 227.5px;
+    height: 275px;
     padding-left: 20px;
   }
   .personitem9 {
-    padding-bottom: 258px;
+    height: 305.5px;
     padding-left: 20px;
   }
   .personitem10 {
-    padding-bottom: 288.5px;
+    height: 336px;
     padding-left: 20px;
   }
   .persontag {
@@ -432,9 +471,6 @@ input[type='radio'] {
     padding-top: 2px;
     padding-right: 25px;
     padding-bottom: 5px;
-  }
-  .persontagcontainer {
-    width: 200px;
   }
   .radiotext {
     font-size: 13px;
@@ -491,48 +527,59 @@ input[type='radio'] {
   .persontitle {
     padding-left: 20px;
   }
+  .personitem0overflow {
+    padding-left: 30px;
+  }
+   .personitem1overflow {
+     height: 61px;
+    padding-left: 30px;
+  }
+  .personitem2overflow {
+    height: 92px;
+    padding-left: 30px;
+  }
   .personitem0 {
-    padding-bottom: 10px;
+    height: 60.5px;
     padding-left: 30px;
   }
   .personitem1 {
-    padding-bottom: 10px;
+    height: 60.5px;
     padding-left: 30px;
   }
   .personitem2 {
-    padding-bottom: 41.5px;
+    height: 92px;
     padding-left: 30px;
   }
   .personitem3 {
-    padding-bottom: 72px;
+    height: 122.5px;
     padding-left: 30px;
   }
   .personitem4 {
-    padding-bottom: 102.5px;
+    height: 153px;
     padding-left: 30px;
   }
   .personitem5 {
-    padding-bottom: 133px;
+    height: 183.5px;
     padding-left: 30px;
   }
   .personitem6 {
-    padding-bottom: 163.5px;
+    height: 214px;
     padding-left: 30px;
   }
   .personitem7 {
-    padding-bottom: 194px;
+    height: 244.5px;
     padding-left: 30px;
   }
   .personitem8 {
-    padding-bottom: 224.5px;
+    height: 275px;
     padding-left: 30px;
   }
   .personitem9 {
-    padding-bottom: 255px;
+    height: 305.5px;
     padding-left: 30px;
   }
   .personitem10 {
-    padding-bottom: 285.5px;
+    height: 336px;
     padding-left: 30px;
   }
   .persontag {
@@ -547,10 +594,6 @@ input[type='radio'] {
   .personname {
     padding-top: 2px;
     padding-right: 25px;
-    padding-bottom: 5px;
-  }
-  .persontagcontainer {
-    width: 250px;
   }
   .radiotext {
     font-size: 13px;

@@ -53,7 +53,6 @@ export default class Login extends Component {
         axios.post(`${url}/users/login`, data).then($res => {
           const { data } = $res
           this.setState({ message: data.message })
-          console.log('data -> ', data)
           if (
             data.message != 'Email or Password Invalid' &&
             data.message != 'Invalid password' &&

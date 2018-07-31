@@ -77,7 +77,6 @@ class AddMember extends Component {
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleInputChangeEmail = this.handleInputChangeEmail.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    this.handleInputChangeTags = this.handleInputChangeTags.bind(this)
     this.sendDataMember = this.sendDataMember.bind(this)
 
     // lib tag
@@ -117,12 +116,6 @@ class AddMember extends Component {
     let { email } = this.state
 
     this.setState({ email: e.target.value })
-  }
-
-  handleInputChangeTags(e) {
-    let { tags } = this.state
-    this.setState({ tags: e.target.value })
-    if (tags.length > 0) this.setState({ invalid: false })
   }
 
   handleChange = selectedOption => {
@@ -226,18 +219,30 @@ class AddMember extends Component {
           const { data } = res
           data.map(user => {
             if (user.id === this.props.id) {
-              this.setState({
-                id: user.id,
-                name: user.name,
-                roles: {
-                  value: user.roles.id,
-                  label: user.roles.name
-                },
-                tags: user.tags,
-                email: user.email,
-                header: 'Edit Member',
-                capacity: user.capacity
+              let tags = user.tags.map(tag => {
+                return {
+                  id: String(tag.id),
+                  name: tag.name,
+                  created: tag.created,
+                  update: tag.update,
+                  isDisable: tag.isDisable
+                }
               })
+              this.setState(
+                {
+                  id: user.id,
+                  name: user.name,
+                  roles: {
+                    value: user.roles.id,
+                    label: user.roles.name
+                  },
+                  tags,
+                  email: user.email,
+                  header: 'Edit Member',
+                  capacity: user.capacity
+                },
+                () => console.log('tags->', this.state.tags, user.tags)
+              )
             }
           })
         })
@@ -266,9 +271,11 @@ class AddMember extends Component {
   }
 
   handleAddition(tag) {
-    this.setState(state => ({
-      tags: [...state.tags, { id: tag.id, name: tag.text }]
-    }))
+    // if (this.state.tags.indexOf(tag) !== -1) {
+      this.setState(state => ({
+        tags: [...state.tags, { id: String(tag.id), name: tag.text }]
+      }))
+    // }
   }
 
   handleDrag(tag, currPos, newPos) {
@@ -313,7 +320,6 @@ class AddMember extends Component {
                       onChange={this.handleInputChange}
                       value={this.state.name}
                       invalid={this.state.invalidname}
-                      trimFilter
                       required
                     />
                   </Col>
@@ -412,7 +418,7 @@ class AddMember extends Component {
                         onChange={this.handleCheckboxChange}
                         id="resetpassword"
                       />
-                      <label for="resetpassword" />
+                      <label htmlFor="resetpassword" />
                       <div className="sendresetpasswordtext">
                         Send Reset Password
                       </div>

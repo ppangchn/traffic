@@ -29,19 +29,28 @@ class ProcessWeight extends Component {
   render() {
     return (
       <div className="overviewprojectname">
-        <Link
-          className="linkprojectname"
-          to={`/project/${this.props.projectID}`}
-          style={{
-            textOverflow: 'ellipsis',
-            overflow: 'hidden',
-            textDecoration: 'none'
-          }}
-          onClick={this.update}
-        >
-          {this.props.projectName}
-        </Link>
-        <div style={{ float: 'right' }}>{this.state.processweight}%</div>
+        <div style={{ display: 'flex' }}>
+          <div
+            style={{
+              width: '100%',
+              textOverflow: 'ellipsis',
+              overflow: 'hidden'
+            }}
+          >
+            <Link
+              className="linkprojectname"
+              to={`/project/${this.props.projectID}`}
+              style={{
+                textDecoration: 'none'
+              }}
+              onClick={this.update}
+            >
+              {this.props.projectName}
+            </Link>
+          </div>
+          <div style={{ float: 'right' }}>{this.state.processweight}%</div>
+        </div>
+
         <Slider
           style={{
             paddingRight: '1px',

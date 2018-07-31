@@ -378,6 +378,10 @@
     border-bottom: 0.5px solid #dfdfdf;
     padding-bottom: 19.5px;
   }
+  .eachprojectitemoverflow {
+    padding-left: 20px;
+    border-bottom: 0.5px solid #dfdfdf;
+  }
   .membername {
     padding-right: 25px;
     padding-bottom: 5px;

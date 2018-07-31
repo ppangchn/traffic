@@ -178,6 +178,10 @@
     padding-top: 14px;
     margin-left: 15px;
     font-size: 13px;
+    display: block;
+  }
+  .projectnamecontainer {
+    width: 141px;
   }
   .progresscontainer {
     margin-left: 15px;
@@ -374,7 +378,6 @@
     bottom: 3px;
   }
   .projectitem {
-    ft: 0.5rem;
     padding-right: 0.5rem;
   }
   .pmcontainer {
