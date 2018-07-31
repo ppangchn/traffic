@@ -60,10 +60,7 @@ export default class Login extends Component {
             data.message != 'Email not found'
           ) {
             localStorage.setItem('token', data.token)
-            this.props.history.push({
-              pathname: `/overview`,
-              state: { loginuser: data.message }
-            })
+            this.props.history.push(`/overview`)
           }
         })
       } else {
