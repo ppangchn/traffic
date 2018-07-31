@@ -35,6 +35,7 @@ class DashBoard extends Component {
     axios.get(`${url}/users/pm`).then(res => {
       const { data } = res
       this.setState({ data })
+      console.log(this.props.location.state)
     })
   }
   render() {

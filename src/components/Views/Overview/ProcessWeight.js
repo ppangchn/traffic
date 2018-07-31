@@ -6,15 +6,18 @@ import '../../../pages/ViewByProject/ProjectSidebar.css'
 class ProcessWeight extends Component {
   constructor() {
     super()
-    this.state = {processweight : 100}
+    this.state = { processweight: 100 }
   }
   slideChange(value) {
-    this.setState({processweight: value})
+    this.setState({ processweight: value })
   }
   updateData(allprocessweight) {
-    console.log(allprocessweight)
+    // console.log(allprocessweight)
     if (allprocessweight.length > 0) {
-      this.setState({processweight: allprocessweight[allprocessweight.length-1].processWeight})
+      this.setState({
+        processweight:
+          allprocessweight[allprocessweight.length - 1].processWeight
+      })
     }
   }
   componentDidMount() {
@@ -40,15 +43,19 @@ class ProcessWeight extends Component {
         </Link>
         <div style={{ float: 'right' }}>{this.state.processweight}%</div>
         <Slider
-        trackStyle = {{
-          backgroundColor : this.props.color
-        }
-        }
+          style={{
+            paddingRight: '1px',
+            width: '96%'
+          }}
+          trackStyle={{
+            backgroundColor: this.props.color
+          }}
           min={0}
           max={100}
           step={5}
-          onChange={(e) => this.slideChange(e)}
+          onChange={e => this.slideChange(e)}
           value={this.state.processweight}
+          disabled={true}
         />
       </div>
     )

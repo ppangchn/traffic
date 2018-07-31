@@ -127,23 +127,21 @@ class EachProjectSidebar extends Component {
     }
   }
 
-  getData() {
-    console.log('getdata')
-    axios.get(`${url}/project/${this.props.id}`).then(res => {
+  async getData() {
+    await axios.get(`${url}/project/${this.props.id}`).then(res => {
       const { data } = res
       let projectmember = []
       data.timeline.map(timeline => {
         projectmember.push(timeline.users.id)
       })
-      this.props.updateData();
+      this.props.updateData()
       this.setState({
         timeline: data.timeline,
         project: data.project,
         projectmember: projectmember
       })
-      
     })
-    axios.get(`${url}/users/pd`).then(res => {
+    await axios.get(`${url}/users/pd`).then(res => {
       const { data } = res
       let allmember = []
       data.map(user => {
@@ -191,7 +189,7 @@ class EachProjectSidebar extends Component {
                   this.setState({ btnDropright: !this.state.btnDropright })
                 }}
               >
-                <DropdownToggle style={{paddingBottom: '0'}}>
+                <DropdownToggle style={{ paddingBottom: '0' }}>
                   <Edit className="eachprojectediticon" />
                 </DropdownToggle>
                 <DropdownMenu className="dropdown-menu">
@@ -271,7 +269,7 @@ class EachProjectSidebar extends Component {
                   className="persontagcontainer"
                   style={{
                     display: 'flex',
-                    flexDirection: 'row',
+                    flexDirection: 'row'
                   }}
                 >
                   <div className="membertag">{timeline.users.roles.name}</div>

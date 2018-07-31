@@ -93,6 +93,12 @@
 .eachprojectprocess {
   padding-left: 5px;
 }
+.Select-placeholder {
+  font-family: 'DB Helvethaica X';
+}
+.Select-menu-outer {
+  font-family: 'DB Helvethaica X';
+}
 @media (min-width: 321px) and (max-width: 575.98px) {
   .eachprojectname {
     margin-left: 15px;
@@ -391,11 +397,13 @@
     font-size: 14px;
   }
   .buttoncontainer {
-    margin: 15px 5px 300px 5px;
+    display: flex;
+    flex-direction: column;
+    margin: 15px 33px 300px 33px;
   }
   .addmemberpopover {
     width: 250px;
-    height: 260px;
+    height: 255px;
   }
   .eachprojectprocess {
     font-size: 21px;
@@ -412,5 +420,11 @@
   .eachprojectedit {
     bottom: 1px;
     position: relative;
+  }
+  .Select-placeholder {
+    font-size: 17px !important;
+  }
+  .Select-menu-outer {
+    font-size: 17px !important;
   }
 }
