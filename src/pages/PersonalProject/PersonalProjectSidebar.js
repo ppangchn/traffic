@@ -10,110 +10,114 @@ import '../ViewByProject/ProjectSidebar.css'
 import './PersonalProjectSidebar.css'
 
 const UserName = styled.div`
-	border-right: 0.5px solid #e4eaed;
-	border-bottom: 0.5px solid #e4eaed;
+  border-right: 0.5px solid #e4eaed;
+  border-bottom: 0.5px solid #e4eaed;
 `
 const FolderIcon = FolderOpen.extend`
-	color: #5bc2e1;
+  color: #5bc2e1;
 `
 const HeadContainer = styled.div`
-	background-color: #ffffff;
-	border-bottom: 0.5px solid #e4eaed;
-	border-right: 0.5px solid #e4eaed;
-	background-color: #ececec;
+  background-color: #ffffff;
+  border-bottom: 0.5px solid #e4eaed;
+  border-right: 0.5px solid #e4eaed;
+  background-color: #ececec;
 `
 const Item = styled.div`
-	background-color: #ffffff;
-	border-bottom: 0.5px solid #e4eaed;
-	padding-left: 0.5rem;
-	padding-right: 0.5rem;
+  background-color: #ffffff;
+  border-bottom: 0.5px solid #e4eaed;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 `
 const Pm = styled.div`
-	display: inline-block;
-	text-align: center;
+  display: inline-block;
+  text-align: center;
 `
 
 class ProjectSidebar extends Component {
-	constructor(props) {
-		super(props)
-		this.state = {
-			data: {}
-		}
-		this.getData = this.getData.bind(this)
-	}
-	async getData() {
-		try {
-			await axios.get(`${url}/users/${this.props.id}`).then(res => {
-				const { data } = res
-				this.setState({ data })
-			})
-		} catch (error) {
-			console.log('fail to get data at PersonalProjectSidebar', error)
-		}
-	}
-	componentDidMount() {
-		this.getData()
-	}
-
-	render() {
-		const { data } = this.state
-		return (
-			<Sidebar>
-				<UserName className="username">{data.name}</UserName>
-				<HeadContainer className="personalheadcontainer">
-					<div className="head">
-						<FolderIcon className="foldericon" />&emsp;Project
-					</div>
-				</HeadContainer>
-				{data.projectTimeline &&
-					data.projectTimeline.map(project => {
-						if (!project.project.isDisable) {
-							return (
-								<div key={project.project.name}>
-									<Item className="personalprojectitem">
-										<div className="personalprojectname">
-											<Link
-												className="linkprojectname"
-												to={`/project/${project.project.id}`}
-												style={{
-													textOverflow: 'ellipsis',
-													overflow: 'hidden',
-													textDecoration: 'none'
-												}}
-												onClick={this.props.updateHeader}
-											>
-												{project.project.name}
-											</Link>
-										</div>
-										<Percent project={project.project} />
-										<div className="pmcontainer">
-											{project.project.projectManagement.map(pm => {
-												if (!pm.isDisable && pm.users.id != this.props.id) {
-													return (
-														<Pm key={pm.id} className="pmname">
-															<Link
-																to={`/person/${pm.users.id}`}
-																style={{
-																	color: 'black',
+  constructor(props) {
+    super(props)
+    this.state = {
+      data: {}
+    }
+  }
+  async getData(id) {
+    try {
+      await axios.get(`${url}/users/${id}`).then(res => {
+        const { data } = res
+        console.log(data, id)
+        this.setState({ data })
+      })
+    } catch (error) {
+      console.log('fail to get data at PersonalProjectSidebar', error)
+    }
+  }
+  componentDidMount() {
+    this.getData(this.props.id)
+  }
+  componentWillReceiveProps(props) {
+    this.getData(props.id)
+  }
+  render() {
+    const { data } = this.state
+    return (
+      <Sidebar>
+        <UserName className="username">{data.name}</UserName>
+        <HeadContainer className="personalheadcontainer">
+          <div className="head">
+            <FolderIcon className="foldericon" />&emsp;Project
+          </div>
+        </HeadContainer>
+        {data.projectTimeline &&
+          data.projectTimeline.map(project => {
+            if (!project.project.isDisable) {
+              return (
+                <div key={project.project.name}>
+                  <Item className="personalprojectitem">
+                    <div className="personalprojectname">
+                      <Link
+                        className="linkprojectname"
+                        to={`/project/${project.project.id}`}
+                        style={{
+                          textOverflow: 'ellipsis',
+                          overflow: 'hidden',
+                          textDecoration: 'none'
+                        }}
+                        onClick={this.props.updateHeader}
+                      >
+                        {project.project.name}
+                      </Link>
+                    </div>
+                    <Percent project={project.project} />
+                    <div className="pmcontainer" style={{overflowX: 'auto'}}>
+                      {project.project.projectManagement.map(pm => {
+                        if (!pm.isDisable && pm.users.id != this.props.id) {
+                          return (
+                            <Pm
+                              key={pm.id}
+                              className="pmname"
+                            >
+                              <Link
+                                to={`/person/${pm.users.id}`}
+                                style={{
+                                  color: 'black',
 																	textDecoration: 'none'
-																}}
-																onClick={this.getData}
-															>
-																{pm.users.name}
-															</Link>
-														</Pm>
-													)
-												}
-											})}
-										</div>
-									</Item>
-								</div>
-							)
-						}
-					})}
-			</Sidebar>
-		)
-	}
+                                }}
+                              >
+                                {pm.users.name}
+                              </Link>
+                            </Pm>
+                          )
+                        }
+                      })}
+                    </div>
+                  </Item>
+                </div>
+              )
+            }
+          })}
+      </Sidebar>
+    )
+  }
 }
 
 export default ProjectSidebar

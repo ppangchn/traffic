@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import PersonalProjectSidebar from './PersonalProjectSidebar'
 import PersonalProjectTimeline from './PersonalProjectTimeline'
-import axios from 'axios'
 
 const Container = styled.div`
   display: flex;
@@ -10,11 +9,14 @@ const Container = styled.div`
   overflow: hidden;
 `
 class PersonalProject extends Component {
+  constructor() {
+    super();
+  }
   render() {
     return (
       <Container>
         <PersonalProjectSidebar id={this.props.match.params.id}/>
-        <PersonalProjectTimeline id={this.props.match.params.id} />
+        <PersonalProjectTimeline id={this.props.match.params.id}/>
       </Container>
     )
   }
