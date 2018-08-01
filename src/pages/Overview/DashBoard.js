@@ -6,8 +6,8 @@ import axios from 'axios'
 import { Button } from 'reactstrap'
 import { Timeline as TimelineIcon } from 'styled-icons/material/Timeline'
 import { Link } from 'react-router-dom'
-import './DashBoard.css'
 import auth from '../../service/index'
+import './DashBoard.css'
 
 const Timeline = TimelineIcon.extend`
   color: #5bc2e1;
@@ -30,9 +30,8 @@ class DashBoard extends Component {
     super(props)
     this.state = { data: [], loginUserId: '', allUser: [] }
   }
-
-  componentDidMount() {
-    axios.get(`${url}/users/pm`).then(res => {
+  async getData() {
+    await axios.get(`${url}/users/pm`).then(res => {
       const { data } = res
       this.setState({ data })
       const user = auth.getToken()
@@ -49,11 +48,22 @@ class DashBoard extends Component {
       allUser.unshift(loginUser)
       this.setState({ allUser })
     })
+    const loader = document.getElementById("loader")
+      loader.hidden = true;
+  }
+  componentDidMount() {
+    try {
+      this.getData()
+      
+    } catch (error) {
+      console.log('cant get data at dsahboard',error)
+    }
   }
 
   render() {
     return (
-      <Container>
+      <Container >
+        <div id="loader" className="loader"></div>
         <UserContainer>
           {this.state.allUser.map(user => {
             let graph = []

@@ -10,12 +10,21 @@ const Container = styled.div`
 class ViewByProject extends Component {
   constructor(props) {
     super(props)
+    this.state = {canTrigger: false}
+  }
+  triggerLoading() {
+    if (this.state.canTrigger) {
+      const loader = document.getElementById("loader")
+      loader.hidden = true;
+    }
+    this.setState({canTrigger:true})
   }
   render() {
     return (
       <Container>
-        <ProjectSideBar updateHeader={this.props.updateHeader}/>
-        <ProjectTimeline />
+        <div id="loader" className="loader"></div>
+        <ProjectSideBar updateHeader={this.props.updateHeader} triggerLoading={() => this.triggerLoading()}/>
+        <ProjectTimeline triggerLoading={() => this.triggerLoading()}/>
       </Container>
     )
   }

@@ -105,6 +105,7 @@ class PersonSidebar extends Component {
       })
       this.setState({ users, roles, tags, listmember, length })
     })
+    this.props.triggerLoading();
   }
   updateData(wantedroles) {
     const { data } = this.state

@@ -1,4 +1,4 @@
-import React,{Component} from 'react'
+import React, { Component } from 'react'
 import PersonSidebar from './PersonSidebar'
 import PersonTimeline from './PersonTimeline'
 import styled from 'styled-components'
@@ -6,24 +6,37 @@ import styled from 'styled-components'
 const Container = styled.div`
   display: flex;
   flex-direction: row;
-//   overflow-y: scroll;
 `
 class ViewByPerson extends Component {
-    constructor() {
-        super();
-        this.state = {roles: ['all']}
+  constructor() {
+    super()
+    this.state = { roles: ['all'], canTrigger: false }
+  }
+  updateRoles(roles) {
+    this.setState({ roles })
+  }
+  triggerLoading() {
+    if (this.state.canTrigger) {
+      const loader = document.getElementById('loader')
+      loader.hidden = true
     }
-    updateRoles(roles) {
-        this.setState({roles})
-    }
-    render() {
-        return (
-            <Container>
-          <PersonSidebar updateRoles={(roles) => this.updateRoles(roles)}/>
-          <PersonTimeline roles={this.state.roles}/>
-        </Container>
-        );
-    }
+    this.setState({ canTrigger: true })
+  }
+  render() {
+    return (
+      <Container>
+        <div id="loader" className="loader" />
+        <PersonSidebar
+          updateRoles={roles => this.updateRoles(roles)}
+          triggerLoading={() => this.triggerLoading()}
+        />
+        <PersonTimeline
+          roles={this.state.roles}
+          triggerLoading={() => this.triggerLoading()}
+        />
+      </Container>
+    )
+  }
 }
 
-export default ViewByPerson;
+export default ViewByPerson
