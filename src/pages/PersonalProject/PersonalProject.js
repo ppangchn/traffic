@@ -9,9 +9,7 @@ const Container = styled.div`
   overflow: hidden;
 `
 class PersonalProject extends Component {
-  constructor() {
-    super();
-  }
+
   render() {
     return (
       <Container>

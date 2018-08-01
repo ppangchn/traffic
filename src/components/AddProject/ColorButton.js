@@ -7,9 +7,7 @@ const Checkz = Check.extend`
     bottom: 1.5px; !important;
 `
 class ColorButton extends Component {
-  constructor(props) {
-    super(props)
-  }
+
 
   render() {
     const { color, setCheckedColor, checkedColor } = this.props

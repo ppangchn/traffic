@@ -8,9 +8,7 @@ const Container = styled.div`
   flex-direction: row;
 `
 class ViewByProject extends Component {
-  constructor(props) {
-    super(props)
-  }
+
   render() {
     return (
       <Container>

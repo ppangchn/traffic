@@ -15,9 +15,7 @@ const Pm = styled.div`
 `
 
 class ProjectItem extends Component {
-  constructor(props) {
-    super(props)
-  }
+
   render() {
     const { project } = this.props
     return (

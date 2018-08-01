@@ -9,12 +9,10 @@ import EachProject from '../pages/EachProject/EachProject'
 import PersonalProject from '../pages/PersonalProject/PersonalProject'
 import PrivateRoute from '../../src/components/privateRoute/index'
 import './MainRoute.css'
-import styled from 'styled-components'
+
 
 class MainRoute extends Component {
-	constructor(props) {
-		super(props)
-	}
+
 	render() {
 		const viewbyproject = () => {
 			return <ViewByProject updateHeader={this.props.updateHeader} />

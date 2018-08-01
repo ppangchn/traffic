@@ -42,7 +42,7 @@ class Percent extends Component {
       text.length < 4 &&
       +text <= 100 &&
       text !== '00' &&
-      text != '000' &&
+      text !== '000' &&
       +text >= 0 &&
       !text.includes('.')
     )
