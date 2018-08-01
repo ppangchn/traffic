@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import Sidebar from '../../components/Views/Sidebar'
 import axios from 'axios'
+import EachProjectItem from '../../components/Views/EachProject/EachProjectItem'
 import '../ViewByProject/ProjectSidebar.css'
 import {
   Progress,
@@ -26,8 +27,6 @@ import { Link } from 'react-router-dom'
 import Select from 'react-select'
 import { Search as SearchIcon } from 'styled-icons/fa-solid/Search'
 import AddProject from '../AddProject/AddProject'
-import EditTimeline from '../../components/Views/EachProject/EditTimeline'
-import DeleteUser from '../../components/Views/EachProject/DeleteUser'
 import url from '../../url'
 
 const Head = styled.div`
@@ -72,8 +71,7 @@ class EachProjectSidebar extends Component {
       modalOpen: false,
       modalDeleteOpen: false,
       updateTimeline: false,
-      tags: [],
-      overflow : ''
+      tags: []
     }
     this.toggle = this.toggle.bind(this)
     this.togglePopOver = this.togglePopOver.bind(this)
@@ -154,13 +152,6 @@ class EachProjectSidebar extends Component {
       })
       this.setState({ allmember })
     })
-    this.state.timeline.forEach((timeline) => {
-      const id = "eachprojectpersontag"+timeline.id
-      const x = document.getElementById(id)
-      console.log(x)
-      console.log(x.scrollWidth,x.scrollWidth)
-      if (x.scrollWidth > x.clientWidth) this.setState({overflow : 'overflow'})
-    })
   }
   componentDidMount() {
     try {
@@ -168,7 +159,6 @@ class EachProjectSidebar extends Component {
     } catch (error) {
       console.log('fail to get data at EachProjectSidebar')
     }
-    
   }
   render() {
     const { project, timeline } = this.state
@@ -249,52 +239,11 @@ class EachProjectSidebar extends Component {
         {timeline.map(timeline => {
           if (timeline) {
             return (
-              <div
-                key={timeline.id}
-                id={timeline.id}
-                className={`eachprojectitem${this.state.overflow}`}
-              >
-                <div
-                  className="membername"
-                  style={{ display: 'flex', justifyContent: 'flex-end' }}
-                >
-                  <div style={{ width: '100%', float: 'left' }}>
-                    {timeline.users.name}
-                  </div>
-                  <EditTimeline
-                    id={timeline.id}
-                    start={timeline.start}
-                    end={timeline.end}
-                    updateData={() => this.props.updateData()}
-                    getData={() => this.getData()}
-                  />
-                  <DeleteUser
-                    id={timeline.id}
-                    name={timeline.users.name}
-                    roles={timeline.users.roles.name}
-                    getData={() => this.getData()}
-                  />
-                </div>
-                <div
-                  className="persontagcontainer"
-                  id={"eachprojectpersontag"+timeline.id}
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    overflowX: 'auto',
-                    overflowY: 'hidden'
-                  }}
-                >
-                  <div className="membertag">{timeline.users.roles.name}</div>
-                  {timeline.users.tags.map(tag => {
-                    return (
-                      <div key={timeline.id} className="membertag">
-                        {tag.name}
-                      </div>
-                    )
-                  })}
-                </div>
-              </div>
+              <EachProjectItem
+                timeline={timeline}
+                getData={() => this.getData()}
+                updateData={this.props.updateData}
+              />
             )
           }
         })}

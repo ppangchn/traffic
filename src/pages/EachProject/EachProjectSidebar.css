@@ -70,20 +70,6 @@
 .eachprojecthead {
   border-right: 0.5px solid #dfdfdf;
 }
-.eachprojectitem {
-  background-color: #ffffff;
-  border-bottom: 0.5px solid #dfdfdf;
-  border-right: 0.5px solid #dfdfdf;
-}
-.membertag {
-  background-color: #e4e4e4;
-  text-align: center;
-  color: #8c8c8c;
-}
-.membername {
-  display: flex;
-  align-items: center;
-}
 .rct-label-group {
   background-color: white !important;
 }
@@ -119,26 +105,6 @@
   .eachprojectediticon {
     width: 1rem;
     height: 1rem;
-  }
-  .eachprojectitem {
-    padding-left: 20px;
-    border-bottom: 0.5px solid #dfdfdf;
-    padding-bottom: 27.5px;
-    font-size: 11px;
-  }
-  .membername {
-    padding-top: 12px;
-    padding-right: 25px;
-    font-size: 13px;
-  }
-  .membertag {
-    font-size: 9px;
-    line-height: 10px;
-    margin-right: 3px;
-    margin-top: 8px;
-    border-radius: 3px;
-    padding-left: 4px;
-    padding-right: 4px;
   }
   .error {
     font-size: 14px;
@@ -189,25 +155,6 @@
   .eachprojectediticon {
     width: 18px;
   }
-  .eachprojectitem {
-    padding-left: 20px;
-    border-bottom: 0.5px solid #dfdfdf;
-    padding-bottom: 23.5px;
-    font-size: 11px;
-  }
-  .membername {
-    padding-top: 12px;
-    padding-right: 25px;
-    font-size: 14px;
-  }
-  .membertag {
-    font-size: 8px;
-    margin-right: 3px;
-    margin-top: 8px;
-    border-radius: 3px;
-    padding-left: 4px;
-    padding-right: 4px;
-  }
   .error {
     font-size: 14px;
   }
@@ -252,24 +199,6 @@
     bottom: 4px;
     position: relative;
   }
-  .eachprojectitem {
-    padding-left: 20px;
-    border-bottom: 0.5px solid #dfdfdf;
-    padding-bottom: 20.5px;
-  }
-  .membername {
-    padding-top: 12px;
-    padding-right: 25px;
-  }
-  .membertag {
-    font-size: 11px;
-    line-height: 12px;
-    margin-right: 3px;
-    margin-top: 8px;
-    border-radius: 3px;
-    padding-left: 8px;
-    padding-right: 8px;
-  }
   .error {
     font-size: 14px;
   }
@@ -312,25 +241,6 @@
     width: 1.5625rem;
     height: 1.5625rem;
   }
-  .eachprojectitem {
-    padding-left: 20px;
-    border-bottom: 0.5px solid #dfdfdf;
-    padding-bottom: 20.5px;
-  }
-  .membername {
-    padding-top: 10px;
-    padding-right: 25px;
-    font-size: 17px;
-  }
-  .membertag {
-    font-size: 12px;
-    line-height: 13px;
-    margin-right: 3px;
-    margin-top: 8px;
-    border-radius: 3px;
-    padding-left: 8px;
-    padding-right: 8px;
-  }
   .error {
     font-size: 14px;
   }
@@ -372,30 +282,6 @@
     width: 1.5625rem;
     height: 1.5625rem;
     padding-bottom: 0;
-  }
-  .eachprojectitem {
-    padding-left: 20px;
-    border-bottom: 0.5px solid #dfdfdf;
-    padding-bottom: 19.5px;
-  }
-  .eachprojectitemoverflow {
-    padding-left: 20px;
-    border-bottom: 0.5px solid #dfdfdf;
-  }
-  .membername {
-    padding-right: 25px;
-    padding-bottom: 5px;
-    padding-top: 5px;
-    font-size: 18px;
-  }
-  .membertag {
-    font-size: 12px;
-    line-height: 12px;
-    margin-right: 3px;
-    margin-top: 8px;
-    border-radius: 3px;
-    padding-left: 8px;
-    padding-right: 8px;
   }
   .error {
     font-size: 14px;
