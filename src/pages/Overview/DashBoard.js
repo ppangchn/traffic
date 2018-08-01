@@ -18,17 +18,17 @@ const Container = styled.div`
   background-size: cover;
   display: flex;
   flex-direction: column;
-  height: 100vh;
 `
 const UserContainer = styled.div`
   overflow-y: hidden;
   overflow-x: scroll;
   display: flex;
+  height: 100vh;
 `
 class DashBoard extends Component {
   constructor(props) {
     super(props)
-    this.state = { data: [], loginUserId: '' , allUser: [] }
+    this.state = { data: [], loginUserId: '', allUser: [] }
   }
 
   componentDidMount() {
@@ -37,18 +37,17 @@ class DashBoard extends Component {
       this.setState({ data })
       const user = auth.getToken()
       const userDecoded = auth.decodeToken(user)
-      let loginUserId = userDecoded.id;
+      let loginUserId = userDecoded.id
       this.setState({ loginUserId })
-      let allUser = [];
-      let loginUser = {};
+      let allUser = []
+      let loginUser = {}
       data.map(user => {
         if (user.id !== loginUserId) {
           allUser.push(user)
-        }
-        else loginUser = user;
+        } else loginUser = user
       })
       allUser.unshift(loginUser)
-      this.setState({allUser})
+      this.setState({ allUser })
     })
   }
 
@@ -58,22 +57,24 @@ class DashBoard extends Component {
         <UserContainer>
           {this.state.allUser.map(user => {
             let graph = []
-            user.projectManagement.map(timeline => {
-              if (!timeline.project.isDisable) graph.push(timeline.weight)
-            })
-            return (
-              <div key={user.id}>
-                <UserDetail
-                  id={user.id}
-                  name={user.name}
-                  roles={user.roles}
-                  graph={graph}
-                  projectManagement={user.projectManagement}
-                  updateHeader={this.props.updateHeader}
-                  loginUserId={this.state.loginUserId}
-                />
-              </div>
-            )
+            if (user.projectManagement) {
+              user.projectManagement.map(timeline => {
+                if (!timeline.project.isDisable) graph.push(timeline.weight)
+              })
+              return (
+                <div key={user.id}>
+                  <UserDetail
+                    id={user.id}
+                    name={user.name}
+                    roles={user.roles}
+                    graph={graph}
+                    projectManagement={user.projectManagement}
+                    updateHeader={this.props.updateHeader}
+                    loginUserId={this.state.loginUserId}
+                  />
+                </div>
+              )
+            }
           })}
         </UserContainer>
         <Link to="/overview/compare">

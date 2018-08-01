@@ -3,20 +3,21 @@ import styled from 'styled-components'
 import { Button } from 'reactstrap'
 import AddProject from '../../../pages/AddProject/AddProject'
 import { Line } from 'react-chartjs-2'
-import { PrimitiveDot } from 'styled-icons/octicons/PrimitiveDot'
+import { PrimitiveDot as Dot } from 'styled-icons/octicons/PrimitiveDot'
 import ProcessWeight from './ProcessWeight'
 import { Edit as EditIcon } from 'styled-icons/material/Edit'
+import axios from 'axios'
+import url from '../../../url'
 import './UserDetail.css'
 import '../../../pages/ViewByProject/ProjectSidebar.css'
 
 const Edit = EditIcon.extend`
   position: relative;
-  color: #d9d9d9;
+  color: #d9d9d9
   :hover ${Edit} {
-    color: #5bc2e1;
+    color: #5bc2e1
   }
 `
-const Dot = PrimitiveDot.extend``
 const Card = styled.div`
   background-color: white;
   display: flex;
@@ -37,7 +38,7 @@ class UserDetail extends Component {
       data: {},
       capacitycolor: ['#73d363', '#d7cd5c', '#c83131'],
       canEdit: false,
-      disableProcessWeight : true
+      disableProcessWeight: true
     }
     this.update = this.update.bind(this)
   }
@@ -48,7 +49,15 @@ class UserDetail extends Component {
     this.props.updateHeader()
   }
   setEditProcessWeight() {
-    this.setState({disableProcessWeight : !this.state.disableProcessWeight});
+    this.setState({ disableProcessWeight: !this.state.disableProcessWeight })
+    if (!this.state.disableProcessWeight) {
+      const data = {
+        id: this.props.id,
+        // projectManagement: 
+      }
+      // axios.put(`${url}/users/pm`,data)
+    }
+    
   }
   componentDidMount() {
     const data = {
@@ -113,7 +122,18 @@ class UserDetail extends Component {
             }}
           />
           {this.props.name}
-          <div className="editprocessweightbox">{this.state.canEdit && <Edit className="editprocessweight" onClick={() => this.setEditProcessWeight()}/>}</div>
+          <div className="editprocessweightbox">
+            {this.state.canEdit && (
+              <Edit
+                style={{
+                  color: this.state.disableProcessWeight ? 'none' : '#5bc2e1'
+                }}
+                // onMouseOver={this.style.color = '#5bc2e1'}
+                className="editprocessweight"
+                onClick={() => this.setEditProcessWeight()}
+              />
+            )}
+          </div>
         </div>
         <div>
           <Line
