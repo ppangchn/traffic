@@ -27,11 +27,11 @@ class ProjectTimeline extends Component {
       items: []
     }
   }
-  getData(id) {
+  async getData(id) {
     console.log(id)
     let items = this.state.defaultitems.map(i => i)
     let groups = this.state.defaultgroups.map(i => i)
-    axios.get(`${url}/users/${id}`).then(res => {
+    await axios.get(`${url}/users/${id}`).then(res => {
       const { data } = res // = res.data
       console.log('datatata->',data)
       let count = 2
@@ -59,6 +59,7 @@ class ProjectTimeline extends Component {
         items
       })
     })
+    this.props.triggerLoading();
   }
   componentDidMount = () => {
     try {

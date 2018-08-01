@@ -466,6 +466,8 @@ class AddProject extends Component {
           () => this.updateListPm(pm)
         )
       })
+      const loader = document.getElementById("loader");
+      if (loader) loader.hidden = true;
     } catch (error) {
       console.log('fail to get data at AddProject', error)
     }
@@ -476,151 +478,154 @@ class AddProject extends Component {
     return (
       <Container>
         <Modal isOpen={this.state.open} toggle={onClose} autoFocus={true}>
-          <ModalHeader toggle={onClose}>{this.state.header}</ModalHeader>
-          <ModalBody>
-            <Container className="addprojectbox">
-              <Row className="rowcontainer">
-                <Col className="projectnamebox" md="6" sm="6" xs="12">
-                  Project name
-                  <Input
-                    className="fontinput"
-                    name="projectname"
-                    invalid={this.state.invalid}
-                    placeholder="Type your project name"
-                    onChange={this.handleInputChange}
-                    value={this.state.projectname}
-                  />
-                  <div
-                    className="invalidprojectname"
-                    style={{
-                      color: '#da3849',
-                      position: 'relative'
-                    }}
-                  >
-                    {this.state.invalid && this.state.invalidprojectname}
-                  </div>
-                </Col>
-                <Col md="4" sm="4" xs="10">
-                  <div className="projectweighttext">Project Weight</div>
-                  <div className="sliderbox">
-                    <Slider
-                    trackStyle = {{
-                      backgroundColor: '#5ac2e2'
-                    }}
-                      min={0}
-                      max={100}
-                      step={5}
-                      onChange={this.slideChange}
-                      value={this.state.choseweight}
+          <div>
+          {/* <div id="loader" className="loader" /> */}
+            <ModalHeader toggle={onClose}>{this.state.header}</ModalHeader>
+            <ModalBody>
+              <Container className="addprojectbox">
+                <Row className="rowcontainer">
+                  <Col className="projectnamebox" md="6" sm="6" xs="12">
+                    Project name
+                    <Input
+                      className="fontinput"
+                      name="projectname"
+                      invalid={this.state.invalid}
+                      placeholder="Type your project name"
+                      onChange={this.handleInputChange}
+                      value={this.state.projectname}
                     />
-                  </div>
-                  <div
-                    className="invalidprojectweight"
-                    style={{
-                      color: '#da3849',
-                      position: 'relative'
-                    }}
-                  >
-                    {this.state.isinvalidweight && this.state.invalidweight}
-                  </div>
-                </Col>
-                <Col className="weightbox" md="1" sm="1" xs="1">
-                  <div className="weightproject">
-                    {this.state.choseweight} %
-                  </div>
-                </Col>
-              </Row>
-              <Row>
-                <Col>Project color</Col>
-              </Row>
-              <Row className="pd10">
-                {this.state.color.map(c => {
-                  let used = false
-                  if (this.state.usedcolor.includes(c)) used = true
-                  return (
-                    <Col key={c} className="pd5" md="1" sm="1" xs="2">
-                      <ColorButton
-                        color={c}
-                        used={used}
-                        setCheckedColor={this.setCheckColor}
-                        checkedColor={this.state.checkedcolor}
+                    <div
+                      className="invalidprojectname"
+                      style={{
+                        color: '#da3849',
+                        position: 'relative'
+                      }}
+                    >
+                      {this.state.invalid && this.state.invalidprojectname}
+                    </div>
+                  </Col>
+                  <Col md="4" sm="4" xs="10">
+                    <div className="projectweighttext">Project Weight</div>
+                    <div className="sliderbox">
+                      <Slider
+                        trackStyle={{
+                          backgroundColor: '#5ac2e2'
+                        }}
+                        min={0}
+                        max={100}
+                        step={5}
+                        onChange={this.slideChange}
+                        value={this.state.choseweight}
                       />
-                    </Col>
-                  )
-                })}
-              </Row>
-              <Row
-                className="pd10 invalidcolor"
-                style={{
-                  color: '#da3849',
-                  position: 'relative'
-                }}
-              >
-                <Col style={{ paddingLeft: '5px' }}>
-                  {this.state.isinvalidcolor && this.state.invalidcolor}
-                </Col>
-              </Row>
-              <Row>
-                <Col md="6" sm="6" xs="7">
-                  Member Arrangement
-                </Col>
-              </Row>
-              {this.state.pm.map((pm, index) => (
-                <SelectPm
-                  key={pm.value}
-                  id={index} //start at 0
-                  pm={pm}
-                  roles={pm.roles}
-                  listpm={this.state.listpm}
-                  setPm={this.setPm}
-                  delete={this.deletePm}
-                  setInvalidAddPm={() => this.setInvalidAddPm(false)}
-                />
-              ))}
-              <Row>
-                <Col
-                  className="invalidpm"
+                    </div>
+                    <div
+                      className="invalidprojectweight"
+                      style={{
+                        color: '#da3849',
+                        position: 'relative'
+                      }}
+                    >
+                      {this.state.isinvalidweight && this.state.invalidweight}
+                    </div>
+                  </Col>
+                  <Col className="weightbox" md="1" sm="1" xs="1">
+                    <div className="weightproject">
+                      {this.state.choseweight} %
+                    </div>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>Project color</Col>
+                </Row>
+                <Row className="pd10">
+                  {this.state.color.map(c => {
+                    let used = false
+                    if (this.state.usedcolor.includes(c)) used = true
+                    return (
+                      <Col key={c} className="pd5" md="1" sm="1" xs="2">
+                        <ColorButton
+                          color={c}
+                          used={used}
+                          setCheckedColor={this.setCheckColor}
+                          checkedColor={this.state.checkedcolor}
+                        />
+                      </Col>
+                    )
+                  })}
+                </Row>
+                <Row
+                  className="pd10 invalidcolor"
                   style={{
                     color: '#da3849',
                     position: 'relative'
                   }}
-                  xs="12"
                 >
-                  {(this.state.isinvalidpm && this.state.invalidpm) ||
-                    (this.state.isinvalidweightpm &&
-                      this.state.invalidweightpm)}
-                </Col>
-              </Row>
-              <Row>
-                <Col className="addpmbox" md="4" sm="4" xs="12">
-                  <Button
-                    // style={{ width: '-webkit-fill-available' }}
-                    outline
-                    size="sm"
-                    color="secondary"
-                    disabled={this.state.isinvalidaddpm}
-                    onClick={() => this.addPM()}
-                  >
-                    +Add manager
-                  </Button>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <Button
-                    color="5bc2e1"
-                    size="lg"
-                    block
-                    onClick={() => {
-                      this.sendData()
+                  <Col style={{ paddingLeft: '5px' }}>
+                    {this.state.isinvalidcolor && this.state.invalidcolor}
+                  </Col>
+                </Row>
+                <Row>
+                  <Col md="6" sm="6" xs="7">
+                    Member Arrangement
+                  </Col>
+                </Row>
+                {this.state.pm.map((pm, index) => (
+                  <SelectPm
+                    key={pm.value}
+                    id={index} //start at 0
+                    pm={pm}
+                    roles={pm.roles}
+                    listpm={this.state.listpm}
+                    setPm={this.setPm}
+                    delete={this.deletePm}
+                    setInvalidAddPm={() => this.setInvalidAddPm(false)}
+                  />
+                ))}
+                <Row>
+                  <Col
+                    className="invalidpm"
+                    style={{
+                      color: '#da3849',
+                      position: 'relative'
                     }}
+                    xs="12"
                   >
-                    Save
-                  </Button>
-                </Col>
-              </Row>
-            </Container>
-          </ModalBody>
+                    {(this.state.isinvalidpm && this.state.invalidpm) ||
+                      (this.state.isinvalidweightpm &&
+                        this.state.invalidweightpm)}
+                  </Col>
+                </Row>
+                <Row>
+                  <Col className="addpmbox" md="4" sm="4" xs="12">
+                    <Button
+                      // style={{ width: '-webkit-fill-available' }}
+                      outline
+                      size="sm"
+                      color="secondary"
+                      disabled={this.state.isinvalidaddpm}
+                      onClick={() => this.addPM()}
+                    >
+                      +Add manager
+                    </Button>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <Button
+                      color="5bc2e1"
+                      size="lg"
+                      block
+                      onClick={() => {
+                        this.sendData()
+                      }}
+                    >
+                      Save
+                    </Button>
+                  </Col>
+                </Row>
+              </Container>
+            </ModalBody>
+          </div>
         </Modal>
       </Container>
     )

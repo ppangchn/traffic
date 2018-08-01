@@ -57,6 +57,7 @@ class PersonTimeline extends Component {
           items
         })
       })
+      this.props.triggerLoading()
     } catch (error) {
       console.log('fail to get data at PersonTimeline')
     }
@@ -106,19 +107,18 @@ class PersonTimeline extends Component {
       groups,
       items
     })
-    this.props.triggerLoading()
     return true
   }
   componentDidMount = () => {
     this.getData()
   }
-  // componentWillReceiveProps(props) {
-  //   this.setState({ isFixedSizeRender: false }, () => {
-  //     let isFinished = this.updateData(props.roles)
-  //     console.log('isFinshed', isFinished)
-  //     this.setState({ isFixedSizeRender: isFinished })
-  //   })
-  // }
+  componentWillReceiveProps(props) {
+    this.setState({ isFixedSizeRender: false }, () => {
+      let isFinished = this.updateData(props.roles)
+      console.log('isFinshed', isFinished)
+      this.setState({ isFixedSizeRender: isFinished })
+    })
+  }
   render() {
     return (
       <GraphBox>

@@ -139,7 +139,6 @@ class EachProjectSidebar extends Component {
         project: data.project,
         projectmember: projectmember
       })
-      console.log(projectmember)
     })
     await axios.get(`${url}/users/pd`).then(res => {
       const { data } = res
@@ -152,6 +151,7 @@ class EachProjectSidebar extends Component {
       })
       this.setState({ allmember })
     })
+    this.props.triggerLoading();
   }
   componentDidMount() {
     try {

@@ -18,23 +18,31 @@ class ViewByPerson extends Component {
   triggerLoading() {
     if (this.state.canTrigger) {
       const loader = document.getElementById('loader')
-      loader.hidden = true
+      const viewbyperson = document.getElementById('viewbyperson')
+      if (loader) loader.hidden = true
+      if (viewbyperson) viewbyperson.hidden = false;
     }
     this.setState({ canTrigger: true })
   }
+  componentDidMount() {
+    const viewbyperson = document.getElementById('viewbyperson')
+    if (viewbyperson) viewbyperson.hidden = true
+  }
   render() {
     return (
-      <Container>
+      <div>
         <div id="loader" className="loader" />
-        <PersonSidebar
-          updateRoles={roles => this.updateRoles(roles)}
-          triggerLoading={() => this.triggerLoading()}
-        />
-        <PersonTimeline
-          roles={this.state.roles}
-          triggerLoading={() => this.triggerLoading()}
-        />
-      </Container>
+        <Container id="viewbyperson">
+          <PersonSidebar
+            updateRoles={roles => this.updateRoles(roles)}
+            triggerLoading={() => this.triggerLoading()}
+          />
+          <PersonTimeline
+            roles={this.state.roles}
+            triggerLoading={() => this.triggerLoading()}
+          />
+        </Container>
+      </div>
     )
   }
 }

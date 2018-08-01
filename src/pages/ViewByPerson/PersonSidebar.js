@@ -59,8 +59,8 @@ class PersonSidebar extends Component {
       checkedpm: false
     })
   }
-  getData() {
-    axios.get(`${url}/users/person`).then(res => {
+  async getData() {
+    await axios.get(`${url}/users/person`).then(res => {
       const { data } = res
       let users = []
       let roles = []
