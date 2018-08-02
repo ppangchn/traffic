@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Slider from 'rc-slider'
 import axios from 'axios'
+import { setValue } from '../../../service/subject.service'
 import url from '../../../url'
 import '../../../pages/ViewByProject/ProjectSidebar.css'
 
@@ -9,6 +10,8 @@ class ProcessWeight extends Component {
   constructor(props) {
     super(props)
     this.state = { processweight: 100 }
+
+    this.sendToParent = this.sendToParent.bind(this)
   }
   slideChange(value) {
     this.setState({ processweight: value })
@@ -21,11 +24,20 @@ class ProcessWeight extends Component {
     }
     try {
       axios.put(`${url}/processWeight/updateWeight`,data)
+
+      // setValue('true')
+      
       console.log('send data!')
     } catch (error) {
       console.log('cant send data at ProcessWeight', error)
     }
   }
+
+  sendToParent() {
+    console.log('hello change now')
+    setValue('true')
+  }
+
   updateData(allprocessweight) {
     if (allprocessweight.length > 0) {
       this.setState({
@@ -38,7 +50,8 @@ class ProcessWeight extends Component {
     this.updateData(this.props.allprocessweight)
   }
   componentWillReceiveProps(props) {
-    this.updateData(props.allprocessweight)
+    console.log('props on processWeight -> ', props)
+    // this.updateData(props.allprocessweight)
   }
   render() {
     return (
@@ -77,6 +90,7 @@ class ProcessWeight extends Component {
           max={100}
           step={5}
           onChange={e => this.slideChange(e)}
+          onAfterChange={this.sendToParent}
           value={this.state.processweight}
           disabled={this.props.disableProcessWeight}
         />

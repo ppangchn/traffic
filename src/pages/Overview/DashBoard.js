@@ -7,6 +7,7 @@ import { Button } from 'reactstrap'
 import { Timeline as TimelineIcon } from 'styled-icons/material/Timeline'
 import { Link } from 'react-router-dom'
 import auth from '../../service/index'
+import { ProcessWeightSubject } from '../../service/subject.service'
 import './DashBoard.css'
 import { FilePdf } from 'styled-icons/fa-solid';
 
@@ -29,7 +30,12 @@ const UserContainer = styled.div`
 class DashBoard extends Component {
 	constructor(props) {
 		super(props)
-		this.state = { data: [], loginUserId: '', allUser: [], weekList: [], graph: [] }
+    this.state = { data: [], loginUserId: '', allUser: [], weekList: [], graph: [] }
+    
+    this.ProcessSubscribe = ProcessWeightSubject.subscribe(($value) => {
+      this.getData()
+      // this.getDataWeek()
+    })
 	}
 	async getData() {
 		await axios.get(`${url}/users/pm`).then(res => {
@@ -71,6 +77,10 @@ class DashBoard extends Component {
 			console.log('cant get data at dsahboard', error)
 		}
 	}
+
+  componentWillUnmount() {
+    this.ProcessSubscribe.unsubscribe()
+  }
 
 	render() {
 		return (
