@@ -33,7 +33,7 @@ class CheckedPm extends Component {
           pointHoverBorderWidth: 7,
           pointRadius: 7,
           pointHitRadius: 10,
-          data: this.props.weight
+          data: this.props.processweight
         }
         this.props.updateGraph(data, index)
       } else {

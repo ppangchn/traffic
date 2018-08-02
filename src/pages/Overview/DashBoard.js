@@ -121,8 +121,12 @@ class DashBoard extends Component {
 							} else {
 								graph[$index] = 0
 							}
-            })
-
+						})
+						const currentcapacity = graph[graph.length-1]
+						let indexcurrentcolor = 1
+						if (currentcapacity >= 80) {indexcurrentcolor = 2}
+						else if (currentcapacity < 60) {indexcurrentcolor = 0}
+						else {}
             console.log('cal graph -> ', graph)
 						if (user.projectManagement) {
 							return (
@@ -132,6 +136,7 @@ class DashBoard extends Component {
 										name={user.name}
 										roles={user.roles}
 										graph={graph}
+										indexcurrentcolor={indexcurrentcolor}
 										projectManagement={user.projectManagement}
 										updateHeader={this.props.updateHeader}
 										loginUserId={this.state.loginUserId}

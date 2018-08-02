@@ -76,7 +76,8 @@ class Compare extends Component {
         datasets: []
       },
       defaultdatasets: [],
-      isclear: false
+      isclear: false,
+      weekList: [],
     }
     this.clearData = this.clearData.bind(this)
   }
@@ -117,39 +118,82 @@ class Compare extends Component {
   setClear(state) {
     this.setState({ isclear: state })
   }
+  async getDataWeek() {
+	  await axios.get(`${url}/processWeight/getListWeek`).then(res => {
+      console.log('DataWeek --> ',res);
+
+      this.setState({weekList: res.data})
+      
+    })
+    this.getData()
+  }
   async getData() {
     let listpm = []
 
     await axios.get(`${url}/users/pm`).then(res => {
       const { data } = res
       data.map(pm => {
-        let weight = [null]
-        pm.projectManagement.map(pmdetail => {
-          if (!pmdetail.isDisable && !pmdetail.project.isDisable)
-            weight.push(pmdetail.weight)
+        let processweight = []
+        let tempGraph = [
+          { value: 0, counter: 0 },
+          { value: 0, counter: 0 },
+          { value: 0, counter: 0 },
+          { value: 0, counter: 0 }
+        ]
+        let { weekList } = this.state
+        console.log(weekList)
+        weekList.map(($objWeek, $index) => {
+          let weekListDate = new Date($objWeek)
+          let weekListString = `${weekListDate.getFullYear()}-${weekListDate.getMonth()}-${weekListDate.getDate()}`
+          pm.projectManagement
+            .filter($filPm => {
+              return !$filPm.isDisable
+            })
+            .map($objPm => {
+              let findProcessWeight = $objPm.processWeight.find($fndWeight => {
+                let weightDate = new Date($fndWeight.created)
+                let weightDateStr = `${weightDate.getFullYear()}-${weightDate.getMonth()}-${weightDate.getDate()}`
+                return weekListString == weightDateStr
+              })
+
+              if (!!findProcessWeight) {
+                tempGraph[$index].value += findProcessWeight.processWeight
+                tempGraph[$index].counter += 1
+              }
+            })
         })
-        weight.push(null)
+        tempGraph.map(($objGraph, $index) => {
+          console.log($objGraph)
+          if (!!$objGraph.counter) {
+            processweight[$index] = $objGraph.value / $objGraph.counter
+          } else {
+            processweight[$index] = 0
+          }
+        })
+        processweight.push(null)
+        processweight.unshift(null)
+        console.log("process weight",processweight)
         listpm.push({
           name: pm.name,
           id: pm.id,
-          weight: weight
+          processweight: processweight
         })
       })
       this.setState({
         listpm
       })
     })
-    this.triggerLoading();
+    this.triggerLoading()
   }
   triggerLoading() {
-    const loader = document.getElementById("loader");
-    const compare = document.getElementById("compare");
-    if (loader) loader.hidden = true;
-    if (compare) compare.hidden = false;
+    const loader = document.getElementById('loader')
+    const compare = document.getElementById('compare')
+    if (loader) loader.hidden = true
+    if (compare) compare.hidden = false
   }
   componentDidMount() {
     try {
-      this.getData();
+      this.getDataWeek()
     } catch (error) {
       console.log('cant get list of pm at Compare', error)
     }
@@ -182,8 +226,8 @@ class Compare extends Component {
     })
     data.datasets = datasets
     this.setState({ defaultdatasets: datasets, data })
-    const compare = document.getElementById("compare");
-    compare.hidden = true;
+    const compare = document.getElementById('compare')
+    compare.hidden = true
   }
 
   render() {
@@ -236,7 +280,7 @@ class Compare extends Component {
                     <CheckedPm
                       pm={pm.name}
                       id={pm.id}
-                      weight={pm.weight}
+                      processweight={pm.processweight}
                       isclear={this.state.isclear}
                       setClear={state => this.setClear(state)}
                       color={this.state.color}

@@ -34,7 +34,7 @@ class UserDetail extends Component {
     this.state = {
       toggleAddModal: false,
       data: {},
-      capacitycolor: ['#73d363', '#d7cd5c', '#c83131'],
+      capacitycolor: ['#73d363', '#ffdc1a', '#c83131'],
       canEdit: false,
       disableProcessWeight: true,
       graph: []
@@ -135,7 +135,7 @@ class UserDetail extends Component {
         <div className="userdetailusername">
           <Dot
             className="dot"
-            style={{ color: this.state.capacitycolor[0] }}
+            style={{ color: this.state.capacitycolor[this.props.indexcurrentcolor] }}
             options={{
               scales: {
                 xAxes: [
