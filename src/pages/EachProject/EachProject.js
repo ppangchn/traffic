@@ -13,6 +13,7 @@ class ViewbyProject extends Component {
     this.state = { fetchData: Date.now(), canTrigger: false }
   }
   updateData = () => {
+    console.log(Date.now())
     this.setState({ fetchData: Date.now() })
   }
   triggerLoading() {
@@ -20,7 +21,6 @@ class ViewbyProject extends Component {
     if (this.state.canTrigger) {
       const loader = document.getElementById('loader')
       const eachproject = document.getElementById('eachproject')
-      // this.setState({canTrigger: false})
       if (loader) loader.hidden = true
       if (eachproject) eachproject.hidden = false
     }

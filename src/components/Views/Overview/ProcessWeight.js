@@ -6,8 +6,8 @@ import url from '../../../url'
 import '../../../pages/ViewByProject/ProjectSidebar.css'
 
 class ProcessWeight extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = { processweight: 100 }
   }
   slideChange(value) {
@@ -16,9 +16,7 @@ class ProcessWeight extends Component {
       id: this.props.userid,
       projectManagement: {
         id: this.props.pmid,
-        processWeight: {
-          processWeight: value
-        }
+        processWeight: value
       }
     }
     try {

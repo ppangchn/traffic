@@ -294,7 +294,6 @@ class AddProject extends Component {
             $objPM.users.roles.id <= 6
           ) {
             $objPM.isDisable = true
-            // $objPM.processWeight.isDisable = true
           }
 
           return {
@@ -304,7 +303,6 @@ class AddProject extends Component {
             },
             weight: $objPM.weight,
             isDisable: $objPM.isDisable,
-            // processWeight: $objPM.processWeight
           }
         })
         this.state.pm.map($objPM => {
