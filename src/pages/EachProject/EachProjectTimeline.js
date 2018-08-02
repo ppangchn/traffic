@@ -5,7 +5,6 @@ import Timeline from '../../components/Views/react-calendar-timeline/lib'
 import moment from 'moment'
 import '../ViewByProject/ProjectSidebar.css'
 import GraphBox from '../../components/Views/GraphBox'
-import { Button } from 'reactstrap'
 import 'react-day-picker/lib/style.css'
 import url from '../../url'
 
@@ -64,13 +63,13 @@ class EachProjectTimeline extends Component {
       console.log('fail to get data at EachProjectTimeline', error)
     }
   }
-  componentWillReceiveProps() {
-    try {
-      this.getData()
-    } catch (error) {
-      console.log('fail to get data at EachProjectTimeline', error)
-    }
-  }
+  // componentWillReceiveProps() {
+  //   try {
+  //     this.getData()
+  //   } catch (error) {
+  //     console.log('fail to get data at EachProjectTimeline', error)
+  //   }
+  // }
   render() {
     return (
       <GraphBox>

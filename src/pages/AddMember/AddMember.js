@@ -6,9 +6,6 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
-  Input,
-  FormFeedback,
-  ModalFooter
 } from 'reactstrap'
 import Select from 'react-select'
 import 'react-select/dist/react-select.css'
@@ -16,8 +13,7 @@ import axios from 'axios'
 import 'rc-slider/assets/index.css'
 import './AddMember.css'
 import './tag.css'
-import { Link, withRouter } from 'react-router-dom'
-import SelectRoles from './SelectRoles'
+import { withRouter } from 'react-router-dom'
 import url from '../../url'
 import { WithContext as ReactTags } from 'react-tag-input'
 import './AddMember.css'
@@ -38,7 +34,6 @@ class AddMember extends Component {
       listroles: [],
       dropdownOpen: false,
 
-      // tags: '',
       filteredROLES: [],
       id: null,
       roles: '',
@@ -293,7 +288,7 @@ class AddMember extends Component {
   }
   render() {
     const { onClose } = this.props
-    const { tags, suggestions } = this.state
+    const { tags } = this.state
 
     return (
       <Container>
@@ -375,7 +370,9 @@ class AddMember extends Component {
 
                 <Row className="title">
                   <Col className="mb-3">
-                    Tags
+                    <div style={{display: 'flex', alignItems:'center'}}>
+                    Tags&ensp;<div style={{color: '#da3849' , fontSize:'14px', position:'relative',bottom:'1px'}}>* Press Enter to add tag</div>
+                      </div>
                     <div className="tag-full-w">
                       <ReactTags
                         className="taginput"

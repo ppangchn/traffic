@@ -108,38 +108,48 @@ class Compare extends Component {
   }
   clearData() {
     let { data, defaultdatasets } = this.state
-    let tmp = defaultdatasets.slice();
-    data.datasets = tmp;
+    let tmp = defaultdatasets.slice()
+    data.datasets = tmp
     let defaultusedcolor = [true, false, false, false, false, false]
     this.setState({ data, usedcolor: defaultusedcolor })
     this.setClear(true)
   }
-  async setClear(state) {
-    await this.setState({ isclear: state })
+  setClear(state) {
+    this.setState({ isclear: state })
+  }
+  async getData() {
+    let listpm = []
+
+    await axios.get(`${url}/users/pm`).then(res => {
+      const { data } = res
+      data.map(pm => {
+        let weight = [null]
+        pm.projectManagement.map(pmdetail => {
+          if (!pmdetail.isDisable && !pmdetail.project.isDisable)
+            weight.push(pmdetail.weight)
+        })
+        weight.push(null)
+        listpm.push({
+          name: pm.name,
+          id: pm.id,
+          weight: weight
+        })
+      })
+      this.setState({
+        listpm
+      })
+    })
+    this.triggerLoading();
+  }
+  triggerLoading() {
+    const loader = document.getElementById("loader");
+    const compare = document.getElementById("compare");
+    if (loader) loader.hidden = true;
+    if (compare) compare.hidden = false;
   }
   componentDidMount() {
     try {
-      let listpm = []
-
-      axios.get(`${url}/users/pm`).then(res => {
-        const { data } = res
-        data.map(pm => {
-          let weight = [null]
-          pm.projectManagement.map(pmdetail => {
-            if (!pmdetail.isDisable && !pmdetail.project.isDisable)
-              weight.push(pmdetail.weight)
-          })
-          weight.push(null)
-          listpm.push({
-            name: pm.name,
-            id: pm.id,
-            weight: weight
-          })
-        })
-        this.setState({
-          listpm
-        })
-      })
+      this.getData();
     } catch (error) {
       console.log('cant get list of pm at Compare', error)
     }
@@ -172,12 +182,15 @@ class Compare extends Component {
     })
     data.datasets = datasets
     this.setState({ defaultdatasets: datasets, data })
+    const compare = document.getElementById("compare");
+    compare.hidden = true;
   }
 
   render() {
     return (
       <Box>
-        <Container>
+        <div id="loader" className="loader" />
+        <Container id="compare">
           <Row>
             <Col className="comparefont">
               <ChartIcon className="charticon" />Compare
@@ -200,7 +213,7 @@ class Compare extends Component {
                             suggestedMax: 100
                           }
                         }
-                      ],
+                      ]
                     }
                   }}
                 />

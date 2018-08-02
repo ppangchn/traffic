@@ -17,40 +17,27 @@ const User = styled.div`
 class PersonItem extends Component {
   constructor(props) {
     super(props)
-    this.state = { overflow: false, id: '' }
-  }
-  componentDidMount() {
-    const id = 'persontag' + this.props.name
-    const x = document.getElementById(id)
-    console.log(x)
-    if (x.scrollWidth > x.clientWidth && this.props.length <= 2) {
-      this.setState({ overflow: true })
-    }
+    this.state = { id: '' }
   }
   render() {
     const { name } = this.props
     return (
-      <Item
-        className={
-          this.state.overflow && this.props.length <=2
-            ? `personitem${this.props.length}overflow`
-            : `personitem${this.props.length}`
-        }
-      >
+      <Item className={`personitem${this.props.length}`}>
         <User className="personname">{name}</User>
         <div
-          id={'persontag' + this.props.name}
+          id={'membertag' + this.props.name}
           className="persontagcontainer"
           style={{
             display: 'flex',
             flexDirection: 'row',
-            flexWrap: this.props.length >2 ? 'wrap' : 'none',
-            overflowX: this.props.length <=2 ? 'auto' : 'none',
+            flexWrap: this.props.length > 2 ? 'wrap' : 'none',
+            overflowX: this.props.length <= 2 ? 'auto' : 'none',
+            overflowY: 'hidden'
           }}
         >
-          <div className="persontag">{this.props.roles}</div>
+          <div className="membertag">{this.props.roles}</div>
           {this.props.tags.map(tag => {
-            return <div className="persontag">{tag.name}</div>
+            return <div className="membertag">{tag.name}</div>
           })}
         </div>
       </Item>

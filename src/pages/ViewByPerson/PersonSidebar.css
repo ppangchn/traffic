@@ -1,8 +1,3 @@
-.persontag {
-  background-color: #e4e4e4;
-  text-align: center;
-  color: #8c8c8c;
-}
 .personheadcontainer {
   top: 56px;
   z-index: 2;
@@ -59,18 +54,6 @@ input[type='radio'] {
     padding-left: 16px;
     font-size: 15px;
   }
-  .personitem0overflow {
-    height: 60.5px;
-    padding-left: 16px;
-  }
-  .personitem1overflow {
-    height: 60.5px;
-    padding-left: 16px;
-  }
-  .personitem2overflow {
-    height: 91.5px;
-    padding-left: 16px;
-  }
   .personitem0 {
     height: 60.5px;
     padding-left: 20px;
@@ -114,15 +97,6 @@ input[type='radio'] {
   .personitem10 {
     height: 336px;
     padding-left: 20px;
-  }
-  .persontag {
-    font-size: 6px;
-    line-height: 10px;
-    width: auto;
-    margin-right: 3px;
-    margin-top: 4px;
-    border-radius: 2px;
-    padding: 0 3px;
   }
   .personname {
     padding-top: 2px;
@@ -177,18 +151,6 @@ input[type='radio'] {
   .persontitle {
     padding-left: 15px;
   }
-  .personitem0overflow {
-    height: 60.5px;
-    padding-left: 15px;
-  }
-  .personitem1overflow {
-    height: 60.5px;
-    padding-left: 15px;
-  }
-  .personitem2overflow {
-    height: 91.5px;
-    padding-left: 15px;
-  }
   .personitem0 {
     height: 60.5px;
     padding-left: 15px;
@@ -232,15 +194,6 @@ input[type='radio'] {
   .personitem10 {
     height: 336px;
     padding-left: 15px;
-  }
-  .persontag {
-    font-size: 7px;
-    width: auto;
-    margin-right: 3px;
-    margin-top: 4px;
-    border-radius: 2px;
-    padding: 0 6px;
-    line-height: 11px;
   }
   .personname {
     padding-top: 4px;
@@ -291,18 +244,6 @@ input[type='radio'] {
   .persontitle {
     padding-left: 20px;
   }
-  .personitem0overflow {
-    height: 60.5px;
-    padding-left: 20px;
-  }
-  .personitem1overflow {
-    height: 60.5px;
-    padding-left: 20px;
-  }
-  .personitem2overflow {
-    height: 91.5px;
-    padding-left: 20px;
-  }
   .personitem0 {
     height: 60.5px;
     padding-left: 20px;
@@ -346,15 +287,6 @@ input[type='radio'] {
   .personitem10 {
     height: 336px;
     padding-left: 20px;
-  }
-  .persontag {
-    font-size: 7px;
-    width: auto;
-    margin-right: 3px;
-    margin-top: 4px;
-    border-radius: 2px;
-    padding: 0 6px;
-    line-height: 11px;
   }
   .personname {
     padding-top: 3px;
@@ -403,17 +335,6 @@ input[type='radio'] {
   .persontitle {
     padding-left: 20px;
   }
-  .personitem0overflow {
-    padding-left: 20px;
-  }
-   .personitem1overflow {
-     height: 61px;
-    padding-left: 20px;
-  }
-  .personitem2overflow {
-    height: 92px;
-    padding-left: 20px;
-  }
   .personitem0 {
     height: 60.5px;
     padding-left: 20px;
@@ -457,14 +378,6 @@ input[type='radio'] {
   .personitem10 {
     height: 336px;
     padding-left: 20px;
-  }
-  .persontag {
-    font-size: 8px;
-    width: auto;
-    margin-right: 3px;
-    margin-top: 4px;
-    border-radius: 2px;
-    padding: 0 6px;
   }
   .personname {
     padding-top: 2px;
@@ -580,15 +493,6 @@ input[type='radio'] {
   .personitem10 {
     height: 336px;
     padding-left: 30px;
-  }
-  .persontag {
-    font-size: 10px;
-    width: auto;
-    margin-right: 3px;
-    margin-top: 4px;
-    border-radius: 2px;
-    padding: 0 6px;
-    padding: 0 6px;
   }
   .personname {
     padding-top: 2px;

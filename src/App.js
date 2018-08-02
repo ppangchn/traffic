@@ -5,7 +5,6 @@ import { Switch, Route, withRouter } from 'react-router-dom'
 import Login from './pages/Login/Login'
 import ResetPassword from './pages/ResetPassword/ResetPassword'
 import ForgotPass from './pages/ForgotPass/ForgotPass'
-import styled from 'styled-components'
 
 class App extends Component {
   constructor() {

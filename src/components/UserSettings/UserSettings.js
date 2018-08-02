@@ -87,7 +87,6 @@ export default class UserSettings extends Component {
 										<div onClick={() => this.toggleEditMember(true)}>Edit Member</div>
 									</DropdownItem>
 
-									{/* <Link to="/project" style={{ textDecoration: 'none' }}> */}
 									<DropdownItem
 										className="dropdowndeleteitem"
 										style={{
@@ -97,17 +96,15 @@ export default class UserSettings extends Component {
 										onClick={this.toggleModalDelete}
 									>
 										<div>Delete</div>
-										{/* <DeleteMember id={users.id} name={users.name} /> */}
 									</DropdownItem>
-									{/* </Link> */}
 								</DropdownMenu>
 							</ButtonDropdown>
 						</div>
 					</CardTitle>
 						<div className="SettingPersonTagContainer" style={{ display: 'flex', flexDirection: 'row' ,flexWrap: 'wrap' ,position:'relative'}}>
-							<div className="SettingPersonTag">{roles.name} </div>
+							<div className="membertag">{roles.name} </div>
 							{tags.map(tag => {
-								return <div key={tag.id} className="SettingPersonTag">{tag.name}</div>
+								return <div key={tag.id} className="membertag">{tag.name}</div>
 							})}
 						</div>
 				</Card>

@@ -7,21 +7,13 @@ class EachProjectItem extends Component {
     super(props)
     this.state = {overflow: ''}
   }
-  componentDidMount() {
-    const {timeline} = this.props;
-      const id = "eachprojectpersontag"+timeline.id
-      const x = document.getElementById(id)
-      console.log(x)
-      console.log(x.scrollWidth,x.scrollWidth)
-      if (x.scrollWidth > x.clientWidth) this.setState({overflow : 'overflow'})
-  }
   render() {
     const {timeline} = this.props;
     return (
       <div
         key={timeline.id}
         id={timeline.id}
-        className={`eachprojectitem${this.state.overflow}`}
+        className="eachprojectitem"
       >
         <div
           className="membername"
@@ -46,10 +38,9 @@ class EachProjectItem extends Component {
         </div>
         <div
           className="persontagcontainer"
-          id={'eachprojectpersontag' + timeline.id}
+          id={'eachprojectmembertag' + timeline.id}
           style={{
             display: 'flex',
-            flexDirection: 'row',
             overflowX: 'auto',
             overflowY: 'hidden'
           }}

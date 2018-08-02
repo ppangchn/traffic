@@ -6,8 +6,6 @@ import { Line } from 'react-chartjs-2'
 import { PrimitiveDot as Dot } from 'styled-icons/octicons/PrimitiveDot'
 import ProcessWeight from './ProcessWeight'
 import { Edit as EditIcon } from 'styled-icons/material/Edit'
-import axios from 'axios'
-import url from '../../../url'
 import './UserDetail.css'
 import '../../../pages/ViewByProject/ProjectSidebar.css'
 

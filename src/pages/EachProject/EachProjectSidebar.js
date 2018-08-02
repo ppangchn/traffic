@@ -25,7 +25,6 @@ import { MoreHoriz } from 'styled-icons/material/MoreHoriz'
 import './EachProjectSidebar.css'
 import { Link } from 'react-router-dom'
 import Select from 'react-select'
-import { Search as SearchIcon } from 'styled-icons/fa-solid/Search'
 import AddProject from '../AddProject/AddProject'
 import url from '../../url'
 
@@ -47,13 +46,6 @@ const ProgressContainer = styled.div`
 `
 const Edit = MoreHoriz.extend`
   color: #5bc2e1;
-`
-const WhiteTriangle = TriangleUp.extend`
-  color: white;
-  width: 1.5625rem;
-  height: 1.5625rem;
-  stroke: #5bc2e1;
-  stroke-width: 0.04rem;
 `
 
 class EachProjectSidebar extends Component {
@@ -112,18 +104,19 @@ class EachProjectSidebar extends Component {
   }
   async sendMember(member) {
     try {
+      // this.props.loader.hidden = false;
+      // this.props.eachproject.hidden = true;
       const data = {
         project: parseInt(this.props.id),
         users: member.value
       }
       await axios.put(`${url}/timeline`, data)
-      await this.getData()
-      await this.props.updateData()
-
-      console.log('send member!')
+      this.getData()
+      this.props.updateData()
     } catch (error) {
       console.log('fail to send member at EachProjectSidebar')
     }
+    // this.props.triggerLoading();
   }
 
   async getData() {
@@ -200,17 +193,6 @@ class EachProjectSidebar extends Component {
                       borderRadius: '0.2rem 0.2rem 0 0'
                     }}
                   >
-                    {/* <div
-                    style={{
-                      position: 'absolute',
-                      zIndex: '1',
-                      left: '4.27rem',
-                      bottom: '72px'
-                    }}
-                  >
-                    <WhiteTriangle />
-                  </div>
-                  <div className="bottomtriangle">_</div> */}
                     <div onClick={() => this.toggleModal(true)}>
                       Edit Project
                     </div>
@@ -313,7 +295,7 @@ class EachProjectSidebar extends Component {
                   overflow: 'hidden'
                 }}
               >
-                &ensp;"{project.name}"
+                &nbsp;"{project.name}"
               </div>
             </ModalBody>
             <ModalFooter>

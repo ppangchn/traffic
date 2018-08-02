@@ -12,7 +12,7 @@
   border-bottom: 0.5px solid #dfdfdf;
   border-right: 0.5px solid #dfdfdf;
 }
-.eachprojectitemoverflow  {
+.eachprojectitem  {
   background-color: #ffffff;
   border-bottom: 0.5px solid #dfdfdf;
   border-right: 0.5px solid #dfdfdf;
@@ -29,12 +29,7 @@
 @media (min-width: 321px) and (max-width: 575.98px) {
   .eachprojectitem {
     padding-left: 20px;
-    padding-bottom: 27.5px;
     font-size: 11px;
-    width: 160px;
-  }
-  .eachprojectitemoverflow {
-    padding-left: 20px;
     height: 77px;
     width: 160px;
   }
@@ -59,7 +54,7 @@
     padding-bottom: 23.5px;
     font-size: 11px;
   }
-  .eachprojectitemoverflow {
+  .eachprojectitem {
     padding-left: 20px;
     height: 77px;
   }
@@ -80,10 +75,6 @@
 @media (min-width: 768px) and (max-width: 991.98px) {
   .eachprojectitem {
     padding-left: 20px;
-    padding-bottom: 20.5px;
-  }
-  .eachprojectitemoverflow {
-    padding-left: 20px;
     height: 77px;
   }
   .membername {
@@ -103,10 +94,6 @@
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
   .eachprojectitem {
-    padding-left: 20px;
-    padding-bottom: 20.5px;
-  }
-  .eachprojectitemoverflow {
     padding-left: 20px;
     height: 77px;
   }
@@ -129,10 +116,6 @@
   .eachprojectitem {
     padding-left: 20px;
     border-bottom: 0.5px solid #dfdfdf;
-    padding-bottom: 19.5px;
-  }
-  .eachprojectitemoverflow {
-    padding-left: 20px;
     height: 77px;
   }
   .membername {
