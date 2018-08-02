@@ -46,9 +46,9 @@ class EachProjectItem extends Component {
           }}
         >
           <div className="membertag">{timeline.users.roles.name}</div>
-          {timeline.users.tags.map(tag => {
+          {timeline.users.tags.map((tag,index) => {
             return (
-              <div key={timeline.id} className="membertag">
+              <div key={timeline.users.id+"at"+index} className="membertag">
                 {tag.name}
               </div>
             )

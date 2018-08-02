@@ -13,12 +13,10 @@ class ViewbyProject extends Component {
     this.state = { fetchData: Date.now(), canTrigger: false }
   }
   updateData = () => {
-    console.log(Date.now())
     this.setState({ fetchData: Date.now() })
   }
   triggerLoading() {
-    console.log(this.state.canTrigger)
-    if (this.state.canTrigger) {
+    if (!this.state.canTrigger) {
       const loader = document.getElementById('loader')
       const eachproject = document.getElementById('eachproject')
       if (loader) loader.hidden = true
@@ -45,7 +43,6 @@ class ViewbyProject extends Component {
           <EachProjectTimeline
             id={this.props.match.params.id}
             fetchData={this.state.fetchData}
-            triggerLoading={() => this.triggerLoading()}
           />
         </Container>
       </div>
