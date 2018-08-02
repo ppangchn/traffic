@@ -59,8 +59,8 @@ class PersonSidebar extends Component {
       checkedpm: false
     })
   }
-  getData() {
-    axios.get(`${url}/users/person`).then(res => {
+  async getData() {
+    await axios.get(`${url}/users/person`).then(res => {
       const { data } = res
       let users = []
       let roles = []
@@ -105,6 +105,7 @@ class PersonSidebar extends Component {
       })
       this.setState({ users, roles, tags, listmember, length })
     })
+    this.props.triggerLoading();
   }
   updateData(wantedroles) {
     const { data } = this.state

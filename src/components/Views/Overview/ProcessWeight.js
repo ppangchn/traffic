@@ -64,7 +64,7 @@ class ProcessWeight extends Component {
           step={5}
           onChange={e => this.slideChange(e)}
           value={this.state.processweight}
-          disabled={true}
+          disabled={this.props.disableProcessWeight}
         />
       </div>
     )

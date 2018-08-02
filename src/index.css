@@ -21,20 +21,5 @@ body {
 	float: left;
 	background-color: #eaf9fe;
 	font-family: 'DB Helvethaica X' !important;
-	/* overflow-x: hidden; */
-	/* overflow-y: hidden; */
 
 }
-
-/* .navbar {
-	position: sticky;
-	position: -webkit-sticky;
-	top: 0;
-} */
-/* .rct-day-6 {
-	border-right: 1px solid red;
-} */
-
-/* .rct-day-0 {
-	border-left: 1px solid red !important;
-} */

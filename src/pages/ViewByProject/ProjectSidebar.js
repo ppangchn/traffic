@@ -29,12 +29,16 @@ class ProjectSidebar extends Component {
   update() {
     this.props.updateHeader()
   }
+  async getData() {
+    await axios.get(`${url}/project`).then(res => {
+      const { data } = res
+      this.setState({ projects: data })
+      this.props.triggerLoading()
+    })
+  }
   componentDidMount() {
     try {
-      axios.get(`${url}/project`).then(res => {
-        const { data } = res
-        this.setState({ projects: data })
-      })
+      this.getData()
     } catch (error) {
       console.log('fail to get data at ProjectSidebar', error)
     }
