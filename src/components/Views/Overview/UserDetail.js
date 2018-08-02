@@ -36,7 +36,8 @@ class UserDetail extends Component {
       data: {},
       capacitycolor: ['#73d363', '#d7cd5c', '#c83131'],
       canEdit: false,
-      disableProcessWeight: true
+      disableProcessWeight: true,
+      graph: []
     }
     this.update = this.update.bind(this)
   }
@@ -47,6 +48,8 @@ class UserDetail extends Component {
     this.props.updateHeader()
   }
   componentDidMount() {
+
+    console.log('props on did mount -> ', this.props.graph)
     const data = {
       labels: ['W 1', 'W 2', 'W 3', 'W 4'],
       datasets: [
@@ -79,6 +82,43 @@ class UserDetail extends Component {
       this.setState({ disableProcessWeight: false })
     }
   }
+
+  componentWillReceiveProps(props) {
+    // let { graph } = props
+
+    // this.setState({graph})
+    console.log('props new -> ' , props)
+    const data = {
+      labels: ['W 1', 'W 2', 'W 3', 'W 4'],
+      datasets: [
+        {
+          label: '',
+          fill: false,
+          lineTension: 0.1,
+          backgroundColor: '#20aadb',
+          borderColor: '#98e3ff',
+          borderCapStyle: 'butt',
+          borderDash: [],
+          borderDashOffset: 0.0,
+          borderJoinStyle: 'miter',
+          pointBorderColor: '#20aadb',
+          pointBackgroundColor: '#20aadb',
+          pointBorderWidth: 5,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: '#20aadb',
+          pointHoverBorderColor: '#20aadb',
+          pointHoverBorderWidth: 2,
+          pointRadius: 1,
+          pointHitRadius: 10,
+          data: props.graph,
+          responsive: true
+        }
+      ]
+    }
+    this.setState({ data })
+    console.log('prop new -> ', props)
+  }
+
   render() {
     const { projectManagement } = this.props
     return (
