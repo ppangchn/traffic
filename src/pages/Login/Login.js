@@ -92,7 +92,7 @@ export default class Login extends Component {
                 placeholder="Example@pirsquare.net"
                 onChange={this.handleInputChange}
                 value={this.state.email}
-                invalid={this.state.invalidemail}
+                invalid={String(this.state.invalidemail)}
                 required
               />
             </div>
@@ -105,7 +105,7 @@ export default class Login extends Component {
                 placeholder="Password"
                 onChange={this.handleInputChange}
                 value={this.state.password}
-                invalid={this.state.invalidpassword}
+                invalid={String(this.state.invalidpassword)}
                 required
               />
             </div>

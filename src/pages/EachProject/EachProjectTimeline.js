@@ -54,7 +54,6 @@ class EachProjectTimeline extends Component {
         items
       })
     })
-    this.props.triggerLoading();
   }
   componentDidMount = () => {
     try {
@@ -63,13 +62,13 @@ class EachProjectTimeline extends Component {
       console.log('fail to get data at EachProjectTimeline', error)
     }
   }
-  // componentWillReceiveProps() {
-  //   try {
-  //     this.getData()
-  //   } catch (error) {
-  //     console.log('fail to get data at EachProjectTimeline', error)
-  //   }
-  // }
+  componentWillReceiveProps() {
+    try {
+      this.getData()
+    } catch (error) {
+      console.log('fail to get data at EachProjectTimeline', error)
+    }
+  }
   render() {
     return (
       <GraphBox>

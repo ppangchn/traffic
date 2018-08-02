@@ -237,7 +237,7 @@ class PersonSidebar extends Component {
         {this.state.users.map((user, index) => {
           return (
             <PersonItem
-              key={user.email}
+              key={user}
               name={user}
               length={this.state.length[index]}
               roles={this.state.roles[index]}

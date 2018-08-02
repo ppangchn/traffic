@@ -78,7 +78,7 @@ export default class ForgotPass extends Component {
 					</center>
 					<br />
 					<div style={{fontSize:'30px',lineHeight:'0',color:'#4a4a4a'}}>Forgot Password?</div><br />
-					<div class="des">
+					<div className="des">
 						We just need your registered email address
 						<br />to send you password reset
 					</div>
@@ -92,7 +92,7 @@ export default class ForgotPass extends Component {
 								placeholder="Example@pirsquare.net"
 								onChange={this.handleInputChange}
 								value={this.state.email}
-								invalid={this.state.invalidemail}
+								invalid={String(this.state.invalidemail)}
 								required
 							/>
 						</div>

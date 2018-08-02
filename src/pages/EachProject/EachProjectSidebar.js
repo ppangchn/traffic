@@ -222,6 +222,7 @@ class EachProjectSidebar extends Component {
           if (timeline) {
             return (
               <EachProjectItem
+              key={"eachprojectSidebar"+timeline.id}
                 timeline={timeline}
                 getData={() => this.getData()}
                 updateData={this.props.updateData}

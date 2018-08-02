@@ -25,7 +25,7 @@ class PersonItem extends Component {
       <Item className={`personitem${this.props.length}`}>
         <User className="personname">{name}</User>
         <div
-          id={'membertag' + this.props.name}
+          id={'membertag' + name}
           className="persontagcontainer"
           style={{
             display: 'flex',
@@ -36,8 +36,8 @@ class PersonItem extends Component {
           }}
         >
           <div className="membertag">{this.props.roles}</div>
-          {this.props.tags.map(tag => {
-            return <div className="membertag">{tag.name}</div>
+          {this.props.tags.map((tag,index) => {
+            return <div key={name+"tag"+index} className="membertag">{tag.name}</div>
           })}
         </div>
       </Item>
