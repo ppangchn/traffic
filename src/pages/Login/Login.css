@@ -1,43 +1,36 @@
 .btsave {
-	margin-top: 20px;
+  margin-top: 20px;
 }
-
-.loginblock {
-	/* position: absolute; */
-	/* text-align: center; */
-}
-
 .inputform {
+  font-size: 18px;
   width: 250px !important;
-  margin-top: 15px !important;
-  margin-bottom: 15px !important;
+  margin-top: 20px !important;
   border-radius: 20px !important;
   border: 0.5px solid #d2d2d2;
-  padding: 5px 0px 5px 19px;
+  padding: 4px 0px 4px 19px;
+}
+.inputform::placeholder {
+  font-size: 18px;
 }
 .inputform:focus {
   /* border: 0.5px solid #d2d2d2; */
   border: 0.5px solid #5bc2e1;
   outline-width: 0px;
-  
 }
 
-.iconTraffic{
-  font-size: 50px !important;
-color: #3a3a3a !important;
+.iconTraffic {
+  font-size: 80px !important;
+  line-height: 80px;
+  color: #3a3a3a !important;
 }
 
 .des {
-	color: gray !important;
-	font-size: 22px;
-	margin-bottom: 20px;
-  margin-top: 10px;
-  
-  
+  color: #9f9f9f !important;
+  font-size: 20px;
 }
 
-.err{
-  margin-top:10px;
+.err {
+  margin-top: 10px;
   color: red;
   font-size: 20px !important;
 }

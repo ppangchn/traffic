@@ -89,7 +89,7 @@ export default class Login extends Component {
                 name="email"
                 className="inputform"
                 type="email"
-                placeholder="example@pirsquare.net"
+                placeholder="Example@pirsquare.net"
                 onChange={this.handleInputChange}
                 value={this.state.email}
                 invalid={this.state.invalidemail}

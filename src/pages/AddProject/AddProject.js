@@ -294,7 +294,7 @@ class AddProject extends Component {
             $objPM.users.roles.id <= 6
           ) {
             $objPM.isDisable = true
-            $objPM.processWeight.isDisable = true
+            // $objPM.processWeight.isDisable = true
           }
 
           return {
@@ -304,7 +304,7 @@ class AddProject extends Component {
             },
             weight: $objPM.weight,
             isDisable: $objPM.isDisable,
-            processWeight: $objPM.processWeight
+            // processWeight: $objPM.processWeight
           }
         })
         this.state.pm.map($objPM => {
@@ -467,11 +467,8 @@ class AddProject extends Component {
         () => this.updateListPm(pm)
       )
     })
-    const loader = document.getElementById("loader")
-    // const addproject = document.getElementById('addproject')
+    const loader = document.getElementById("loaderaddproject")
     if (loader) loader.hidden = true
-    // if (addproject) addproject.hidden = false
-    console.log('loader',loader)
   }
   componentDidMount() {
     try {
@@ -479,18 +476,15 @@ class AddProject extends Component {
     } catch (error) {
       console.log('fail to get data at AddProject', error)
     }
-    const addproject = document.getElementById('addproject')
-    if (addproject) addproject.hidden = true
   }
   render() {
     const { onClose } = this.props
-
     return (
       <Container>
         <Modal isOpen={this.state.open} toggle={onClose} autoFocus={true}>
             <ModalHeader toggle={onClose}>{this.state.header}</ModalHeader>
             <ModalBody>
-            {/* <div id="loader" className="loader"></div> */}
+            <div id="loaderaddproject" className="loaderaddproject"></div>
               <Container className="addprojectbox">
                 <Row className="rowcontainer">
                   <Col className="projectnamebox" md="6" sm="6" xs="12">

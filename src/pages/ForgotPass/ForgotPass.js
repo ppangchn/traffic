@@ -77,7 +77,7 @@ export default class ForgotPass extends Component {
 						<KeyReset />
 					</center>
 					<br />
-					Forgot Password?<br />
+					<div style={{fontSize:'30px',lineHeight:'0',color:'#4a4a4a'}}>Forgot Password?</div><br />
 					<div class="des">
 						We just need your registered email address
 						<br />to send you password reset
@@ -89,14 +89,14 @@ export default class ForgotPass extends Component {
 								name="email"
 								className="inputform"
 								type="email"
-								placeholder="example@pirsquare.net"
+								placeholder="Example@pirsquare.net"
 								onChange={this.handleInputChange}
 								value={this.state.email}
 								invalid={this.state.invalidemail}
 								required
 							/>
 						</div>
-						<Button color="submit" size="lg" block>
+						<Button color="submit" size="lg" block style={{width: '250px',position:'relative',left:'26px'}}>
 							Reset password
 						</Button>
 					</Form>

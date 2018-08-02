@@ -46,17 +46,6 @@ class UserDetail extends Component {
   update() {
     this.props.updateHeader()
   }
-  setEditProcessWeight() {
-    this.setState({ disableProcessWeight: !this.state.disableProcessWeight })
-    if (!this.state.disableProcessWeight) {
-      const data = {
-        id: this.props.id,
-        // projectManagement: 
-      }
-      // axios.put(`${url}/users/pm`,data)
-    }
-    
-  }
   componentDidMount() {
     const data = {
       labels: ['W 1', 'W 2', 'W 3', 'W 4'],
@@ -87,7 +76,7 @@ class UserDetail extends Component {
     }
     this.setState({ data })
     if (this.props.loginUserId === this.props.id) {
-      this.setState({ canEdit: true })
+      this.setState({ disableProcessWeight: false })
     }
   }
   render() {
@@ -96,11 +85,11 @@ class UserDetail extends Component {
       <Card
         className="userdetail"
         style={{
-          outline: this.state.canEdit ? '7px solid #5bc2e1' : '',
+          outline: !this.state.disableProcessWeight ? '7px solid #5bc2e1' : '',
           position: 'relative',
-          top: this.state.canEdit ? '7px' : '0',
-          marginRight: this.state.canEdit ? '7px' : '0',
-          paddingTop: this.state.canEdit ? '3px' : '10px'
+          top: !this.state.disableProcessWeight ? '7px' : '0',
+          marginRight: !this.state.disableProcessWeight ? '7px' : '0',
+          paddingTop: !this.state.disableProcessWeight ? '3px' : '10px'
         }}
       >
         <div className="userdetailusername">
@@ -120,18 +109,6 @@ class UserDetail extends Component {
             }}
           />
           {this.props.name}
-          <div className="editprocessweightbox">
-            {this.state.canEdit && (
-              <Edit
-                style={{
-                  color: this.state.disableProcessWeight ? 'none' : '#5bc2e1'
-                }}
-                // onMouseOver={this.style.color = '#5bc2e1'}
-                className="editprocessweight"
-                onClick={() => this.setEditProcessWeight()}
-              />
-            )}
-          </div>
         </div>
         <div>
           <Line
@@ -160,6 +137,8 @@ class UserDetail extends Component {
               return (
                 <Item key={project.id} className="overviewprojectitem">
                   <ProcessWeight
+                    userid={this.props.loginUserId}
+                    pmid={project.id}
                     projectID={project.project.id}
                     projectName={project.project.name}
                     color={project.project.color}

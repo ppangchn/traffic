@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Slider from 'rc-slider'
+import axios from 'axios'
+import url from '../../../url'
 import '../../../pages/ViewByProject/ProjectSidebar.css'
 
 class ProcessWeight extends Component {
@@ -10,9 +12,23 @@ class ProcessWeight extends Component {
   }
   slideChange(value) {
     this.setState({ processweight: value })
+    const data = {
+      id: this.props.userid,
+      projectManagement: {
+        id: this.props.pmid,
+        processWeight: {
+          processWeight: value
+        }
+      }
+    }
+    try {
+      axios.put(`${url}/processWeight/updateWeight`,data)
+      console.log('send data!')
+    } catch (error) {
+      console.log('cant send data at ProcessWeight', error)
+    }
   }
   updateData(allprocessweight) {
-    // console.log(allprocessweight)
     if (allprocessweight.length > 0) {
       this.setState({
         processweight:
