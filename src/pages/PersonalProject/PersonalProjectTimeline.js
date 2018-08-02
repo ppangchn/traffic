@@ -59,7 +59,6 @@ class ProjectTimeline extends Component {
         items
       })
     })
-    this.props.triggerLoading();
   }
   componentDidMount = () => {
     try {
