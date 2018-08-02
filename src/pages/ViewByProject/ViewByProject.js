@@ -8,9 +8,6 @@ const Container = styled.div`
   flex-direction: row;
 `
 class ViewByProject extends Component {
-<<<<<<< HEAD
-
-=======
   constructor(props) {
     super(props)
     this.state = { canTrigger: false }
@@ -28,7 +25,6 @@ class ViewByProject extends Component {
     const viewbyproject = document.getElementById('viewbyproject')
     if (viewbyproject) viewbyproject.hidden = true
   }
->>>>>>> 464c1cf18db1b10d14c52bf1eeda1c11bb57940d
   render() {
     return (
       <div>

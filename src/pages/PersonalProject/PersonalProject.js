@@ -9,9 +9,6 @@ const Container = styled.div`
   overflow: hidden;
 `
 class PersonalProject extends Component {
-<<<<<<< HEAD
-
-=======
   constructor() {
     super()
     this.state = {canTrigger: false}
@@ -29,7 +26,6 @@ class PersonalProject extends Component {
     const personalproject = document.getElementById("personalproject")
     if (personalproject) personalproject.hidden = true;
   }
->>>>>>> 464c1cf18db1b10d14c52bf1eeda1c11bb57940d
   render() {
     return (
       <div>
