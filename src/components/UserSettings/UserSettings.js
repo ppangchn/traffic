@@ -81,6 +81,7 @@ export default class UserSettings extends Component {
 										style={{
 											borderBottom: '1px solid #5bc2e1',
 											borderRadius: '0.2rem 0.2rem 0 0',
+											padding: '0'
 
 										}}
 									>
@@ -91,11 +92,12 @@ export default class UserSettings extends Component {
 										className="dropdowndeleteitem"
 										style={{
 											color: '#f67879',
-											borderRadius: '0 0 0.2rem 0.2rem'
+											borderRadius: '0 0 0.2rem 0.2rem',
+											padding: '0'
 										}}
 										onClick={this.toggleModalDelete}
 									>
-										<div>Delete</div>
+										<div>Delete Member</div>
 									</DropdownItem>
 								</DropdownMenu>
 							</ButtonDropdown>

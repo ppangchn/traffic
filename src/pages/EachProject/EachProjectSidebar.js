@@ -144,7 +144,7 @@ class EachProjectSidebar extends Component {
       })
       this.setState({ allmember })
     })
-    this.props.triggerLoading();
+    this.props.triggerLoading()
   }
   componentDidMount() {
     try {
@@ -190,22 +190,23 @@ class EachProjectSidebar extends Component {
                     className="dropdownitem"
                     style={{
                       borderBottom: '1px solid #5bc2e1',
-                      borderRadius: '0.2rem 0.2rem 0 0'
+                      borderRadius: '0.2rem 0.2rem 0 0',
+                      padding: '0'
                     }}
+                    onClick={() => this.toggleModal(true)}
                   >
-                    <div onClick={() => this.toggleModal(true)}>
-                      Edit Project
-                    </div>
+                    Edit Project
                   </DropdownItem>
                   <DropdownItem
                     onClick={this.toggleModalDelete}
                     className="dropdowndeleteitem"
                     style={{
                       color: '#f67879',
-                      borderRadius: '0 0 0.2rem 0.2rem'
+                      borderRadius: '0 0 0.2rem 0.2rem',
+                      padding: '0'
                     }}
                   >
-                    Delete
+                    Delete Project
                   </DropdownItem>
                 </DropdownMenu>
               </ButtonDropdown>
@@ -222,7 +223,7 @@ class EachProjectSidebar extends Component {
           if (timeline) {
             return (
               <EachProjectItem
-              key={"eachprojectSidebar"+timeline.id}
+                key={'eachprojectSidebar' + timeline.id}
                 timeline={timeline}
                 getData={() => this.getData()}
                 updateData={this.props.updateData}

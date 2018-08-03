@@ -9,7 +9,9 @@
 .check {
   position: absolute;
 }
-
+.usedicon {
+  cursor: default;
+}
 @media (min-width: 321px) and (max-width: 384.98px) {
   .usedicon {
     position: absolute;
