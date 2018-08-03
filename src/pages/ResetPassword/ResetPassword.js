@@ -46,10 +46,10 @@ export default class ResetPassword extends Component {
 						const { data } = $res
 						this.setState({ message: data.message })
 						if (data.message != 'Token not found or expired!') {
-							// this.props.history.push(`/`)
+							this.props.history.push(`/`)
             }
             else {
-              this.setState({ massage: 'Token not found or expired!' })
+              this.setState({ massage: 'Token expired!' })
             }
 					})
 				} else {
