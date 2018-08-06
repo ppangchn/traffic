@@ -106,9 +106,10 @@ class EditTimeline extends Component {
           isOpen={this.state.popoverOpen}
           target={'popover' + this.props.id}
           toggle={this.toggle}
+          className="edittimelinepopover"
         >
-          <PopoverBody>
-            <div style={{ display: 'flex' }}>
+          <PopoverBody className="edittimelinepopoverbody">
+            <div style={{ display: 'flex', top: '5px !important' }}>
               {/* <CalendarCheck /> */}
               <DatePicker
                 start={this.props.start}

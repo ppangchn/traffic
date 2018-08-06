@@ -320,7 +320,7 @@ class AddMember extends Component {
                   </Col>
                 </Row>
                 <Row>
-                  <Col className="mb-3">
+                  <Col style={{marginBottom:'14px'}}>
                     <div className="title">Roles</div>
                     <div className="select-pm">
                       <Select
@@ -369,7 +369,7 @@ class AddMember extends Component {
                 </div>
 
                 <Row className="title">
-                  <Col className="mb-3">
+                  <Col style={{marginBottom:'4px'}}>
                     <div style={{display: 'flex', alignItems:'center'}}>
                     Tags&ensp;<div style={{color: '#da3849' , fontSize:'14px', position:'relative',bottom:'1px'}}>* Press Enter to add tag</div>
                       </div>
@@ -394,7 +394,7 @@ class AddMember extends Component {
                       name="name"
                       className="inputform2"
                       type="email"
-                      placeholder="example@pirsquare.net"
+                      placeholder="Example@pirsquare.net"
                       onChange={this.handleInputChangeEmail}
                       value={this.state.email}
                       invalid={this.state.invalidemail}

@@ -57,7 +57,7 @@ class ProjectTimeline extends Component {
         items
       })
     })
-    // this.props.triggerLoading();
+    this.props.triggerLoading();
   }
   componentDidMount = () => {
     try {
@@ -65,6 +65,9 @@ class ProjectTimeline extends Component {
     } catch (error) {
       console.log('fail to get data at ProjectTimeline', error)
     }
+  }
+  componentWillReceiveProps(props) {
+    this.getData(props.id)
   }
   render() {
     return (

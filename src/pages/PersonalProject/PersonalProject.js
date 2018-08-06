@@ -13,19 +13,18 @@ class PersonalProject extends Component {
     super()
     this.state = { canTrigger: false }
   }
-  // triggerLoading() {
-  //   if (!this.state.canTrigger) {
-  //   const loader = document.getElementById('loader')
-  //   const personalproject = document.getElementById('personalproject')
-  //   if (loader) loader.hidden = true
-  //   if (personalproject) personalproject.hidden = false
-  //   }
-  //   this.setState({ canTrigger: true })
-  // }
-  // componentDidMount() {
-  //   const personalproject = document.getElementById('personalproject')
-  //   if (personalproject) personalproject.hidden = true
-  // }
+  triggerLoading() {
+    if (!this.state.canTrigger) {
+    const loader = document.getElementById('loader')
+    const personalproject = document.getElementById('personalproject')
+    if (loader) loader.hidden = true
+    if (personalproject) personalproject.hidden = false
+    }
+  }
+  componentDidMount() {
+    const personalproject = document.getElementById('personalproject')
+    if (personalproject) personalproject.hidden = true
+  }
   render() {
     return (
       <div>
@@ -33,11 +32,11 @@ class PersonalProject extends Component {
         <Container id="personalproject">
           <PersonalProjectSidebar
             id={this.props.match.params.id}
-            // triggerLoading={() => this.triggerLoading()}
+            triggerLoading={() => this.triggerLoading()}
           />
           <PersonalProjectTimeline
             id={this.props.match.params.id}
-            // triggerLoading={() => this.triggerLoading()}
+            triggerLoading={() => this.triggerLoading()}
           />
         </Container>
       </div>

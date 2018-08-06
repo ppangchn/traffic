@@ -49,10 +49,6 @@ class ProcessWeight extends Component {
   componentDidMount() {
     this.updateData(this.props.allprocessweight)
   }
-  componentWillReceiveProps(props) {
-    console.log('props on processWeight -> ', props)
-    // this.updateData(props.allprocessweight)
-  }
   render() {
     return (
       <div className="overviewprojectname">

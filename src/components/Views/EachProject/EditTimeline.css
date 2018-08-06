@@ -18,6 +18,12 @@
   color: white;
   margin-left: 5px;
 }
+.edittimelinepopover {
+  top: 5px !important;
+}
+.edittimelinepopoverbody {
+  padding-bottom: 0 !important;
+}
 @media (min-width: 321px) and (max-width: 575.98px) {
   .calendar {
     bottom: 2px;

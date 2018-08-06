@@ -46,7 +46,7 @@ class ProjectSidebar extends Component {
         const { data } = res
         this.setState({ data })
 			})
-			// this.props.triggerLoading();
+			this.props.triggerLoading();
     } catch (error) {
       console.log('fail to get data at PersonalProjectSidebar', error)
     }
@@ -54,8 +54,8 @@ class ProjectSidebar extends Component {
   componentDidMount() {
     this.getData(this.props.id)
   }
-  componentWillUpdate() {
-    this.getData(this.props.id)
+  componentWillReceiveProps(props) {
+    this.getData(props.id)
   }
   render() {
     const { data } = this.state

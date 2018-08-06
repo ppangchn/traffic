@@ -85,6 +85,9 @@
 .Select-menu-outer {
   font-family: 'DB Helvethaica X';
 }
+.arrow:before {
+  border-bottom-color: #5bc2e1 !important;
+}
 @media (min-width: 321px) and (max-width: 575.98px) {
   .eachprojectname {
     margin-left: 15px;
