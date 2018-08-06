@@ -17,7 +17,7 @@ const User = styled.div`
 class PersonItem extends Component {
   constructor(props) {
     super(props)
-    this.state = { id: '' }
+    this.state = { id: ''}
   }
   render() {
     const { name } = this.props

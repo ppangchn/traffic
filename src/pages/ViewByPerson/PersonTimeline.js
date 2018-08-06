@@ -64,7 +64,6 @@ class PersonTimeline extends Component {
   }
   updateData(roles) {
     const { data } = this.state
-    console.log(data)
     let items = []
     let groups = []
     let count = 1
@@ -115,7 +114,6 @@ class PersonTimeline extends Component {
   componentWillReceiveProps(props) {
     this.setState({ isFixedSizeRender: false }, () => {
       let isFinished = this.updateData(props.roles)
-      console.log('isFinshed', isFinished)
       this.setState({ isFixedSizeRender: isFinished })
     })
   }

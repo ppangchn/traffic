@@ -29,7 +29,21 @@ class PersonSidebar extends Component {
       checkedall: true,
       checkedpm: false,
       checkedpd: false,
-      data: {}
+      data: {},
+      defaultheight: [
+        60.5,
+        60.5,
+        92,
+        122.5,
+        153,
+        183.5,
+        214,
+        244.5,
+        275,
+        305.5,
+        336
+      ],
+      currentheight: []
     }
   }
   handleChangeAll(e) {
@@ -38,7 +52,8 @@ class PersonSidebar extends Component {
     this.setState({
       checkedall: e.target.checked,
       checkedpm: false,
-      checkedpd: false
+      checkedpd: false,
+      currentheight: []
     })
   }
   handleChangePM(e) {
@@ -47,7 +62,8 @@ class PersonSidebar extends Component {
     this.setState({
       checkedpm: e.target.checked,
       checkedall: false,
-      checkedpd: false
+      checkedpd: false,
+      currentheight: []
     })
   }
   handleChangePD(e) {
@@ -56,7 +72,8 @@ class PersonSidebar extends Component {
     this.setState({
       checkedpd: e.target.checked,
       checkedall: false,
-      checkedpm: false
+      checkedpm: false,
+      currentheight: []
     })
   }
   async getData() {
@@ -67,7 +84,6 @@ class PersonSidebar extends Component {
       let tags = []
       let listmember = []
       let length = []
-      this.setState({ data })
       data.map(user => {
         users.push(user.name)
         roles.push(user.roles.name)
@@ -103,9 +119,17 @@ class PersonSidebar extends Component {
         })
         length.push(count)
       })
-      this.setState({ users, roles, tags, listmember, length })
+      this.setState({ users, roles, tags, listmember, length, data })
     })
-    this.props.triggerLoading();
+    this.props.triggerLoading()
+  }
+  setCurrentHeight(height) {
+    let { currentheight } = this.state
+    if (currentheight.length < this.state.users.length) {
+      currentheight.push(height)
+    }
+
+    console.log(currentheight)
   }
   updateData(wantedroles) {
     const { data } = this.state
@@ -235,6 +259,9 @@ class PersonSidebar extends Component {
           </Head>
         </HeadContainer>
         {this.state.users.map((user, index) => {
+          this.setCurrentHeight(
+            this.state.defaultheight[this.state.length[index]]
+          )
           return (
             <PersonItem
               key={user}

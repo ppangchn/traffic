@@ -46,7 +46,6 @@ class ProjectSidebar extends Component {
         const { data } = res
         this.setState({ data })
 			})
-			this.props.triggerLoading();
     } catch (error) {
       console.log('fail to get data at PersonalProjectSidebar', error)
     }
@@ -102,6 +101,7 @@ class ProjectSidebar extends Component {
                                   color: 'black',
 																	textDecoration: 'none'
                                 }}
+                                onClick={this.props.triggerOpenLoading}
                               >
                                 {pm.users.name}
                               </Link>
