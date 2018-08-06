@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import Percent from './Percent'
+import moment from 'moment'
 import './ProjectItem.css'
 
 const Item = styled.div`
@@ -15,7 +16,20 @@ const Pm = styled.div`
 `
 
 class ProjectItem extends Component {
-
+  constructor() {
+    super()
+    this.state = { start: '', end: '' }
+  }
+  componentDidMount() {
+    const { timeline } = this.props.project
+    let start = ''
+    let end = ''
+    if (timeline.start && timeline.end) {
+      start = moment(timeline.start).format('DD/MM/YY') + '-'
+      end = moment(timeline.end).format('DD/MM/YY')
+    }
+    this.setState({ start, end })
+  }
   render() {
     const { project } = this.props
     return (
@@ -24,22 +38,34 @@ class ProjectItem extends Component {
           <div
             className="projectname"
             style={{
-              width: '85%',
-              whiteSpace: 'nowrap',
-              textOverflow: 'ellipsis',
-              overflow: 'hidden'
+              whiteSpace: 'nowrap'
             }}
           >
-            <Link
-              className="linkprojectname"
-              to={`/project/${project.id}`}
+            <div className="linkprojectnamecontainer">
+              <Link
+                className="linkprojectname"
+                to={`/project/${project.id}`}
+                style={{
+                  textDecoration: 'none',
+                  textOverflow: 'ellipsis',
+                  overflow: 'hidden'
+                }}
+                onClick={this.update}
+              >
+                {project.name}
+              </Link>
+            </div>
+            <div
+              className="projectdate"
               style={{
-                textDecoration: 'none'
+                display: 'flex',
+                color: ' #9d9d9d',
+                paddingLeft: '1px'
               }}
-              onClick={this.update}
             >
-              {project.name}
-            </Link>
+              <div>{this.state.start}</div>
+              <div>{this.state.end}</div>
+            </div>
           </div>
         </div>
 

@@ -75,7 +75,8 @@ class AddProject extends Component {
       isinvalidweight: false,
       isinvalidweightpm: false,
       isinvalidaddpm: true,
-      header: 'New Project'
+      header: 'New Project',
+      havecurrentcolor: false
     }
     this.toggle = this.toggle.bind(this)
     this.toggledrop = this.toggledrop.bind(this)
@@ -99,14 +100,13 @@ class AddProject extends Component {
       dropdownOpen: !this.state.dropdownOpen
     })
   }
-  setCheckColor = (c, used, checkedColor) => {
-    console.log(c, used, checkedColor)
+  setCheckColor = (c, used, checkedColor,havecurrentcolor) => {
     if (c) this.setState({ isinvalidcolor: false })
     if (!used) {
       this.setState({ checkedColor: c })
-    } else {
       let { usedcolor } = this.state
-      usedcolor.splice(checkedColor, 1)
+      if (havecurrentcolor) {usedcolor.splice(checkedColor, 1)
+      this.setState({havecurrentcolor: false})}
     }
   }
   handleInputChange(e) {
@@ -414,9 +414,9 @@ class AddProject extends Component {
           timeline: data.timeline,
           project: data.project,
           isinvalidaddpm: false,
-          checkedColor: data.project.color
+          checkedColor: data.project.color,
+          havecurrentcolor: true
         })
-        // this.setCheckColor(data.project.color)
       })
     } else if (this.props.userid && this.props.username) {
       pm = [
@@ -557,6 +557,7 @@ class AddProject extends Component {
                         used={used}
                         setCheckedColor={this.setCheckColor}
                         checkedColor={this.state.checkedColor}
+                        havecurrentcolor={this.state.havecurrentcolor}
                       />
                     </Col>
                   )

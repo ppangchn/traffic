@@ -12,18 +12,17 @@ class ColorButton extends Component {
     this.state = { iscurrentcolor: false }
   }
   componentWillReceiveProps(props) {
-    // console.log(props)
     if (props.checkedColor == props.color)
       this.setState({ iscurrentcolor: true })
   }
   render() {
-    const { color, setCheckedColor, checkedColor , used } = this.props
+    const { color, setCheckedColor, checkedColor , used ,havecurrentcolor} = this.props
     return (
       <div>
         <div
           className="shape"
           onClick={() => {
-            setCheckedColor(color, used, checkedColor)
+            setCheckedColor(color, used, checkedColor,havecurrentcolor)
           }}
           style={{
             backgroundColor: color

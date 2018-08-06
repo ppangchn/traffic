@@ -28,12 +28,10 @@ class ProjectTimeline extends Component {
     }
   }
   async getData(id) {
-    console.log(id)
     let items = this.state.defaultitems.map(i => i)
     let groups = this.state.defaultgroups.map(i => i)
     await axios.get(`${url}/users/${id}`).then(res => {
       const { data } = res // = res.data
-      console.log('datatata->',data)
       let count = 2
       data.projectTimeline.forEach(timeline => {
         if (!timeline.project.isDisable) {
@@ -59,6 +57,7 @@ class ProjectTimeline extends Component {
         items
       })
     })
+    // this.props.triggerLoading();
   }
   componentDidMount = () => {
     try {
@@ -66,9 +65,6 @@ class ProjectTimeline extends Component {
     } catch (error) {
       console.log('fail to get data at ProjectTimeline', error)
     }
-  }
-  componentWillReceiveProps(props) {
-    this.getData(props.id);
   }
   render() {
     return (

@@ -44,7 +44,6 @@ class ProjectSidebar extends Component {
     try {
       await axios.get(`${url}/users/${id}`).then(res => {
         const { data } = res
-        console.log(data, id)
         this.setState({ data })
 			})
 			// this.props.triggerLoading();
@@ -55,8 +54,8 @@ class ProjectSidebar extends Component {
   componentDidMount() {
     this.getData(this.props.id)
   }
-  componentWillReceiveProps(props) {
-    this.getData(props.id)
+  componentWillUpdate() {
+    this.getData(this.props.id)
   }
   render() {
     const { data } = this.state
@@ -91,7 +90,7 @@ class ProjectSidebar extends Component {
                     <Percent project={project.project} />
                     <div className="pmcontainer" style={{overflowX: 'auto'}}>
                       {project.project.projectManagement.map(pm => {
-                        if (!pm.isDisable && pm.users.id !== this.props.id) {
+                        if (!pm.isDisable && (String(pm.users.id) !== this.props.id)) {
                           return (
                             <Pm
                               key={pm.id}
