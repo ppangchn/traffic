@@ -41,8 +41,6 @@ export default class ResetPassword extends Component {
 			if (this.state.fpass.length > 5 && this.state.spass.length > 5) {
 				if (this.state.fpass == this.state.spass) {
 					axios.post(`${url}/users/resetpass`, data).then($res => {
-            console.log('RESSSSSSS',$res);
-            
 						const { data } = $res
 						this.setState({ message: data.message })
 						if (data.message != 'Token not found or expired!') {
