@@ -74,7 +74,6 @@ input::-webkit-input-placeholder {
 
 .Select-placeholder {
   border-color: #5ac2e2 !important;
-  font-size: 20px !important;
   padding: 0px 0px 5px 10px;
   color: #dfdfdf;
 }

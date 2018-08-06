@@ -20,7 +20,7 @@
     margin-left: 38px;
   }
   .Select-placeholder {
-    font-size: 10px;
+    font-size: 20px;
   }
   .selectpmbox {
     margin-bottom: 5px;
@@ -68,7 +68,7 @@
     margin-top: 7px;
   }
   .Select-placeholder {
-    font-size: 15px;
+    font-size: 16px;
   }
   .selectpmbox {
     margin-bottom: 5px;
@@ -91,7 +91,7 @@
     margin-left: 14px;
   }
   .Select-placeholder {
-    font-size: 15px;
+    font-size: 20px;
   }
   .selectpmbox {
     margin-bottom: 5px;
@@ -116,7 +116,7 @@
     margin-top: 1px;
   }
   .Select-placeholder {
-    font-size: 15px;
+    font-size: 19px !important;
   }
   .selectpmbox {
     margin-bottom: 5px;

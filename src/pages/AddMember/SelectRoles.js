@@ -46,7 +46,8 @@ class SelectRoles extends Component {
             value={this.state.roles}
             onChange={this.handleChange}
             options={this.props.listroles}
-            trimFilter
+						trimFilter
+						scrollMenuIntoView={false}
           />
 					{this.props.id > 0 && (
 						// <Button size="sm" color="danger" onClick={this.delete}>delete</Button>
