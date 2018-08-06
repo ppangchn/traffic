@@ -89,7 +89,7 @@ class ProjectSidebar extends Component {
                     <Percent project={project.project} />
                     <div className="pmcontainer" style={{overflowX: 'auto'}}>
                       {project.project.projectManagement.map(pm => {
-                        if (!pm.isDisable && (String(pm.users.id) !== this.props.id)) {
+                        if (!pm.isDisable && !pm.users.isDisable && (String(pm.users.id) !== this.props.id)) {
                           return (
                             <Pm
                               key={pm.id}

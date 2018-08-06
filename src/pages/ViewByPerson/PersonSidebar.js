@@ -107,8 +107,8 @@ class PersonSidebar extends Component {
             let add = true
             alltimeline.map(eachtimeline => {
               if (
-                (start < eachtimeline.start && end < eachtimeline.start) ||
-                (start > eachtimeline.end && end > eachtimeline.end)
+                (start <= eachtimeline.start && end <= eachtimeline.start) ||
+                (start >= eachtimeline.end && end >= eachtimeline.end)
               ) {
                 add = false
               }
@@ -128,8 +128,6 @@ class PersonSidebar extends Component {
     if (currentheight.length < this.state.users.length) {
       currentheight.push(height)
     }
-
-    console.log(currentheight)
   }
   updateData(wantedroles) {
     const { data } = this.state
@@ -165,8 +163,8 @@ class PersonSidebar extends Component {
             let add = true
             alltimeline.map(eachtimeline => {
               if (
-                (start < eachtimeline.start && end < eachtimeline.start) ||
-                (start > eachtimeline.end && end > eachtimeline.end)
+                (start <= eachtimeline.start && end <= eachtimeline.start) ||
+                (start >= eachtimeline.end && end >= eachtimeline.end)
               ) {
                 add = false
               }

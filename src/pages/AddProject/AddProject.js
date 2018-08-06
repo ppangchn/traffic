@@ -105,7 +105,8 @@ class AddProject extends Component {
     if (!used) {
       this.setState({ checkedColor: c })
       let { usedcolor } = this.state
-      if (havecurrentcolor) {usedcolor.splice(checkedColor, 1)
+      const index = usedcolor.indexOf(checkedColor)
+      if (havecurrentcolor) {usedcolor.splice(index, 1)
       this.setState({havecurrentcolor: false})}
     }
   }
