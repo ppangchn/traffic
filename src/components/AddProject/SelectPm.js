@@ -31,7 +31,7 @@ class SelectPm extends Component {
     this.slideChange = this.slideChange.bind(this)
   }
   handleChange = selectedOption => {
-    this.setState({ pm: selectedOption, value: selectedOption.value })
+    if (selectedOption) this.setState({ pm: selectedOption, value: selectedOption.value })
     if (selectedOption) this.setState({ disabled: false })
     else this.setState({ disabled: true })
     this.props.setPm(this.props.id, {

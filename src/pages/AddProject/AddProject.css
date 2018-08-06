@@ -54,6 +54,10 @@
 .projectnamebox {
   padding-left: 13px !important;
 }
+.fontinput {
+  padding-bottom: 3px !important;
+  padding-top: 3px !important;
+}
 @media (min-width: 321px) and (max-width: 575.98px) {
 	.loaderaddproject {
     position: fixed;
@@ -94,7 +98,7 @@
   .weightbox {
     margin-right: 5px;
     right: 8px;
-    margin-top: 27px;
+    margin-top: 39px;
   }
   .form-control {
     font-size: 10px !important;
@@ -125,8 +129,12 @@
     position: relative;
     width: 85%;
   }
+  .fontinput {
+    font-size: 20px !important;
+  }
   .fontinput::placeholder {
-    font-size: 18px !important;
+    font-size: 20px !important;
+    padding: 0;
   }
   .invalidprojectname {
     font-size: 15px;
@@ -177,12 +185,15 @@
   }
   .form-control {
     font-size: 12px !important;
-    top: 5px;
-    position: relative;
     width: 85%;
+    margin-bottom: 8px;
+  }
+  .fontinput {
+    font-size: 17px !important;
   }
   .fontinput::placeholder {
     font-size: 17px !important;
+    padding: 0;
   }
   .invalidprojectname {
     font-size: 15px;
@@ -252,8 +263,11 @@
   .pmweighttext {
     right: 10px;
   }
+  .fontinput {
+    font-size: 16px !important;
+  }
   .fontinput::placeholder {
-    font-size: 17px !important;
+    font-size: 16px !important;
     padding: 0;
   }
   .invalidprojectname {
@@ -304,8 +318,11 @@
     margin-right: 10px;
     margin-top: 21px;
   }
+  .fontinput {
+    font-size: 20px !important;
+  }
   .fontinput::placeholder {
-    font-size: 19px !important;
+    font-size: 20px !important;
     padding: 0;
   }
   .addpmbox {
@@ -371,8 +388,11 @@
     margin-right: 10px;
     margin-top: 21px;
   }
+  .fontinput {
+    font-size: 20px !important;
+  }
   .fontinput::placeholder {
-    font-size: 19px !important;
+    font-size: 20px !important;
     padding: 0;
   }
   .addpmbox {
