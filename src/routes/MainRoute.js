@@ -28,7 +28,7 @@ class MainRoute extends Component {
 				<PrivateRoute path="/project/:id" component={EachProject} />
 				<PrivateRoute path="/person/:id" component={PersonalProject} />
 			</div>
-		)
+		);
 	}
 }
 export default MainRoute
